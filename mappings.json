@@ -1,0 +1,49 @@
+{
+  "mappings": {
+    "object_data": {
+      "properties": {
+        "accession_number": { "type": "string", "index": "not_analyzed" },
+        "artist": {
+          "type": "string",
+          "fields": {
+            "raw": { "type": "string", "index": "not_analyzed" }
+          }
+        },
+        "continent": { "type": "string" },
+        "country": {
+          "type": "string",
+          "fields": {
+            "raw": { "type": "string", "index": "not_analyzed" }
+          }
+        },
+        "creditline": { "type": "string" },
+        "culture": { "type": "string" },
+        "dated": { "type": "string" },
+        "description": { "type": "string" },
+        "dimension": { "type": "string" },
+        "id": { "type": "string" },
+        "image": { "type": "string" },
+        "image_copyright": { "type": "string" },
+        "image_height": { "type": "long" },
+        "image_width": { "type": "long" },
+        "life_date": { "type": "string" },
+        "marks": { "type": "string" },
+        "medium": { "type": "string" },
+        "nationality": { "type": "string" },
+        "provenance": { "type": "string" },
+        "public_access": { "type": "long" },
+        "restricted": { "type": "long" },
+        "role": { "type": "string" },
+        "room": { "type": "string" },
+        "style": { "type": "string" },
+        "text": { "type": "string" },
+        "title": {
+          "type": "string",
+          "fields": {
+            "raw": { "type": "string", "index": "not_analyzed" }
+          }
+        }
+      }
+    }
+  }
+}
