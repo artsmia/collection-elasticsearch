@@ -1,4 +1,14 @@
 {
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "rawFolding": {
+          "tokenizer": "keyword",
+          "filter":  [ "lowercase", "asciifolding" ]
+        }
+      }
+    }
+  },
   "mappings": {
     "object_data": {
       "properties": {
@@ -6,7 +16,8 @@
         "artist": {
           "type": "string",
           "fields": {
-            "raw": { "type": "string", "index": "not_analyzed" }
+            "raw": { "type": "string", "index": "not_analyzed" },
+            "rawFolded": { "type": "string", "analyzer": "rawFolding" }
           }
         },
         "continent": { "type": "string" },

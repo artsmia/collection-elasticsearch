@@ -1,7 +1,7 @@
 {
   "aggs": {
     "artist": {
-      "terms": {"script": "a = doc['artist.raw'].value.toLowerCase(); a ? a[0] : '_'", "size": 30, "order": { "_term": "asc" }},
+      "terms": {"script": "a = doc['artist.rawFolded'].value.toLowerCase(); a ? a[0] : '_'", "size": 50, "order": { "_term": "asc" }},
       "aggs": {
         "byName": {"terms": {"field": "artist.raw", "size": 5000, "order": { "_term": "asc" }}}
       }
