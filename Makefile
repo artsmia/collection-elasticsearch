@@ -12,6 +12,7 @@ objects:
 	for bucket in $(buckets); do \
 		echo $$bucket; \
 		file=bulk/$$bucket.json; \
+		[[ -f $$file ]] && sleep 1 || \
 		redis-cli --raw hgetall object:$$bucket | grep -v "<br />" | while read id; do \
 			if [[ $$id = *[[:digit:]]* ]]; then \
 				read -r json; \
@@ -22,3 +23,5 @@ objects:
 		done; \
 		curl -XPUT "$(ES_URL)/_bulk" --data-binary @$$file; \
 	done
+
+reindex: deleteIndex createIndex objects
