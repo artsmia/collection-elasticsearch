@@ -5,6 +5,10 @@
         "rawFolding": {
           "tokenizer": "keyword",
           "filter":  [ "lowercase", "asciifolding" ]
+        },
+        "folding": {
+          "tokenizer": "standard",
+          "filter":  [ "lowercase", "asciifolding" ]
         }
       }
     }
@@ -14,9 +18,11 @@
       "properties": {
         "accession_number": { "type": "string", "index": "not_analyzed" },
         "artist": {
-          "type": "string",
+          "type": "multi_field",
           "fields": {
+            "artist": { "type": "string", "analyzer": "snowball" },
             "raw": { "type": "string", "index": "not_analyzed" },
+            "folded": { "type": "string", "analyzer": "folding" },
             "rawFolded": { "type": "string", "analyzer": "rawFolding" }
           }
         },
@@ -50,6 +56,7 @@
         "text": { "type": "string" },
         "title": {
           "type": "string",
+          "analyzer": "snowball",
           "fields": {
             "raw": { "type": "string", "index": "not_analyzed" }
           }
