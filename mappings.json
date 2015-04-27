@@ -1,6 +1,13 @@
 {
   "settings": {
     "analysis": {
+      "filter": {
+        "autocomplete_filter": {
+          "type": "edge_ngram",
+          "min_gram": 3,
+          "max_gram": 20
+        }
+      },
       "analyzer": {
         "rawFolding": {
           "tokenizer": "keyword",
@@ -9,6 +16,14 @@
         "folding": {
           "tokenizer": "standard",
           "filter":  [ "lowercase", "asciifolding" ]
+        },
+        "autocomplete": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "autocomplete_filter"
+          ]
         }
       }
     }
@@ -23,7 +38,8 @@
             "artist": { "type": "string", "analyzer": "snowball" },
             "raw": { "type": "string", "index": "not_analyzed" },
             "folded": { "type": "string", "analyzer": "folding" },
-            "rawFolded": { "type": "string", "analyzer": "rawFolding" }
+            "rawFolded": { "type": "string", "analyzer": "rawFolding" },
+            "ngram": {"type": "string", "analyzer": "autocomplete" }
           }
         },
         "continent": { "type": "string" },
@@ -58,7 +74,8 @@
           "type": "string",
           "analyzer": "snowball",
           "fields": {
-            "raw": { "type": "string", "index": "not_analyzed" }
+            "raw": { "type": "string", "index": "not_analyzed" },
+            "ngram": {"type": "string", "analyzer": "autocomplete" }
           }
         }
       }
