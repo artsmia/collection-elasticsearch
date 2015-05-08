@@ -121,7 +121,10 @@ app.get('/:query', function(req, res) {
   var size = req.query.size || 100
   var filters = req.query.filters
   search(req.params.query || '', size, filters, function(error, results) {
-    return res.send({results: results, query: req.params.query, error: error, filters: filters}, error && error.status || 200)
+    results.query = req.params.query
+    results.filters = filters
+    results.error = error
+    return res.send(results, error && error.status || 200)
   })
 })
 
