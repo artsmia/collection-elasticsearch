@@ -8,7 +8,6 @@
     "elasticsearch": "^4.0.2",
     "express": "~3.4.8",
     "hiredis": "~0.1.16",
-    "limestone": "~0.1.5",
     "redis": "~0.10.1"
   },
   "scripts": {

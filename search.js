@@ -1,4 +1,3 @@
-var l = require('limestone').SphinxClient()
 var es = new require('elasticsearch').Client({
   host: process.env.ES_URL+'/test/',
   log: false
@@ -96,16 +95,11 @@ var function_score_sqs = {
     search = {body: {size: 0, aggs: aggs}, searchType: 'count'}
   }
   es.search(search).then(function (body) {
-    // l.connect('localhost:9312', function(error) {
-    //   l.query({query: query, limit: 50}, function(err, answer) {
-    //    callback(null, answer.matches.map(function(match) { return match.doc }), body)
-    //   })
-    // })
     body.query = q
-    callback(null, [], body)
+    callback(null, body)
   }, function (error) {
     console.log(error)
-    callback(error, [], [])
+    callback(error, [])
   })
 }
 
@@ -126,15 +120,8 @@ app.get('/:query', function(req, res) {
   var replies = []
   var size = req.query.size || 100
   var filters = req.query.filters
-  search(req.params.query || '', size, filters, function(error, results, es) {
-    if(results.length == 0) return res.send({sphinx: [], es: es, query: req.params.query, error: error, filters: filters}, 200)
-
-    results.map(function(id, index) {
-      client.hget('object:'+~~(id/1000), id, function(err, reply) {
-        replies.push(JSON.parse(reply))
-        if(index >= results.length-1) res.send({sphinx: replies, es: es, query: req.params.query})
-      })
-    })
+  search(req.params.query || '', size, filters, function(error, results) {
+    return res.send({results: results, query: req.params.query, error: error, filters: filters}, error && error.status || 200)
   })
 })
 
