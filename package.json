@@ -1,0 +1,20 @@
+{
+  "name": "artsmia-collection-search",
+  "version": "0.0.0",
+  "description": "search the MIA collection",
+  "main": "index.js",
+  "dependencies": {
+    "cors": "~2.2.0",
+    "elasticsearch": "^4.0.2",
+    "express": "~3.4.8",
+    "hiredis": "~0.1.16",
+    "limestone": "~0.1.5",
+    "redis": "~0.10.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "",
+  "license": "MIT"
+}
