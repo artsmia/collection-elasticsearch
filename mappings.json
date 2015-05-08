@@ -1,10 +1,11 @@
 {
   "settings": {
+    "number_of_shards": 1,
     "analysis": {
       "filter": {
-        "autocomplete_filter": {
+        "ngram_filter": {
           "type": "edge_ngram",
-          "min_gram": 3,
+          "min_gram": 4,
           "max_gram": 20
         }
       },
@@ -17,12 +18,12 @@
           "tokenizer": "standard",
           "filter":  [ "lowercase", "asciifolding" ]
         },
-        "autocomplete": {
+        "ngram": {
           "type": "custom",
           "tokenizer": "standard",
           "filter": [
             "lowercase",
-            "autocomplete_filter"
+            "ngram_filter"
           ]
         }
       }
@@ -39,7 +40,7 @@
             "raw": { "type": "string", "index": "not_analyzed" },
             "folded": { "type": "string", "analyzer": "folding" },
             "rawFolded": { "type": "string", "analyzer": "rawFolding" },
-            "ngram": {"type": "string", "analyzer": "autocomplete" }
+            "ngram": {"type": "string", "analyzer": "ngram" }
           }
         },
         "continent": { "type": "string" },
@@ -75,7 +76,7 @@
           "analyzer": "snowball",
           "fields": {
             "raw": { "type": "string", "index": "not_analyzed" },
-            "ngram": {"type": "string", "analyzer": "autocomplete" }
+            "ngram": {"type": "string", "analyzer": "ngram" }
           }
         }
       }
