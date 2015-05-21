@@ -25,7 +25,7 @@ objects:
 		curl -XPUT "$(ES_URL)/_bulk" --data-binary @$$file; \
 	done
 
-reindex: deleteIndex createIndex objects highlights
+reindex: deleteIndex createIndex objects highlights imageRightsToES
 
 highlights = 278 529 1218 1226 1244 1348 1355 1380 4866 8023 1629 1721 3183 3520 60728 113926 114602 108860 109118 115836 116725 1270 1411 1748 4324 5788
 highlights:
@@ -33,3 +33,28 @@ highlights:
 		echo "{\"update\": {\"_index\": \"$(index)\", \"_type\": \"object_data\", \"_id\": \"$$id\"}}"; \
 		echo "{\"doc\": {\"highlight\": \"true\"}}"; \
 	done | curl -v -XPUT "$(ES_URL)/_bulk" --data-binary @-
+
+# Detailed image rights don't make it through our API currently.
+# `rights.xlsx` comes from TMS, gets converted to a CSV (`id, rights statement`),
+# and sent into ES
+rights.csv: rights.xslx
+	j -l $< | while read sheet; do \
+		j -s "$$sheet" $< >> $@; \
+	done
+	sed -i '2,$${ /^ObjectID/d }; /^$$/d' $@
+
+imageRightsToES: rights.csv
+	file=bulk-image-rights.json; \
+	[ -e $$file ] || tail -n+3 $< | csvcut -c1,2 | while read line; do \
+		id=$$(cut -d',' -f1 <<<$$line); \
+		rights=$$(cut -d',' -f2 <<<$$line); \
+		echo "{ \"update\" : { \"_index\" : \"$(index)\", \"_type\" : \"object_data\", \"_id\" : \"$$id\" } }"; \
+		echo "{ \"doc\": { \"image_rights_type\": \"$$rights\" } }"; \
+	done >> $$file; \
+	split -l 1000 $$file; \
+	ls x* | while read file; do \
+		curl -XPUT "$(ES_URL)/_bulk" --data-binary @$$file; \
+		sleep 2; \
+	done
+	rm x*
+
