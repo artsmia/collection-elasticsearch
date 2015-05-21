@@ -9,6 +9,7 @@ createIndex:
 
 buckets = $$(redis-cli keys 'object:*' | egrep 'object:[0-9]+$$$$' | cut -d ':' -f 2 | sort -g)
 objects:
+	[[ -d bulk ]] || mkdir bulk; \
 	for bucket in $(buckets); do \
 		echo $$bucket; \
 		file=bulk/$$bucket.json; \
