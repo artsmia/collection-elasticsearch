@@ -81,6 +81,7 @@ var function_score_sqs = {
     "Medium": {"terms": {"field": "medium", "size": aggSize}},
     "Title": {"terms": {"field": "title.raw", "size": aggSize}},
     "Gist": {"significant_terms": {"field": "_all"}},
+    "Department": {"terms": {"field": "department.raw", "size": aggSize}},
     // "image_rights_type": {"terms": {"field": "image_rights_type"}},
     // other facets? department
     // "year": {"histogram": {"field": "dated", "interval": 50}},

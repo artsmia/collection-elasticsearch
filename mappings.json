@@ -58,6 +58,12 @@
         },
         "culture": { "type": "string" },
         "dated": { "type": "string" },
+        "department": {
+          "type": "string",
+          "fields": {
+            "raw": {"type": "string", "index": "not_analyzed" }
+          }
+        },
         "description": { "type": "string" },
         "dimension": { "type": "string" },
         "id": { "type": "integer" },

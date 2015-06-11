@@ -25,7 +25,7 @@ objects:
 		curl -XPUT "$(ES_URL)/_bulk" --data-binary @$$file; \
 	done
 
-reindex: deleteIndex createIndex objects highlights imageRightsToES
+reindex: deleteIndex createIndex objects highlights imageRightsToES departments
 
 highlights = 278 529 1218 1226 1244 1348 1355 1380 4866 8023 1629 1721 3183 3520 60728 113926 114602 108860 109118 115836 116725 1270 1411 1748 4324 5788
 highlights:
@@ -58,3 +58,19 @@ imageRightsToES: rights.csv
 	done
 	rm x*
 
+departments:
+	@curl --silent $(internalAPI)/departments/ | jq -r 'map([.department, .department_id])[][]' | while read name; do \
+		read deptId; \
+		curl --silent $(internalAPI)/departments/$$deptId | jq -r 'map(.object_id)[]' | while read id; do \
+			echo "{ \"update\" : { \"_index\" : \"$(index)\", \"_type\" : \"object_data\", \"_id\" : \"$$id\" } }"; \
+			echo "{ \"doc\": { \"department\": \"$$name\" } }"; \
+		done; \
+	done >> departments.bulk;
+	split -l 1000 departments.bulk
+	ls x* | while read file; do \
+		curl -XPUT "$(ES_URL)/_bulk" --data-binary @$$file; \
+		sleep 2; \
+	done
+	rm departments.bulk x*
+
+.PHONY: departments
