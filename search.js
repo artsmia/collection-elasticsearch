@@ -41,6 +41,7 @@ var function_score_sqs = {
   //query: {multi_match: searches.multi_match}, // good
   //query: {common: searches.common}, // ok, v different from sqs and multi
   functions: [
+    {filter: {term: {highlight: "true"}}, weight: 3},
     {filter: {term: {image: "valid"}}, weight: 2},
     {filter: {prefix: {room: "g"}}, weight: 1.1},
   ],
