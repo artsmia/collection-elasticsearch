@@ -1,5 +1,5 @@
 var es = new require('elasticsearch').Client({
-  host: process.env.ES_URL+'/test/',
+  host: process.env.ES_URL+'/'+process.env.ES_index,
   log: false
 })
 
