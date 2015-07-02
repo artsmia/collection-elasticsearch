@@ -95,7 +95,8 @@
             "ngram": {"type": "string", "analyzer": "ngram" },
             "sort": {"type": "string", "analyzer": "lowercase_sort"}
           }
-        }
+        },
+        "tags": { "type": "string" }
       }
     }
   }

@@ -25,7 +25,7 @@ objects:
 		curl -XPUT "$(ES_URL)/_bulk" --data-binary @$$file; \
 	done
 
-reindex: deleteIndex createIndex objects highlights imageRightsToES departments
+reindex: deleteIndex createIndex objects highlights imageRightsToES departments tags
 
 highlights = 278 529 1218 1226 1244 1348 1355 1380 4866 8023 1629 1721 3183 3520 60728 113926 114602 108860 109118 115836 116725 1270 1411 1748 4324 5788
 highlights:
@@ -73,4 +73,12 @@ departments:
 	done
 	rm departments.bulk x*
 
-.PHONY: departments
+tags:
+	@redis="redis-cli --raw"; \
+	$$redis keys 'object:*:tags' | while read key; do \
+		id=$$(sed 's/object:\|:tags//g' <<<$$key); \
+		echo "{ \"update\" : { \"_index\" : \"$(index)\", \"_type\" : \"object_data\", \"_id\" : \"$$id\" } }"; \
+		echo "{ \"doc\": { \"tags\": \"$$($$redis smembers $$key | sed 's/^.*\\u0.*//; s/\"//g' | tr '\n' ' ')\" } }"; \
+	done | sed 's/\\\|\\r\|\\n/ /g' | parallel -j2 --pipe -N1000 "curl -XPUT --write-out '%{http_code} ' --output /dev/null --silent \"$(ES_URL)/_bulk\" --data-binary @-";
+
+.PHONY: departments tags
