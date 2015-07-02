@@ -26,7 +26,7 @@ objects:
 		done | tee $$file); \
 	done | $(toES)
 
-reindex: deleteIndex createIndex objects highlights imageRightsToES departments tags
+reindex: deleteIndex createIndex objects highlights imageRights departments tags
 
 highlights = 278 529 1218 1226 1244 1348 1355 1380 4866 8023 1629 1721 3183 3520 60728 113926 114602 108860 109118 115836 116725 1270 1411 1748 4324 5788
 highlights:
@@ -44,7 +44,7 @@ rights.csv: rights.xslx
 	done
 	sed -i '2,$${ /^ObjectID/d }; /^$$/d' $@
 
-imageRightsToES: rights.csv
+imageRights: rights.csv
 	file=bulk/image-rights.json; \
 	([ -e $$file ] && cat $$file || (tail -n+3 $< | csvcut -c1,2 | while read line; do \
 		id=$$(cut -d',' -f1 <<<$$line); \
