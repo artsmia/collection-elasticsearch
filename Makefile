@@ -7,23 +7,24 @@ deleteIndex:
 createIndex:
 	curl -XPOST -d @mappings.json $(ES_URL)/$(index)
 
+toES = parallel -j2 --pipe -N1000 "curl -XPUT --write-out '%{http_code} ' --output /dev/null --silent \"$(ES_URL)/_bulk\" --data-binary @-"; echo
+
 buckets = $$(redis-cli keys 'object:*' | egrep 'object:[0-9]+$$$$' | cut -d ':' -f 2 | sort -g)
 objects:
 	[[ -d bulk ]] || mkdir bulk; \
 	for bucket in $(buckets); do \
-		echo $$bucket; \
+		>&2 echo $$bucket; \
 		file=bulk/$$bucket.json; \
-		[[ -f $$file ]] && sleep 1 || \
-		redis-cli --raw hgetall object:$$bucket | grep -v "<br />" | while read id; do \
+		[[ -f $$file ]] && cat $$file || \
+		(redis-cli --raw hgetall object:$$bucket | grep -v "<br />" | while read id; do \
 			if [[ $$id = *[[:digit:]]* ]]; then \
 				read -r json; \
 				json=$$(sed -e 's/%C2%A9/©/g; s/%26Acirc%3B%26copy%3B/©/g; s|http:\\\/\\\/api.artsmia.org\\\/objects\\\/||; s/o_/ō/g' <<<$$json); \
-				echo "{ \"index\" : { \"_index\" : \"$(index)\", \"_type\" : \"object_data\", \"_id\" : \"$$id\" } }" >> $$file; \
-				echo "$$json" >> $$file; \
+				echo "{ \"index\" : { \"_index\" : \"$(index)\", \"_type\" : \"object_data\", \"_id\" : \"$$id\" } }"; \
+				echo "$$json"; \
 			fi; \
-		done; \
-		curl -XPUT "$(ES_URL)/_bulk" --data-binary @$$file; \
-	done
+		done | tee $$file); \
+	done | $(toES)
 
 reindex: deleteIndex createIndex objects highlights imageRightsToES departments tags
 
@@ -32,7 +33,7 @@ highlights:
 	echo $(highlights) | tr ' ' '\n' | while read id; do \
 		echo "{\"update\": {\"_index\": \"$(index)\", \"_type\": \"object_data\", \"_id\": \"$$id\"}}"; \
 		echo "{\"doc\": {\"highlight\": \"true\"}}"; \
-	done | curl -v -XPUT "$(ES_URL)/_bulk" --data-binary @-
+	done | $(toES)
 
 # Detailed image rights don't make it through our API currently.
 # `rights.xlsx` comes from TMS, gets converted to a CSV (`id, rights statement`),
@@ -44,19 +45,13 @@ rights.csv: rights.xslx
 	sed -i '2,$${ /^ObjectID/d }; /^$$/d' $@
 
 imageRightsToES: rights.csv
-	file=bulk-image-rights.json; \
-	[ -e $$file ] || tail -n+3 $< | csvcut -c1,2 | while read line; do \
+	file=bulk/image-rights.json; \
+	([ -e $$file ] && cat $$file || (tail -n+3 $< | csvcut -c1,2 | while read line; do \
 		id=$$(cut -d',' -f1 <<<$$line); \
 		rights=$$(cut -d',' -f2 <<<$$line); \
 		echo "{ \"update\" : { \"_index\" : \"$(index)\", \"_type\" : \"object_data\", \"_id\" : \"$$id\" } }"; \
 		echo "{ \"doc\": { \"image_rights_type\": \"$$rights\" } }"; \
-	done >> $$file; \
-	split -l 1000 $$file; \
-	ls x* | while read file; do \
-		curl -XPUT "$(ES_URL)/_bulk" --data-binary @$$file; \
-		sleep 2; \
-	done
-	rm x*
+	done | tee $$file)) | $(toES)
 
 departments:
 	@curl --silent $(internalAPI)/departments/ | jq -r 'map([.department, .department_id])[][]' | while read name; do \
@@ -65,20 +60,15 @@ departments:
 			echo "{ \"update\" : { \"_index\" : \"$(index)\", \"_type\" : \"object_data\", \"_id\" : \"$$id\" } }"; \
 			echo "{ \"doc\": { \"department\": \"$$name\" } }"; \
 		done; \
-	done >> departments.bulk;
-	split -l 1000 departments.bulk
-	ls x* | while read file; do \
-		curl -XPUT "$(ES_URL)/_bulk" --data-binary @$$file; \
-		sleep 2; \
-	done
-	rm departments.bulk x*
+	done | $(toES)
 
 tags:
 	@redis="redis-cli --raw"; \
-	$$redis keys 'object:*:tags' | while read key; do \
+	file=bulk/tags.json; \
+	([ -e $$file ] && cat $$file || ($$redis keys 'object:*:tags' | while read key; do \
 		id=$$(sed 's/object:\|:tags//g' <<<$$key); \
 		echo "{ \"update\" : { \"_index\" : \"$(index)\", \"_type\" : \"object_data\", \"_id\" : \"$$id\" } }"; \
 		echo "{ \"doc\": { \"tags\": \"$$($$redis smembers $$key | sed 's/^.*\\u0.*//; s/\"//g' | tr '\n' ' ')\" } }"; \
-	done | sed 's/\\\|\\r\|\\n/ /g' | parallel -j2 --pipe -N1000 "curl -XPUT --write-out '%{http_code} ' --output /dev/null --silent \"$(ES_URL)/_bulk\" --data-binary @-";
+	done | sed 's/\\\|\\r\|\\n/ /g' | tee $$file)) | $(toES)
 
 .PHONY: departments tags
