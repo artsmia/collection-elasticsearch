@@ -1,6 +1,8 @@
 SHELL := /bin/bash
 index = $(ES_index)
 
+default: highlights
+
 deleteIndex:
 	curl -XDELETE $(ES_URL)/$(index)
 
