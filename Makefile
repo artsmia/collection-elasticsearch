@@ -49,7 +49,7 @@ rights.csv: rights.xslx
 	j -l $< | while read sheet; do \
 		j -s "$$sheet" $< >> $@; \
 	done
-	sed -i '2,$${ /^ObjectID/d }; /^$$/d' $@
+	gsed -i '2,$${ /^ObjectID/d }; /^$$/d' $@
 
 imageRights: rights.csv
 	file=bulk/image-rights.json; \
