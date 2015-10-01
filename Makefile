@@ -69,13 +69,31 @@ departments:
 		done; \
 	done | $(toES)
 
+departmentHighlights:
+	@csvcut -c1,2 department_features.csv | while read feature; do \
+		objectId=$$(cut -d',' -f1 <<<$$feature); \
+		dept=$$(cut -d',' -f2 <<<$$feature); \
+		echo "{ \"update\" : { \"_index\" : \"$(index)\", \"_type\" : \"object_data\", \"_id\" : \"$$objectId\" } }"; \
+		echo "{ \"doc\": { \"featured\": \"true\" } }"; \
+	done | $(toES)
+
 tags:
 	@redis="redis-cli --raw"; \
 	file=bulk/tags.json; \
 	([ -e $$file ] && cat $$file || ($$redis keys 'object:*:tags' | while read key; do \
 		id=$$(sed 's/object:\|:tags//g' <<<$$key); \
+		tags=$$($$redis smembers $$key \
+		| sed 's/^.*\\u0.*//; s/\"//g' \
+		| grep -v 'artist\|http' \
+		| tr '\n' ' '); \
 		echo "{ \"update\" : { \"_index\" : \"$(index)\", \"_type\" : \"object_data\", \"_id\" : \"$$id\" } }"; \
-		echo "{ \"doc\": { \"tags\": \"$$($$redis smembers $$key | sed 's/^.*\\u0.*//; s/\"//g' | tr '\n' ' ')\" } }"; \
+		echo "{ \"doc\": { \"tags\": \"$$tags\" } }"; \
 	done | sed 's/\\\|\\r\|\\n/ /g' | tee $$file)) | $(toES)
+
+recent:
+	@curl --silent "https://collections.artsmia.org/search_controller.php?page=search&featured=true&index=0&department=16" | jq -r '.message[]' | cut -d'_' -f1 | while read objectId; do \
+		echo "{ \"update\" : { \"_index\" : \"$(index)\", \"_type\" : \"object_data\", \"_id\" : \"$$objectId\" } }"; \
+		echo "{ \"doc\": { \"recent\": \"true\" } }"; \
+	done | $(toES)
 
 .PHONY: departments tags
