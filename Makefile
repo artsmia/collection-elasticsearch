@@ -57,7 +57,7 @@ imageRights: rights.csv
 		id=$$(cut -d',' -f1 <<<$$line); \
 		rights=$$(cut -d',' -f2 <<<$$line); \
 		echo "{ \"update\" : { \"_index\" : \"$(index)\", \"_type\" : \"object_data\", \"_id\" : \"$$id\" } }"; \
-		echo "{ \"doc\": { \"image_rights_type\": \"$$rights\" } }"; \
+		echo "{ \"doc\": { \"rights\": \"$$rights\" } }"; \
 	done | tee $$file)) | $(toES)
 
 departments:

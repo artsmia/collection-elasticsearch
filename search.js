@@ -75,7 +75,7 @@ var function_score_sqs = {
     //   "aggs": {"Room": {"terms": {"field": "room.raw", "size": aggSize}}},
     // },
     "Room": {"terms": {"field": "room.raw", "size": aggSize}},
-    "Image_rights_type": {"terms": {"field": "image_rights_type"}},
+    "Rights": {"terms": {"field": "rights"}},
     "Artist": {"terms": {"field": "artist.raw", "size": aggSize}},
     "Country": {"terms": {"field": "country.raw", "size": aggSize}},
     "Style": {"terms": {"field": "style.raw", "size": aggSize}},

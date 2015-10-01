@@ -75,7 +75,7 @@
         "image_copyright": { "type": "string" },
         "image_height": { "type": "long" },
         "image_width": { "type": "long" },
-        "image_rights_type": { "type": "string", "index": "not_analyzed" },
+        "rights": { "type": "string", "index": "not_analyzed" },
         "life_date": { "type": "string" },
         "marks": { "type": "string" },
         "medium": { "type": "string" },
