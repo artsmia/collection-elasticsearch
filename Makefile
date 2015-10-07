@@ -37,7 +37,7 @@ clean:
 reindex: deleteIndex createIndex update
 update: objects highlights imageRights \
 	departments departmentHighlights \
-	tags recent
+	tags recent deaccessions
 
 highlights = 278 529 1218 1226 1244 1348 1355 1380 4866 8023 1629 1721 3183 3520 60728 113926 114602 108860 109118 115836 116725 1270 1411 1748 4324 5788
 highlights:
@@ -95,9 +95,16 @@ tags:
 	done | sed 's/\\\|\\r\|\\n/ /g' | tee $$file)) | $(toES)
 
 recent:
-	@curl --silent "https://collections.artsmia.org/search_controller.php?page=search&featured=true&index=0&department=16" | jq -r '.message[]' | cut -d'_' -f1 | while read objectId; do \
+	@curl --silent $(internalAPI)/accessions/recent/json | jq '.[].id' | while read objectId; do \
 		echo "{ \"update\" : { \"_index\" : \"$(index)\", \"_type\" : \"object_data\", \"_id\" : \"$$objectId\" } }"; \
 		echo "{ \"doc\": { \"recent\": \"true\" } }"; \
-	done | $(toES)
+	done | tee bulk/recent.json | $(toES)
+
+deaccessions:
+	@curl --silent $(internalAPI)/accessions/deaccessions/json | jq -r '.[] | [.id, .date][]' | while read objectId; do \
+		read date; \
+		echo "{ \"update\" : { \"_index\" : \"$(index)\", \"_type\" : \"object_data\", \"_id\" : \"$$objectId\" } }"; \
+		echo "{ \"doc\": { \"deaccessioned\": \"true\", \"deaccessionedDate\": \"$$date\" } }"; \
+	done | tee bulk/deaccessioned.json | $(toES)
 
 .PHONY: departments tags

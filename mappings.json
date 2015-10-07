@@ -96,7 +96,11 @@
             "sort": {"type": "string", "analyzer": "lowercase_sort"}
           }
         },
-        "tags": { "type": "string" }
+        "tags": { "type": "string" },
+        "deaccessionedDate": {
+          "type" : "date",
+          "format" : "dateOptionalTime"
+        }
       }
     }
   }
