@@ -44,7 +44,7 @@ clean:
 reindex: deleteIndex createIndex update
 update: objects highlights imageRights \
 	departments departmentHighlights \
-	tags recent deaccessions
+	tags recent deaccessions relatedContent
 
 highlights = 278 529 1218 1226 1244 1348 1355 1380 4866 8023 1629 1721 3183 3520 60728 113926 114602 108860 109118 115836 116725 1270 1411 1748 4324 5788
 highlights:
@@ -113,5 +113,17 @@ deaccessions:
 		echo "{ \"update\" : {\"_type\" : \"object_data\", \"_id\" : \"$$objectId\" } }"; \
 		echo "{ \"doc\": { \"deaccessioned\": \"true\", \"deaccessionedDate\": \"$$date\" } }"; \
 	done | tee bulk/deaccessioned.json | $(toES)
+
+relatedContent:
+	for type in 3dmodels artstories stories audio-stops newsflashes; do \
+		name=$$(sed 's/s$$//' <<<$$type); \
+		cat ../collection-links/$$type | while read ids; do \
+		  read json; \
+			tr ' ' '\n' <<<$$ids | while read objectId; do \
+				echo "{ \"update\" : {\"_type\" : \"object_data\", \"_id\" : \"$$objectId\" } }"; \
+				echo "{ \"doc\": { \"related:$$type\": \"true\" } }"; \
+			done; \
+		done; \
+	done | tee bulk/related.json | $(toES)
 
 .PHONY: departments tags
