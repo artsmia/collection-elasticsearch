@@ -9,7 +9,14 @@ deleteIndex:
 createIndex:
 	curl -XPOST -d @mappings.json $(ES_URL)/$(index)
 
-toES = parallel -j2 --pipe -N1000 "curl -XPUT --write-out '%{http_code} ' --output /dev/null --silent \"$(ES_URL)/_bulk\" --data-binary @-"; echo
+toES = parallel -j2 --pipe -N1000 \
+	"curl -XPUT \
+	  --write-out '%{http_code} ' \
+		--output /dev/null \
+	  --silent \
+	  \"$(ES_URL)/$(index)/_bulk\" \
+	  --data-binary @-\
+	"; echo
 
 buckets = $$(redis-cli keys 'object:*' | egrep 'object:[0-9]+$$$$' | cut -d ':' -f 2 | sort -g)
 objects:
@@ -26,7 +33,7 @@ objects:
 					s/o_/ō/g; \
 					s/"provenance":"",//g; \
 				' <<<$$json); \
-				echo "{ \"index\" : { \"_index\" : \"$(index)\", \"_type\" : \"object_data\", \"_id\" : \"$$id\" } }"; \
+				echo "{ \"index\" : { \"_type\" : \"object_data\", \"_id\" : \"$$id\" } }"; \
 				echo "$$json"; \
 			fi; \
 		done | tee $$file); \
@@ -42,7 +49,7 @@ update: objects highlights imageRights \
 highlights = 278 529 1218 1226 1244 1348 1355 1380 4866 8023 1629 1721 3183 3520 60728 113926 114602 108860 109118 115836 116725 1270 1411 1748 4324 5788
 highlights:
 	echo $(highlights) | tr ' ' '\n' | while read id; do \
-		echo "{\"update\": {\"_index\": \"$(index)\", \"_type\": \"object_data\", \"_id\": \"$$id\"}}"; \
+		echo "{\"update\": {\"_type\": \"object_data\", \"_id\": \"$$id\"}}"; \
 		echo "{\"doc\": {\"highlight\": \"true\"}}"; \
 	done | $(toES)
 
@@ -60,7 +67,7 @@ imageRights: rights.csv
 	([ -e $$file ] && cat $$file || (tail -n+3 $< | csvcut -c1,2 | while read line; do \
 		id=$$(cut -d',' -f1 <<<$$line); \
 		rights=$$(cut -d',' -f2 <<<$$line); \
-		echo "{ \"update\" : { \"_index\" : \"$(index)\", \"_type\" : \"object_data\", \"_id\" : \"$$id\" } }"; \
+		echo "{ \"update\" : {\"_type\" : \"object_data\", \"_id\" : \"$$id\" } }"; \
 		echo "{ \"doc\": { \"rights\": \"$$rights\" } }"; \
 	done | tee $$file)) | $(toES)
 
@@ -68,7 +75,7 @@ departments:
 	@curl --silent $(internalAPI)/departments/ | jq -r 'map([.department, .department_id])[][]' | while read name; do \
 		read deptId; \
 		curl --silent $(internalAPI)/departments/$$deptId | jq -r 'map(.object_id)[]' | while read id; do \
-			echo "{ \"update\" : { \"_index\" : \"$(index)\", \"_type\" : \"object_data\", \"_id\" : \"$$id\" } }"; \
+			echo "{ \"update\" : {\"_type\" : \"object_data\", \"_id\" : \"$$id\" } }"; \
 			echo "{ \"doc\": { \"department\": \"$$name\" } }"; \
 		done; \
 	done | $(toES)
@@ -77,7 +84,7 @@ departmentHighlights:
 	@csvcut -c1,2 department_features.csv | while read feature; do \
 		objectId=$$(cut -d',' -f1 <<<$$feature); \
 		dept=$$(cut -d',' -f2 <<<$$feature); \
-		echo "{ \"update\" : { \"_index\" : \"$(index)\", \"_type\" : \"object_data\", \"_id\" : \"$$objectId\" } }"; \
+		echo "{ \"update\" : {\"_type\" : \"object_data\", \"_id\" : \"$$objectId\" } }"; \
 		echo "{ \"doc\": { \"featured\": \"true\" } }"; \
 	done | $(toES)
 
@@ -90,20 +97,20 @@ tags:
 		| sed 's/^.*\\u0.*//; s/\"//g' \
 		| grep -v 'artist\|http' \
 		| tr '\n' ' '); \
-		echo "{ \"update\" : { \"_index\" : \"$(index)\", \"_type\" : \"object_data\", \"_id\" : \"$$id\" } }"; \
+		echo "{ \"update\" : {\"_type\" : \"object_data\", \"_id\" : \"$$id\" } }"; \
 		echo "{ \"doc\": { \"tags\": \"$$tags\" } }"; \
 	done | sed 's/\\\|\\r\|\\n/ /g' | tee $$file)) | $(toES)
 
 recent:
 	@curl --silent $(internalAPI)/accessions/recent/json | jq '.[].id' | while read objectId; do \
-		echo "{ \"update\" : { \"_index\" : \"$(index)\", \"_type\" : \"object_data\", \"_id\" : \"$$objectId\" } }"; \
+		echo "{ \"update\" : {\"_type\" : \"object_data\", \"_id\" : \"$$objectId\" } }"; \
 		echo "{ \"doc\": { \"recent\": \"true\" } }"; \
 	done | tee bulk/recent.json | $(toES)
 
 deaccessions:
 	@curl --silent $(internalAPI)/accessions/deaccessions/json | jq -r '.[] | [.id, .date][]' | while read objectId; do \
 		read date; \
-		echo "{ \"update\" : { \"_index\" : \"$(index)\", \"_type\" : \"object_data\", \"_id\" : \"$$objectId\" } }"; \
+		echo "{ \"update\" : {\"_type\" : \"object_data\", \"_id\" : \"$$objectId\" } }"; \
 		echo "{ \"doc\": { \"deaccessioned\": \"true\", \"deaccessionedDate\": \"$$date\" } }"; \
 	done | tee bulk/deaccessioned.json | $(toES)
 
