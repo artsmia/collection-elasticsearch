@@ -51,7 +51,9 @@ var function_score_sqs = {
   var q = {function_score: function_score_sqs}
   var suggest = {
     text: query,
-    byArtist: {term: {field: "artist.raw"}}
+    artist: {
+      term: {field: "artist"}
+    }
   }
   var aggSize = 200
   var aggs = {
