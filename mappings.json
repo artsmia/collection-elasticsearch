@@ -100,7 +100,9 @@
         "deaccessionedDate": {
           "type" : "date",
           "format" : "dateOptionalTime"
-        }
+        },
+        "artist_suggest": {"type": "completion"},
+        "title_suggest": {"type": "completion"}
       }
     }
   }

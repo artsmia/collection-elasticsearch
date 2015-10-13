@@ -126,4 +126,19 @@ relatedContent:
 		done; \
 	done | tee bulk/related.json | $(toES)
 
+completions:
+	for type in artist title; do \
+		file=bulk/$$type-completions.json; \
+		[ -e $$file ] && cat $$file || (find ~/tmp/collection/objects/1 -name "*.json" | while read file; do \
+			objectId=$$(echo $$file | rev | cut -d'/' -f1 | rev | sed 's/.json//'); \
+			value=$$(jq -r ".$$type" $$file | sed 's/"//g'); \
+			if [ ! -z "$${value// }" ]; then \
+				echo $$value | sed 's/;.*$$//' | sed 's/in|of|a|the|an//g' | tr ' ' '\n' | while read term; do \
+					echo "{ \"update\" : {\"_type\" : \"object_data\", \"_id\" : \"$$objectId\" } }"; \
+					echo "{ \"doc\": {\""$$type"_suggest\": {\"input\": \"$$term\", output: \"$$value\"} } }"; \
+				done; \
+			fi; \
+		done | tee $$file) | $(toES); \
+	done;
+
 .PHONY: departments tags

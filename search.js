@@ -52,7 +52,14 @@ var function_score_sqs = {
   var suggest = {
     text: query,
     artist: {
-      term: {field: "artist"}
+      term: {
+        field: "artist",
+      }
+    },
+    "artist_completion" : {
+      "completion": {
+        "field" : "artist_suggest"
+      }
     }
   }
   var aggSize = 200
@@ -201,3 +208,20 @@ var prindleRoom = {
   title: 'Duluth Living Room (from the William and Mina Prindle House',
   room: "G320",
 }
+
+app.get('/autofill/:prefix', function(req, res) {
+  var query = {
+    body: {
+      "artist_completion" : {
+        "text": req.params.prefix,
+        "completion": {
+          "field" : "artist_suggest"
+        }
+      }
+    }
+  }
+
+  es.suggest(query).then(function (body) {
+    res.json('autofill', body)
+  })
+})
