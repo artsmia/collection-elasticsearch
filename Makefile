@@ -44,7 +44,8 @@ clean:
 reindex: deleteIndex createIndex update
 update: objects highlights imageRights \
 	departments departmentHighlights \
-	tags recent deaccessions relatedContent
+	tags recent deaccessions relatedContent \
+	completions
 
 highlights = 278 529 1218 1226 1244 1348 1355 1380 4866 8023 1629 1721 3183 3520 60728 113926 114602 108860 109118 115836 116725 1270 1411 1748 4324 5788
 highlights:
@@ -126,19 +127,21 @@ relatedContent:
 		done; \
 	done | tee bulk/related.json | $(toES)
 
+completions = "artist title"
 completions:
-	for type in artist title; do \
+	for type in $$(echo $(completions) | tr ' ' '\n'); do \
 		file=bulk/$$type-completions.json; \
-		[ -e $$file ] && cat $$file || (find ~/tmp/collection/objects/1 -name "*.json" | while read file; do \
+		([ -e $$file ] && cat $$file || (find ~/tmp/collection/objects/ -name "*.json" | while read file; do \
 			objectId=$$(echo $$file | rev | cut -d'/' -f1 | rev | sed 's/.json//'); \
-			value=$$(jq -r ".$$type" $$file | sed 's/"//g'); \
+			value=$$(jq -r ".$$type" $$file | sed 's/"//g; s/;.*$$//; s/and.*$$//; s/o_/ō/g' ); \
+			output=$$(echo $$value | sed 's/(.*)//'); \
 			if [ ! -z "$${value// }" ]; then \
-				echo $$value | sed 's/;.*$$//' | sed 's/in|of|a|the|an//g' | tr ' ' '\n' | while read term; do \
+				echo $$value | sed 's/in\|of\|a\|the\|an\|\.//g' | tr ' ' '\n' | while read term; do \
 					echo "{ \"update\" : {\"_type\" : \"object_data\", \"_id\" : \"$$objectId\" } }"; \
 					echo "{ \"doc\": {\""$$type"_suggest\": {\"input\": \"$$term\", output: \"$$value\"} } }"; \
 				done; \
 			fi; \
-		done | tee $$file) | $(toES); \
+		done | tee $$file) | $(toES)); \
 	done;
 
 .PHONY: departments tags

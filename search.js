@@ -1,3 +1,5 @@
+var spellchecker = require('spellchecker')
+
 var es = new require('elasticsearch').Client({
   host: process.env.ES_URL+'/'+process.env.ES_index,
   log: false
@@ -61,6 +63,11 @@ var function_score_sqs = {
       "completion": {
         "field" : "artist_suggest"
       }
+    },
+    "title_completion" : {
+      "completion": {
+        "field" : "title_suggest"
+      }
     }
   }
   var aggSize = 200
@@ -109,6 +116,9 @@ var function_score_sqs = {
   }
   es.search(search).then(function (body) {
     body.query = q
+    var spellings = spellchecker.getCorrectionsForMisspelling(query)
+    body.spellcheck = spellings
+    console.info('spellings', spellings)
     callback(null, body)
   }, function (error) {
     console.log(error)
@@ -213,10 +223,15 @@ var prindleRoom = {
 app.get('/autofill/:prefix', function(req, res) {
   var query = {
     body: {
+      "text": req.params.prefix,
       "artist_completion" : {
-        "text": req.params.prefix,
         "completion": {
           "field" : "artist_suggest"
+        }
+      },
+      "title_completion" : {
+        "completion": {
+          "field" : "title_suggest"
         }
       }
     }
