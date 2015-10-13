@@ -128,7 +128,8 @@ relatedContent:
 
 completions:
 	for type in artist title; do \
-		find ~/tmp/collection/objects/1 -name "*.json" | while read file; do \
+		file=bulk/$$type-completions.json; \
+		[ -e $$file ] && cat $$file || (find ~/tmp/collection/objects/1 -name "*.json" | while read file; do \
 			objectId=$$(echo $$file | rev | cut -d'/' -f1 | rev | sed 's/.json//'); \
 			value=$$(jq -r ".$$type" $$file | sed 's/"//g'); \
 			if [ ! -z "$${value// }" ]; then \
@@ -137,7 +138,7 @@ completions:
 					echo "{ \"doc\": {\""$$type"_suggest\": {\"input\": \"$$term\", output: \"$$value\"} } }"; \
 				done; \
 			fi; \
-		done; \
-	done | tee bulk/completions.json | $(toES);
+		done | tee $$file) | $(toES); \
+	done;
 
 .PHONY: departments tags
