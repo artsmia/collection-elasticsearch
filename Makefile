@@ -143,10 +143,9 @@ completions:
 			value=$$(jq -r ".$$type" <<<$$json | sed 's/"//g; s/;.*$$//; s/and.*$$//;' ); \
 			output=$$(echo $$value | sed 's/(.*)//'); \
 			if [ ! -z "$${value// }" ]; then \
-				echo $$value | sed 's/in\|of\|a\|the\|an\|\.//g' | tr ' ' '\n' | while read term; do \
-					echo "{ \"update\" : {\"_type\" : \"object_data\", \"_id\" : \"$$objectId\" } }"; \
-					echo "{ \"doc\": {\""$$type"_suggest\": {\"input\": \"$$term\", output: \"$$value\"} } }"; \
-				done; \
+				terms=$$(echo $$value | sed 's/in\|of\|a\|the\|an\|\.\|\(\|\)//g' | tr ' ' ',' | sed 's/,/\",\"/g'); \
+				echo "{ \"update\" : {\"_type\" : \"object_data\", \"_id\" : \"$$objectId\" } }"; \
+				echo "{ \"doc\": {\""$$type"_suggest\": {\"input\": [\"$$terms\"], output: \"$$value\"} } }"; \
 			fi; \
 		done | tee $$file)) | $(toES); \
 	done;
