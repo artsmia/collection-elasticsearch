@@ -49,10 +49,10 @@ objects:
 clean:
 	rm -rf bulk/*
 reindex: deleteIndex createIndex update
-update: objects highlights imageRights \
+update: objects highlights \
 	departments departmentHighlights \
-	tags recent deaccessions relatedContent \
-	completions
+	recent deaccessions relatedContent \
+	completions imageRights tags
 
 highlights = 278 529 1218 1226 1244 1348 1355 1380 4866 8023 1629 1721 3183 3520 60728 113926 114602 108860 109118 115836 116725 1270 1411 1748 4324 5788
 highlights:
