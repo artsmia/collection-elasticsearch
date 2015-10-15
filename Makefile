@@ -19,13 +19,10 @@ toES = parallel -j2 --pipe -N1000 \
 	"; echo
 
 buckets = $$(redis-cli keys 'object:*' | egrep 'object:[0-9]+$$$$' | cut -d ':' -f 2 | sort -g)
-objects:
-	[[ -d bulk ]] || mkdir bulk; \
-	for bucket in $(buckets); do \
+streamRedis:
+	@for bucket in $(buckets); do \
 		>&2 echo $$bucket; \
-		file=bulk/$$bucket.json; \
-		[[ -f $$file ]] && cat $$file || \
-		(redis-cli --raw hgetall object:$$bucket | grep -v "<br />" | while read id; do \
+		redis-cli --raw hgetall object:$$bucket | grep -v "<br />" | while read id; do \
 			if [[ $$id = *[[:digit:]]* ]]; then \
 				read -r json; \
 				json=$$(sed -e 's/%C2%A9/©/g; s/%26Acirc%3B%26copy%3B/©/g; \
@@ -33,11 +30,21 @@ objects:
 					s/o_/ō/g; \
 					s/"provenance":"",//g; \
 				' <<<$$json); \
-				echo "{ \"index\" : { \"_type\" : \"object_data\", \"_id\" : \"$$id\" } }"; \
-				echo "$$json"; \
+				echo $$id; \
+				echo $$json; \
 			fi; \
-		done | tee $$file); \
-	done | $(toES)
+		done; \
+	done
+
+objects:
+	@[[ -d bulk ]] || mkdir bulk; \
+	file=bulk/objects.json; \
+	([[ -f $$file ]] && cat $$file || \
+	(make streamRedis | while read id; do \
+		read -r json; \
+		echo "{ \"index\" : { \"_type\" : \"object_data\", \"_id\" : \"$$id\" } }"; \
+		echo "$$json"; \
+	done | tee $$file)) | $(toES)
 
 clean:
 	rm -rf bulk/*
@@ -131,9 +138,9 @@ completions = "artist title"
 completions:
 	for type in $$(echo $(completions) | tr ' ' '\n'); do \
 		file=bulk/$$type-completions.json; \
-		([ -e $$file ] && cat $$file || (find ~/tmp/collection/objects/ -name "*.json" | while read file; do \
-			objectId=$$(echo $$file | rev | cut -d'/' -f1 | rev | sed 's/.json//'); \
-			value=$$(jq -r ".$$type" $$file | sed 's/"//g; s/;.*$$//; s/and.*$$//; s/o_/ō/g' ); \
+		([ -e $$file ] && cat $$file || (make streamRedis | while read objectId; do \
+		  read -r json; \
+			value=$$(jq -r ".$$type" <<<$$json | sed 's/"//g; s/;.*$$//; s/and.*$$//;' ); \
 			output=$$(echo $$value | sed 's/(.*)//'); \
 			if [ ! -z "$${value// }" ]; then \
 				echo $$value | sed 's/in\|of\|a\|the\|an\|\.//g' | tr ' ' '\n' | while read term; do \
@@ -141,7 +148,7 @@ completions:
 					echo "{ \"doc\": {\""$$type"_suggest\": {\"input\": \"$$term\", output: \"$$value\"} } }"; \
 				done; \
 			fi; \
-		done | tee $$file) | $(toES)); \
+		done | tee $$file)) | $(toES); \
 	done;
 
 .PHONY: departments tags
