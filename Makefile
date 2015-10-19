@@ -28,6 +28,7 @@ streamRedis:
 				json=$$(sed -e 's/%C2%A9/©/g; s/%26Acirc%3B%26copy%3B/©/g; \
 					s|http:\\\/\\\/api.artsmia.org\\\/objects\\\/||; \
 					s/o_/ō/g; \
+					s/&amp;/&/g; \
 					s/"provenance":"",//g; \
 				' <<<$$json); \
 				echo $$id; \
@@ -135,13 +136,14 @@ relatedContent:
 	done | tee bulk/related.json | $(toES)
 
 completions = "artist title"
+completions = "artist"
 completions:
 	for type in $$(echo $(completions) | tr ' ' '\n'); do \
 		highlights=$$(echo $(highlights) $$(csvcut -c1 department_features.csv)); \
 		file=bulk/$$type-completions.json; \
 		([ -e $$file ] && cat $$file || (make streamRedis | while read objectId; do \
 		  read -r json; \
-			value=$$(jq -r ".$$type" <<<$$json | sed 's/"//g; s/;.*$$//; s/and.*$$//;' ); \
+			value=$$(jq -r ".$$type" <<<$$json | sed 's/"//g; s/;.*$$//; s/ and.*$$//;' ); \
 			output=$$(echo $$value | sed 's/(.*)//'); \
 			if [ ! -z "$${value// }" ]; then \
 				key="$$type"_suggest; \
