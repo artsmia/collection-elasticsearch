@@ -118,7 +118,6 @@ var function_score_sqs = {
     body.query = q
     var spellings = spellchecker.getCorrectionsForMisspelling(query)
     body.spellcheck = spellings
-    console.info('spellings', spellings)
     callback(null, body)
   }, function (error) {
     console.log(error)
@@ -227,6 +226,11 @@ app.get('/autofill/:prefix', function(req, res) {
       "artist_completion" : {
         "completion": {
           "field" : "artist_suggest"
+        }
+      },
+      "highlight_artist_completion" : {
+        "completion": {
+          "field" : "highlight_artist_suggest"
         }
       },
       "title_completion" : {

@@ -137,17 +137,25 @@ relatedContent:
 completions = "artist title"
 completions:
 	for type in $$(echo $(completions) | tr ' ' '\n'); do \
+		highlights=$$(echo $(highlights) $$(csvcut -c1 department_features.csv)); \
 		file=bulk/$$type-completions.json; \
 		([ -e $$file ] && cat $$file || (make streamRedis | while read objectId; do \
 		  read -r json; \
 			value=$$(jq -r ".$$type" <<<$$json | sed 's/"//g; s/;.*$$//; s/and.*$$//;' ); \
 			output=$$(echo $$value | sed 's/(.*)//'); \
 			if [ ! -z "$${value// }" ]; then \
+				key="$$type"_suggest; \
+				if echo $$highlights | grep $$objectId > /dev/null; then key=highlight_"$$key"; fi; \
 				terms=$$(echo $$value | sed 's/in\|of\|a\|the\|an\|\.\|\(\|\)//g' | tr ' ' ',' | sed 's/,/\",\"/g'); \
 				echo "{ \"update\" : {\"_type\" : \"object_data\", \"_id\" : \"$$objectId\" } }"; \
-				echo "{ \"doc\": {\""$$type"_suggest\": {\"input\": [\"$$terms\"], output: \"$$value\"} } }"; \
+				echo "{ \"doc\": {\"$$key\": {\"input\": [\"$$terms\"], output: \"$$value\"} } }"; \
 			fi; \
 		done | tee $$file)) | $(toES); \
 	done;
+
+highlightIds:
+	@highlights=$$(echo $(highlights) $$(csvcut -c1 department_features.csv)); \
+	echo $$highlights
+
 
 .PHONY: departments tags
