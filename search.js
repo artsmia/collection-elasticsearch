@@ -72,8 +72,8 @@ var function_score_sqs = {
   }
   var aggSize = 200
   var aggs = {
-    // "Image": {"terms": {"script": "doc['image'].value == 'valid' ? 'yes' : 'no'", "size": aggSize}},
-    "Image": {"terms": {"field": "image", "size": aggSize}},
+    "Image": {"terms": {"script": "doc['image'].value == 'valid' ? 'Available' : 'Unavailable'", "size": aggSize}},
+    // "Image": {"terms": {"field": "image", "size": aggSize}},
     // "Image": {
     // 	"terms": {
     // 		"field": "image",
