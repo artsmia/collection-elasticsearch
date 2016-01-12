@@ -11,11 +11,11 @@ createIndex:
 
 toES = parallel -j2 --pipe -N1000 \
 	"curl -XPUT \
-	  --write-out '%{http_code} ' \
+		--write-out '%{http_code} ' \
 		--output /dev/null \
-	  --silent \
-	  \"$(ES_URL)/$(index)/_bulk\" \
-	  --data-binary @-\
+		--silent \
+		\"$(ES_URL)/$(index)/_bulk\" \
+		--data-binary @-\
 	"; echo
 
 buckets = $$(redis-cli keys 'object:*' | egrep 'object:[0-9]+$$$$' | cut -d ':' -f 2 | sort -g)
