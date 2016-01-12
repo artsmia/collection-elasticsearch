@@ -25,6 +25,7 @@ streamRedis:
 		redis-cli --raw hgetall object:$$bucket | grep -v "<br />" | while read id; do \
 			if [[ $$id = *[[:digit:]]* ]]; then \
 				read -r json; \
+				if echo $$json | grep 'Error with id' > /dev/null; then continue; fi; \
 				json=$$(sed -e 's/%C2%A9/©/g; s/%26Acirc%3B%26copy%3B/©/g; \
 					s|http:\\\/\\\/api.artsmia.org\\\/objects\\\/||; \
 					s/o_/ō/g; \
