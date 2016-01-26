@@ -153,28 +153,31 @@ app.get('/:query', function(req, res) {
 app.get('/id/:id', function(req, res) {
   var id = req.params.id
   if(id == 'G320') return res.json(prindleRoom)
-  client.hget('object:'+~~(id/1000), id, function(err, reply) {
-    res.json(JSON.parse(reply))
+  // client.hget('object:'+~~(id/1000), id, function(err, reply) {
+  es.get({id: id, type: 'object_data', index: process.env.ES_index}, function(err, reply) {
+    console.info('/id', id, err, reply)
+    res.json(reply._source)
   })
 })
 
 app.get('/ids/:ids', function(req, res) {
   var ids = req.params.ids.split(',')
-  var m = client.multi()
-  ids.forEach(function(id) { m.hget('object:'+~~(id/1000), id) })
+  var docs = ids.map(function(id) {
+    return {_index: process.env.ES_index, _type: 'object_data', _id: id}
+  })
 
-  m.exec(function(err, replies) {
-    var filter = req.query.filter
-    if(filter == undefined) return res.json(replies.map(function(meta) { return JSON.parse(meta) }))
-    filter = filter.split(',')
-    var filtered = replies.map(function(meta) {
-      if(meta == null) return
-      var json = JSON.parse(meta)
-      return filter.reduce(function(all, field) {
-        all[field] = json[field]; return all
-      }, {})
+  es.mget({body: {docs: docs}}, function (err, response) {
+    if (err) {
+      console.error(err)
+      return res.send('oops')
+    }
+
+    res.json({
+      hits: {
+        total: response.docs.length,
+        hits: response.docs
+      }
     })
-    return res.send(filtered)
   })
 })
 
