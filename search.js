@@ -1,5 +1,3 @@
-var spellchecker = require('spellchecker')
-
 var es = new require('elasticsearch').Client({
   host: process.env.ES_URL,
   log: false
@@ -117,8 +115,6 @@ var function_score_sqs = {
   }
   es.search(search).then(function (body) {
     body.query = q
-    var spellings = spellchecker.getCorrectionsForMisspelling(query)
-    body.spellcheck = spellings
     callback(null, body)
   }, function (error) {
     console.log(error)
