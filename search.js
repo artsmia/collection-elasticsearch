@@ -106,7 +106,7 @@ var function_score_sqs = {
     // "year": {"terms": {"field": "dated", "size": aggSize}},
     // "Creditline": {"terms": {"field": "creditline.raw", "size": aggSize}},
   }
-  var highlight = {fields: {"*": {fragment_size: 500, number_of_fragments: 5}}}
+  var highlight = {fields: {"*": {fragment_size: 5000, number_of_fragments: 1}}}
 
   var search = {index: process.env.ES_index, body: {query: q, aggs: aggs, highlight: highlight, suggest: suggest}, size: size}
   // when the search is undefined or blank, do a count over the aggregations
