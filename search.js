@@ -117,7 +117,7 @@ var function_score_sqs = {
     body.query = q
     callback(null, body)
   }, function (error) {
-    console.log(error)
+    console.error(error)
     callback(error, [])
   })
 }
@@ -152,7 +152,6 @@ app.get('/id/:id', function(req, res) {
   if(id == 'G320') return res.json(prindleRoom)
   // client.hget('object:'+~~(id/1000), id, function(err, reply) {
   es.get({id: id, type: 'object_data', index: process.env.ES_index}, function(err, reply) {
-    console.info('/id', id, err, reply)
     res.json(reply._source)
   })
 })
@@ -180,7 +179,6 @@ app.get('/ids/:ids', function(req, res) {
 
 app.get('/tag/:tag', function(req, res) {
   client.smembers('tag:'+req.params.tag, function(err, ids) {
-    console.info('tag', req.params, ids.length)
 
     var m = client.multi()
     ids.forEach(function(id) { m.hget('object:'+~~(id/1000), id) })
