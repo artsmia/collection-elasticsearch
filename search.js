@@ -205,7 +205,7 @@ app.get('/tag/:tag', function(req, res) {
 // app.get('/artists.json', function(req, res) {
 //   http.get(process.env.ES_URL+'/test/_search?search_type=count&pretty=true'node -d '{"aggs": {"artist": {"terms": {"field": "artist.raw", "size": 25000, "order": { "_term": "asc" }}}}}'
 
-app.listen(4680)
+app.listen(process.env.PORT || 4680)
 
 var prindleRoom = {
   accession_number: "82.43.1-60",
