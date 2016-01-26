@@ -1,7 +1,7 @@
 var spellchecker = require('spellchecker')
 
 var es = new require('elasticsearch').Client({
-  host: process.env.ES_URL+'/'+process.env.ES_index,
+  host: process.env.ES_URL,
   log: false
 })
 
@@ -110,7 +110,7 @@ var function_score_sqs = {
   }
   var highlight = {fields: {"*": {fragment_size: 500, number_of_fragments: 5}}}
 
-  var search = {body: {query: q, aggs: aggs, highlight: highlight, suggest: suggest}, size: size}
+  var search = {index: process.env.ES_index, body: {query: q, aggs: aggs, highlight: highlight, suggest: suggest}, size: size}
   // when the search is undefined or blank, do a count over the aggregations
   if(query == '' || query == undefined) {
     search = {body: {size: 0, aggs: aggs}, searchType: 'count'}
