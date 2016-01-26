@@ -8,6 +8,7 @@ var es = new require('elasticsearch').Client({
 var search = function(query, size, filters, callback) {
 
 var fields = ["artist.artist^15", "artist.folded^15", "title^11", "description^3", "text^2", "accession_number", "_all", "artist.ngram^2", "title.ngram"]
+if(query.match(/".*"/)) fields = fields.slice(0, -2)
 if(filters) query += ' '+filters
 if([query, filters].indexOf('deaccessioned:true') + [query, filters].indexOf('deaccessioned:"true"') === -2) query += ' public_access:1'
 var searches = {
