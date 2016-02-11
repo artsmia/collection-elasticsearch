@@ -38,14 +38,19 @@ streamRedis:
 		done; \
 	done
 
+action = "index"
 objects:
 	@[[ -d bulk ]] || mkdir bulk; \
-	file=bulk/objects.json; \
+	file=bulk/objects-$(action).json; \
 	([[ -f $$file ]] && cat $$file || \
 	(make streamRedis | while read id; do \
 		read -r json; \
-		echo "{ \"index\" : { \"_type\" : \"object_data\", \"_id\" : \"$$id\" } }"; \
-		echo "$$json"; \
+		echo "{ \"$(action)\" : { \"_type\" : \"object_data\", \"_id\" : \"$$id\" } }"; \
+		if [ "$(action)" == 'index' ]; then \
+			echo "$$json"; \
+		else \
+			echo "{"doc":$$json}"; \
+		fi; \
 	done | tee $$file)) | $(toES)
 
 clean:
