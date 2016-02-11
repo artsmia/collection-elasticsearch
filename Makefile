@@ -165,5 +165,7 @@ highlightIds:
 	@highlights=$$(echo $(highlights) $$(csvcut -c1 department_features.csv)); \
 	echo $$highlights
 
+volumes:
+	cat bulk/volumes.json | $(toES)
 
 .PHONY: departments tags
