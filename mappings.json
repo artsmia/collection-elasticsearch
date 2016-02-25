@@ -109,7 +109,14 @@
           "type": "completion",
           "index_analyzer": "rawFolding"
         },
-        "title_suggest": {"type": "completion"}
+        "title_suggest": {
+          "type": "completion",
+          "index_analyzer": "rawFolding"
+        },
+        "highlight_title_suggest": {
+          "type": "completion",
+          "index_analyzer": "rawFolding"
+        }
       }
     }
   }

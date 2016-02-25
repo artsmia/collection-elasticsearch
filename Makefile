@@ -144,26 +144,26 @@ relatedContent:
 completions = "artist title"
 completions = "artist"
 completions:
-	for type in $$(echo $(completions) | tr ' ' '\n'); do \
-		highlights=$$(echo $(highlights) $$(csvcut -c1 department_features.csv)); \
-		file=bulk/$$type-completions.json; \
-		([ -e $$file ] && cat $$file || (make streamRedis | while read objectId; do \
-		  read -r json; \
-			value=$$(jq -r ".$$type" <<<$$json | sed 's/"//g; s/;.*$$//; s/ and.*$$//;' ); \
+	@highlights=$$(make highlightIds); \
+	file=bulk/completions.json; \
+	([ -e $$file ] && cat $$file || (make streamRedis | while read objectId; do \
+		read -r json; \
+		for type in $$(echo $(completions) | tr ' ' '\n'); do \
+			value=$$(jq -r ".$$type" <<<$$json | sed 's/"//g; s/;.*$$//; s/ and.*$$//;' | tr -d '\r\n'); \
 			output=$$(echo $$value | sed 's/(.*)//'); \
 			if [ ! -z "$${value// }" ]; then \
 				key="$$type"_suggest; \
-				if echo $$highlights | grep $$objectId > /dev/null; then key=highlight_"$$key"; fi; \
-				terms=$$(echo $$value | sed 's/in\|of\|a\|the\|an\|\.\|\(\|\)//g' | tr ' ' ',' | sed 's/,/\",\"/g'); \
+				if echo $$highlights | grep " $$objectId " > /dev/null; then key=highlight_"$$key"; fi; \
+				terms=$$(echo $$value | sed 's/ in\| of\| a\| the\| an\|\.\|\(\|\)//g' | tr ' ' ',' | sed 's/,/\",\"/g'); \
 				echo "{ \"update\" : {\"_type\" : \"object_data\", \"_id\" : \"$$objectId\" } }"; \
 				echo "{ \"doc\": {\"$$key\": {\"input\": [\"$$terms\"], output: \"$$value\"} } }"; \
 			fi; \
-		done | tee $$file)) | $(toES); \
-	done;
+		done; \
+	done | tee $$file)) | $(toES);
 
 highlightIds:
 	@highlights=$$(echo $(highlights) $$(csvcut -c1 department_features.csv)); \
-	echo $$highlights
+	echo " $$highlights "
 
 volumes:
 	cat bulk/volumes.json | $(toES)
