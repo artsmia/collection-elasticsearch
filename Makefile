@@ -165,6 +165,17 @@ highlightIds:
 	@highlights=$$(echo $(highlights) $$(csvcut -c1 department_features.csv)); \
 	echo " $$highlights "
 
+updateId:
+	jq '{doc: .}' ~/tmp/collection/objects/$$(($(id)/1000))/$$id.json | \
+	sed -e 's/%C2%A9/©/g; s/%26Acirc%3B%26copy%3B/©/g; \
+		s|http://api.artsmia.org/objects/||; \
+		s/o_/ō/g; \
+		s/&amp;/&/g; \
+		s/^.*"provenance":"",//g; \
+	' \
+	| curl -XPOST $$ES_URL/test/object_data/$$id/_update \
+	  --data-binary @-\
+
 volumes:
 	cat bulk/volumes.json | $(toES)
 
