@@ -129,14 +129,16 @@ deaccessions:
 		echo "{ \"doc\": { \"deaccessioned\": \"true\", \"deaccessionedDate\": \"$$date\" } }"; \
 	done | tee bulk/deaccessioned.json | $(toES)
 
+relateds = 3dmodels artstories stories audio-stops newsflashes adopt-a-painting exhibitions
 relatedContent:
-	for type in 3dmodels artstories stories audio-stops newsflashes; do \
+	for type in $(relateds); do \
 		name=$$(sed 's/s$$//' <<<$$type); \
 		cat ../collection-links/$$type | while read ids; do \
-		  read json; \
+			read -r json; \
+			json=$$(jq -cr '. // true' <<<$$json | python -c 'import json,sys; print json.dumps(sys.stdin.read())'); \
 			tr ' ' '\n' <<<$$ids | while read objectId; do \
 				echo "{ \"update\" : {\"_type\" : \"object_data\", \"_id\" : \"$$objectId\" } }"; \
-				echo "{ \"doc\": { \"related:$$type\": \"true\" } }"; \
+				echo "{ \"doc\": { \"related:$$type\": $$json } }"; \
 			done; \
 		done; \
 	done | tee bulk/related.json | $(toES)
