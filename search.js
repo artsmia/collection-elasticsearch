@@ -1,6 +1,7 @@
 var es = new require('elasticsearch').Client({
   host: process.env.ES_URL,
-  log: false
+  log: false,
+  requestTimeout: 3000,
 })
 
 var search = function(query, size, filters, callback) {
@@ -150,8 +151,13 @@ app.get('/:query', function(req, res) {
 app.get('/id/:id', function(req, res) {
   var id = req.params.id
   if(id == 'G320') return res.json(prindleRoom)
-  // client.hget('object:'+~~(id/1000), id, function(err, reply) {
   es.get({id: id, type: 'object_data', index: process.env.ES_index}, function(err, reply) {
+    if(err) {
+      console.error('ES error', err)
+      return client.hget('object:'+~~(id/1000), id, function(err, reply) {
+        return res.json(JSON.parse(reply))
+      })
+    }
     res.json(reply._source)
   })
 })
