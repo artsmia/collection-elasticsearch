@@ -78,7 +78,13 @@
         "rights": { "type": "string", "index": "not_analyzed" },
         "life_date": { "type": "string" },
         "marks": { "type": "string" },
-        "medium": { "type": "string" },
+        "medium": {
+          "type": "string",
+          "fields": {
+            "raw": { "type": "string", "index": "not_analyzed" },
+            "stop": { "type": "string", "analyzer": "stop" }
+          }
+        },
         "nationality": { "type": "string" },
         "provenance": { "type": "string" },
         "public_access": { "type": "long" },
