@@ -123,10 +123,12 @@ recent:
 	done | tee bulk/recent.json | $(toES)
 
 deaccessions:
-	@curl --silent $(internalAPI)/accessions/deaccessions/json | jq -r '.[] | [.id, .date][]' | while read objectId; do \
+	@curl --silent $(internalAPI)/accessions/deaccessions/json | jq -r '.[] | .id, .date, .reason' | while read objectId; do \
 		read date; \
+		read reason; \
+		reason=$$(sed 's|Deaccessioned - ||' <<<$$reason); \
 		echo "{ \"update\" : {\"_type\" : \"object_data\", \"_id\" : \"$$objectId\" } }"; \
-		echo "{ \"doc\": { \"deaccessioned\": \"true\", \"deaccessionedDate\": \"$$date\" } }"; \
+		echo "{ \"doc\": { \"deaccessioned\": \"true\", \"deaccessionedDate\": \"$$date\", \"deaccessionedReason\": \"$$reason\" } }"; \
 	done | tee bulk/deaccessioned.json | $(toES)
 
 relateds = 3dmodels artstories stories audio-stops newsflashes adopt-a-painting exhibitions
@@ -135,7 +137,7 @@ relatedContent:
 		name=$$(sed 's/s$$//' <<<$$type); \
 		cat ../collection-links/$$type | while read ids; do \
 			read -r json; \
-			json=$$(jq -cr '. // true' <<<$$json | python -c 'import json,sys; print json.dumps(sys.stdin.read())'); \
+			json=$$(jq -c -r '. // true' <<<$$json | python -c 'import json,sys; print json.dumps(sys.stdin.read())'); \
 			tr ' ' '\n' <<<$$ids | while read objectId; do \
 				echo "{ \"update\" : {\"_type\" : \"object_data\", \"_id\" : \"$$objectId\" } }"; \
 				echo "{ \"doc\": { \"related:$$type\": $$json } }"; \
