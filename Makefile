@@ -185,4 +185,10 @@ updateId:
 volumes:
 	cat bulk/volumes.json | $(toES)
 
+alias:
+	curl -XDELETE $(ES_URL)/objects
+	curl -XPOST $(ES_URL)/_aliases -d \
+		'{"actions": [{ "add": {"alias": "objects", "index": "$(index)"}}]}'
+
+
 .PHONY: departments tags
