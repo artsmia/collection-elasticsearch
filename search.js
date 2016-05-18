@@ -99,6 +99,7 @@ var function_score_sqs = {
     "Country": {"terms": {"field": "country.raw", "size": aggSize}},
     "Style": {"terms": {"field": "style.raw", "size": aggSize}},
     "Medium": {"terms": {"field": "medium.stop", "size": aggSize}},
+    "Classification": {"terms": {"field": "classification", "size": aggSize}},
     "Title": {"terms": {"field": "title.raw", "size": aggSize}},
     "Gist": {"significant_terms": {"field": "_all"}},
     "Department": {"terms": {"field": "department.raw", "size": aggSize}},
