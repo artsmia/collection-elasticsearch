@@ -230,6 +230,7 @@ var prindleRoom = {
 
 app.get('/autofill/:prefix', function(req, res) {
   var query = {
+    index: process.env.ES_index,
     body: {
       "text": req.params.prefix,
       "artist_completion" : {
