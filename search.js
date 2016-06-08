@@ -255,3 +255,22 @@ app.get('/autofill/:prefix', function(req, res) {
     res.json('autofill', body)
   })
 })
+
+app.get('/random/art', function(req, res) {
+  var size = req.query.size || 1
+  es.search({
+    index: process.env.ES_index,
+    body: {
+      "query": {
+        "function_score" : {
+          "query" : { "match_all": {} },
+          "random_score" : {}
+        }
+      }
+    },
+    size: size
+  }).then(function(results, error) {
+    var firstHitSource = results.hits.hits[0]._source
+    return res.json(size == 1 ? firstHitSource : results.hits.hits, error && error.status || 200)
+  })
+})
