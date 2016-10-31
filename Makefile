@@ -62,7 +62,8 @@ reindex: deleteIndex createIndex update
 update: objects highlights \
 	departments departmentHighlights \
 	recent deaccessions relatedContent \
-	completions imageRights tags
+	completions imageRights tags \
+	accessionHighlights
 
 highlights = 278 529 1218 1226 1244 1348 1355 1380 4866 8023 1629 1721 3183 3520 60728 113926 114602 108860 109118 115836 116725 1270 1411 1748 4324 5788
 highlights:
@@ -185,6 +186,12 @@ updateId:
 
 volumes:
 	cat bulk/volumes.json | $(toES)
+
+accessionHighlights:
+	curl --silent 'http://api.artsmia.org/accessions/highlights' | jq -c 'map([ \
+			{update: {_type: "object_data", _id: .id}}, \
+			{doc: {accessionHighlight: true, accessionDate: .date, accessionHighlightText: .text}} \
+		]) | flatten | .[]' | $(toES)
 
 alias:
 	curl -XDELETE $(ES_URL)/objects
