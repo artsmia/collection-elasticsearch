@@ -33,6 +33,7 @@ streamRedis:
 					s/"rights".*//g; \
 					s/"rights_type"/"rights"/; \
 					s/"provenance":"",//g; \
+					s/"artist":"Artist: /"artist":"/; \
 				' <<<$$json); \
 				echo $$id; \
 				echo $$json; \
@@ -179,7 +180,7 @@ updateId:
 		s/&amp;/&/g; \
 		s/^.*"provenance":"",//g; \
 	' \
-	| curl -XPOST $$ES_URL/test/object_data/$$id/_update \
+	| curl -XPOST $$ES_URL/$(index)/object_data/$$id/_update \
 	  --data-binary @-\
 
 volumes:
