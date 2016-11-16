@@ -33,6 +33,8 @@ streamRedis:
 					s/"rights".*//g; \
 					s/"rights_type"/"rights"/; \
 					s/"provenance":"",//g; \
+					s/,"see_also":\[""\]//g; \
+					s/,"portfolio":"From "//; \
 					s/"artist":"Artist: /"artist":"/; \
 				' <<<$$json); \
 				echo $$id; \
@@ -191,6 +193,14 @@ accessionHighlights:
 	curl --silent 'http://api.artsmia.org/accessions/highlights' | jq -c 'map([ \
 			{update: {_type: "object_data", _id: .id}}, \
 			{doc: {accessionHighlight: true, accessionDate: .date, accessionHighlightText: .text}} \
+		]) | flatten | .[]' | $(toES)
+
+# pass in path to downloaded image files to update ES image metadata outside of API
+updateImageData:
+	exiftool -json -TransmissionReference -ImageWidth -ImageHeight $(images)/mia_* | \
+	jq -c 'map([ \
+			{update: {_type: "object_data", _id: .TransmissionReference}}, \
+			{doc: {image: "valid", image_width: .ImageWidth, image_height: .ImageHeight}} \
 		]) | flatten | .[]' | $(toES)
 
 alias:
