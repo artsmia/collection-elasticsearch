@@ -5,53 +5,54 @@ var es = new require('elasticsearch').Client({
 })
 
 var search = function(query, size, filters, isApp, from, callback) {
+  var fields = ["artist.artist^15", "artist.folded^15", "title^11", "description^3", "text^2", "accession_number", "_all", "artist.ngram^2", "title.ngram"]
+  if(query.match(/".*"/)) fields = fields.slice(0, -2)
+  if(filters) query += ' '+filters
+  if([query, filters].indexOf('deaccessioned:true') + [query, filters].indexOf('deaccessioned:"true"') === -2) query += ' public_access:1'
+  if(isApp) query += ' room:G*'
 
-var fields = ["artist.artist^15", "artist.folded^15", "title^11", "description^3", "text^2", "accession_number", "_all", "artist.ngram^2", "title.ngram"]
-if(query.match(/".*"/)) fields = fields.slice(0, -2)
-if(filters) query += ' '+filters
-if([query, filters].indexOf('deaccessioned:true') + [query, filters].indexOf('deaccessioned:"true"') === -2) query += ' public_access:1'
-if(isApp) query += ' room:G*'
-var searches = {
-flt: {
-  fields: fields,
-  like_text: query,
-},
-multi_match: {
-  query: query,
-  fields: fields,
-  type: "best_fields",
-  tie_breaker: 0.3,
-},
-common: {
-  _all: {
-    query: query,
-    cutoff_frequency: 0.01,
-    minimum_should_match: { low_freq: 1, high_freq: 3 }
-  },
-},
-sqs: {
-  query: query,
-  fields: fields,
-  tie_breaker: 0.3,
-  default_operator: "and",
-  // default_operator: "or",
-  minimum_should_match: "2<60%",
-  // "fuzzy_prefix_length" : 3,
-},
-}
-var function_score_sqs = {
-  query: {query_string: searches.sqs}, // good
-  //query: {flt: searches.flt}, // not great
-  //query: {multi_match: searches.multi_match}, // good
-  //query: {common: searches.common}, // ok, v different from sqs and multi
-  functions: [
-    {filter: {term: {highlight: "true"}}, weight: 3},
-    {filter: {term: {image: "valid"}}, weight: 2},
-    {filter: {prefix: {room: "g"}}, weight: 1.1},
-    // {filter: {prefix: {room: "g"}}, weight: isApp ? 1.1 : 101},
-  ],
-  score_mode: "sum"
-}
+  var searches = {
+    flt: {
+      fields: fields,
+      like_text: query,
+    },
+    multi_match: {
+      query: query,
+      fields: fields,
+      type: "best_fields",
+      tie_breaker: 0.3,
+    },
+    common: {
+      _all: {
+        query: query,
+        cutoff_frequency: 0.01,
+        minimum_should_match: { low_freq: 1, high_freq: 3 }
+      },
+    },
+    sqs: {
+      query: query,
+      fields: fields,
+      tie_breaker: 0.3,
+      default_operator: "and",
+      // default_operator: "or",
+      minimum_should_match: "2<60%",
+      // "fuzzy_prefix_length" : 3,
+    },
+  }
+
+  var function_score_sqs = {
+    query: {query_string: searches.sqs}, // good
+    //query: {flt: searches.flt}, // not great
+    //query: {multi_match: searches.multi_match}, // good
+    //query: {common: searches.common}, // ok, v different from sqs and multi
+    functions: [
+      {filter: {term: {highlight: "true"}}, weight: 3},
+      {filter: {term: {image: "valid"}}, weight: 2},
+      {filter: {prefix: {room: "g"}}, weight: 1.1},
+      // {filter: {prefix: {room: "g"}}, weight: isApp ? 1.1 : 101},
+    ],
+    score_mode: "sum"
+  }
 
   var q = {function_score: function_score_sqs}
   var suggest = {
