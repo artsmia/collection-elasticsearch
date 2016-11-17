@@ -128,12 +128,25 @@ var search = function(query, size, filters, isApp, from, callback) {
   if(query == '' || query == undefined) {
     search = {body: {size: 0, aggs: aggs}, searchType: 'count'}
   }
-  es.search(search).then(function (body) {
-    body.query = q
-    callback(null, body)
-  }, function (error) {
-    console.error(error)
-    callback(error, [])
+
+  checkRedisForCachedSearch(search, query, function(err, cachedResult, cacheKey) {
+    // if this has been cached in redis, return that result directly
+    if(cachedResult) {
+      return callback(null, cachedResult)
+    }
+
+    es.search(search).then(function (body) {
+      body.query = q
+      callback(null, body)
+
+      var cacheTTL = body.took*60
+      body.cache = {cached: true, key: cacheKey}
+      client.set(cacheKey, JSON.stringify(body))
+      client.expire(cacheKey, cacheTTL)
+    }, function (error) {
+      console.error(error)
+      callback(error, [])
+    })
   })
 }
 
@@ -286,3 +299,12 @@ app.get('/random/art', function(req, res) {
     return res.json(size == 1 ? firstHitSource : results.hits.hits, error && error.status || 200)
   })
 })
+
+// cache frequent searches, time-limited
+function checkRedisForCachedSearch(search, query, callback) {
+  var cacheKey = 'cache::search::' + [query, search.size, search.from].join("::").replace(/ /g, '-')
+  client.get(cacheKey, function(err, reply) {
+    return callback(err, reply, cacheKey)
+  })
+}
+
