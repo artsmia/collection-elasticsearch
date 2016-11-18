@@ -4,11 +4,11 @@ var es = new require('elasticsearch').Client({
   requestTimeout: 3000,
 })
 
-var search = function(query, size, filters, isApp, from, callback) {
+var search = function(query, size, filters, isApp, from, limitToPublicAccess, callback) {
   var fields = ["artist.artist^15", "artist.folded^15", "title^11", "description^3", "text^2", "accession_number", "_all", "artist.ngram^2", "title.ngram"]
   if(query.match(/".*"/)) fields = fields.slice(0, -2)
   if(filters) query += ' '+filters
-  if([query, filters].indexOf('deaccessioned:true') + [query, filters].indexOf('deaccessioned:"true"') === -2) query += ' public_access:1'
+  if(limitToPublicAccess && [query, filters].indexOf('deaccessioned:true') + [query, filters].indexOf('deaccessioned:"true"') === -2) query += ' public_access:1'
   if(isApp) query += ' room:G*'
 
   var searches = {
@@ -123,6 +123,7 @@ var search = function(query, size, filters, isApp, from, callback) {
     },
     size: size,
     from: from,
+    limitToPublicAccess: limitToPublicAccess,
   }
   // when the search is undefined or blank, do a count over the aggregations
   if(query == '' || query == undefined) {
@@ -170,7 +171,8 @@ app.get('/:query', function(req, res) {
   var filters = req.query.filters
   var userAgent = req.headers['user-agent']
   var isApp = userAgent && userAgent.match('MIA') // 'MIA/8 CFNetwork/758.0.2 Darwin/15.0.0' means this request came frmo the journeys app
-  search(req.params.query || '', size, filters, isApp, from, function(error, results) {
+  var limitToPublicAccess = req.query.token != process.env.PRIVATE_ACCESS_TOKEN
+  search(req.params.query || '', size, filters, isApp, from, limitToPublicAccess, function(error, results) {
     results.query = req.params.query
     results.filters = filters
     results.error = error
@@ -303,6 +305,7 @@ app.get('/random/art', function(req, res) {
 // cache frequent searches, time-limited
 function checkRedisForCachedSearch(search, query, callback) {
   var cacheKey = 'cache::search::' + [query, search.size, search.from].join("::").replace(/ /g, '-')
+  if(!search.limitToPublicAccess) cacheKey = cacheKey + '::private'
   client.get(cacheKey, function(err, reply) {
     return callback(err, reply, cacheKey)
   })
