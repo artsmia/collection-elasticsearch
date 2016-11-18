@@ -47,6 +47,7 @@ var search = function(query, size, filters, isApp, from, limitToPublicAccess, ca
     //query: {common: searches.common}, // ok, v different from sqs and multi
     functions: [
       {filter: {term: {highlight: "true"}}, weight: 3},
+      {filter: {term: {featured: "true"}}, weight: 2.5},
       {filter: {term: {image: "valid"}}, weight: 2},
       {filter: {prefix: {room: "g"}}, weight: 1.1},
       // {filter: {prefix: {room: "g"}}, weight: isApp ? 1.1 : 101},
