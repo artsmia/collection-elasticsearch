@@ -197,11 +197,11 @@ accessionHighlights:
 
 # pass in path to downloaded image files to update ES image metadata outside of API
 updateImageData:
-	exiftool -json -TransmissionReference -ImageWidth -ImageHeight $(images)/mia_* | \
+	exiftool -json -TransmissionReference -ImageWidth -ImageHeight $(images)* | \
 	jq -c 'map([ \
 			{update: {_type: "object_data", _id: .TransmissionReference}}, \
 			{doc: {image: "valid", image_width: .ImageWidth, image_height: .ImageHeight}} \
-		]) | flatten | .[]' | $(toES)
+		]) | flatten | .[]' | tee /dev/tty | $(toES)
 
 alias:
 	curl -XDELETE $(ES_URL)/objects
