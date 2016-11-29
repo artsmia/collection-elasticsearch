@@ -4,10 +4,11 @@ var es = new require('elasticsearch').Client({
   requestTimeout: 3000,
 })
 
-var search = function(query, size, filters, isApp, from, limitToPublicAccess, callback) {
+var search = function(query, size, filters, isApp, from, req, callback) {
   var fields = ["artist.artist^15", "artist.folded^15", "title^11", "description^3", "text^2", "accession_number", "_all", "artist.ngram^2", "title.ngram"]
   if(query.match(/".*"/)) fields = fields.slice(0, -2)
   if(filters) query += ' '+filters
+  var limitToPublicAccess = req.query.token != process.env.PRIVATE_ACCESS_TOKEN
   if(limitToPublicAccess && [query, filters].indexOf('deaccessioned:true') + [query, filters].indexOf('deaccessioned:"true"') === -2) query += ' public_access:1'
   if(isApp) query += ' room:G*'
 
@@ -131,7 +132,7 @@ var search = function(query, size, filters, isApp, from, limitToPublicAccess, ca
     search = {body: {size: 0, aggs: aggs}, searchType: 'count'}
   }
 
-  checkRedisForCachedSearch(search, query, function(err, cachedResult, cacheKey) {
+  checkRedisForCachedSearch(search, query, req, function(err, cachedResult, cacheKey) {
     // if this has been cached in redis, return that result directly
     if(cachedResult) {
       return callback(null, cachedResult)
@@ -172,8 +173,7 @@ app.get('/:query', function(req, res) {
   var filters = req.query.filters
   var userAgent = req.headers['user-agent']
   var isApp = userAgent && userAgent.match('MIA') // 'MIA/8 CFNetwork/758.0.2 Darwin/15.0.0' means this request came frmo the journeys app
-  var limitToPublicAccess = req.query.token != process.env.PRIVATE_ACCESS_TOKEN
-  search(req.params.query || '', size, filters, isApp, from, limitToPublicAccess, function(error, results) {
+  search(req.params.query || '', size, filters, isApp, from, req, function(error, results) {
     results.query = req.params.query
     results.filters = filters
     results.error = error
@@ -304,9 +304,15 @@ app.get('/random/art', function(req, res) {
 })
 
 // cache frequent searches, time-limited
-function checkRedisForCachedSearch(search, query, callback) {
+function checkRedisForCachedSearch(search, query, req, callback) {
   var cacheKey = 'cache::search::' + [query, search.size, search.from].join("::").replace(/ /g, '-')
   if(!search.limitToPublicAccess) cacheKey = cacheKey + '::private'
+
+  if(!!req.query.expireCache) {
+    client.del(cacheKey)
+    return callback(false, undefined, cacheKey)
+  }
+
   client.get(cacheKey, function(err, reply) {
     return callback(err, reply, cacheKey)
   })
