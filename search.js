@@ -142,10 +142,12 @@ var search = function(query, size, filters, isApp, from, req, callback) {
       body.query = q
       callback(null, body)
 
-      var cacheTTL = body.took*60
-      body.cache = {cached: true, key: cacheKey}
-      client.set(cacheKey, JSON.stringify(body))
-      client.expire(cacheKey, cacheTTL)
+      if(!req.query.expireCache) {
+        var cacheTTL = body.took*60
+        body.cache = {cached: true, key: cacheKey}
+        client.set(cacheKey, JSON.stringify(body))
+        client.expire(cacheKey, cacheTTL)
+      }
     }, function (error) {
       console.error(error)
       callback(error, [])
@@ -308,12 +310,15 @@ function checkRedisForCachedSearch(search, query, req, callback) {
   var cacheKey = 'cache::search::' + [query, search.size, search.from].join("::").replace(/ /g, '-')
   if(!search.limitToPublicAccess) cacheKey = cacheKey + '::private'
 
-  if(!!req.query.expireCache) {
-    client.del(cacheKey)
-    return callback(false, undefined, cacheKey)
-  }
-
   client.get(cacheKey, function(err, reply) {
+    if(!!req.query.expireCache && reply) {
+      client.del(cacheKey)
+
+      reply = JSON.parse(reply)
+      reply.cache.expiring = true
+      reply = JSON.stringify(reply)
+    }
+
     return callback(err, reply, cacheKey)
   })
 }
