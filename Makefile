@@ -142,14 +142,17 @@ relateds = 3dmodels artstories stories audio-stops newsflashes adopt-a-painting 
 relatedContent:
 	for type in $(relateds); do \
 		name=$$(sed 's/s$$//' <<<$$type); \
-		cat ../collection-links/$$type | while read ids; do \
-			read -r json; \
-			json=$$(jq -c -r '. // true' <<<$$json | python -c 'import json,sys; print json.dumps(sys.stdin.read())'); \
-			tr ' ' '\n' <<<$$ids | while read objectId; do \
-				echo "{ \"update\" : {\"_type\" : \"object_data\", \"_id\" : \"$$objectId\" } }"; \
-				echo "{ \"doc\": { \"related:$$type\": $$json } }"; \
-			done; \
-		done; \
+		cat ../collection-links/$$type | jq -s -r -c --arg type $$type ' \
+			map(. as $$related \
+			| (.objectId? // (map(.objectId) | join(" "))) | split(" ") \
+			| map($$related + {_id: .})) \
+			| flatten \
+			| group_by(._id) \
+			| map( \
+				{update: {_type: "object_data", _id: .[0]._id}}, \
+				{doc: {"related:\($$type)": .}} \
+			)[] \
+		'; \
 	done | tee bulk/related.json | $(toES)
 
 completions = "artist title"
