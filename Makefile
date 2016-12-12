@@ -1,20 +1,21 @@
 SHELL := /bin/bash
+es = $(ES_URL)
 index = $(ES_index)
 
 default: highlights
 
 deleteIndex:
-	curl -XDELETE $(ES_URL)/$(index)
+	curl -XDELETE $(es)/$(index)
 
 createIndex:
-	curl -XPOST -d @mappings.json $(ES_URL)/$(index)
+	curl -XPOST -d @mappings.json $(es)/$(index)
 
 toES = parallel -j2 --pipe -N1000 \
 	"curl -XPUT \
 		--write-out '%{http_code} ' \
 		--output /dev/null \
 		--silent \
-		\"$(ES_URL)/$(index)/_bulk\" \
+		\"$(es)/$(index)/_bulk\" \
 		--data-binary @-\
 	"; echo
 
@@ -183,7 +184,7 @@ updateId:
 		s/&amp;/&/g; \
 		s/^.*"provenance":"",//g; \
 	' \
-	| curl -XPOST $$ES_URL/$(index)/object_data/$$id/_update \
+	| curl -XPOST $(es)/$(index)/object_data/$$id/_update \
 	  --data-binary @-\
 
 volumes:
@@ -203,9 +204,12 @@ updateImageData:
 			{doc: {image: "valid", image_width: .ImageWidth, image_height: .ImageHeight}} \
 		]) | flatten | .[]' | tee /dev/tty | $(toES)
 
+restoreFromBulkCache:
+	cat bulk/$(file) | $(toES)
+
 alias:
-	curl -XDELETE $(ES_URL)/objects
-	curl -XPOST $(ES_URL)/_aliases -d \
+	curl -XDELETE $(es)/objects
+	curl -XPOST $(es)/_aliases -d \
 		'{"actions": [{ "add": {"alias": "objects", "index": "$(index)"}}]}'
 
 
