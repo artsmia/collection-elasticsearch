@@ -180,14 +180,21 @@ highlightIds:
 	echo " $$highlights "
 
 updateId:
-	jq '{doc: .}' ~/tmp/collection/objects/$$(($(id)/1000))/$$id.json | \
+	@updateOrIndex=$$(curl --silent $$ES_URL/$(index)/object_data/$$id \
+		| jq -r 'if .found == true then "_update" else "" end'); \
+	curlMethod=`[ "$$updateOrIndex" == '_index' ] && echo PUT || echo POST`; \
+	file=`ls ~/tmp/collection/{,private/}objects/$$(($(id)/1000))/$$id.json 2>/dev/null`; \
+	([[ -f $$file ]] && cat $$file || \
+	  curl --silent http://api.artsmia.org/objects/$$id/full/json) \
+	| jq '{doc: .}' | \
 	sed -e 's/%C2%A9/©/g; s/%26Acirc%3B%26copy%3B/©/g; \
 		s|http://api.artsmia.org/objects/||; \
 		s/o_/ō/g; \
 		s/&amp;/&/g; \
 		s/^.*"provenance":"",//g; \
 	' \
-	| curl -XPOST $(es)/$(index)/object_data/$$id/_update \
+	| tee /dev/tty \
+	| curl -X$$curlMethod $$ES_URL/$(index)/object_data/$$id/$$updateOrIndex \
 	  --data-binary @-\
 
 volumes:
