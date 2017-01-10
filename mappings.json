@@ -9,6 +9,18 @@
           "max_gram": 20
         }
       },
+      "char_filter": {
+        "removeNonDigits": {
+          "type": "pattern_replace",
+          "pattern": "\\D",
+          "replacement": ""
+        },
+        "prependCenturyToAccessionNumber": {
+          "type": "pattern_replace",
+          "pattern": "^L?(\\d{2}\\..*)",
+          "replacement": "19$1"
+        }
+      },
       "analyzer": {
         "rawFolding": {
           "tokenizer": "keyword",
@@ -29,6 +41,11 @@
         "lowercase_sort": {
           "tokenizer": "keyword",
           "filter":  [ "lowercase" ]
+        },
+        "polishAccessionNumber": {
+          "type": "custom",
+          "tokenizer": "keyword",
+          "char_filter": ["prependCenturyToAccessionNumber", "removeNonDigits"]
         }
       }
     }
@@ -36,7 +53,13 @@
   "mappings": {
     "object_data": {
       "properties": {
-        "accession_number": { "type": "string", "index": "not_analyzed" },
+        "accession_number": {
+          "type": "multi_field",
+          "fields": {
+            "accession_number": { "type": "string", "index": "not_analyzed" },
+            "sort": { "type": "string", "analyzer": "polishAccessionNumber" }
+          }
+        },
         "artist": {
           "type": "multi_field",
           "fields": {
