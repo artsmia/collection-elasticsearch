@@ -4,7 +4,7 @@ var es = new require('elasticsearch').Client({
   requestTimeout: 3000,
 })
 
-var search = function(query, size, filters, isApp, from, req, callback) {
+var search = function(query, size, sort, filters, isApp, from, req, callback) {
   var fields = ["artist.artist^15", "artist.folded^15", "title^11", "description^3", "text^2", "accession_number", "_all", "artist.ngram^2", "title.ngram"]
   if(query.match(/".*"/)) fields = fields.slice(0, -2)
   if(filters) query += ' '+filters
@@ -121,7 +121,7 @@ var search = function(query, size, filters, isApp, from, req, callback) {
       query: q,
       aggs: aggs,
       highlight: highlight,
-      suggest: suggest
+      suggest: suggest,
     },
     size: size,
     from: from,
@@ -130,6 +130,11 @@ var search = function(query, size, filters, isApp, from, req, callback) {
   // when the search is undefined or blank, do a count over the aggregations
   if(query == '' || query == undefined) {
     search = {body: {size: 0, aggs: aggs}, searchType: 'count'}
+  }
+
+  if(sort) {
+    var [sortField, sortOrder] = sort.split('-')
+    search.body.sort = {[sortField]: {order: sortOrder || 'asc'}}
   }
 
   checkRedisForCachedSearch(search, query, req, function(err, cachedResult, cacheKey) {
@@ -171,11 +176,12 @@ app.get('/:query', function(req, res) {
   if(req.params.query == 'favicon.ico') return res.send(404)
   var replies = []
   var size = req.query.size || 100
+  var sort = req.query.sort
   var from = req.query.from || 0
   var filters = req.query.filters
   var userAgent = req.headers['user-agent']
   var isApp = userAgent && userAgent.match('MIA') // 'MIA/8 CFNetwork/758.0.2 Darwin/15.0.0' means this request came frmo the journeys app
-  search(req.params.query || '', size, filters, isApp, from, req, function(error, results) {
+  search(req.params.query || '', size, sort, filters, isApp, from, req, function(error, results) {
     results.query = req.params.query
     results.filters = filters
     results.error = error
@@ -307,7 +313,7 @@ app.get('/random/art', function(req, res) {
 
 // cache frequent searches, time-limited
 function checkRedisForCachedSearch(search, query, req, callback) {
-  var cacheKey = 'cache::search::' + [query, search.size, search.from].join("::").replace(/ /g, '-')
+  var cacheKey = 'cache::search::' + [query, search.size, search.sort, search.from].join("::").replace(/ /g, '-')
   if(!search.limitToPublicAccess) cacheKey = cacheKey + '::private'
 
   client.get(cacheKey, function(err, reply) {
