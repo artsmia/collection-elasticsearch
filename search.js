@@ -150,8 +150,9 @@ var search = function(query, size, sort, filters, isApp, from, req, callback) {
       if(!req.query.expireCache) {
         var cacheTTL = body.took*60
         body.cache = {cached: true, key: cacheKey}
-        client.set(cacheKey, JSON.stringify(body))
-        client.expire(cacheKey, cacheTTL)
+        client.set(cacheKey, JSON.stringify(body), function(err, reply) {
+          if(!err) client.expire(cacheKey, cacheTTL)
+        })
       }
     }, function (error) {
       console.error(error)
@@ -313,12 +314,13 @@ app.get('/random/art', function(req, res) {
 
 // cache frequent searches, time-limited
 function checkRedisForCachedSearch(search, query, req, callback) {
-  var cacheKey = 'cache::search::' + [query, search.size, search.sort, search.from].join("::").replace(/ /g, '-')
+  var sortKey = 'sort:'+req.query.sort.replace('-asc', '')
+  var cacheKey = 'cache::search::' + [query, search.size, search.from, sortKey].join("::").replace(/ /g, '-')
   if(!search.limitToPublicAccess) cacheKey = cacheKey + '::private'
 
   client.get(cacheKey, function(err, reply) {
     if(!!req.query.expireCache && reply) {
-      client.del(cacheKey)
+      client.del(cacheKey, redis.print)
 
       reply = JSON.parse(reply)
       reply.cache.expiring = true
