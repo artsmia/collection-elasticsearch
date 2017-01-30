@@ -21,7 +21,8 @@ toES = parallel -j2 --pipe -N1000 \
 
 buckets = $$(redis-cli keys 'object:*' | egrep 'object:[0-9]+$$$$' | cut -d ':' -f 2 | sort -g)
 streamRedis:
-	@for bucket in $(buckets); do \
+	@file=bulk/streamed-redis.ldjson; \
+	([ -e $$file ] && cat $$file || (for bucket in $(buckets); do \
 		>&2 echo $$bucket; \
 		redis-cli --raw hgetall object:$$bucket | grep -v "<br />" | while read id; do \
 			if [[ $$id = *[[:digit:]]* ]]; then \
@@ -42,7 +43,7 @@ streamRedis:
 				echo $$json; \
 			fi; \
 		done; \
-	done
+	done)) | tee $$file
 
 action = "index"
 objects:
