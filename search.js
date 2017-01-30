@@ -5,7 +5,7 @@ var es = new require('elasticsearch').Client({
 })
 
 var search = function(query, size, sort, filters, isApp, from, req, callback) {
-  var fields = ["artist.artist^15", "artist.folded^15", "title^11", "description^3", "text^2", "accession_number", "_all", "artist.ngram^2", "title.ngram"]
+  var fields = ["artist.artist^15", "artist.folded^15", "title^11", "title.folded^5", "description^3", "text.*^2", "accession_number", "_all", "artist.ngram^2", "title.ngram"]
   if(query.match(/".*"/)) fields = fields.slice(0, -2)
   if(filters) query += ' '+filters
   var limitToPublicAccess = req.query.token != process.env.PRIVATE_ACCESS_TOKEN
@@ -314,7 +314,7 @@ app.get('/random/art', function(req, res) {
 
 // cache frequent searches, time-limited
 function checkRedisForCachedSearch(search, query, req, callback) {
-  var sortKey = 'sort:'+req.query.sort.replace('-asc', '')
+  var sortKey = req.query.sort && 'sort:'+req.query.sort.replace('-asc', '')
   var cacheKey = 'cache::search::' + [query, search.size, search.from, sortKey].join("::").replace(/ /g, '-')
   if(!search.limitToPublicAccess) cacheKey = cacheKey + '::private'
 

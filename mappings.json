@@ -115,12 +115,20 @@
         "role": { "type": "string" },
         "room": { "type": "string", "fields": {"raw": {"type": "string", "index": "not_analyzed"}}},
         "style": { "type": "string", "fields": {"raw": {"type": "string", "index": "not_analyzed"}}},
-        "text": { "type": "string" },
-        "title": {
+        "text": {
           "type": "string",
-          "analyzer": "snowball",
           "fields": {
+            "text": {"type": "string", "analyzer": "snowball"},
+            "folded": { "type": "string", "analyzer": "folding" }
+          }
+        },
+        "title": {
+          "type": "multi_field",
+          "fields": {
+            "title": {"type": "string", "analyzer": "snowball"},
             "raw": { "type": "string", "index": "not_analyzed" },
+            "folded": { "type": "string", "analyzer": "folding" },
+            "rawFolded": { "type": "string", "analyzer": "rawFolding" },
             "ngram": {"type": "string", "analyzer": "ngram" },
             "sort": {"type": "string", "analyzer": "lowercase_sort"}
           }
