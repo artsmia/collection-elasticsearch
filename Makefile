@@ -5,10 +5,10 @@ index = $(ES_index)
 default: highlights
 
 deleteIndex:
-	curl -XDELETE $(es)/$(index)
+	curl --silent -XDELETE $(es)/$(index)
 
 createIndex:
-	curl -XPOST -d @mappings.json $(es)/$(index)
+	curl --silent -XPOST -d @mappings.json $(es)/$(index)
 
 toES = parallel -j2 --pipe -N1000 \
 	"curl -XPUT \
@@ -195,7 +195,7 @@ updateId:
 		s/^.*"provenance":"",//g; \
 	' \
 	| tee /dev/tty \
-	| curl -X$$curlMethod $$ES_URL/$(index)/object_data/$$id/$$updateOrIndex \
+	| curl --silent -X$$curlMethod $$ES_URL/$(index)/object_data/$$id/$$updateOrIndex \
 	  --data-binary @-\
 
 volumes:
@@ -224,8 +224,8 @@ restoreFromBulkCache:
 	cat bulk/$(file) | $(toES)
 
 alias:
-	curl -XDELETE $(es)/objects
-	curl -XPOST $(es)/_aliases -d \
+	curl --silent -XDELETE $(es)/objects
+	curl --silent -XPOST $(es)/_aliases -d \
 		'{"actions": [{ "add": {"alias": "objects", "index": "$(index)"}}]}'
 
 
