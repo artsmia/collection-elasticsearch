@@ -9,8 +9,11 @@ var search = function(query, size, sort, filters, isApp, from, req, callback) {
   if(query.match(/".*"/)) fields = fields.slice(0, -2)
   if(filters) query += ' '+filters
   var limitToPublicAccess = req.query.token != process.env.PRIVATE_ACCESS_TOKEN
-  if(limitToPublicAccess && [query, filters].indexOf('deaccessioned:true') + [query, filters].indexOf('deaccessioned:"true"') === -2) query += ' public_access:1'
-  if(isApp) query += ' room:G*'
+  if(limitToPublicAccess && [query, filters].indexOf('deaccessioned:true') + [query, filters].indexOf('deaccessioned:"true"') === -2) filters += ' public_access:1'
+  // if(isApp) query += ' room:G*' // restrict searches from the journeys app to only on view objects
+  var isMoreArtsmia = req.headers.origin && req.headers.origin.match('//more.artsmia.org')
+    || req.query.tag && req.query.tag == "more"
+  var boostOnViewArtworks = isApp || isMoreArtsmia
 
   var searches = {
     flt: {
@@ -50,8 +53,12 @@ var search = function(query, size, sort, filters, isApp, from, req, callback) {
       {filter: {term: {highlight: "true"}}, weight: 3},
       {filter: {term: {featured: "true"}}, weight: 2.5},
       {filter: {term: {image: "valid"}}, weight: 2},
-      {filter: {prefix: {room: "g"}}, weight: 1.1},
-      // {filter: {prefix: {room: "g"}}, weight: isApp ? 1.1 : 101},
+      {filter: {prefix: {room: "g"}}, weight: boostOnViewArtworks ? 101 : 1.1},
+      {filter: {exists: {field: "related:artstories"}}, weight: isMoreArtsmia ? 50 : 1.1},
+      {filter: {exists: {field: "related:newsflashes"}}, weight: isMoreArtsmia ? 50 : 1.1},
+      {filter: {exists: {field: "related:audio-stops"}}, weight: isMoreArtsmia ? 50 : 1.1},
+      {filter: {exists: {field: "related:3dmodels"}}, weight: isMoreArtsmia ? 50 : 1.1},
+      {filter: {exists: {field: "related:stories"}}, weight: isMoreArtsmia ? 50 : 1.1},
     ],
     score_mode: "sum"
   }
@@ -147,7 +154,9 @@ var search = function(query, size, sort, filters, isApp, from, req, callback) {
       body.query = q
       callback(null, body)
 
-      if(!req.query.expireCache) {
+      var skipCaching = req.query.expireCache || req.query.tag
+
+      if(!skipCaching) {
         var cacheTTL = body.took*60
         body.cache = {cached: true, key: cacheKey}
         client.set(cacheKey, JSON.stringify(body), function(err, reply) {
