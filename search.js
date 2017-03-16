@@ -304,12 +304,16 @@ app.get('/autofill/:prefix', function(req, res) {
 
 app.get('/random/art', function(req, res) {
   var size = req.query.size || 1
+  var query = req.query && req.query.q ?
+    { "query_string": {query: req.query.q}} :
+    { "match_all": {} }
+
   es.search({
     index: process.env.ES_index,
     body: {
       "query": {
         "function_score" : {
-          "query" : { "match_all": {} },
+          "query" : query,
           "random_score" : {}
         }
       }
