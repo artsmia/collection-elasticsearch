@@ -177,6 +177,8 @@ var redis = require('redis')
   , cors = require('cors')
 
 app.use(cors())
+app.use(express.cookieParser(process.env.SECRET_COOKIE_TOKEN))
+// app.use(express.cookieSession())
 
 app.get('/', function(req, res) {
   res.end('.')
@@ -344,3 +346,49 @@ function checkRedisForCachedSearch(search, query, req, callback) {
   })
 }
 
+//
+// Code to save artwork likes/dislikes to redis along with user session
+//
+
+var dataClient = redis.createClient()
+dataClient.select(7)
+
+function getUserId(cookies, callback) {
+  var existingId = cookies && cookies['userId']
+  if(existingId) return callback(null, existingId)
+
+  dataClient.get('nextUserId', function(err, newId) {
+    dataClient.incrby('nextUserId', 1)
+    return callback(false, newId)
+  })
+}
+
+function rateArtwork(likeOrDislike, req, res) {
+  getUserId(req.cookies, function(err, userId) {
+    var artworkId = req.params.id
+    dataClient.sadd(`survey:user:${userId}:${likeOrDislike}`, artworkId, redis.print)
+    setCorsHeadersToAllowCookies(req, res)
+    return res.send(`user ${userId} ${likeOrDislike} art ${artworkId}`)
+  })
+}
+
+function setCorsHeadersToAllowCookies(req, res) {
+  res.header("Access-Control-Allow-Origin", req.headers.origin)
+  res.header("Access-Control-Allow-Credentials", "true")
+}
+
+app.all('/survey/getUser', function(req, res) {
+  getUserId(req.cookies, function(err, userId) {
+    res.cookie('userId', userId) // TODO sign cookies?
+    setCorsHeadersToAllowCookies(req, res)
+    return res.json(userId)
+  })
+})
+
+app.all('/survey/art/:id/like', function(req, res) {
+  rateArtwork('likes', req, res)
+})
+
+app.all('/survey/art/:id/dislike', function(req, res) {
+  rateArtwork('dislikes', req, res)
+})
