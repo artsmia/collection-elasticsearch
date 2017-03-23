@@ -10,7 +10,8 @@ deleteIndex:
 createIndex:
 	curl -XPOST -d @mappings.json $(es)/$(index)
 
-toES = parallel -j2 --pipe -N1000 \
+sendToES=true
+toES = $(sendToES) && parallel -j2 --pipe -N1000 \
 	"curl -XPUT \
 		--write-out '%{http_code} ' \
 		--output /dev/null \
@@ -138,9 +139,10 @@ deaccessions:
 		echo "{ \"doc\": { \"deaccessioned\": \"true\", \"deaccessionedDate\": \"$$date\", \"deaccessionedReason\": \"$$reason\" } }"; \
 	done | tee bulk/deaccessioned.json | $(toES)
 
-relateds = 3dmodels artstories stories audio-stops newsflashes adopt-a-painting exhibitions catalogs timelines
+relateds = 3dmodels artstories stories audio-stops newsflashes adopt-a-painting exhibitions catalogs timelines conservation
 relatedContent:
 	for type in $(relateds); do \
+		>&2 echo $$type; \
 		name=$$(sed 's/s$$//' <<<$$type); \
 		cat ../collection-links/$$type | jq -s -r -c --arg type $$type ' \
 			map(. as $$related \
@@ -201,7 +203,8 @@ volumes:
 	cat bulk/volumes.json | $(toES)
 
 accessionHighlights:
-	curl --silent 'http://api.artsmia.org/accessions/highlights' | jq -c 'map([ \
+	curl --silent 'http://api.artsmia.org/accessions/highlights' | tee bulk/accessionHighlights.json | \
+		jq -c 'map([ \
 			{update: {_type: "object_data", _id: .id}}, \
 			{doc: {accessionHighlight: true, accessionDate: .date, accessionHighlightText: .text}} \
 		]) | flatten | .[]' | $(toES)
@@ -221,6 +224,9 @@ maintainUpdatedImageData:
 
 restoreFromBulkCache:
 	cat bulk/$(file) | $(toES)
+
+sendArbitraryJson:
+	cat $(file) | $(toES)
 
 alias:
 	curl -XDELETE $(es)/objects
