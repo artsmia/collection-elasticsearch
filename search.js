@@ -392,3 +392,21 @@ app.all('/survey/art/:id/like', function(req, res) {
 app.all('/survey/art/:id/dislike', function(req, res) {
   rateArtwork('dislikes', req, res)
 })
+
+app.get('/survey/data', function(req, res) {
+  var multi = dataClient.multi()
+
+  dataClient.keys('survey:user*', function(err, keys) {
+    var _keys = keys.map(key => ['smembers', key])
+    dataClient.multi(_keys).exec(function(err, replies) {
+      var keysAndValues = keys
+      .sort((key1, key2) => parseInt(key1.split(':')[2]) - parseInt(key2.split(':')[2]))
+      .reduce((map, key, index) => {
+        map[key] = replies[index]
+        return map
+      }, {})
+
+      return res.json(keysAndValues)
+    })
+  })
+})
