@@ -1,3 +1,5 @@
+const fs = require('fs')
+
 var es = new require('elasticsearch').Client({
   host: process.env.ES_URL,
   log: false,
@@ -409,4 +411,16 @@ app.get('/survey/data', function(req, res) {
       return res.json(keysAndValues)
     })
   })
+})
+
+let artists = JSON.parse(fs.readFileSync('./artists-2017-12-14.json'))
+
+app.all('/people/:id', function(req, res) {
+  const id = req.params.id
+  const matchingArtist = artists.find(artist => artist.ConstituentID === id)
+  console.info(id, matchingArtist)
+  if(id && id === 'index') return res.json(artists)
+  if(id && matchingArtist !== []) return res.json(matchingArtist)
+
+  return res.end('.')
 })
