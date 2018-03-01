@@ -183,6 +183,7 @@ app.use(express.cookieParser(process.env.SECRET_COOKIE_TOKEN))
 // app.use(express.cookieSession())
 
 app.get('/', function(req, res) {
+  // TODO put documentation here?
   res.end('.')
 })
 

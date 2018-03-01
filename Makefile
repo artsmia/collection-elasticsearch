@@ -31,6 +31,7 @@ streamRedis:
 				json=$$(sed -e 's/%C2%A9/©/g; s/%26Acirc%3B%26copy%3B/©/g; \
 					s|http:\\\/\\\/api.artsmia.org\\\/objects\\\/||; \
 					s/o_/ō/g; \
+					s/u_/ū/g; \
 					s/&amp;/&/g; \
 					s/"rights".*//g; \
 					s/"rights_type"/"rights"/; \
