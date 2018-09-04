@@ -70,12 +70,12 @@ update: objects highlights \
 	completions tags accessionHighlights \
 	maintainUpdatedImageData
 
-highlights = 278 529 1218 1226 1244 1348 1355 1380 4866 8023 1629 1721 3183 3520 60728 113926 114602 108860 109118 115836 116725 1270 1411 1748 4324 5788
+highlights = 278 529 1218 1226 1244 1348 1355 1380 4866 8023 1629 3183 3520 60728 113926 114602 108860 109118 115836 116725 1270 1411 1748 4324 5788 1721 107241 2725 2175 6613 125830 4428 4383 109122
 highlights:
 	echo $(highlights) | tr ' ' '\n' | while read id; do \
 		echo "{\"update\": {\"_type\": \"object_data\", \"_id\": \"$$id\"}}"; \
 		echo "{\"doc\": {\"highlight\": \"true\"}}"; \
-	done | $(toES)
+	done | tee bulk/highlights.ldjson | $(toES)
 
 # Detailed image rights don't make it through our API currently.
 # `rights.xlsx` comes from TMS, gets converted to a CSV (`id, rights statement`),
@@ -110,7 +110,7 @@ departmentHighlights:
 		dept=$$(cut -d',' -f2 <<<$$feature); \
 		echo "{ \"update\" : {\"_type\" : \"object_data\", \"_id\" : \"$$objectId\" } }"; \
 		echo "{ \"doc\": { \"featured\": \"true\" } }"; \
-	done | $(toES)
+	done | tee bulk/departmentHighlights.ldjson | $(toES)
 
 tags:
 	@redis="redis-cli --raw"; \
