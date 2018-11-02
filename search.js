@@ -187,10 +187,12 @@ app.get('/', function(req, res) {
   res.end('.')
 })
 
+const Json2csvParser = require('json2csv').Parser
+
 app.get('/:query', function(req, res) {
   if(req.params.query == 'favicon.ico') return res.send(404)
   var replies = []
-  var size = req.query.size || 100
+  var size = req.query.size || (req.query.format === 'csv' ? 1000 : 100)
   var sort = req.query.sort
   var from = req.query.from || 0
   var filters = req.query.filters
@@ -200,7 +202,27 @@ app.get('/:query', function(req, res) {
     results.query = req.params.query
     results.filters = filters
     results.error = error
-    return res.send(results, error && error.status || 200)
+    
+    if(req.query.format === 'csv') {
+      // How to re-query and pull the full set of results, or at least up to a higher limit?
+      const hits = results.hits.hits.map(hit => {
+        return {
+          ...hit._source,
+          searchTerm: req.params.query,
+          searchScore: hit._score,
+        }
+      })
+
+      const csv = new Json2csvParser({}).parse(hits)
+
+      const filename = `minneapolis institute of art search: ${req.params.query}.csv`
+
+      res.attachment(filename)
+      res.send(csv)
+      // TODO - "download as CSV" button on collections search pages
+    } else {
+      return res.send(results, error && error.status || 200)
+    }
   })
 })
 
