@@ -9,6 +9,7 @@
     "express": "~3.4.8",
     "hiredis": "~0.1.16",
     "node-fetch": "^2.3.0",
+    "json2csv": "^4.2.1",
     "redis": "~0.10.1"
   },
   "scripts": {
