@@ -1,6 +1,8 @@
 /* TODO:
  * pull more info from wikidata?
  *   "notable works" would be cool
+ * accept a string param on /people that searches for a match by name
+ *   then build an "artist decorator" on the collections site that links to profiles
  */
 
 const fs = require('fs')
@@ -60,22 +62,24 @@ let wikidata = function(artist) {
 
 module.exports = function(req, res) {
   const id = req.params.id
-  const matchingArtist = artists.find(artist =>
-    artist.ConstituentID === id
-    || artist.ConstituentID === Number(id)
-  )
+  const matchingArtist = artists.find(artist => {
+    return artist.ConstituentID === Number(id)
+    || artist.DisplayName === id
+    || artist.DisplayName && artist.DisplayName.match(new RegExp(id, 'i'))
+  })
+
   const mixArtist = artistsMixNMatch.find(artist =>
-    artist.external_id === id
-    || artist.external_id === Number(id)
+    Number(artist.external_id) === (matchingArtist ? matchingArtist.ConstituentID : id)
   )
 
   const artist = matchingArtist && {
     id: matchingArtist.ConstituentID,
     name: mixArtist.name,
+    // TODO when artists are updated from TMS with Q number add that in here
     q: mixArtist.q,
   }
 
-  if(id && matchingArtist && matchingArtist !== []) {
+  if(id && artist) {
     if(artist.q) {
       return wikidata(artist).then(({article, ...values}) => {
         const wikidataInfo = {
@@ -104,5 +108,5 @@ module.exports = function(req, res) {
     return res.json(artist)
   }
 
-  return res.status(404).end('.')
+  return res.status(404).json(null)
 }
