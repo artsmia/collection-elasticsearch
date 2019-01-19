@@ -106,7 +106,7 @@ var search = function(query, size, sort, filters, isApp, from, req, callback) {
     //   "aggs": {"Room": {"terms": {"field": "room.raw", "size": aggSize}}},
     // },
     "Room": {"terms": {"field": "room.raw", "size": aggSize}},
-    "Rights": {"terms": {"field": "rights"}},
+    "Rights": {"terms": {"field": "rights_type"}},
     "Artist": {"terms": {"field": "artist.raw", "size": aggSize}},
     "Country": {"terms": {"field": "country.raw", "size": aggSize}},
     "Style": {"terms": {"field": "style.raw", "size": aggSize}},

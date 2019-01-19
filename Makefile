@@ -33,8 +33,6 @@ streamRedis:
 					s/o_/ō/g; \
 					s/u_/ū/g; \
 					s/&amp;/&/g; \
-					s/"rights".*//g; \
-					s/"rights_type"/"rights"/; \
 					s/"provenance":"",//g; \
 					s/,"see_also":\[""\]//g; \
 					s/,"portfolio":"From "//; \
@@ -140,7 +138,7 @@ deaccessions:
 		echo "{ \"doc\": { \"deaccessioned\": \"true\", \"deaccessionedDate\": \"$$date\", \"deaccessionedReason\": \"$$reason\" } }"; \
 	done | tee bulk/deaccessioned.json | $(toES)
 
-relateds = 3dmodels artstories stories audio-stops newsflashes adopt-a-painting exhibitions catalogs timelines conservation
+relateds = 3dmodels artstories stories audio-stops newsflashes adopt-a-painting exhibitions catalogs timelines conservation videos
 relatedContent:
 	for type in $(relateds); do \
 		>&2 echo $$type; \
@@ -208,7 +206,7 @@ accessionHighlights:
 		jq -c 'map([ \
 			{update: {_type: "object_data", _id: .id}}, \
 			{doc: {accessionHighlight: true, accessionDate: .date, accessionHighlightText: .text}} \
-		]) | flatten | .[]' | $(toES)
+		]) | flatten | .[]' | tee bulk/accessionHighlights.ldjson | $(toES)
 
 # pass in path to downloaded image files to update ES image metadata outside of API
 updateImageData:
@@ -234,5 +232,8 @@ alias:
 	curl -XPOST $(es)/_aliases -d \
 		'{"actions": [{ "add": {"alias": "objects", "index": "$(index)"}}]}'
 
+
+tunnelES:
+	ssh -Nf -L 9200:localhost:9200 es
 
 .PHONY: departments tags
