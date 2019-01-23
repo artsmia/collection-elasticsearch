@@ -81,11 +81,8 @@ module.exports = function(req, res) {
 
   if(id && artist) {
     if(artist.q) {
-      return wikidata(artist).then(({article, ...values}) => {
-        const wikidataInfo = {
-          article,
-          ...values
-        }
+      return wikidata(artist).then((wikidataInfo) => {
+	const article = wikidataInfo.article
 
         if(article) {
           const pageId = article && article.split('/')[4]
@@ -97,10 +94,10 @@ module.exports = function(req, res) {
               extract: json.extract,
               description: json.description,
             }
-            return res.json({...artist, wikipedia: wikiInfo, wikidata: wikidataInfo})
+            return res.json(Object.assign(artist, {wikipedia: wikiInfo, wikidata: wikidataInfo}))
           })
         } else { // no wikipedia article, but some wikidata…
-          return res.json({...artist, wikidata: wikidataInfo})
+          return res.json(Object.assign(artist, {wikidata: wikidataInfo}))
         }
       })
     }
