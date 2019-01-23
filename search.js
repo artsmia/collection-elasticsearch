@@ -135,6 +135,8 @@ var search = function(query, size, sort, filters, isApp, from, req, callback) {
     size: size,
     from: from,
     limitToPublicAccess: limitToPublicAccess,
+    isMoreArtsmia: isMoreArtsmia,
+    boostOnViewArtworks: boostOnViewArtworks,
   }
   // when the search is undefined or blank, do a count over the aggregations
   if(query == '' || query == undefined) {
@@ -183,8 +185,7 @@ app.use(express.cookieParser(process.env.SECRET_COOKIE_TOKEN))
 // app.use(express.cookieSession())
 
 app.get('/', function(req, res) {
-  // TODO put documentation here?
-  res.end('.')
+  res.end('you have found @artsmia\'s search API!\n\n`/:search` will return artworks in our collection matching the given search term.\n\n`/id/:id` returns artworks based on their "object ID".')
 })
 
 app.get('/:query', function(req, res) {
@@ -303,7 +304,7 @@ app.get('/autofill/:prefix', function(req, res) {
   }
 
   es.suggest(query).then(function (body) {
-    res.json('autofill', body)
+    res.json(body)
   })
 })
 
@@ -333,7 +334,7 @@ app.get('/random/art', function(req, res) {
 // cache frequent searches, time-limited
 function checkRedisForCachedSearch(search, query, req, callback) {
   var sortKey = req.query.sort && 'sort:'+req.query.sort.replace('-asc', '')
-  var cacheKey = 'cache::search::' + [query, search.size, search.from, sortKey].join("::").replace(/ /g, '-')
+  var cacheKey = 'cache::search::' + [query, search.size, search.from, sortKey, search.isMoreArtsmia].filter(val => !!val).join("::").replace(/ /g, '-')
   if(!search.limitToPublicAccess) cacheKey = cacheKey + '::private'
 
   client.get(cacheKey, function(err, reply) {
