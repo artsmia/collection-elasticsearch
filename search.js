@@ -309,8 +309,8 @@ app.get('/autofill/:prefix', function(req, res) {
 app.get('/random/art', function(req, res) {
   var size = req.query.size || 1
   var query = req.query && req.query.q ?
-    { "query_string": {query: req.query.q}} :
-    { "match_all": {} }
+    { "query_string": {query: req.query.q += ' public_access:1'}} :
+    { "query_string": {query: 'public_access:1'} }
 
   es.search({
     index: process.env.ES_index,
