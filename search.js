@@ -409,9 +409,66 @@ function checkRedisForCachedSearch(search, query, req, callback) {
   })
 }
 
+var autofill = function(req, res) {
+  var query = {
+    index: process.env.ES_index,
+    body: {
+      text: req.params.prefix,
+      artist_completion: {
+        completion: {
+          field: 'artist_suggest',
+        },
+      },
+      highlight_artist_completion: {
+        completion: {
+          field: 'highlight_artist_suggest',
+        },
+      },
+      title_completion: {
+        completion: {
+          field: 'title_suggest',
+        },
+      },
+    },
+  }
+
+  es.suggest(query).then(function(body) {
+    res.json(body)
+  })
+}
+
+var random = function(req, res) {
+  var size = req.query.size || 1
+  var query =
+    req.query && req.query.q
+      ? { query_string: { query: (req.query.q += ' public_access:1') } }
+      : { query_string: { query: 'public_access:1' } }
+
+  es.search({
+    index: process.env.ES_index,
+    body: {
+      query: {
+        function_score: {
+          query: query,
+          random_score: {},
+        },
+      },
+    },
+    size: size,
+  }).then(function(results, error) {
+    var firstHitSource = results.hits.hits[0]._source
+    return res.json(
+      size == 1 ? firstHitSource : results.hits.hits,
+      (error && error.status) || 200
+    )
+  })
+}
+
 module.exports = {
   search: searchEndpoint,
   id: id,
   ids: ids,
   tag: tag,
+  autofill: autofill,
+  random: random,
 }
