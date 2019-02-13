@@ -204,12 +204,13 @@ app.get('/:query', function(req, res) {
     
     if(req.query.format === 'csv') {
       // How to re-query and pull the full set of results, or at least up to a higher limit?
+      if(typeof(results) === 'string') results = JSON.parse(results) // re-parse cached JSON string
+
       const hits = results.hits.hits.map(hit => {
-        return {
-          ...hit._source,
+        return Object.assign(hit._source, {
           searchTerm: req.params.query,
           searchScore: hit._score,
-        }
+        })
       })
 
       const csv = new Json2csvParser({}).parse(hits)
