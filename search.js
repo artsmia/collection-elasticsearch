@@ -179,11 +179,16 @@ var redis = require('redis')
   , cors = require('cors')
 
 app.use(cors())
-app.use(express.cookieParser(process.env.SECRET_COOKIE_TOKEN))
+// app.use(express.cookieParser(process.env.SECRET_COOKIE_TOKEN))
 // app.use(express.cookieSession())
 
 app.get('/', function(req, res) {
-  res.end('you have found @artsmia\'s search API!\n\n`/:search` will return artworks in our collection matching the given search term.\n\n`/id/:id` returns artworks based on their "object ID".')
+  res.end([
+    'you have found @artsmia\'s search API!',
+    '`/:search` will return artworks in our collection matching the given search term. (add `?format=csv` to a search to recieve a CSV file with results)',
+    '`/id/:id` returns artworks based on their "object ID".',
+    '`/people/:id` returns the information we have on a person or entity related to our collection.'
+  ].join('\n\n'))
 })
 
 const Json2csvParser = require('json2csv').Parser
