@@ -1,8 +1,25 @@
+var redis = require('redis')
+  , client = redis.createClient()
+
 var es = new require('elasticsearch').Client({
   host: process.env.ES_URL,
   log: false,
   requestTimeout: 3000,
 })
+
+const Json2csvParser = require('json2csv').Parser
+
+var prindleRoom = {
+  accession_number: '82.43.1-60',
+  artist: 'John Scott Bradstreet',
+  creditline: 'Gift of funds from Wheaton Wood, by exchange',
+  culture: 'American',
+  country: 'United States',
+  dated: '1906',
+  life_date: 'American, 1865-1914',
+  title: 'Duluth Living Room (from the William and Mina Prindle House',
+  room: 'G320',
+}
 
 var search = function(query, size, sort, filters, isApp, from, req, callback) {
   var fields = ["artist.artist^15", "artist.folded^15", "title^11", "title.folded^5", "description^3", "text.*^2", "accession_number", "_all", "artist.ngram^2", "title.ngram"]
@@ -172,28 +189,7 @@ var search = function(query, size, sort, filters, isApp, from, req, callback) {
   })
 }
 
-var redis = require('redis')
-  , client = redis.createClient()
-  , express = require('express')
-  , app = express()
-  , cors = require('cors')
-
-app.use(cors())
-// app.use(express.cookieParser(process.env.SECRET_COOKIE_TOKEN))
-// app.use(express.cookieSession())
-
-app.get('/', function(req, res) {
-  res.end([
-    'you have found @artsmia\'s search API!',
-    '`/:search` will return artworks in our collection matching the given search term. (add `?format=csv` to a search to recieve a CSV file with results)',
-    '`/id/:id` returns artworks based on their "object ID".',
-    '`/people/:id` returns the information we have on a person or entity related to our collection.'
-  ].join('\n\n'))
-})
-
-const Json2csvParser = require('json2csv').Parser
-
-app.get('/:query', function(req, res) {
+var search = function(req, res) {
   if(req.params.query == 'favicon.ico') return res.send(404)
   var replies = []
   var size = req.query.size || (req.query.format === 'csv' ? 1000 : 100)
@@ -229,11 +225,12 @@ app.get('/:query', function(req, res) {
       return res.send(results, error && error.status || 200)
     }
   })
-})
+}
 
-app.get('/id/:id', function(req, res) {
+var id = function(req, res) {
   var id = req.params.id
-  if(id == 'G320') return res.json(prindleRoom)
+  if (id == 'G320') return res.json(prindleRoom)
+
   es.get({id: id, type: 'object_data', index: process.env.ES_index}, function(err, reply) {
     if(err) {
       console.error('ES error', err)
@@ -243,9 +240,9 @@ app.get('/id/:id', function(req, res) {
     }
     res.json(reply._source)
   })
-})
+}
 
-app.get('/ids/:ids', function(req, res) {
+var ids = function(req, res) {
   var ids = req.params.ids.split(',')
   var docs = ids.map(function(id) {
     return {_index: process.env.ES_index, _type: 'object_data', _id: id}
@@ -264,9 +261,9 @@ app.get('/ids/:ids', function(req, res) {
       }
     })
   })
-})
+}
 
-app.get('/tag/:tag', function(req, res) {
+var tag = function(req, res) {
   client.smembers('tag:'+req.params.tag, function(err, ids) {
 
     var m = client.multi()
@@ -286,76 +283,7 @@ app.get('/tag/:tag', function(req, res) {
       return res.send(filtered)
     })
   })
-})
-
-// var http = require('http')
-// app.get('/artists.json', function(req, res) {
-//   http.get(process.env.ES_URL+'/test/_search?search_type=count&pretty=true'node -d '{"aggs": {"artist": {"terms": {"field": "artist.raw", "size": 25000, "order": { "_term": "asc" }}}}}'
-
-app.listen(process.env.PORT || 4680)
-
-var prindleRoom = {
-  accession_number: "82.43.1-60",
-  artist: "John Scott Bradstreet",
-  creditline: "Gift of funds from Wheaton Wood, by exchange",
-  culture: "American",
-  country: "United States",
-  dated: "1906",
-  life_date: "American, 1865-1914",
-  title: 'Duluth Living Room (from the William and Mina Prindle House',
-  room: "G320",
 }
-
-app.get('/autofill/:prefix', function(req, res) {
-  var query = {
-    index: process.env.ES_index,
-    body: {
-      "text": req.params.prefix,
-      "artist_completion" : {
-        "completion": {
-          "field" : "artist_suggest"
-        }
-      },
-      "highlight_artist_completion" : {
-        "completion": {
-          "field" : "highlight_artist_suggest"
-        }
-      },
-      "title_completion" : {
-        "completion": {
-          "field" : "title_suggest"
-        }
-      }
-    }
-  }
-
-  es.suggest(query).then(function (body) {
-    res.json(body)
-  })
-})
-
-app.get('/random/art', function(req, res) {
-  var size = req.query.size || 1
-  var query = req.query && req.query.q ?
-    { "query_string": {query: req.query.q += ' public_access:1'}} :
-    { "query_string": {query: 'public_access:1'} }
-
-  es.search({
-    index: process.env.ES_index,
-    body: {
-      "query": {
-        "function_score" : {
-          "query" : query,
-          "random_score" : {}
-        }
-      }
-    },
-    size: size
-  }).then(function(results, error) {
-    var firstHitSource = results.hits.hits[0]._source
-    return res.json(size == 1 ? firstHitSource : results.hits.hits, error && error.status || 200)
-  })
-})
 
 // cache frequent searches, time-limited
 function checkRedisForCachedSearch(search, query, req, callback) {
@@ -376,71 +304,10 @@ function checkRedisForCachedSearch(search, query, req, callback) {
   })
 }
 
-//
-// Code to save artwork likes/dislikes to redis along with user session
-//
 
-var dataClient = redis.createClient()
-dataClient.select(7)
-
-function getUserId(cookies, callback) {
-  var existingId = cookies && cookies['userId']
-  if(existingId) return callback(null, existingId)
-
-  dataClient.get('nextUserId', function(err, newId) {
-    dataClient.incrby('nextUserId', 1)
-    return callback(false, newId)
-  })
+module.exports = {
+  search: search,
+  id: id,
+  ids: ids,
+  tag: tag,
 }
-
-function rateArtwork(likeOrDislike, req, res) {
-  getUserId(req.cookies, function(err, userId) {
-    var artworkId = req.params.id
-    dataClient.sadd(`survey:user:${userId}:${likeOrDislike}`, artworkId, redis.print)
-    setCorsHeadersToAllowCookies(req, res)
-    return res.send(`user ${userId} ${likeOrDislike} art ${artworkId}`)
-  })
-}
-
-function setCorsHeadersToAllowCookies(req, res) {
-  res.header("Access-Control-Allow-Origin", req.headers.origin)
-  res.header("Access-Control-Allow-Credentials", "true")
-}
-
-app.all('/survey/getUser', function(req, res) {
-  getUserId(req.cookies, function(err, userId) {
-    res.cookie('userId', userId) // TODO sign cookies?
-    setCorsHeadersToAllowCookies(req, res)
-    return res.json(userId)
-  })
-})
-
-app.all('/survey/art/:id/like', function(req, res) {
-  rateArtwork('likes', req, res)
-})
-
-app.all('/survey/art/:id/dislike', function(req, res) {
-  rateArtwork('dislikes', req, res)
-})
-
-app.get('/survey/data', function(req, res) {
-  var multi = dataClient.multi()
-
-  dataClient.keys('survey:user*', function(err, keys) {
-    var _keys = keys.map(key => ['smembers', key])
-    dataClient.multi(_keys).exec(function(err, replies) {
-      var keysAndValues = keys
-      .sort((key1, key2) => parseInt(key1.split(':')[2]) - parseInt(key2.split(':')[2]))
-      .reduce((map, key, index) => {
-        map[key] = replies[index]
-        return map
-      }, {})
-
-      return res.json(keysAndValues)
-    })
-  })
-})
-
-const personEndpoint = require('./person')
-
-app.all('/people/:id', personEndpoint)
