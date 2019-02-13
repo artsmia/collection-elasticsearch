@@ -1,3 +1,6 @@
+/** @format
+ */
+
 /* TODO:
  * pull more info from wikidata?
  *   "notable works" would be cool
@@ -13,12 +16,12 @@ const fetch = require('node-fetch')
 let artists = JSON.parse(fs.readFileSync('./artists-2017-12-19.json'))
 let artistsMixNMatch = JSON.parse(fs.readFileSync('./artistsMixNMatch.json'))
 
-const cachedFetch = (url) => {
+const cachedFetch = url => {
   const cacheKey = `cache::wiki::${url}`
 
   return new Promise((resolve, reject) => {
     client.get(cacheKey, function(err, reply) {
-      if(reply) return resolve(JSON.parse(reply))
+      if (reply) return resolve(JSON.parse(reply))
 
       fetch(url).then(res => {
         res.json().then(json => {
@@ -44,32 +47,39 @@ let wikidata = function(artist) {
   // If we have a Q value in TMS use it directly in the SPARQL query
   // the artist might not be linked to P3603 on wikidata, and if we have a
   // Q that's better anyway
-  if(artist.q) wikidataQuery = wikidataQuery.replace(
-    `%3Fartist%20wdt%3AP3603%20%22${miaId}%22.`,
-    `BIND(wd:${artist.q}%20as%20?artist)`
-  )
+  if (artist.q)
+    wikidataQuery = wikidataQuery.replace(
+      `%3Fartist%20wdt%3AP3603%20%22${miaId}%22.`,
+      `BIND(wd:${artist.q}%20as%20?artist)`
+    )
   return cachedFetch(wikidataQuery).then(json => {
     const bindings = json.results.bindings
-    const values = bindings.length > 0
-      ? Object.keys(bindings[0]).reduce((data, key) => {
-        data[key] = bindings[0][key].value
-        return data
-      }, {}) : {}
+    const values =
+      bindings.length > 0
+        ? Object.keys(bindings[0]).reduce((data, key) => {
+            data[key] = bindings[0][key].value
+            return data
+          }, {})
+        : {}
 
-    return values 
+    return values
   })
 }
 
 module.exports = function(req, res) {
   const id = req.params.id
   const matchingArtist = artists.find(artist => {
-    return artist.ConstituentID === Number(id)
-    || artist.DisplayName === id
-    || artist.DisplayName && artist.DisplayName.match(new RegExp(id, 'i'))
+    return (
+      artist.ConstituentID === Number(id) ||
+      artist.DisplayName === id ||
+      (artist.DisplayName && artist.DisplayName.match(new RegExp(id, 'i')))
+    )
   })
 
-  const mixArtist = artistsMixNMatch.find(artist =>
-    Number(artist.external_id) === (matchingArtist ? matchingArtist.ConstituentID : id)
+  const mixArtist = artistsMixNMatch.find(
+    artist =>
+      Number(artist.external_id) ===
+      (matchingArtist ? matchingArtist.ConstituentID : id)
   )
 
   const artist = matchingArtist && {
@@ -79,12 +89,12 @@ module.exports = function(req, res) {
     q: mixArtist.q,
   }
 
-  if(id && artist) {
-    if(artist.q) {
-      return wikidata(artist).then((wikidataInfo) => {
-	const article = wikidataInfo.article
+  if (id && artist) {
+    if (artist.q) {
+      return wikidata(artist).then(wikidataInfo => {
+        const article = wikidataInfo.article
 
-        if(article) {
+        if (article) {
           const pageId = article && article.split('/')[4]
 
           return wikiArticle(pageId).then(json => {
@@ -94,10 +104,16 @@ module.exports = function(req, res) {
               extract: json.extract,
               description: json.description,
             }
-            return res.json(Object.assign(artist, {wikipedia: wikiInfo, wikidata: wikidataInfo}))
+            return res.json(
+              Object.assign(artist, {
+                wikipedia: wikiInfo,
+                wikidata: wikidataInfo,
+              })
+            )
           })
-        } else { // no wikipedia article, but some wikidata…
-          return res.json(Object.assign(artist, {wikidata: wikidataInfo}))
+        } else {
+          // no wikipedia article, but some wikidata…
+          return res.json(Object.assign(artist, { wikidata: wikidataInfo }))
         }
       })
     }

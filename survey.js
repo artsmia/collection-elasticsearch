@@ -1,3 +1,6 @@
+/** @format
+ */
+
 //
 // Code to save artwork likes/dislikes to redis along with user session
 //

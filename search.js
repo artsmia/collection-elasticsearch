@@ -1,5 +1,8 @@
-var redis = require('redis')
-  , client = redis.createClient()
+/** @format
+ */
+
+var redis = require('redis'),
+  client = redis.createClient()
 
 var es = new require('elasticsearch').Client({
   host: process.env.ES_URL,
@@ -22,14 +25,32 @@ var prindleRoom = {
 }
 
 var search = function(query, size, sort, filters, isApp, from, req, callback) {
-  var fields = ["artist.artist^15", "artist.folded^15", "title^11", "title.folded^5", "description^3", "text.*^2", "accession_number", "_all", "artist.ngram^2", "title.ngram"]
-  if(query.match(/".*"/)) fields = fields.slice(0, -2)
-  if(filters) query += ' '+filters
+  var fields = [
+    'artist.artist^15',
+    'artist.folded^15',
+    'title^11',
+    'title.folded^5',
+    'description^3',
+    'text.*^2',
+    'accession_number',
+    '_all',
+    'artist.ngram^2',
+    'title.ngram',
+  ]
+  if (query.match(/".*"/)) fields = fields.slice(0, -2)
+  if (filters) query += ' ' + filters
   var limitToPublicAccess = req.query.token != process.env.PRIVATE_ACCESS_TOKEN
-  if(limitToPublicAccess && [query, filters].indexOf('deaccessioned:true') + [query, filters].indexOf('deaccessioned:"true"') === -2) query += ' public_access:1'
+  if (
+    limitToPublicAccess &&
+    [query, filters].indexOf('deaccessioned:true') +
+      [query, filters].indexOf('deaccessioned:"true"') ===
+      -2
+  )
+    query += ' public_access:1'
   // if(isApp) query += ' room:G*' // restrict searches from the journeys app to only on view objects
-  var isMoreArtsmia = req.headers.origin && req.headers.origin.match('//more.artsmia.org')
-    || req.query.tag && req.query.tag == "more"
+  var isMoreArtsmia =
+    (req.headers.origin && req.headers.origin.match('//more.artsmia.org')) ||
+    (req.query.tag && req.query.tag == 'more')
   var boostOnViewArtworks = isApp || isMoreArtsmia
 
   var searches = {
@@ -40,68 +61,91 @@ var search = function(query, size, sort, filters, isApp, from, req, callback) {
     multi_match: {
       query: query,
       fields: fields,
-      type: "best_fields",
+      type: 'best_fields',
       tie_breaker: 0.3,
     },
     common: {
       _all: {
         query: query,
         cutoff_frequency: 0.01,
-        minimum_should_match: { low_freq: 1, high_freq: 3 }
+        minimum_should_match: { low_freq: 1, high_freq: 3 },
       },
     },
     sqs: {
       query: query,
       fields: fields,
       tie_breaker: 0.3,
-      default_operator: "and",
+      default_operator: 'and',
       // default_operator: "or",
-      minimum_should_match: "2<60%",
+      minimum_should_match: '2<60%',
       // "fuzzy_prefix_length" : 3,
     },
   }
 
   var function_score_sqs = {
-    query: {query_string: searches.sqs}, // good
+    query: { query_string: searches.sqs }, // good
     //query: {flt: searches.flt}, // not great
     //query: {multi_match: searches.multi_match}, // good
     //query: {common: searches.common}, // ok, v different from sqs and multi
     functions: [
-      {filter: {term: {highlight: "true"}}, weight: 3},
-      {filter: {term: {featured: "true"}}, weight: 2.5},
-      {filter: {term: {image: "valid"}}, weight: 2},
-      {filter: {prefix: {room: "g"}}, weight: boostOnViewArtworks ? 101 : 1.1},
-      {filter: {exists: {field: "related:artstories"}}, weight: isMoreArtsmia ? 50 : 1.1},
-      {filter: {exists: {field: "related:newsflashes"}}, weight: isMoreArtsmia ? 50 : 1.1},
-      {filter: {exists: {field: "related:audio-stops"}}, weight: isMoreArtsmia ? 50 : 1.1},
-      {filter: {exists: {field: "related:3dmodels"}}, weight: isMoreArtsmia ? 50 : 1.1},
-      {filter: {exists: {field: "related:stories"}}, weight: isMoreArtsmia ? 50 : 1.1},
+      { filter: { term: { highlight: 'true' } }, weight: 3 },
+      { filter: { term: { featured: 'true' } }, weight: 2.5 },
+      { filter: { term: { image: 'valid' } }, weight: 2 },
+      {
+        filter: { prefix: { room: 'g' } },
+        weight: boostOnViewArtworks ? 101 : 1.1,
+      },
+      {
+        filter: { exists: { field: 'related:artstories' } },
+        weight: isMoreArtsmia ? 50 : 1.1,
+      },
+      {
+        filter: { exists: { field: 'related:newsflashes' } },
+        weight: isMoreArtsmia ? 50 : 1.1,
+      },
+      {
+        filter: { exists: { field: 'related:audio-stops' } },
+        weight: isMoreArtsmia ? 50 : 1.1,
+      },
+      {
+        filter: { exists: { field: 'related:3dmodels' } },
+        weight: isMoreArtsmia ? 50 : 1.1,
+      },
+      {
+        filter: { exists: { field: 'related:stories' } },
+        weight: isMoreArtsmia ? 50 : 1.1,
+      },
     ],
-    score_mode: "sum"
+    score_mode: 'sum',
   }
 
-  var q = {function_score: function_score_sqs}
+  var q = { function_score: function_score_sqs }
   var suggest = {
     text: query,
     artist: {
       term: {
-        field: "artist",
-      }
+        field: 'artist',
+      },
     },
-    "artist_completion" : {
-      "completion": {
-        "field" : "artist_suggest"
-      }
+    artist_completion: {
+      completion: {
+        field: 'artist_suggest',
+      },
     },
-    "title_completion" : {
-      "completion": {
-        "field" : "title_suggest"
-      }
-    }
+    title_completion: {
+      completion: {
+        field: 'title_suggest',
+      },
+    },
   }
   var aggSize = 200
   var aggs = {
-    "Image": {"terms": {"script": "doc['image'].value == 'valid' ? 'Available' : 'Unavailable'", "size": aggSize}},
+    Image: {
+      terms: {
+        script: "doc['image'].value == 'valid' ? 'Available' : 'Unavailable'",
+        size: aggSize,
+      },
+    },
     // "Image": {"terms": {"field": "image", "size": aggSize}},
     // "Image": {
     // 	"terms": {
@@ -112,7 +156,13 @@ var search = function(query, size, sort, filters, isApp, from, req, callback) {
     // 		"image_rights_type": {"terms": {"field": "image_rights_type"}},
     // 	}
     // },
-    "On View": {"terms": {"script": "doc['room.raw'].value == 'Not on View' ? 'Not on View' : 'On View'", size: aggSize}},
+    'On View': {
+      terms: {
+        script:
+          "doc['room.raw'].value == 'Not on View' ? 'Not on View' : 'On View'",
+        size: aggSize,
+      },
+    },
     // "On View": {
     //   "terms": {
     //     "script": "doc['room.raw'].value == 'Not on View' ? 'Not on View' : 'On View'",
@@ -120,24 +170,26 @@ var search = function(query, size, sort, filters, isApp, from, req, callback) {
     //   },
     //   "aggs": {"Room": {"terms": {"field": "room.raw", "size": aggSize}}},
     // },
-    "Room": {"terms": {"field": "room.raw", "size": aggSize}},
-    "Rights": {"terms": {"field": "rights_type"}},
-    "Artist": {"terms": {"field": "artist.raw", "size": aggSize}},
-    "Country": {"terms": {"field": "country.raw", "size": aggSize}},
-    "Style": {"terms": {"field": "style.raw", "size": aggSize}},
-    "Medium": {"terms": {"field": "medium.stop", "size": aggSize}},
-    "Classification": {"terms": {"field": "classification", "size": aggSize}},
-    "Title": {"terms": {"field": "title.raw", "size": aggSize}},
-    "Gist": {"significant_terms": {"field": "_all"}},
-    "Department": {"terms": {"field": "department.raw", "size": aggSize}},
-    "Tags": {"terms": {"field": "tags", "size": aggSize}},
+    Room: { terms: { field: 'room.raw', size: aggSize } },
+    Rights: { terms: { field: 'rights_type' } },
+    Artist: { terms: { field: 'artist.raw', size: aggSize } },
+    Country: { terms: { field: 'country.raw', size: aggSize } },
+    Style: { terms: { field: 'style.raw', size: aggSize } },
+    Medium: { terms: { field: 'medium.stop', size: aggSize } },
+    Classification: { terms: { field: 'classification', size: aggSize } },
+    Title: { terms: { field: 'title.raw', size: aggSize } },
+    Gist: { significant_terms: { field: '_all' } },
+    Department: { terms: { field: 'department.raw', size: aggSize } },
+    Tags: { terms: { field: 'tags', size: aggSize } },
     // "image_rights_type": {"terms": {"field": "image_rights_type"}},
     // other facets? department
     // "year": {"histogram": {"field": "dated", "interval": 50}},
     // "year": {"terms": {"field": "dated", "size": aggSize}},
     // "Creditline": {"terms": {"field": "creditline.raw", "size": aggSize}},
   }
-  var highlight = {fields: {"*": {fragment_size: 5000, number_of_fragments: 1}}}
+  var highlight = {
+    fields: { '*': { fragment_size: 5000, number_of_fragments: 1 } },
+  }
 
   var search = {
     index: process.env.ES_index,
@@ -154,43 +206,50 @@ var search = function(query, size, sort, filters, isApp, from, req, callback) {
     boostOnViewArtworks: boostOnViewArtworks,
   }
   // when the search is undefined or blank, do a count over the aggregations
-  if(query == '' || query == undefined) {
-    search = {body: {size: 0, aggs: aggs}, searchType: 'count'}
+  if (query == '' || query == undefined) {
+    search = { body: { size: 0, aggs: aggs }, searchType: 'count' }
   }
 
-  if(sort) {
+  if (sort) {
     var [sortField, sortOrder] = sort.split('-')
-    search.body.sort = {[sortField]: {order: sortOrder || 'asc'}}
+    search.body.sort = { [sortField]: { order: sortOrder || 'asc' } }
   }
 
-  checkRedisForCachedSearch(search, query, req, function(err, cachedResult, cacheKey) {
+  checkRedisForCachedSearch(search, query, req, function(
+    err,
+    cachedResult,
+    cacheKey
+  ) {
     // if this has been cached in redis, return that result directly
-    if(cachedResult) {
+    if (cachedResult) {
       return callback(null, cachedResult)
     }
 
-    es.search(search).then(function (body) {
-      body.query = q
-      callback(null, body)
+    es.search(search).then(
+      function(body) {
+        body.query = q
+        callback(null, body)
 
-      var skipCaching = req.query.expireCache || req.query.tag
+        var skipCaching = req.query.expireCache || req.query.tag
 
-      if(!skipCaching) {
-        var cacheTTL = body.took*60
-        body.cache = {cached: true, key: cacheKey}
-        client.set(cacheKey, JSON.stringify(body), function(err, reply) {
-          if(!err) client.expire(cacheKey, cacheTTL)
-        })
+        if (!skipCaching) {
+          var cacheTTL = body.took * 60
+          body.cache = { cached: true, key: cacheKey }
+          client.set(cacheKey, JSON.stringify(body), function(err, reply) {
+            if (!err) client.expire(cacheKey, cacheTTL)
+          })
+        }
+      },
+      function(error) {
+        console.error(error)
+        callback(error, [])
       }
-    }, function (error) {
-      console.error(error)
-      callback(error, [])
-    })
+    )
   })
 }
 
 var search = function(req, res) {
-  if(req.params.query == 'favicon.ico') return res.send(404)
+  if (req.params.query == 'favicon.ico') return res.send(404)
   var replies = []
   var size = req.query.size || (req.query.format === 'csv' ? 1000 : 100)
   var sort = req.query.sort
@@ -198,43 +257,57 @@ var search = function(req, res) {
   var filters = req.query.filters
   var userAgent = req.headers['user-agent']
   var isApp = userAgent && userAgent.match('MIA') // 'MIA/8 CFNetwork/758.0.2 Darwin/15.0.0' means this request came frmo the journeys app
-  search(req.params.query || '', size, sort, filters, isApp, from, req, function(error, results) {
-    results.query = req.params.query
-    results.filters = filters
-    results.error = error
-    
-    if(req.query.format === 'csv') {
-      // How to re-query and pull the full set of results, or at least up to a higher limit?
-      if(typeof(results) === 'string') results = JSON.parse(results) // re-parse cached JSON string
+  search(
+    req.params.query || '',
+    size,
+    sort,
+    filters,
+    isApp,
+    from,
+    req,
+    function(error, results) {
+      results.query = req.params.query
+      results.filters = filters
+      results.error = error
 
-      const hits = results.hits.hits.map(hit => {
-        return Object.assign(hit._source, {
-          searchTerm: req.params.query,
-          searchScore: hit._score,
+      if (req.query.format === 'csv') {
+        // How to re-query and pull the full set of results, or at least up to a higher limit?
+        if (typeof results === 'string') results = JSON.parse(results) // re-parse cached JSON string
+
+        const hits = results.hits.hits.map(hit => {
+          return Object.assign(hit._source, {
+            searchTerm: req.params.query,
+            searchScore: hit._score,
+          })
         })
-      })
 
-      const csv = new Json2csvParser({}).parse(hits)
+        const csv = new Json2csvParser({}).parse(hits)
 
-      const filename = `minneapolis institute of art search: ${req.params.query}.csv`
+        const filename = `minneapolis institute of art search: ${
+          req.params.query
+        }.csv`
 
-      res.attachment(filename)
-      res.send(csv)
-      // TODO - "download as CSV" button on collections search pages
-    } else {
-      return res.send(results, error && error.status || 200)
+        res.attachment(filename)
+        res.send(csv)
+        // TODO - "download as CSV" button on collections search pages
+      } else {
+        return res.send(results, (error && error.status) || 200)
+      }
     }
-  })
+  )
 }
 
 var id = function(req, res) {
   var id = req.params.id
   if (id == 'G320') return res.json(prindleRoom)
 
-  es.get({id: id, type: 'object_data', index: process.env.ES_index}, function(err, reply) {
-    if(err) {
+  es.get({ id: id, type: 'object_data', index: process.env.ES_index }, function(
+    err,
+    reply
+  ) {
+    if (err) {
       console.error('ES error', err)
-      return client.hget('object:'+~~(id/1000), id, function(err, reply) {
+      return client.hget('object:' + ~~(id / 1000), id, function(err, reply) {
         return res.json(JSON.parse(reply))
       })
     }
@@ -245,10 +318,10 @@ var id = function(req, res) {
 var ids = function(req, res) {
   var ids = req.params.ids.split(',')
   var docs = ids.map(function(id) {
-    return {_index: process.env.ES_index, _type: 'object_data', _id: id}
+    return { _index: process.env.ES_index, _type: 'object_data', _id: id }
   })
 
-  es.mget({body: {docs: docs}}, function (err, response) {
+  es.mget({ body: { docs: docs } }, function(err, response) {
     if (err) {
       console.error(err)
       return res.send('oops')
@@ -257,27 +330,34 @@ var ids = function(req, res) {
     res.json({
       hits: {
         total: response.docs.length,
-        hits: response.docs
-      }
+        hits: response.docs,
+      },
     })
   })
 }
 
 var tag = function(req, res) {
-  client.smembers('tag:'+req.params.tag, function(err, ids) {
-
+  client.smembers('tag:' + req.params.tag, function(err, ids) {
     var m = client.multi()
-    ids.forEach(function(id) { m.hget('object:'+~~(id/1000), id) })
+    ids.forEach(function(id) {
+      m.hget('object:' + ~~(id / 1000), id)
+    })
 
     m.exec(function(err, replies) {
       var filter = req.query.filter
-      if(filter == undefined) return res.json(replies.map(function(meta) { return JSON.parse(meta) }))
+      if (filter == undefined)
+        return res.json(
+          replies.map(function(meta) {
+            return JSON.parse(meta)
+          })
+        )
       filter = filter.split(',')
       var filtered = replies.map(function(meta) {
-        if(meta == null) return
+        if (meta == null) return
         var json = JSON.parse(meta)
         return filter.reduce(function(all, field) {
-          all[field] = json[field]; return all
+          all[field] = json[field]
+          return all
         }, {})
       })
       return res.send(filtered)
@@ -287,12 +367,17 @@ var tag = function(req, res) {
 
 // cache frequent searches, time-limited
 function checkRedisForCachedSearch(search, query, req, callback) {
-  var sortKey = req.query.sort && 'sort:'+req.query.sort.replace('-asc', '')
-  var cacheKey = 'cache::search::' + [query, search.size, search.from, sortKey, search.isMoreArtsmia].filter(val => !!val).join("::").replace(/ /g, '-')
-  if(!search.limitToPublicAccess) cacheKey = cacheKey + '::private'
+  var sortKey = req.query.sort && 'sort:' + req.query.sort.replace('-asc', '')
+  var cacheKey =
+    'cache::search::' +
+    [query, search.size, search.from, sortKey, search.isMoreArtsmia]
+      .filter(val => !!val)
+      .join('::')
+      .replace(/ /g, '-')
+  if (!search.limitToPublicAccess) cacheKey = cacheKey + '::private'
 
   client.get(cacheKey, function(err, reply) {
-    if(!!req.query.expireCache && reply) {
+    if (!!req.query.expireCache && reply) {
       client.del(cacheKey, redis.print)
 
       reply = JSON.parse(reply)
@@ -303,7 +388,6 @@ function checkRedisForCachedSearch(search, query, req, callback) {
     return callback(err, reply, cacheKey)
   })
 }
-
 
 module.exports = {
   search: search,

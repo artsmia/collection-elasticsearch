@@ -1,3 +1,6 @@
+/** @format
+ */
+
 var es = new require('elasticsearch').Client({
   host: process.env.ES_URL,
   log: false,
