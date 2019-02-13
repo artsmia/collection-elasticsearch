@@ -248,7 +248,7 @@ var search = function(query, size, sort, filters, isApp, from, req, callback) {
   })
 }
 
-var search = function(req, res) {
+var searchEndpoint = function(req, res) {
   if (req.params.query == 'favicon.ico') return res.send(404)
   var replies = []
   var size = req.query.size || (req.query.format === 'csv' ? 1000 : 100)
@@ -297,9 +297,29 @@ var search = function(req, res) {
   )
 }
 
+const baseUrl =
+  process.env.NODE_ENV === 'production'
+    ? `https://search.artsmia.org`
+    : 'http://localhost:4680'
+
 var id = function(req, res) {
   var id = req.params.id
   if (id == 'G320') return res.json(prindleRoom)
+
+  // if the given :id isn't numeric, do an "I'm feeling lucky" search
+  if (!id.match(/\d+/)) {
+    const toFirstHit = function(error, results) {
+      if (typeof results === 'string') results = JSON.parse(results)
+
+      if (results.hits.total === 0) error = 'No results found'
+      if (error) return res.status(404).json({ error: error })
+
+      const firstId = results.hits.hits[0]._id
+      return res.redirect(`${baseUrl}/id/${firstId}`)
+    }
+
+    return search(id, 1, undefined, undefined, false, 0, req, toFirstHit)
+  }
 
   es.get({ id: id, type: 'object_data', index: process.env.ES_index }, function(
     err,
@@ -390,7 +410,7 @@ function checkRedisForCachedSearch(search, query, req, callback) {
 }
 
 module.exports = {
-  search: search,
+  search: searchEndpoint,
   id: id,
   ids: ids,
   tag: tag,
