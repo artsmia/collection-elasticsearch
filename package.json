@@ -4,12 +4,13 @@
   "description": "search the MIA collection",
   "main": "index.js",
   "dependencies": {
+    "cookie-parser": "^1.4.4",
     "cors": "~2.2.0",
     "elasticsearch": "~8.0.0",
     "express": "~3.4.8",
     "hiredis": "~0.1.16",
-    "node-fetch": "^2.3.0",
     "json2csv": "^4.2.1",
+    "node-fetch": "^2.3.0",
     "redis": "~0.10.1"
   },
   "scripts": {

@@ -30,7 +30,18 @@ function rateArtwork(likeOrDislike, req, res) {
 
 function setCorsHeadersToAllowCookies(req, res) {
   res.header("Access-Control-Allow-Origin", req.headers.origin)
-  res.header("Access-Control-Allow-Credentials", "true")
+  res.header("Access-Control-Allow-Credentials", true)
+}
+
+function saveJSONData(req, res) {
+  const {data} = req.query || {}
+  setCorsHeadersToAllowCookies(req, res)
+  getUserId(req.cookies, function(err, userId) {
+    const key = `survey:collections-redesign:${userId}`
+
+    dataClient.set(key, data, redis.print)
+    return res.send(`saved data for user ${userId}.`)
+  })
 }
 
 // because this needs access to express, try building the routes as a function
@@ -53,6 +64,10 @@ module.exports = function(app, express) {
 
   app.all('/survey/art/:id/dislike', function(req, res) {
     rateArtwork('dislikes', req, res)
+  })
+
+  app.all('/survey/redesign', function(req, res) {
+    saveJSONData(req, res)
   })
 
   app.get('/survey/data', function(req, res) {

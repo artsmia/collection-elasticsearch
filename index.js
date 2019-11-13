@@ -3,9 +3,11 @@
 
 var express = require('express'),
   app = express(),
-  cors = require('cors')
+  cors = require('cors'),
+  cookieParser = require('cookie-parser')
 
 app.use(cors())
+app.use(cookieParser())
 
 app.listen(process.env.PORT || 4680)
 
