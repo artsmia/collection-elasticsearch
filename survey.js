@@ -29,6 +29,7 @@ function rateArtwork(likeOrDislike, req, res) {
 }
 
 function setCorsHeadersToAllowCookies(req, res) {
+  console.info('setCorsHeadersToAllowCookies', req.headers.origin)
   res.header("Access-Control-Allow-Origin", req.headers.origin)
   res.header("Access-Control-Allow-Credentials", true)
 }
@@ -55,6 +56,18 @@ module.exports = function(app, express) {
       res.cookie('userId', userId) // TODO sign cookies?
       setCorsHeadersToAllowCookies(req, res)
       return res.json(userId)
+    })
+  })
+
+  app.all('/survey/getUserData', function(req, res) {
+    getUserId(req.cookies, function(err, userId) {
+      res.cookie('userId', userId) // TODO sign cookies?
+      setCorsHeadersToAllowCookies(req, res)
+
+      const key = `survey:collections-redesign:${userId}`
+      dataClient.get(key, function(err, data) {
+        return res.json({userId, data: JSON.parse(data)})
+      })
     })
   })
 
