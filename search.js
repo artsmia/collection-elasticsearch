@@ -347,12 +347,33 @@ var ids = function(req, res) {
       return res.send('oops')
     }
 
-    res.json({
-      hits: {
-        total: response.docs.length,
-        hits: response.docs,
-      },
-    })
+    if (req.query.format === 'csv') { // TODO de-dupe with the CSV handling in the general search
+      // How to re-query and pull the full set of results, or at least up to a higher limit?
+      if (typeof results === 'string') results = JSON.parse(results) // re-parse cached JSON string
+
+      const hits = response.docs.map(hit => {
+        return Object.assign(hit._source, {
+          searchTerm: req.params.query,
+          searchScore: hit._score,
+        })
+      })
+
+      const csv = new Json2csvParser({}).parse(hits)
+
+      const filename = `minneapolis institute of art search: ${
+        ids.join('-')
+      }.csv`
+
+      res.attachment(filename)
+      res.send(csv)
+    } else {
+      res.json({
+        hits: {
+          total: response.docs.length,
+          hits: response.docs,
+        },
+      })
+    }
   })
 }
 
