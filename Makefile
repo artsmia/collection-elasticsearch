@@ -229,6 +229,17 @@ maintainUpdatedImageData:
 restoreFromBulkCache:
 	cat bulk/$(file) | $(toES)
 
+lists:
+	@ls ../collection-info/lists/*.md | while read listFile; do \
+			json=$$(m2j $$listFile | jq '.[0] | to_entries[0].value'); \
+			listId=$$(jq -r '.listId' <<<$$json); \
+			echo $$listFile -- $$listId; \
+			jq -r '.ids[]' <<<$$json | jq -s -c --arg listId $$listId 'map([ \
+				{update: {_type: "object_data", _id: .}}, \
+				{doc: {"list:\($$listId)": true}} \
+		  ]) | flatten | .[]' | tee bulk/$$listId-list.ldjson | $(toES); \
+		done
+
 sendArbitraryJson:
 	cat $(file) | $(toES)
 
@@ -242,5 +253,14 @@ artistsMixNMatch:
 
 tunnelES:
 	ssh -Nf -L 9200:localhost:9200 es
+
+updateGalleryFromAPI:
+	  echo "updating existing ES gallery objects…"
+	  echo "updating from API…"
+		curl --silent http://api.artsmia.org/gallery/G$(galleryId) \
+				| jq -r '.objects | map(.id)[]' \
+				| parallel --bar "make updateId id={1} index=object{2} useLocal=false >/dev/null" ::::+ - ::: 1 2 >/dev/null
+		ssh collections "./clear-collections-cache.sh G$(galleryId)"
+		echo "objects updated and cache cleared!"
 
 .PHONY: departments tags
