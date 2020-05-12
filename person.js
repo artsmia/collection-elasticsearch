@@ -6,15 +6,21 @@
  *   "notable works" would be cool
  * accept a string param on /people that searches for a match by name
  *   then build an "artist decorator" on the collections site that links to profiles
+ * don't load person data from janky files
+ *   put the data from the janky files in redis and load from there?
+ *   TMS/the API doesn't have access to consituent data so this is running off a side-loaded export file
+ *   and mixNMatch is difficult to update
  */
 
 const fs = require('fs')
 const redis = require('redis')
 const client = redis.createClient()
 const fetch = require('node-fetch')
-// store these files's data in redis instead of reading from disk?
-let artists = JSON.parse(fs.readFileSync('./artists-2017-12-19.json'))
-let artistsMixNMatch = JSON.parse(fs.readFileSync('./artistsMixNMatch.json'))
+
+let artists = JSON.parse(fs.readFileSync('./data/artists-2019-02-04.json'))
+let artistsMixNMatch = JSON.parse(
+  fs.readFileSync('./data/artistsMixNMatch.json')
+)
 
 const cachedFetch = url => {
   const cacheKey = `cache::wiki::${url}`
@@ -68,26 +74,39 @@ let wikidata = function(artist) {
 
 module.exports = function(req, res) {
   const id = req.params.id
+
   const matchingArtist = artists.find(artist => {
     return (
+      artist.ID === Number(id) ||
       artist.ConstituentID === Number(id) ||
       artist.DisplayName === id ||
       (artist.DisplayName && artist.DisplayName.match(new RegExp(id, 'i')))
     )
   })
 
-  const mixArtist = artistsMixNMatch.find(
-    artist =>
-      Number(artist.external_id) ===
-      (matchingArtist ? matchingArtist.ConstituentID : id)
-  )
+  const mixArtist = artistsMixNMatch.find(artist => {
+    const tmsId = matchingArtist.ID || matchingArtist.ConstituentID
+    return Number(artist.external_id) === Number(matchingArtist ? tmsId : id)
+  })
 
   const artist = matchingArtist && {
-    id: matchingArtist.ConstituentID,
-    name: mixArtist.name,
+    id: matchingArtist.ID || matchingArtist.ConstituentID,
+    name: mixArtist ? mixArtist.name : matchingArtist.DisplayName,
     // TODO when artists are updated from TMS with Q number add that in here
-    q: mixArtist.q,
+    q: mixArtist ? mixArtist.q : matchingArtist.AltNum,
+    beginDate: matchingArtist.BeginDate,
+    endDate: matchingArtist.EndDate,
+    description: matchingArtist.DisplayDate,
+    nationality: matchingArtist.Nationality,
   }
+
+  false &&
+    console.info('people/:id', {
+      id,
+      matchingArtist,
+      mixArtist,
+      artist,
+    })
 
   if (id && artist) {
     if (artist.q) {
