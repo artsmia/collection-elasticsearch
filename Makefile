@@ -32,8 +32,6 @@ streamRedis:
 					s|http:\\\/\\\/api.artsmia.org\\\/objects\\\/||; \
 					s/o_/ō/g; \
 					s/&amp;/&/g; \
-					s/"rights".*//g; \
-					s/"rights_type"/"rights"/; \
 					s/"provenance":"",//g; \
 					s/,"see_also":\[""\]//g; \
 					s/,"portfolio":"From "//; \
