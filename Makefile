@@ -10,6 +10,7 @@ deleteIndex:
 createIndex:
 	curl -XPOST -d @mappings.json $(es)/$(index)
 
+# TODO for accessionHighlights this needs to be POST instead of PUT?
 sendToES=true
 toES = $(sendToES) && parallel -j2 --pipe -N1000 \
 	"curl -XPUT \
@@ -180,12 +181,13 @@ highlightIds:
 	@highlights=$$(echo $(highlights) $$(csvcut -c1 department_features.csv)); \
 	echo " $$highlights "
 
+useLocal=true
 updateId:
-	@updateOrIndex=$$(curl --silent $$ES_URL/$(index)/object_data/$$id \
-		| jq -r 'if .found == true then "_update" else "" end'); \
+	updateOrIndex=$$(curl --silent $$ES_URL/$(index)/object_data/$$id \
+		| jq -r 'if .found == true then "_update" else "_index" end'); \
 	curlMethod=`[ "$$updateOrIndex" == '_index' ] && echo PUT || echo POST`; \
 	file=`ls ~/tmp/collection/{,private/}objects/$$(($(id)/1000))/$$id.json 2>/dev/null`; \
-	([[ -f $$file ]] && cat $$file || \
+	([[ $(useLocal) = true && -f $$file ]] && cat $$file || \
 	  curl --silent http://api.artsmia.org/objects/$$id/full/json) \
 	| jq '{doc: .}' | \
 	sed -e 's/%C2%A9/©/g; s/%26Acirc%3B%26copy%3B/©/g; \
@@ -195,14 +197,17 @@ updateId:
 		s/^.*"provenance":"",//g; \
 	' \
 	| tee /dev/tty \
-	| curl -X$$curlMethod $$ES_URL/$(index)/object_data/$$id/$$updateOrIndex \
-	  --data-binary @-\
+	| curl -X$$curlMethod $$ES_URL/$(index)/object_data/$$id/$$updateOrIndex -d @-
 
 volumes:
 	cat bulk/volumes.json | $(toES)
 
+# `accessions/highlights` is only accessible on the internal API
+# TODO - push the contents of the file if it exists, and only make the API call
+# when the file doesn't?
+# curl --silent 'http://api.artsmia.org/accessions/highlights' | tee bulk/accessionHighlights.json
 accessionHighlights:
-	curl --silent 'http://api.artsmia.org/accessions/highlights' | tee bulk/accessionHighlights.json | \
+	cat bulk/accessionHighlights.json | \
 		jq -c 'map([ \
 			{update: {_type: "object_data", _id: .id}}, \
 			{doc: {accessionHighlight: true, accessionDate: .date, accessionHighlightText: .text}} \
