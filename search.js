@@ -222,7 +222,7 @@ var search = function(query, size, sort, filters, isApp, from, req, callback) {
   ) {
     // if this has been cached in redis, return that result directly
     if (cachedResult) {
-      return callback(null, cachedResult)
+      return callback(null, JSON.parse(cachedResult))
     }
 
     es.search(search).then(
@@ -291,7 +291,7 @@ var searchEndpoint = function(req, res) {
         res.send(csv)
         // TODO - "download as CSV" button on collections search pages
       } else {
-        return res.send(results, (error && error.status) || 200)
+        return res.status(error ? (error.status || 500) : 200).json(results)
       }
     }
   )
@@ -423,7 +423,7 @@ function checkRedisForCachedSearch(search, query, req, callback) {
 
       reply = JSON.parse(reply)
       reply.cache.expiring = true
-      reply = JSON.stringify(reply)
+      // reply = JSON.stringify(reply)
     }
 
     return callback(err, reply, cacheKey)
