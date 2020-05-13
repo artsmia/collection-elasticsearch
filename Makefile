@@ -1,4 +1,4 @@
-SHELL := /bin/bash
+SHELL := /usr/local/bin/bash
 es = $(ES_URL)
 index = $(ES_index)
 
@@ -10,7 +10,8 @@ deleteIndex:
 createIndex:
 	curl --silent -XPOST -d @mappings.json $(es)/$(index)
 
-toES = parallel -j2 --pipe -N1000 \
+delay = 1
+toES = parallel --delay 3 -j2 --pipe -N1000 \
 	"curl -XPUT \
 		--write-out '%{http_code} ' \
 		--output /dev/null \
@@ -21,8 +22,7 @@ toES = parallel -j2 --pipe -N1000 \
 
 buckets = $$(redis-cli keys 'object:*' | egrep 'object:[0-9]+$$$$' | cut -d ':' -f 2 | sort -g)
 streamRedis:
-	@file=bulk/streamed-redis.ldjson; \
-	([ -e $$file ] && cat $$file || (for bucket in $(buckets); do \
+	@for bucket in $(buckets); do \
 		>&2 echo $$bucket; \
 		redis-cli --raw hgetall object:$$bucket | grep -v "<br />" | while read id; do \
 			if [[ $$id = *[[:digit:]]* ]]; then \
@@ -41,14 +41,14 @@ streamRedis:
 				echo $$json; \
 			fi; \
 		done; \
-	done)) | tee $$file
+	done
 
 action = "index"
 objects:
 	@[[ -d bulk ]] || mkdir bulk; \
 	file=bulk/objects-$(action).json; \
 	([[ -f $$file ]] && cat $$file || \
-	(make streamRedis | while read id; do \
+	(make -s streamRedis | while read id; do \
 		read -r json; \
 		echo "{ \"$(action)\" : { \"_type\" : \"object_data\", \"_id\" : \"$$id\" } }"; \
 		if [ "$(action)" == 'index' ]; then \
@@ -137,29 +137,28 @@ deaccessions:
 		echo "{ \"doc\": { \"deaccessioned\": \"true\", \"deaccessionedDate\": \"$$date\", \"deaccessionedReason\": \"$$reason\" } }"; \
 	done | tee bulk/deaccessioned.json | $(toES)
 
-relateds = 3dmodels artstories stories audio-stops newsflashes adopt-a-painting exhibitions catalogs timelines
+relateds = 3dmodels artstories stories audio-stops newsflashes adopt-a-painting exhibitions catalogs timelines videos
 relatedContent:
 	for type in $(relateds); do \
 		name=$$(sed 's/s$$//' <<<$$type); \
-		cat ../collection-links/$$type | jq -s -r -c --arg type $$type ' \
-			map(. as $$related \
-			| (.objectId? // (map(.objectId) | join(" "))) | split(" ") \
-			| map($$related + {_id: .})) \
-			| flatten \
-			| group_by(._id) \
-			| map( \
-				{update: {_type: "object_data", _id: .[0]._id}}, \
-				{doc: {"related:\($$type)": .}} \
-			)[] \
-		'; \
+		cat ../collection-links/$$type | jq -s -r -c --arg type $$type ' map(. as $$related | (.objectId? // (map(.objectId) | join(" "))) | split(" ") | map($$related + {_id: .})) | flatten | group_by(._id) | map( {update: {_type: "object_data", _id: .[0]._id}}, {doc: {"related:\($$type)": .}} )[] '; \
 	done | tee bulk/related.json | $(toES)
+# yuck ^ - something is off with shell escaping on dx that's not happening locally.
+#
+#    jq: error: syntax error, unexpected INVALID_CHARACTER, expecting $end (Unix shell quoting issues?) at <top-level>, line 1:
+#     \
+#    jq: 1 compile error
+#
+# flattening out all the lines fixes it.
+# Somehow the `\` is being passed into jq which breaks everything?
+# could it be bash 4.2.25 vs 4.4.12?
 
 completions = "artist title"
 completions = "artist"
 completions:
-	@highlights=$$(make highlightIds); \
+	@highlights=$$(make -s highlightIds); \
 	file=bulk/completions.json; \
-	([ -e $$file ] && cat $$file || (make streamRedis | while read objectId; do \
+	([ -e $$file ] && cat $$file || (make -s streamRedis | while read objectId; do \
 		read -r json; \
 		for type in $$(echo $(completions) | tr ' ' '\n'); do \
 			value=$$(jq -r ".$$type" <<<$$json | sed 's/"//g; s/;.*$$//; s/ and.*$$//;' | tr -d '\r\n'); \
@@ -178,6 +177,7 @@ highlightIds:
 	@highlights=$$(echo $(highlights) $$(csvcut -c1 department_features.csv)); \
 	echo " $$highlights "
 
+# TODO does update not work? I've been deleting and updating lately to get data in
 updateId:
 	@updateOrIndex=$$(curl --silent $$ES_URL/$(index)/object_data/$$id \
 		| jq -r 'if .found == true then "_update" else "" end'); \
@@ -195,6 +195,11 @@ updateId:
 	| tee /dev/tty \
 	| curl --silent -X$$curlMethod $$ES_URL/$(index)/object_data/$$id/$$updateOrIndex \
 	  --data-binary @-\
+
+
+deleteId:
+	curl -XDELETE $$ES_URL/$(index)/object_data/$$id
+
 
 volumes:
 	cat bulk/volumes.json | $(toES)
@@ -221,10 +226,22 @@ maintainUpdatedImageData:
 restoreFromBulkCache:
 	cat bulk/$(file) | $(toES)
 
+sendArbitraryJson:
+	cat $(file) | $(toES)
+
 alias:
 	curl --silent -XDELETE $(es)/objects
 	curl --silent -XPOST $(es)/_aliases -d \
 		'{"actions": [{ "add": {"alias": "objects", "index": "$(index)"}}]}'
 
+tunnelToESServer:
+	ssh -Nf -L 9200:localhost:9200 $$esServer
+
+maintainEsTunnel:
+	while true; do \
+		curl --silent localhost:9200 | jq '.status' || ssh -Nf -L 9200:localhost:9200 $$esServer; \
+		sleep 15; \
+	 done
 
 .PHONY: departments tags
+
