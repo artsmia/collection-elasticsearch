@@ -1,3 +1,9 @@
 .envrc
 bulk
 node_modules
+data
+manually-added-images
+package-lock.json
+queries
+rights.x*
+scratch

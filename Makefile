@@ -58,7 +58,7 @@ objects:
 		else \
 			echo "{"doc":$$json}"; \
 		fi; \
-	done | tee $$file)) | $(toES)
+	done | tee $$file))
 
 clean:
 	rm -rf bulk/*
@@ -155,7 +155,7 @@ relatedContent:
 				{doc: {"related:\($$type)": .}} \
 			)[] \
 		'; \
-	done | tee bulk/related.json | $(toES)
+	done | tee bulk/related.json
 
 completions = "artist title"
 completions = "artist"
@@ -237,7 +237,7 @@ lists:
 			jq -r '.ids[]' <<<$$json | jq -s -c --arg listId $$listId 'map([ \
 				{update: {_type: "object_data", _id: .}}, \
 				{doc: {"list:\($$listId)": true}} \
-		  ]) | flatten | .[]' | tee bulk/$$listId-list.ldjson | $(toES); \
+		  ]) | flatten | .[]' | tee bulk/$$listId-list.ldjson; \
 		done
 
 sendArbitraryJson:
