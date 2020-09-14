@@ -139,7 +139,7 @@ deaccessions:
 		echo "{ \"doc\": { \"deaccessioned\": \"true\", \"deaccessionedDate\": \"$$date\", \"deaccessionedReason\": \"$$reason\" } }"; \
 	done | tee bulk/deaccessioned.json | $(toES)
 
-relateds = 3dmodels artstories stories audio-stops newsflashes adopt-a-painting exhibitions catalogs timelines conservation videos
+relateds = 3dmodels artstories stories audio-stops newsflashes adopt-a-painting exhibitions catalogs timelines conservation videos inspiredByMia
 relatedContent:
 	for type in $(relateds); do \
 		>&2 echo $$type; \
