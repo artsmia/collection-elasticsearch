@@ -19,5 +19,9 @@
   },
   "repository": "",
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "async-redis": "^1.1.7",
+    "ioredis": "^4.17.3"
+  }
 }
