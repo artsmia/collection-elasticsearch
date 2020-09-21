@@ -6,6 +6,7 @@
   "dependencies": {
     "cookie-parser": "^1.4.4",
     "cors": "~2.2.0",
+    "csv-parse": "^4.12.0",
     "elasticsearch": "~8.0.0",
     "express": "~3.4.8",
     "hiredis": "~0.1.16",
