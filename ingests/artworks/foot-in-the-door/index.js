@@ -103,7 +103,7 @@ async function formfacadeImageDownload(submissions) {
   console.info(`about to download ${submissions.length} submissions`)
 
   const downloads = await submissions.reduce(
-    async (prevPromise, submission) => {
+    async (prevPromise, submission, index) => {
       await prevPromise
 
       const imageAccessUrl = submission[imageFilenameColumnName]
@@ -116,17 +116,31 @@ async function formfacadeImageDownload(submissions) {
       const uploadedFilename = imageAccessUrl.split('/').reverse()[0]
       const ext = uploadedFilename.split('.').reverse()[0]
       const filename = `2020_fitd_${submissionIsoTime}_${submissionName}.${ext}`
-      const filepath = path.join(__dirname, `images/${filename}`)
+      const filepathRoot = path.join(__dirname, `images/${filename}`)
+      const bucket = Math.max(1, Math.ceil(index / 135)) // clamp so index 0 goes in bucket 1
+      const filepath = path.join(__dirname, `images/${bucket}`, filename)
+      const jsonFilePath = filepath.replace(ext, 'json')
 
-      const alreadyDownloaded = fs.existsSync(filepath)
+      const rootPathExists = fs.existsSync(filepathRoot)
+      const bucketPathExists = fs.existsSync(filepath)
+      const alreadyDownloaded = rootPathExists || bucketPathExists
+
+      const bucketPath = path.dirname(filepath)
+      if (!fs.existsSync(bucketPath)) {
+        fs.mkdirSync(bucketPath, { recursive: true })
+      }
+
+      // move file from images/:name to images/:bucket/:name
+      if (rootPathExists && !bucketPathExists) {
+        fs.renameSync(filepathRoot, filepath)
+        fs.renameSync(filepathRoot.replace(ext, 'json'), jsonFilePath)
+      }
+
       const skip = alreadyDownloaded || !filename
 
       // write json data to a 'sidecar' file
       // TODO modify this to use the data transform
-      fs.writeFileSync(
-        filepath.replace(ext, 'json'),
-        JSON.stringify(submission, null, 2)
-      )
+      fs.writeFileSync(jsonFilePath, JSON.stringify(submission, null, 2))
 
       if (skip) return page.waitFor(0)
 
