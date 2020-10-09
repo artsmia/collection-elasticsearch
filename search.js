@@ -24,7 +24,7 @@ var prindleRoom = {
   room: 'G320',
 }
 
-var search = function(query, size, sort, filters, isApp, from, req, callback) {
+var search = function(query, size, sort, filters, isApp, isFitD, from, req, callback) {
   var fields = [
     'artist.artist^15',
     'artist.folded^15',
@@ -37,6 +37,7 @@ var search = function(query, size, sort, filters, isApp, from, req, callback) {
     'artist.ngram^2',
     'title.ngram',
   ]
+
   if (query.match(/".*"/)) fields = fields.slice(0, -2)
   if (filters) query += ' ' + filters
   var limitToPublicAccess = req.query.token != process.env.PRIVATE_ACCESS_TOKEN
@@ -191,8 +192,9 @@ var search = function(query, size, sort, filters, isApp, from, req, callback) {
     fields: { '*': { fragment_size: 5000, number_of_fragments: 1 } },
   }
 
+  var index = isFitD ? 'foot-in-the-door' : process.env.ES_index
   var search = {
-    index: process.env.ES_index,
+    index: index,
     body: {
       query: q,
       aggs: aggs,
@@ -204,6 +206,7 @@ var search = function(query, size, sort, filters, isApp, from, req, callback) {
     limitToPublicAccess: limitToPublicAccess,
     isMoreArtsmia: isMoreArtsmia,
     boostOnViewArtworks: boostOnViewArtworks,
+    isFitD: isFitD,
   }
   // when the search is undefined or blank, do a count over the aggregations
   if (query == '' || query == undefined) {
@@ -257,12 +260,15 @@ var searchEndpoint = function(req, res) {
   var filters = req.query.filters
   var userAgent = req.headers['user-agent']
   var isApp = userAgent && userAgent.match('MIA') // 'MIA/8 CFNetwork/758.0.2 Darwin/15.0.0' means this request came frmo the journeys app
+  var isFitD = req.query.fitd // is Foot in the Door?
+
   search(
     req.params.query || '',
     size,
     sort,
     filters,
     isApp,
+    isFitD,
     from,
     req,
     function(error, results) {
@@ -321,7 +327,11 @@ var id = function(req, res) {
     return search(id, 1, undefined, undefined, false, 0, req, toFirstHit)
   }
 
-  es.get({ id: id, type: 'object_data', index: process.env.ES_index }, function(
+  var isFitD = req.query.fitd
+  var type = isFitD ? 'foot-in-the-door' : 'object_data'
+  var index = isFitD ? 'foot-in-the-door' : process.env.ES_index
+
+  es.get({ id: id, type: type, index: index }, function(
     err,
     reply
   ) {
@@ -411,7 +421,7 @@ function checkRedisForCachedSearch(search, query, req, callback) {
   var sortKey = req.query.sort && 'sort:' + req.query.sort.replace('-asc', '')
   var cacheKey =
     'cache::search::' +
-    [query, search.size, search.from, sortKey, search.isMoreArtsmia]
+    [query, search.size, search.from, sortKey, search.isMoreArtsmia, search.isFitD]
       .filter(val => !!val)
       .join('::')
       .replace(/ /g, '-')
@@ -464,9 +474,11 @@ var random = function(req, res) {
     req.query && req.query.q
       ? { query_string: { query: (req.query.q += ' public_access:1') } }
       : { query_string: { query: 'public_access:1' } }
+  var isFitD = req.query.fitd
+  var index = isFitD ? 'foot-in-the-door' : process.env.ES_index
 
   es.search({
-    index: process.env.ES_index,
+    index: index,
     body: {
       query: {
         function_score: {
