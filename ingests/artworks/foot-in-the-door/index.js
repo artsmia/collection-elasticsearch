@@ -3,9 +3,12 @@
 const fs = require('fs')
 const path = require('path')
 const parseSync = require('csv-parse/lib/sync')
+const ndjson = require('ndjson')
 
 const submissionCsv = path.join(__dirname, 'submissions.csv')
 const rows = fs.readFileSync(submissionCsv)
+
+const downloadImages = false
 
 async function read(args = {}) {
   const submissions = parseSync(fs.readFileSync(submissionCsv), {
@@ -13,13 +16,76 @@ async function read(args = {}) {
     skip_empty_lines: true,
   })
 
-  await formfacadeImageDownload(submissions)
-}
-function stream() {}
-function transform(data) {}
-function load(data) {}
+  if(downloadImages) {
+    const images = await formfacadeImageDownload(submissions)
+  }
 
-module.exports = { read, stream, transform }
+  const stream = ndjson.stringify()
+  submissions.map(s => {
+    stream.write(s)
+  })
+
+  return stream
+}
+// function stream() {}
+let index = 1
+function transform(data) {
+  const KEYWORDS_KEY = 'Add keywords (optional): These will operate as search terms related to your submission.'
+  const IMAGE_DESCRIPTION_KEY = 'Image description for digital accessibility'
+
+  // TODO de-dupe filename assignment with code copied from `formfacadeImageDownload`
+  const imageAccessUrl = data[imageFilenameColumnName]
+  const uploadedFilename = imageAccessUrl.split('/').reverse()[0]
+  const ext = uploadedFilename.split('.').reverse()[0]
+  const submissionName = data['Name'].replace(/\s+/g, '-')
+  const submissionTimestamp = data['Timestamp']
+  const submissionIsoTime = new Date(submissionTimestamp)
+    .toISOString()
+    .split('.0')[0]
+  const imageFilename = `2020_fitd_${submissionIsoTime}_${submissionName}.${ext}`
+  // end TODO
+
+  // TODO pull this from the spreadsheet once it's filled in by volunteers
+  // For now, simulate it
+  const classifications = [
+    'Ceramics',
+    'Paintings',
+    'Photography',
+    'Drawings',
+    'Prints',
+    'Sculpture',
+    'Textiles',
+    'Mixed Media',
+  ]
+  const classifIdx = Math.floor(Math.random()*10)%classifications.length
+  const classification = classifications[classifIdx]
+  // end TODO
+
+  return {
+    id: index++, // hash of the submitted image filename?
+    accession_number: `L2020.FITD.${index-1}`,
+    creditline: 'likewise',
+    title: data.Title,
+    artist: data.Name,
+    dated: data['Year '],
+    medium: data['Medium '],
+    keywords: data[KEYWORDS_KEY],
+    description: data[IMAGE_DESCRIPTION_KEY],
+    dimension: data.Dimensions,
+    classification,
+    image: imageFilename,
+    public_access: 1,
+    image: 'valid',
+    image_width: 'todo',
+    image_height: 'todo',
+  }
+}
+function load(data) {
+  // gather up the data after its been transformed
+  // and push it into elasticsearch
+}
+
+module.exports = { read, transform }
 
 const imageFilenameColumnName =
   'Upload a single image of your artwork (square 1:1 aspect ratio, 2000x2000, jpg or png, up to 10 MB)'
@@ -82,7 +148,10 @@ async function formfacadeImageDownload(submissions) {
 
     const pwSel = 'input[name="hiddenPassword"]'
     const pw = await loginPopup.waitForSelector(pwSel)
-    await loginPopup.$eval(pwSel, el => (el.value = process.env.FITD_FORMFACADE_PW))
+    await loginPopup.$eval(
+      pwSel,
+      el => (el.value = process.env.FITD_FORMFACADE_PW)
+    )
     let next2 = await loginPopup.waitForSelector('#passwordNext button')
     await loginPopup.waitFor(1000)
     await loginPopup.$eval('#passwordNext button', el => el.click())
@@ -165,9 +234,9 @@ async function formfacadeImageDownload(submissions) {
       const buffer = await image.buffer()
       console.info('buffer read, writing file…')
       await writeFile(filepath, buffer)
-      console.info('…file written, waiting 3 seconds')
+      console.info('…file written, waiting 1 seconds')
 
-      return page.waitFor(3000)
+      return page.waitFor(1000)
     },
     Promise.resolve()
   )

@@ -263,4 +263,20 @@ updateGalleryFromAPI:
 		ssh collections "./clear-collections-cache.sh G$(galleryId)"
 		echo "objects updated and cache cleared!"
 
+footInTheDoor:
+	cat fitd.ldjson | jq -s -c 'map([ \
+			  {index: {_type: "foot-in-the-door", _id: .id}}, \
+				. \
+		  ])[][]' > bulk/foot-in-the-door.ldjson
+
+deleteIndexFitD:
+	curl -XDELETE $(es)/foot-in-the-door
+
+createIndexFitD:
+	curl -XPOST -d @mappings.json $(es)/foot-in-the-door
+
+reindexFitD: deleteIndexFitD createIndexFitD footInTheDoor
+	cat bulk/foot-in-the-door.ldjson | curl -v localhost:9200/foot-in-the-door/_bulk \
+			-XPOST --data-binary @-
+
 .PHONY: departments tags

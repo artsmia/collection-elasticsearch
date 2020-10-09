@@ -30,6 +30,17 @@ const {
   transform: transformFitD,
 } = require('./artworks/foot-in-the-door')
 
-readFitD()
+let index = 0
+const _read = readFitD().then(stream => {
+  stream.pipe(ndjson.parse())
+    .on('data', function(obj) {
+      const reshaped = transformFitD(obj)
 
-console.info('ingests/index done.')
+      console.info(JSON.stringify(reshaped))
+      index++
+      // now send to ES
+    })
+})
+
+
+// console.info('ingests/index done.')
