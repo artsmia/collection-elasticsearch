@@ -9,18 +9,24 @@ var redis = require('redis')
 var dataClient = redis.createClient()
 dataClient.select(7)
 
-function getUserId(cookies, callback) {
-  var existingId = cookies && cookies['userId']
-  if(existingId) return callback(null, existingId)
+function getUserId(req, res, callback) {
+  var existingId = req && req.cookies && req.cookies['userId']
+  // If there is a userId set in the 
+  // cookies already, use that and we're done.
+  if(existingId) return callback(null, existingId, existingId)
 
-  dataClient.get('nextUserId', function(err, newId) {
+  // If not, obtain the next available id (`newId`) from redis,
+  // send it back to the calling function,
+  // and also append it to `res` so it goes back to the requesting browser
+  dataClient.get('nextUserId', function(err, newId, existingId) {
+    res.cookie('userId', newId, {sameSite: 'None', secure: true})
     dataClient.incrby('nextUserId', 1)
     return callback(false, newId)
   })
 }
 
 function rateArtwork(likeOrDislike, req, res) {
-  getUserId(req.cookies, function(err, userId) {
+  getUserId(req, res, function(err, userId) {
     var artworkId = req.params.id
     dataClient.sadd(`survey:user:${userId}:${likeOrDislike}`, artworkId, redis.print)
     setCorsHeadersToAllowCookies(req, res)
@@ -37,7 +43,7 @@ function setCorsHeadersToAllowCookies(req, res) {
 function saveJSONData(req, res) {
   const {data} = req.query || {}
   setCorsHeadersToAllowCookies(req, res)
-  getUserId(req.cookies, function(err, userId) {
+  getUserId(req, res, function(err, userId) {
     const key = `survey:collections-redesign:${userId}`
 
     dataClient.set(key, data, redis.print)
@@ -48,20 +54,19 @@ function saveJSONData(req, res) {
 // because this needs access to express, try building the routes as a function
 // that's called from `index.js`
 module.exports = function(app, express) {
-  app.use(express.cookieParser(process.env.SECRET_COOKIE_TOKEN))
+  // app.use(express.cookieParser(process.env.SECRET_COOKIE_TOKEN))
   // app.use(express.cookieSession())
+  // app is already set up with cookie-parser in index.js?
 
   app.all('/survey/getUser', function(req, res) {
-    getUserId(req.cookies, function(err, userId) {
-      res.cookie('userId', userId) // TODO sign cookies?
+    getUserId(req, res, function(err, userId) {
       setCorsHeadersToAllowCookies(req, res)
       return res.json(userId)
     })
   })
 
   app.all('/survey/getUserData', function(req, res) {
-    getUserId(req.cookies, function(err, userId) {
-      res.cookie('userId', userId) // TODO sign cookies?
+    getUserId(req, res, function(err, userId) {
       setCorsHeadersToAllowCookies(req, res)
 
       const key = `survey:collections-redesign:${userId}`
