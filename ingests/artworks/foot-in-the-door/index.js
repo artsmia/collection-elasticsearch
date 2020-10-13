@@ -45,21 +45,13 @@ function transform(data) {
   const imageFilename = `2020_fitd_${submissionIsoTime}_${submissionName}.${ext}`
   // end TODO
 
-  // TODO pull this from the spreadsheet once it's filled in by volunteers
-  // For now, simulate it
-  const classifications = [
-    'Ceramics',
-    'Paintings',
-    'Photography',
-    'Drawings',
-    'Prints',
-    'Sculpture',
-    'Textiles',
-    'Mixed Media',
-  ]
-  const classifIdx = Math.floor(Math.random()*10)%classifications.length
-  const classification = classifications[classifIdx]
-  // end TODO
+  // prettier-ignore
+  // const classifications = [
+  //   'Ceramics', 'Paintings', 'Photography', 'Drawings', 'Prints',
+  //   'Sculpture', 'Textiles', 'Mixed Media',
+  // ]
+  // const classifIdx = Math.floor(Math.random()*10)%classifications.length
+  const classification = data['Category [Mia Enters]']
 
   return {
     id: index++, // hash of the submitted image filename?
@@ -75,7 +67,7 @@ function transform(data) {
     classification,
     image: imageFilename,
     public_access: 1,
-    image: 'valid',
+    // image: 'valid',
     image_width: 'todo',
     image_height: 'todo',
   }
