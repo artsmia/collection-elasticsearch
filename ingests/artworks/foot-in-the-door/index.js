@@ -98,14 +98,14 @@ async function formfacadeImageDownload(submissions) {
   const _chromiumDataDir = './chromium_data'
   const chromiumDataDir = path.join(__dirname, 'chromium_data')
 
-  console.info('formfacadeImageDownload', { firstImage, chromiumDataDir })
+  // console.info('formfacadeImageDownload', { firstImage, chromiumDataDir })
 
   const browser = await puppeteer.launch({
     headless: false,
     userDataDir: chromiumDataDir, // save browser data to persist formfacade login
   })
 
-  console.info('.')
+  // console.info('.')
 
   const page = await browser.newPage()
   await page.goto(firstImage)
@@ -116,7 +116,7 @@ async function formfacadeImageDownload(submissions) {
       timeout: 5000,
     })
   } catch (e) {
-    console.info('already logged in?!?')
+    // console.info('already logged in?!?')
   }
 
   if (loginButton) {
@@ -161,7 +161,7 @@ async function formfacadeImageDownload(submissions) {
   //   .filter(img => !img.match('.pdf'))
   //   .slice(0, 1)
 
-  console.info(`about to download ${submissions.length} submissions`)
+  // console.info(`about to download ${submissions.length} submissions`)
 
   const downloads = await submissions.reduce(
     async (prevPromise, submission, index) => {
@@ -200,12 +200,15 @@ async function formfacadeImageDownload(submissions) {
       const skip = alreadyDownloaded || !filename
 
       // write json data to a 'sidecar' file
-      // TODO modify this to use the data transform
       fs.writeFileSync(jsonFilePath, JSON.stringify(submission, null, 2))
 
       if (skip) return page.waitFor(0)
 
-      console.info('downloading image…', { imageAccessUrl })
+      // TODO modify this so it also looks at `Replacement Image Filename`
+      // in the CSV and connects that to `images/hand-submitted-images`
+      // instead of downloading from FormFacade
+      // console.info('downloading image…', { imageAccessUrl })
+
       const [nav, imageAccessPage] = await Promise.all([
         page.waitForNavigation(),
         page.goto(imageAccessUrl),
@@ -219,14 +222,14 @@ async function formfacadeImageDownload(submissions) {
       )
       const image = await page.goto(await page.url())
 
-      console.info('…image loaded, extracting buffer…')
+      // console.info('…image loaded, extracting buffer…')
       // TODO doesn't work for PDFs?
       // https://github.com/puppeteer/puppeteer/issues/1248
       // see above where pdfs are filtered out
       const buffer = await image.buffer()
-      console.info('buffer read, writing file…')
+      // console.info('buffer read, writing file…')
       await writeFile(filepath, buffer)
-      console.info('…file written, waiting 1 seconds')
+      // console.info('…file written, waiting 1 seconds')
 
       return page.waitFor(1000)
     },
@@ -235,5 +238,5 @@ async function formfacadeImageDownload(submissions) {
 
   await downloads
   await browser.close()
-  console.info('done')
+  // console.info('done')
 }
