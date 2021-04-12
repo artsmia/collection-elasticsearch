@@ -271,6 +271,10 @@ footInTheDoor:
 				. \
 		  ])[][]' > bulk/foot-in-the-door.ldjson
 
+# TODO
+# FITD alongside mia objects in the index, but give each a different _type?
+# mia: _type mia | artsmia
+# fitd: _type fitd | fitf20 | foot-in-the-door-2020
 deleteIndexFitD:
 	curl -XDELETE $(es)/foot-in-the-door
 

@@ -2,6 +2,7 @@
  */
 const fs = require('fs')
 const path = require('path')
+const execSync = require('child_process').execSync
 const parseSync = require('csv-parse/lib/sync')
 const ndjson = require('ndjson')
 
@@ -10,40 +11,160 @@ const rows = fs.readFileSync(submissionCsv)
 
 const downloadImages = false
 
+function imageSize(filepath) {
+  try {
+    const out = execSync(`vipsheader "${filepath}"`, { encoding: 'utf-8' })
+    const [_, width, height] = out.match(/: ([0-9]+)x([0-9]+)/)
+    return [width, height].map(n => Number(n))
+  } catch (e) {
+    return [null, null]
+  }
+}
+
+async function processImages(submissions) {
+  if (downloadImages) {
+    const images = await formfacadeImageDownload(submissions)
+  }
+
+  const renameAndMoveImages = false
+  if (renameAndMoveImages) {
+    const replacedImages = await replaceImages()
+  }
+
+  // TODO extract image metadata (width/height)
+  // here instead if in the transform?
+  // Or does it make more sense to do that from the transform,
+  // which is probably where EXIF data will need to be written
+  // back into the image files?
+}
+
+async function replaceImages(submissions) {
+  submissions.map(data => {
+    const replacementImageName = data['Replacement Image Filename']
+    //
+    // Handle e-mailed replacement images
+    if (replacementImageName) {
+      const rootPathExists = fs.existsSync(filepathRoot)
+      const bucketPathExists = fs.existsSync(filepath)
+      const alreadyRenamed = rootPathExists || bucketPathExists
+
+      console.info('has replacement image?', {
+        index,
+        replacementImageName,
+        alreadyRenamed,
+        filepath,
+      })
+
+      if (!alreadyRenamed) {
+        fs.writeFileSync(jsonFilePath, JSON.stringify(data, null, 2))
+        fs.copyFileSync(
+          path.join(
+            __dirname,
+            `images/hand-submitted-images/${replacementImageName}`
+          ),
+          filepath
+        )
+      }
+    }
+  })
+}
+
 async function read(args = {}) {
   const submissions = parseSync(fs.readFileSync(submissionCsv), {
     columns: true,
     skip_empty_lines: true,
   })
 
-  if(downloadImages) {
-    const images = await formfacadeImageDownload(submissions)
-  }
+  await processImages(submissions)
 
   const stream = ndjson.stringify()
-  submissions.map(s => {
-    stream.write(s)
+  submissions.map((s, index) => {
+    stream.write({ ...s, __index: index + 2 })
   })
 
   return stream
 }
 // function stream() {}
-let index = 1
 function transform(data) {
-  const KEYWORDS_KEY = 'Add keywords (optional): These will operate as search terms related to your submission.'
-  const IMAGE_DESCRIPTION_KEY = 'Image description for digital accessibility'
+  const index = data.__index
 
+  // Process image(s)
+  // * this step might need to copy a replacement image into the images directory structure
+  //   if that image was emailed in to VE to replace the uploaded image, or if the uploaded
+  //   image was invalid
+  //
   // TODO de-dupe filename assignment with code copied from `formfacadeImageDownload`
   const imageAccessUrl = data[imageFilenameColumnName]
   const uploadedFilename = imageAccessUrl.split('/').reverse()[0]
-  const ext = uploadedFilename.split('.').reverse()[0]
+  let ext = uploadedFilename.split('.').reverse()[0]
   const submissionName = data['Name'].replace(/\s+/g, '-')
   const submissionTimestamp = data['Timestamp']
-  const submissionIsoTime = new Date(submissionTimestamp)
-    .toISOString()
-    .split('.0')[0]
-  const imageFilename = `2020_fitd_${submissionIsoTime}_${submissionName}.${ext}`
+  let submissionIsoTime
+  try {
+    submissionIsoTime = new Date(submissionTimestamp)
+      .toISOString()
+      .split('.0')[0]
+  } catch (e) {
+    console.error('couldnt parse submission timestamp', {
+      submissionTimestamp,
+      index,
+    })
+  }
+  let imageFilename = `2020_fitd_${submissionIsoTime}_${submissionName}.${ext}`
+  const bucket = Math.max(1, Math.ceil(index / 135)) // clamp so index 0 goes in bucket 1
+  let filepath = path.join(__dirname, `images/${bucket}`, imageFilename)
+  const filepathRoot = path.join(__dirname, `images/${imageFilename}`)
+  const replacementImage = data['Replacement Image Filename']
+  if (replacementImage) {
+    const replacementImagePath = path.join(
+      __dirname,
+      'images/hand-submitted-images',
+      replacementImage
+    )
+    ext = replacementImage.split('.').reverse()[0]
+    imageFilename = `2020_fitd_${submissionIsoTime}_${submissionName}.${ext}`
+    filepath = path.join(__dirname, `images/${bucket}`, imageFilename)
+    const bucketPathExists = fs.existsSync(filepath)
+
+    if (!bucketPathExists)
+      try {
+        fs.copyFileSync(replacementImagePath, filepath)
+      } catch (e) {
+        console.info('error moving image', {
+          replacementImagePath,
+          filepath,
+          e,
+        })
+      }
+  }
   // end TODO
+
+  // TODO fetching image dimensions is SLOW
+  // Make this an option to run on ingest, and somehow
+  // cache the data when it is generated?
+  const validImage = filepath && !filepath.match(/pdf/i)
+  let width = undefined
+  let height = undefined
+  let dimensions = [width, height]
+  try {
+    if (validImage) {
+      dimensions = imageSize(filepath)
+    }
+  } catch (e) {
+    console.error('error checking image size', { filepath, e })
+  }
+  // end TODO
+
+  // Generate a hash to use as the ID instead of using numeric ID?
+  //
+  // (what's 'extracting' vs transforming? the hash is probably a 'transform' but
+  // image dimensions are an 'extract'?)
+  // TODO generate the mystical hash
+
+  const KEYWORDS_KEY =
+    'Add keywords (optional): These will operate as search terms related to your submission.'
+  const IMAGE_DESCRIPTION_KEY = 'Image description for digital accessibility'
+  const FINAL_REVIEW_KEY = `Final Review (X = do not publish, empty = publish, ? = there's still an issue to resolve)`
 
   // prettier-ignore
   // const classifications = [
@@ -53,23 +174,25 @@ function transform(data) {
   // const classifIdx = Math.floor(Math.random()*10)%classifications.length
   const classification = data['Category [Mia Enters]']
 
+  const public_access = data[FINAL_REVIEW_KEY].match(/x/i) ? 0 : 1
+
   return {
-    id: index++, // hash of the submitted image filename?
-    accession_number: `L2020.FITD.${index-1}`,
+    id: index, // hash of the submitted image filename?
+    accession_number: `L2020.FITD.${index - 1}`,
     creditline: 'likewise',
     title: data.Title,
     artist: data.Name,
-    dated: data['Year '],
-    medium: data['Medium '],
+    dated: data['Year'],
+    medium: data['Medium'],
     keywords: data[KEYWORDS_KEY],
     description: data[IMAGE_DESCRIPTION_KEY],
     dimension: data.Dimensions,
     classification,
     image: imageFilename,
-    public_access: 1,
-    // image: 'valid',
-    image_width: 'todo',
-    image_height: 'todo',
+    public_access,
+    // image: validImage ? 'valid' : 'invalid',
+    image_width: dimensions[0],
+    image_height: dimensions[1],
   }
 }
 function load(data) {
