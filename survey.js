@@ -41,15 +41,32 @@ function rateArtwork(likeOrDislike, req, res) {
     return res.send(`user ${userId} ${likeOrDislike} art ${artworkId}`)
   })
 }
+function getRated(req, res) {
+  getUserId(req, res, function(err, userId) {
+    dataClient.smembers(`survey:user:${userId}:likes`, function(err, likes) {
+      return res.json({userId, likes})
+    })
+  })
+}
 
 function saveJSONData(req, res) {
+  const {surveyId} = req.params || {}
   const {data} = req.query || {}
-  setCorsHeadersToAllowCookies(req, res)
+  const defaultSurveyId = 'collections-redesign'
   getUserId(req, res, function(err, userId) {
-    const key = `survey:collections-redesign:${userId}`
+    const key = `survey:${surveyId || defaultSurveyId}:${userId}`
 
-    dataClient.set(key, data, redis.print)
-    return res.send(`saved data for user ${userId}.`)
+    console.info('saveJSONData', {surveyId, data, key})
+
+    dataClient.set(key, data, function(err, status) {
+      dataClient.get(key, function(err, data) {
+        return res.json({
+          userId,
+          data: JSON.parse(data),
+          status,
+        })
+      })
+    })
   })
 }
 
@@ -66,26 +83,32 @@ module.exports = function(app, express) {
     })
   })
 
-  app.all('/survey/getUserData', function(req, res) {
-    getUserId(req, res, function(err, userId) {
-      const key = `survey:collections-redesign:${userId}`
-      dataClient.get(key, function(err, data) {
-        return res.json({userId, data: JSON.parse(data)})
-      })
-    })
-  })
-
   app.all('/survey/art/:id/like', function(req, res) {
     rateArtwork('likes', req, res)
   })
-
   app.all('/survey/art/:id/dislike', function(req, res) {
     rateArtwork('dislikes', req, res)
   })
+  app.all('/survey/favorites', function(req, res) {
+    getRated(req, res)
+  })
+
 
   app.all('/survey/redesign', function(req, res) {
     saveJSONData(req, res)
   })
+  app.all('/survey/:surveyId', function(req, res) {
+    saveJSONData(req, res)
+  })
+  // app.get('/survey/:surveyId', function(req, res) {
+  //   const {surveyId} = req.params
+  //   getUserId(req, res, function(err, userId) {
+  //     const key = `survey:${surveyId}:${userId}`
+  //     dataClient.get(key, function(err, data) {
+  //       return res.json({userId, data: JSON.parse(data)})
+  //     })
+  //   })
+  // })
 
   app.get('/survey/data', function(req, res) {
     var multi = dataClient.multi()
