@@ -24,7 +24,7 @@ var prindleRoom = {
   room: 'G320',
 }
 
-var search = function(query, size, sort, filters, isApp, isFitD, from, req, callback) {
+var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, callback) {
   var fields = [
     'artist.artist^15',
     'artist.folded^15',
@@ -192,9 +192,11 @@ var search = function(query, size, sort, filters, isApp, isFitD, from, req, call
     fields: { '*': { fragment_size: 5000, number_of_fragments: 1 } },
   }
 
-  var index = isFitD ? 'foot-in-the-door' : process.env.ES_index
+  var [type,index] = getTypeIndexFromDataPrefix(dataPrefix)
+
   var search = {
     index: index,
+    dataPrefix: dataPrefix,
     body: {
       query: q,
       aggs: aggs,
@@ -206,7 +208,6 @@ var search = function(query, size, sort, filters, isApp, isFitD, from, req, call
     limitToPublicAccess: limitToPublicAccess,
     isMoreArtsmia: isMoreArtsmia,
     boostOnViewArtworks: boostOnViewArtworks,
-    isFitD: isFitD,
   }
   // when the search is undefined or blank, do a count over the aggregations
   if (query == '' || query == undefined) {
@@ -260,7 +261,7 @@ var searchEndpoint = function(req, res) {
   var filters = req.query.filters
   var userAgent = req.headers['user-agent']
   var isApp = userAgent && userAgent.match('MIA') // 'MIA/8 CFNetwork/758.0.2 Darwin/15.0.0' means this request came frmo the journeys app
-  var isFitD = req.query.fitd // is Foot in the Door?
+  var dataPrefix = req.query.dataPrefix // pull data from a non-mia-artworks index
 
   search(
     req.params.query || '',
@@ -268,7 +269,7 @@ var searchEndpoint = function(req, res) {
     sort,
     filters,
     isApp,
-    isFitD,
+    dataPrefix,
     from,
     req,
     function(error, results) {
@@ -307,6 +308,12 @@ const baseUrl =
   process.env.NODE_ENV === 'production'
     ? `https://search.artsmia.org`
     : 'http://localhost:4680'
+
+function getTypeIndexFromDataPrefix(prefix) {
+  if(prefix === 'fitd') return ['foot-in-the-door', 'foot-in-the-door']
+  if(prefix === 'ca21') return ['creativity-academy-2021', 'creativity-academy-2021']
+  return ['object_data', process.env.ES_index]
+}
 
 var id = function(req, res) {
   var id = req.params.id
@@ -421,7 +428,7 @@ function checkRedisForCachedSearch(search, query, req, callback) {
   var sortKey = req.query.sort && 'sort:' + req.query.sort.replace('-asc', '')
   var cacheKey =
     'cache::search::' +
-    [query, search.size, search.from, sortKey, search.isMoreArtsmia, search.isFitD]
+    [query, search.size, search.from, sortKey, search.isMoreArtsmia, search.dataPrefix]
       .filter(val => !!val)
       .join('::')
       .replace(/ /g, '-')
@@ -474,8 +481,8 @@ var random = function(req, res) {
     req.query && req.query.q
       ? { query_string: { query: (req.query.q += ' public_access:1') } }
       : { query_string: { query: 'public_access:1' } }
-  var isFitD = req.query.fitd
-  var index = isFitD ? 'foot-in-the-door' : process.env.ES_index
+  var dataPrefix = req.query.dataPrefix
+  var [type, index] = getTypeIndexFromDataPrefix(dataPrefix)
 
   es.search({
     index: index,

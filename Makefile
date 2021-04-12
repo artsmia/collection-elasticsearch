@@ -285,4 +285,20 @@ reindexFitD: deleteIndexFitD createIndexFitD footInTheDoor
 	cat bulk/foot-in-the-door.ldjson | curl -v localhost:9200/foot-in-the-door/_bulk \
 			-XPOST --data-binary @-
 
+creativityAcademy:
+	cat ingests/artworks/creativity-academy-2021/creativity-academy.ldjson | jq -s -c 'map([ \
+			  {index: {_type: "creativity-academy-2021", _id: .id}}, \
+				. \
+		  ])[][]' > bulk/creativity-academy-2021.ldjson
+
+deleteIndexCA21:
+	curl -XDELETE $(es)/creativity-academy-2021
+
+createIndexCA21:
+	curl -XPOST -d @mappings.json $(es)/creativity-academy-2021
+
+reindexCA21: deleteIndexCA21 createIndexCA21 creativityAcademy
+	cat bulk/creativity-academy-2021.ldjson | curl -v localhost:9200/creativity-academy-2021/_bulk \
+			-XPOST --data-binary @-
+
 .PHONY: departments tags
