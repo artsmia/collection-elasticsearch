@@ -239,6 +239,8 @@ lists:
 				{doc: {"list:\($$listId)": true}} \
 		  ]) | flatten | .[]' | tee bulk/$$listId-list.ldjson; \
 		done
+listLinks:
+	ls bulk/*-list.ldjson | tail -n+2 | sed 's|bulk/||; s|-list.ldjson||' | parallel 'echo https://collections.artsmia.org/search/_exists_:\"list:{}\"'
 
 sendArbitraryJson:
 	cat $(file) | $(toES)
