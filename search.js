@@ -312,6 +312,7 @@ const baseUrl =
 function getTypeIndexFromDataPrefix(prefix) {
   if(prefix === 'fitd') return ['foot-in-the-door', 'foot-in-the-door']
   if(prefix === 'ca21') return ['creativity-academy-2021', 'creativity-academy-2021']
+  if(prefix === 'aib21') return ['art-in-bloom-2021', 'art-in-bloom-2021']
   return ['object_data', process.env.ES_index]
 }
 
@@ -331,12 +332,11 @@ var id = function(req, res) {
       return res.redirect(`${baseUrl}/id/${firstId}`)
     }
 
-    return search(id, 1, undefined, undefined, false, 0, req, toFirstHit)
+    return search(id, 1, undefined, undefined, false, dataPrefix, 0, req, toFirstHit)
   }
 
-  var isFitD = req.query.fitd
-  var type = isFitD ? 'foot-in-the-door' : 'object_data'
-  var index = isFitD ? 'foot-in-the-door' : process.env.ES_index
+  var dataPrefix = req.query.dataPrefix
+  var [type, index] = getTypeIndexFromDataPrefix(dataPrefix)
 
   es.get({ id: id, type: type, index: index }, function(
     err,
@@ -354,8 +354,10 @@ var id = function(req, res) {
 
 var ids = function(req, res) {
   var ids = req.params.ids.split(',')
+  var dataPrefix = req.query.dataPrefix
+  var [type, index] = getTypeIndexFromDataPrefix(dataPrefix)
   var docs = ids.map(function(id) {
-    return { _index: process.env.ES_index, _type: 'object_data', _id: id }
+    return { _index: index, _type: type, _id: id }
   })
 
   es.mget({ body: { docs: docs } }, function(err, response) {
