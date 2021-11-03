@@ -301,4 +301,20 @@ reindexCA21: deleteIndexCA21 createIndexCA21 creativityAcademy
 	cat bulk/creativity-academy-2021.ldjson | curl -v localhost:9200/creativity-academy-2021/_bulk \
 			-XPOST --data-binary @-
 
+artInBloom:
+	cat ingests/artworks/art-in-bloom-2021/aib2021.ldjson | jq -s -c 'map([ \
+			  {index: {_type: "art-in-bloom-2021", _id: .id}}, \
+				. \
+		  ])[][]' > bulk/art-in-bloom-2021.ldjson
+
+deleteIndexAIB21:
+	curl -XDELETE $(es)/art-in-bloom-2021
+
+createIndexAIB21:
+	curl -XPOST -d @mappings.json $(es)/art-in-bloom-2021
+
+reindexAIB21: artInBloom deleteIndexAIB21 createIndexAIB21
+	cat bulk/art-in-bloom-2021.ldjson | curl -v localhost:9200/art-in-bloom-2021/_bulk \
+			-XPOST --data-binary @-
+
 .PHONY: departments tags
