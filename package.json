@@ -13,7 +13,7 @@
     "image-size": "^0.9.1",
     "json2csv": "^4.2.1",
     "node-fetch": "^2.3.0",
-    "puppeteer": "^5.2.1",
+    "puppeteer": "^8.0.0",
     "redis": "~0.10.1"
   },
   "scripts": {
