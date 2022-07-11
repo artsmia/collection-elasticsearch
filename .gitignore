@@ -7,3 +7,4 @@ package-lock.json
 queries
 rights.x*
 scratch
+.DS_Store
