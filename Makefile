@@ -230,13 +230,13 @@ restoreFromBulkCache:
 	cat bulk/$(file) | $(toES)
 
 removeField:
-	@ls ../collection-info/lists/$(fileName) | while read listFile; do \
+	@ls ../collection-info/lists/black-history-month.md | while read listFile; do \
 			json=$$(m2j $$listFile | jq .[]); \
 			listId=$$(jq -r '.listId' <<<$$json); \
 			echo $$listFile -- $$listId; \
 			jq -r '.ids[]' <<<$$json | jq -s -c --arg listId $$listId 'map([ \
 				{update: {_type: "object_data", _id: .}}, \
-				{"script": "ctx._source.remove(\"list:$(listName)\")"} \
+				{"script": "ctx._source.remove(\"list:bhm\")"} \
 		  ]) | flatten | .[]' | tee bulk/$$listId-list.ldjson; \
 		done
 
