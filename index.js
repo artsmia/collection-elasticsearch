@@ -20,6 +20,8 @@ app.get('/', function(req, res) {
       '`/id/:ids` returns artworks based on a list of comma-separated "object ID"s.',
       '`/random/art` returns a random artwork.',
       '`/people/:id` returns the information we have on a person or entity related to our collection.',
+      '',
+      'Mia also makes bulk data available for its artworks: see https://github.com/artsmia/collection for more info'
     ].join('\n\n')
   )
 })
