@@ -1,0 +1,10 @@
+services:
+  app:
+    container_name: ddev-${DDEV_PROJECT}-app
+    build:
+      context: ./../app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./../app:/app
