@@ -6,9 +6,13 @@
 //
 
 var redis = require('redis')
-var dataClient = redis.createClient()
+var dataClient = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST)
 dataClient.select(7)
 
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
 function getUserId(req, res, callback) {
   const cookieName = 'artsmiaUserId'
   setCorsHeadersToAllowCookies(req, res)
@@ -28,12 +32,21 @@ function getUserId(req, res, callback) {
   })
 }
 
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
 function setCorsHeadersToAllowCookies(req, res) {
   console.info('setCorsHeadersToAllowCookies', req.headers.origin)
   res.header("Access-Control-Allow-Origin", req.headers.origin)
   res.header("Access-Control-Allow-Credentials", true)
 }
 
+/**
+ * @param {string} likeOrDislike
+ * @param {Request} req
+ * @param {Response} res
+ */
 function rateArtwork(likeOrDislike, req, res) {
   getUserId(req, res, function(err, userId) {
     var artworkId = req.params.id
@@ -41,6 +54,11 @@ function rateArtwork(likeOrDislike, req, res) {
     return res.send(`user ${userId} ${likeOrDislike} art ${artworkId}`)
   })
 }
+
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
 function getRated(req, res) {
   getUserId(req, res, function(err, userId) {
     dataClient.smembers(`survey:user:${userId}:likes`, function(err, likes) {
@@ -49,6 +67,10 @@ function getRated(req, res) {
   })
 }
 
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
 function saveJSONData(req, res) {
   const {surveyId} = req.params || {}
   const {data} = req.query || {}

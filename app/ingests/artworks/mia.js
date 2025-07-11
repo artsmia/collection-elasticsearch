@@ -14,7 +14,7 @@
  */
 
 const Redis = require('async-redis')
-const redis = Redis.createClient()
+const redis = Redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST)
 // const AsyncRedis = require('async-redis')
 // const asyncRedis = AsyncRedis.decorate(redis)
 const ioredis = require('ioredis')

@@ -9,7 +9,7 @@ var express = require('express'),
 app.use(cors())
 app.use(cookieParser())
 
-app.listen(process.env.PORT || 4680)
+app.listen(process.env.PORT || 3000)
 
 app.get('/', function(req, res) {
   res.end(

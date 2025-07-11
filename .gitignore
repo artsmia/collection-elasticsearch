@@ -3,9 +3,10 @@ bulk
 node_modules
 data
 manually-added-images
-package-lock.json
 queries
 rights.x*
 scratch
 .DS_Store
+.idea
 /tmp
+/app/data-snapshot20250710/*

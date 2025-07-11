@@ -14,12 +14,21 @@
 
 const fs = require('fs')
 const redis = require('redis')
-const client = redis.createClient()
+const client = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST)
 const fetch = require('node-fetch')
 
-let artists = JSON.parse(fs.readFileSync('./data/artists-2019-02-04.json'))
+const fallbackDataDir = './data-snapshot20250710';
+
+// Fall back to snapshot
+let dataDir = './data';
+if (!fs.existsSync(dataDir)) {
+  console.warn(`${dataDir} missing, using ${fallbackDataDir}`);
+  dataDir = fallbackDataDir;
+}
+
+let artists = JSON.parse(fs.readFileSync(`${dataDir}/artists-2019-02-04.json`))
 let artistsMixNMatch = JSON.parse(
-  fs.readFileSync('./data/artistsMixNMatch.json')
+  fs.readFileSync(`${dataDir}/artistsMixNMatch.json`)
 )
 
 const cachedFetch = url => {
@@ -72,6 +81,10 @@ let wikidata = function(artist) {
   })
 }
 
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
 module.exports = function(req, res) {
   const id = req.params.id
 

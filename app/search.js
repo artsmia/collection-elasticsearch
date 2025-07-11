@@ -2,7 +2,7 @@
  */
 
 var redis = require('redis'),
-  client = redis.createClient()
+  client = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST)
 
 var es = new require('elasticsearch').Client({
   host: process.env.ES_URL,
@@ -252,6 +252,10 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
   })
 }
 
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
 var searchEndpoint = function(req, res) {
   if (req.params.query == 'favicon.ico') return res.send(404)
   var replies = []
@@ -307,7 +311,7 @@ var searchEndpoint = function(req, res) {
 const baseUrl =
   process.env.NODE_ENV === 'production'
     ? `https://search.artsmia.org`
-    : 'http://localhost:4680'
+    : 'http://localhost:3000'
 
 function getTypeIndexFromDataPrefix(prefix) {
   if(prefix === 'fitd') return ['foot-in-the-door', 'foot-in-the-door']
@@ -316,6 +320,10 @@ function getTypeIndexFromDataPrefix(prefix) {
   return ['object_data', process.env.ES_index]
 }
 
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
 var id = function(req, res) {
   var id = req.params.id
   if (id == 'G320') return res.json(prindleRoom)
@@ -352,6 +360,10 @@ var id = function(req, res) {
   })
 }
 
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
 var ids = function(req, res) {
   var ids = req.params.ids.split(',')
   var dataPrefix = req.query.dataPrefix
@@ -396,6 +408,10 @@ var ids = function(req, res) {
   })
 }
 
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
 var tag = function(req, res) {
   client.smembers('tag:' + req.params.tag, function(err, ids) {
     var m = client.multi()
@@ -449,6 +465,10 @@ function checkRedisForCachedSearch(search, query, req, callback) {
   })
 }
 
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
 var autofill = function(req, res) {
   var query = {
     index: process.env.ES_index,
@@ -477,6 +497,10 @@ var autofill = function(req, res) {
   })
 }
 
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
 var random = function(req, res) {
   var size = req.query.size || 1
   var query =
