@@ -1,15 +1,8 @@
 /** @format
  */
 
-var redis = require('redis'),
-  client = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST)
-
-var es = new require('elasticsearch').Client({
-  host: process.env.ES_URL,
-  log: false,
-  requestTimeout: 3000,
-})
-
+const client = require('./lib/redisClient');
+const es = require('./lib/esClient');
 const Json2csvParser = require('json2csv').Parser
 
 var prindleRoom = {
@@ -230,7 +223,7 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
     }
 
     es.search(search).then(
-      function(body) {
+      function({ body }) {
         body.query = q
         callback(null, body)
 
@@ -317,7 +310,7 @@ function getTypeIndexFromDataPrefix(prefix) {
   if(prefix === 'fitd') return ['foot-in-the-door', 'foot-in-the-door']
   if(prefix === 'ca21') return ['creativity-academy-2021', 'creativity-academy-2021']
   if(prefix === 'aib21') return ['art-in-bloom-2021', 'art-in-bloom-2021']
-  return ['object_data', process.env.ES_index]
+  return [undefined, process.env.ES_index]
 }
 
 /**
@@ -346,18 +339,16 @@ var id = function(req, res) {
   var dataPrefix = req.query.dataPrefix
   var [type, index] = getTypeIndexFromDataPrefix(dataPrefix)
 
-  es.get({ id: id, type: type, index: index }, function(
-    err,
-    reply
-  ) {
-    if (err) {
+  es.get({ id: id, type: type, index: index })
+    .then(reply => {
+      res.json(reply.body._source);
+    })
+    .catch(err => {
       console.error('ES error', err)
       return client.hget('object:' + ~~(id / 1000), id, function(err, reply) {
         return res.json(JSON.parse(reply))
       })
-    }
-    res.json(reply._source)
-  })
+    })
 }
 
 /**
@@ -372,40 +363,37 @@ var ids = function(req, res) {
     return { _index: index, _type: type, _id: id }
   })
 
-  es.mget({ body: { docs: docs } }, function(err, response) {
-    if (err) {
-      console.error(err)
-      return res.send('oops')
-    }
+  es.mget({ body: { docs: docs } })
+    .then(response => {
+      if (req.query.format !== 'csv') {
+        return res.json({
+          hits: {
+            total: response.body.docs.length,
+            hits: response.body.docs,
+          },
+        });
+      }
 
-    if (req.query.format === 'csv') { // TODO de-dupe with the CSV handling in the general search
-      // How to re-query and pull the full set of results, or at least up to a higher limit?
-      if (typeof results === 'string') results = JSON.parse(results) // re-parse cached JSON string
-
-      const hits = response.docs.map(hit => {
+      const hits = response.body.docs.map(hit => {
         return Object.assign(hit._source, {
           searchTerm: req.params.query,
           searchScore: hit._score,
-        })
-      })
+        });
+      });
 
-      const csv = new Json2csvParser({}).parse(hits)
+      const csv = new Json2csvParser({}).parse(hits);
 
       const filename = `minneapolis institute of art search: ${
         ids.join('-')
-      }.csv`
+      }.csv`;
 
-      res.attachment(filename)
-      res.send(csv)
-    } else {
-      res.json({
-        hits: {
-          total: response.docs.length,
-          hits: response.docs,
-        },
-      })
-    }
-  })
+      res.attachment(filename);
+      res.send(csv);
+    })
+    .catch(err => {
+      console.error(err);
+      return res.send('oops');
+    });
 }
 
 /**
@@ -466,6 +454,8 @@ function checkRedisForCachedSearch(search, query, req, callback) {
 }
 
 /**
+ * /autofill/her
+ *
  * @param {Request} req
  * @param {Response} res
  */
@@ -492,9 +482,48 @@ var autofill = function(req, res) {
     },
   }
 
-  es.suggest(query).then(function(body) {
-    res.json(body)
-  })
+  es.search(query).then(response => {
+    res.json(response.body.suggest);
+  }).catch(err => {
+    console.error(err);
+    return res.send('oops');
+  });
+
+  // TODO recreate this output by analyzing the elasticsearch source code
+  // for es.suggest().
+  /**
+    {
+      "_shards": {
+        "total": 1,
+        "successful": 1,
+        "failed": 0
+      },
+      "title_completion": [
+        {
+          "text": "her",
+          "offset": 0,
+          "length": 3,
+          "options": []
+        }
+      ],
+      "artist_completion": [
+        {
+          "text": "her",
+          "offset": 0,
+          "length": 3,
+          "options": []
+        }
+      ],
+      "highlight_artist_completion": [
+        {
+          "text": "her",
+          "offset": 0,
+          "length": 3,
+          "options": []
+        }
+      ]
+    }
+   */
 }
 
 /**
