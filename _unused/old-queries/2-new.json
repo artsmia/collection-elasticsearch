@@ -1,0 +1,1081 @@
+{
+  "took": 31,
+  "timed_out": false,
+  "_shards": {
+    "total": 1,
+    "successful": 1,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 10000,
+      "relation": "gte"
+    },
+    "max_score": 78.08,
+    "hits": [
+      {
+        "_index": "objects2",
+        "_id": "3520",
+        "_score": 78.08,
+        "_source": {
+          "id": 3520,
+          "title": "The Doryphoros (after Polykleitos)",
+          "medium": "Pentelic marble",
+          "classification": "Sculpture",
+          "dimension": "78 x 19 x 19 in. (198.12 x 48.26 x 48.26 cm)",
+          "object_name": "Roman copy of a Greek bronze statue of c. 450-440 BCE",
+          "continent": null,
+          "country": "Roman",
+          "culture": "Roman",
+          "dated": "27 BCE–68 CE",
+          "room": "G241",
+          "style": null,
+          "inscription": null,
+          "signed": null,
+          "markings": null,
+          "text": null,
+          "description": "",
+          "provenance": null,
+          "portfolio": null,
+          "creditline": "The John R. Van Derlip Fund and Gift of funds from Bruce B. Dayton, an anonymous donor, Mr. and Mrs. Kenneth Dayton, Mr. and Mrs. W. John Driscoll, Mr. and Mrs. Alfred Harrison, Mr. and Mrs. John Andrus, Mr. and Mrs. Judson Dayton, Mr. and Mrs. Stephen Keating, Mr. and Mrs. Pierce McNally, Mr. and Mrs. Donald Dayton, Mr. and Mrs. Wayne MacFarlane, and many other generous friends of the Institute",
+          "accession_number": "86.6",
+          "artist": "Copy of work attributed to Polykleitos",
+          "role": "Artist",
+          "nationality": "Roman",
+          "life_date": "Greek, active 460–415 BCE",
+          "image_copyright": null,
+          "department": "European Art",
+          "rights_type": "Public Domain",
+          "image": "valid",
+          "image_width": 5428,
+          "image_height": 7230,
+          "restricted": 0,
+          "public_access": 1,
+          "curator_approved": 1,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "list:aib-2021-selections": true,
+          "list:handbook": true,
+          "related:audio-stops": [
+            {
+              "title": "Doryphoros",
+              "_id": "3520",
+              "objectId": "3520",
+              "link": "http://audio-tours.s3.amazonaws.com/p301.mp3",
+              "number": "301",
+              "type": "audio"
+            }
+          ],
+          "related:3dmodels": [
+            {
+              "title": "Mia's Doryphoros",
+              "_id": "3520",
+              "objectId": "3520",
+              "link": "https://sketchfab.com/models/8a54983061b74de4bf8b7ca2aca25990",
+              "type": "3d",
+              "thumb": "https://dg5bepmjyhz9h.cloudfront.net/urls/8a54983061b74de4bf8b7ca2aca25990/dist/thumbnails/56a0e82b8ea541daa346b4689679bbbb/640x360.jpeg"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "Doryphoros",
+              "_id": "3520",
+              "objectId": "3520",
+              "description": "\u003Cp\u003EThe ideal body. We all want it, and our never-ending struggle to get it sells magazines and gym memberships and Spanx (when we finally give up). Ideals of beauty vary between cultures, but the idea of the ideal is in everyone’s nature. Thousands of years ago, the celebrated Greek sculptor Polykleitos argued that the human ideal could be distilled down to numbers, and offered The Doryphoros, or Spear Bearer, as the perfect man, reflecting mathematically precise proportions. This is one of the four surviving Roman copies of the Greek original, now lost. \u003C/p\u003E",
+              "link": "http://artstories.artsmia.org/#/o/3520",
+              "type": "artstory"
+            }
+          ],
+          "list:sculpture-highlights": true,
+          "recent": 0,
+          "list": "sculpture-highlights",
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Full",
+          "highlights": 0,
+          "Cache_Location": "003000\\500\\20\\3520",
+          "Primary_RenditionNumber": "mia_4000977.jpg"
+        }
+      },
+      {
+        "_index": "objects2",
+        "_id": "1355",
+        "_score": 64.66,
+        "_source": {
+          "id": 1355,
+          "title": "Study for Portrait VI",
+          "medium": "Oil on canvas",
+          "classification": "Paintings",
+          "dimension": "59 5/8 × 45 3/4 in. (151.4 × 116.2 cm) (canvas)\r\n68 1/4 × 54 1/8 × 4 1/4 in. (173.4 × 137.5 × 10.8 cm) (outer frame)",
+          "object_name": "Painting",
+          "continent": "Europe",
+          "country": "England",
+          "culture": null,
+          "dated": "1953",
+          "room": "G377",
+          "style": null,
+          "inscription": "On verso (in red): #3",
+          "signed": null,
+          "markings": null,
+          "text": "The human figure was Francis Bacon's principal object of study throughout his career.  This picture belongs to a series of eight paintings, which began as a portrait of Bacon's friend and biographer David Sylvester but became, in the final project, studies of a seated pope. They are inspired by the Velazquez 'Portrait of of Pope Innocent X' (Palazzo Doria, Rome), Eisenstein's Nurse in 'The Battleship Potemkin', and Eadweard Muybridge's sequential photos of the human body in movement. Bacon made his figures more and more agititated until, in the final painting, the pope is convulsive. Here his ambiguous facial expression rests somewhere between the grimace of Portrait V and the horrific scream of Portrait VII.\r\n\r\nThis painting is one of the first Francis Bacon paintings acquired by an American museum.",
+          "description": "",
+          "provenance": null,
+          "portfolio": null,
+          "creditline": "The Miscellaneous Works of Art Purchase Fund",
+          "accession_number": "58.35",
+          "artist": "Francis Bacon",
+          "role": "Artist",
+          "nationality": "British (born Ireland)",
+          "life_date": "British (born Ireland), 1909–1992",
+          "image_copyright": "© The Estate of Francis Bacon. All rights reserved.",
+          "department": "European Art",
+          "rights_type": "In Copyright",
+          "image": "valid",
+          "image_width": 5148,
+          "image_height": 6679,
+          "restricted": 1,
+          "public_access": 1,
+          "curator_approved": 0,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "list:pride-month": true,
+          "list:aib-2021-selections": true,
+          "list:handbook": true,
+          "related:audio-stops": [
+            {
+              "title": "Francis Bacon, Study for Portrait VI",
+              "_id": "1355",
+              "objectId": "1355",
+              "link": "http://audio-tours.s3.amazonaws.com/p853.mp3",
+              "number": "853",
+              "type": "audio"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "Study for Portrait VI",
+              "_id": "1355",
+              "objectId": "1355",
+              "description": "\u003Cp\u003EHis vision is a dark one. Francis Bacon painted several portraits of popes (this is number six), and they all appear trapped, isolated and anguished—but beautifully painted. The portraits are based on Diego Velázquez’s celebrated portrait of Pope Innocent X, from 1650. And through his new way of depicting the human figure, Bacon showed what a portrait can be in the 20th century. In each of several studies he made for the painting, Bacon gave the pope a different face. Ultimately, he makes viewers feel as if they were behind the scenes, witnessing a private performance by a public figure.\u003C/p\u003E",
+              "link": "http://artstories.artsmia.org/#/o/1355",
+              "type": "artstory"
+            }
+          ],
+          "list:paintings-collection-highlights": true,
+          "recent": 0,
+          "list": "pride-month",
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Limited",
+          "highlights": 0,
+          "Cache_Location": "001000\\300\\50\\1355",
+          "Primary_RenditionNumber": "mia_4001848.jpg"
+        }
+      }
+    ]
+  },
+  "aggregations": {
+    "Artist": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": []
+    },
+    "Department": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": []
+    },
+    "Gist": {
+      "buckets": []
+    },
+    "Rights": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 64,
+      "buckets": [
+        {
+          "key": "Public Domain",
+          "doc_count": 70220
+        },
+        {
+          "key": "In Copyright",
+          "doc_count": 37105
+        },
+        {
+          "key": "Copyright Not Evaluated",
+          "doc_count": 25148
+        },
+        {
+          "key": "No Known Copyright",
+          "doc_count": 2526
+        },
+        {
+          "key": "Unknown",
+          "doc_count": 2502
+        },
+        {
+          "key": "Not Evaluated",
+          "doc_count": 2408
+        },
+        {
+          "key": "No Copyright–United States",
+          "doc_count": 199
+        },
+        {
+          "key": "No Copyright–Contractual Restrictions",
+          "doc_count": 128
+        },
+        {
+          "key": "In Copyright–Educational Use",
+          "doc_count": 59
+        },
+        {
+          "key": "Permission Denied",
+          "doc_count": 39
+        }
+      ]
+    },
+    "Medium": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": []
+    },
+    "Classification": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 1060,
+      "buckets": [
+        {
+          "key": "Prints",
+          "doc_count": 38918
+        },
+        {
+          "key": "Photographs",
+          "doc_count": 13593
+        },
+        {
+          "key": "Textiles",
+          "doc_count": 10746
+        },
+        {
+          "key": " Prints",
+          "doc_count": 5776
+        },
+        {
+          "key": " Photographs",
+          "doc_count": 5154
+        },
+        {
+          "key": " Ceramics",
+          "doc_count": 4925
+        },
+        {
+          "key": "Ceramics",
+          "doc_count": 4834
+        },
+        {
+          "key": "Drawings",
+          "doc_count": 3667
+        },
+        {
+          "key": " Paintings",
+          "doc_count": 3355
+        },
+        {
+          "key": " Textiles",
+          "doc_count": 3160
+        },
+        {
+          "key": "Paintings",
+          "doc_count": 3159
+        },
+        {
+          "key": " Drawings",
+          "doc_count": 2950
+        },
+        {
+          "key": "Metalwork",
+          "doc_count": 2639
+        },
+        {
+          "key": " Sculpture",
+          "doc_count": 2250
+        },
+        {
+          "key": "Adornment",
+          "doc_count": 2090
+        },
+        {
+          "key": " Metalwork",
+          "doc_count": 1948
+        },
+        {
+          "key": "Books, Works on Paper",
+          "doc_count": 1867
+        },
+        {
+          "key": "Sculpture",
+          "doc_count": 1450
+        },
+        {
+          "key": " Books",
+          "doc_count": 1427
+        },
+        {
+          "key": "Accessories",
+          "doc_count": 1405
+        },
+        {
+          "key": "Clothing",
+          "doc_count": 1247
+        },
+        {
+          "key": "Dolls, Toys and Games",
+          "doc_count": 1199
+        },
+        {
+          "key": "Books",
+          "doc_count": 1141
+        },
+        {
+          "key": " Adornment",
+          "doc_count": 994
+        },
+        {
+          "key": "Tools, Equipment and Utilitarian Objects",
+          "doc_count": 960
+        },
+        {
+          "key": " Accessories",
+          "doc_count": 861
+        },
+        {
+          "key": "Glass",
+          "doc_count": 851
+        },
+        {
+          "key": "Drawings, Works on Paper",
+          "doc_count": 731
+        },
+        {
+          "key": "Furniture",
+          "doc_count": 726
+        },
+        {
+          "key": "Woodwork",
+          "doc_count": 726
+        },
+        {
+          "key": "Books, Prints",
+          "doc_count": 600
+        },
+        {
+          "key": " Furniture",
+          "doc_count": 599
+        },
+        {
+          "key": "Calligraphy",
+          "doc_count": 527
+        },
+        {
+          "key": " Clothing",
+          "doc_count": 518
+        },
+        {
+          "key": " Tools, Equipment and Utilitarian Objects",
+          "doc_count": 509
+        },
+        {
+          "key": " Casts and Copies",
+          "doc_count": 487
+        },
+        {
+          "key": " Dolls, Toys and Games",
+          "doc_count": 463
+        },
+        {
+          "key": " Woodwork",
+          "doc_count": 462
+        },
+        {
+          "key": " Glass",
+          "doc_count": 396
+        },
+        {
+          "key": "Prints, Works on Paper",
+          "doc_count": 370
+        },
+        {
+          "key": "Arms and Armor",
+          "doc_count": 341
+        },
+        {
+          "key": "Basketry",
+          "doc_count": 314
+        },
+        {
+          "key": "Works on Paper",
+          "doc_count": 312
+        },
+        {
+          "key": " Industrial Design",
+          "doc_count": 311
+        },
+        {
+          "key": "Paintings, Calligraphy",
+          "doc_count": 302
+        },
+        {
+          "key": " Works on Paper",
+          "doc_count": 298
+        },
+        {
+          "key": "Artist Materials",
+          "doc_count": 298
+        },
+        {
+          "key": "Prints, Books",
+          "doc_count": 265
+        },
+        {
+          "key": "Lacquer",
+          "doc_count": 263
+        },
+        {
+          "key": " Arms and Armor",
+          "doc_count": 262
+        },
+        {
+          "key": "Clothing, Textiles",
+          "doc_count": 259
+        },
+        {
+          "key": "Digital Art",
+          "doc_count": 227
+        },
+        {
+          "key": " Textiles; Clothing",
+          "doc_count": 215
+        },
+        {
+          "key": " (not assigned)",
+          "doc_count": 211
+        },
+        {
+          "key": " Storage &amp; Display Furniture",
+          "doc_count": 208
+        },
+        {
+          "key": " Drawings; Works on Paper",
+          "doc_count": 194
+        },
+        {
+          "key": "Printing Matrices",
+          "doc_count": 188
+        },
+        {
+          "key": "Architecture",
+          "doc_count": 160
+        },
+        {
+          "key": "Bamboo work",
+          "doc_count": 152
+        },
+        {
+          "key": " Bamboo work",
+          "doc_count": 150
+        },
+        {
+          "key": "Judaica",
+          "doc_count": 149
+        },
+        {
+          "key": "Architecture, Glass",
+          "doc_count": 144
+        },
+        {
+          "key": " Collages / Assemblages",
+          "doc_count": 126
+        },
+        {
+          "key": "Beadwork",
+          "doc_count": 113
+        },
+        {
+          "key": " Basketry",
+          "doc_count": 108
+        },
+        {
+          "key": " Artist Installations",
+          "doc_count": 103
+        },
+        {
+          "key": "Floor Coverings",
+          "doc_count": 100
+        },
+        {
+          "key": " Prints; Works on Paper",
+          "doc_count": 96
+        },
+        {
+          "key": "Multiples",
+          "doc_count": 93
+        },
+        {
+          "key": " Metalwork; Tools, Equipment and Utilitarian Objects",
+          "doc_count": 92
+        },
+        {
+          "key": "Paintings, Works on Paper",
+          "doc_count": 88
+        },
+        {
+          "key": "Textiles, Clothing",
+          "doc_count": 85
+        },
+        {
+          "key": " Paintings; Works on Paper",
+          "doc_count": 81
+        },
+        {
+          "key": " Judaica",
+          "doc_count": 72
+        },
+        {
+          "key": " Musical Instruments",
+          "doc_count": 69
+        },
+        {
+          "key": "Lighting",
+          "doc_count": 69
+        },
+        {
+          "key": " Manuscript",
+          "doc_count": 66
+        },
+        {
+          "key": "Accessories, Textiles",
+          "doc_count": 62
+        },
+        {
+          "key": " Lacquer",
+          "doc_count": 61
+        },
+        {
+          "key": "(not assigned)",
+          "doc_count": 61
+        },
+        {
+          "key": " Time-based Media",
+          "doc_count": 60
+        },
+        {
+          "key": " Metalwork; Adornment",
+          "doc_count": 58
+        },
+        {
+          "key": " Calligraphy",
+          "doc_count": 57
+        },
+        {
+          "key": " Floor Coverings",
+          "doc_count": 57
+        },
+        {
+          "key": "Sculpture, Ceramics",
+          "doc_count": 57
+        },
+        {
+          "key": "Industrial Design",
+          "doc_count": 55
+        },
+        {
+          "key": " Leatherwork",
+          "doc_count": 52
+        },
+        {
+          "key": "Commemorative Objects, Metalwork",
+          "doc_count": 51
+        },
+        {
+          "key": " Digital Art; Time-based Media",
+          "doc_count": 50
+        },
+        {
+          "key": "Photographs, Prints",
+          "doc_count": 47
+        },
+        {
+          "key": "Casts and Copies",
+          "doc_count": 46
+        },
+        {
+          "key": "Beadwork, Accessories",
+          "doc_count": 45
+        },
+        {
+          "key": "Leatherwork",
+          "doc_count": 45
+        },
+        {
+          "key": "Prints, Collages",
+          "doc_count": 44
+        },
+        {
+          "key": "Basketry, Tools, Equipment and Utilitarian Objects",
+          "doc_count": 43
+        },
+        {
+          "key": "Sculpture, Woodwork",
+          "doc_count": 43
+        },
+        {
+          "key": "Ceremonial Objects",
+          "doc_count": 40
+        },
+        {
+          "key": "Collages, Works on Paper",
+          "doc_count": 40
+        },
+        {
+          "key": " Casts and Copies; Works on Paper",
+          "doc_count": 39
+        },
+        {
+          "key": " Ceremonial Objects",
+          "doc_count": 38
+        },
+        {
+          "key": " Collages / Assemblages; Works on Paper",
+          "doc_count": 37
+        },
+        {
+          "key": " Natural Objects",
+          "doc_count": 35
+        },
+        {
+          "key": " Science and Technology",
+          "doc_count": 35
+        },
+        {
+          "key": "Natural Objects, Sculpture",
+          "doc_count": 35
+        },
+        {
+          "key": "Prints, Photographs",
+          "doc_count": 35
+        },
+        {
+          "key": "Tools, Equipment and Utilitarian Objects, Metalwork",
+          "doc_count": 35
+        },
+        {
+          "key": "Works on Paper, Books",
+          "doc_count": 35
+        },
+        {
+          "key": " Beadwork",
+          "doc_count": 34
+        },
+        {
+          "key": "Horology",
+          "doc_count": 33
+        },
+        {
+          "key": "Manuscript",
+          "doc_count": 33
+        },
+        {
+          "key": " Metalwork; Commemorative Objects",
+          "doc_count": 32
+        },
+        {
+          "key": " Architecture",
+          "doc_count": 30
+        },
+        {
+          "key": " Horology",
+          "doc_count": 29
+        },
+        {
+          "key": " Paintings; Casts and Copies",
+          "doc_count": 29
+        },
+        {
+          "key": "Enamelware",
+          "doc_count": 29
+        },
+        {
+          "key": " Textiles; Accessories",
+          "doc_count": 28
+        },
+        {
+          "key": "Collages",
+          "doc_count": 28
+        },
+        {
+          "key": " Digital Art",
+          "doc_count": 27
+        },
+        {
+          "key": " Documents",
+          "doc_count": 27
+        },
+        {
+          "key": " Packaging",
+          "doc_count": 27
+        },
+        {
+          "key": " Sculpture; Casts and Copies",
+          "doc_count": 27
+        },
+        {
+          "key": " Woodwork; Textiles",
+          "doc_count": 27
+        },
+        {
+          "key": "Tools, Equipment and Utilitarian Objects, Sculpture",
+          "doc_count": 27
+        },
+        {
+          "key": "Metalwork, Ceremonial Objects",
+          "doc_count": 26
+        },
+        {
+          "key": "Woodwork, Works on Paper",
+          "doc_count": 26
+        },
+        {
+          "key": "Accessories, Woodwork",
+          "doc_count": 25
+        },
+        {
+          "key": "Assemblages, Sculpture",
+          "doc_count": 25
+        },
+        {
+          "key": "Drawings, Paintings, Works on Paper",
+          "doc_count": 25
+        },
+        {
+          "key": "Textiles, Accessories",
+          "doc_count": 25
+        },
+        {
+          "key": " Fakes and Forgeries",
+          "doc_count": 24
+        },
+        {
+          "key": " Printing Matrices",
+          "doc_count": 24
+        },
+        {
+          "key": "Works on Paper, Paintings",
+          "doc_count": 24
+        },
+        {
+          "key": " Books; Works on Paper",
+          "doc_count": 23
+        },
+        {
+          "key": "Drawings, Collages",
+          "doc_count": 23
+        },
+        {
+          "key": "Musical Instruments",
+          "doc_count": 23
+        },
+        {
+          "key": "Paintings, Drawings, Works on Paper",
+          "doc_count": 23
+        },
+        {
+          "key": "Tools, Equipment and Utilitarian Objects, Woodwork",
+          "doc_count": 23
+        },
+        {
+          "key": " Industrial Design; Tools, Equipment and Utilitarian Objects",
+          "doc_count": 22
+        },
+        {
+          "key": "Ceramics, Sculpture",
+          "doc_count": 22
+        },
+        {
+          "key": "Documents",
+          "doc_count": 22
+        },
+        {
+          "key": "Paintings, Collages",
+          "doc_count": 22
+        },
+        {
+          "key": " Lighting",
+          "doc_count": 21
+        },
+        {
+          "key": "Photographs, Books",
+          "doc_count": 21
+        },
+        {
+          "key": "Clothing, Textiles, Ceremonial Objects",
+          "doc_count": 20
+        },
+        {
+          "key": "Sculpture, Metalwork",
+          "doc_count": 20
+        },
+        {
+          "key": " Woodwork; Accessories",
+          "doc_count": 18
+        },
+        {
+          "key": "Ceramics, Models, Furniture",
+          "doc_count": 18
+        },
+        {
+          "key": "Ceremonial Objects, Arms and Armor",
+          "doc_count": 18
+        },
+        {
+          "key": "Sculpture, Assemblages",
+          "doc_count": 18
+        },
+        {
+          "key": " Paintings; Collages / Assemblages",
+          "doc_count": 17
+        },
+        {
+          "key": " Prints; Books",
+          "doc_count": 17
+        },
+        {
+          "key": " Textiles; Clothing; Ceremonial Objects",
+          "doc_count": 17
+        },
+        {
+          "key": "Adornment, Accessories",
+          "doc_count": 17
+        },
+        {
+          "key": "Drawings, Collages, Works on Paper",
+          "doc_count": 17
+        },
+        {
+          "key": "Prints, Drawings, Works on Paper",
+          "doc_count": 17
+        },
+        {
+          "key": "Woodwork, Ceremonial Objects",
+          "doc_count": 17
+        },
+        {
+          "key": " Architecture; Models",
+          "doc_count": 16
+        },
+        {
+          "key": " Drawings; Collages / Assemblages",
+          "doc_count": 16
+        },
+        {
+          "key": " Sculpture; Ceramics",
+          "doc_count": 16
+        },
+        {
+          "key": "Science and Technology",
+          "doc_count": 15
+        },
+        {
+          "key": "Tools, Equipment and Utilitarian Objects, Ceremonial Objects",
+          "doc_count": 15
+        },
+        {
+          "key": "Accessories, Beadwork",
+          "doc_count": 14
+        },
+        {
+          "key": "Adornment, Metalwork",
+          "doc_count": 14
+        },
+        {
+          "key": "Ceremonial Objects, Tools, Equipment and Utilitarian Objects",
+          "doc_count": 14
+        },
+        {
+          "key": "Collages, Sculpture",
+          "doc_count": 14
+        },
+        {
+          "key": "Judaica, Metalwork, Ceremonial Objects",
+          "doc_count": 14
+        },
+        {
+          "key": "Woodwork, Tools, Equipment and Utilitarian Objects",
+          "doc_count": 14
+        },
+        {
+          "key": "Works on Paper, Drawings",
+          "doc_count": 14
+        },
+        {
+          "key": " Woodwork; Tools, Equipment and Utilitarian Objects",
+          "doc_count": 13
+        },
+        {
+          "key": "Metalwork, Sculpture",
+          "doc_count": 13
+        },
+        {
+          "key": " Paintings; Collages / Assemblages; Works on Paper",
+          "doc_count": 12
+        },
+        {
+          "key": " Textiles; Adornment",
+          "doc_count": 12
+        },
+        {
+          "key": "Metalwork, Tools, Equipment and Utilitarian Objects",
+          "doc_count": 12
+        },
+        {
+          "key": "Textiles, Ceremonial Objects",
+          "doc_count": 12
+        },
+        {
+          "key": "Works on Paper, Sculpture",
+          "doc_count": 12
+        },
+        {
+          "key": " Commemorative Objects",
+          "doc_count": 11
+        },
+        {
+          "key": "Assemblages",
+          "doc_count": 11
+        },
+        {
+          "key": "Books, Photographs",
+          "doc_count": 11
+        },
+        {
+          "key": "Funerary Goods, Adornment",
+          "doc_count": 11
+        },
+        {
+          "key": "Packaging",
+          "doc_count": 11
+        },
+        {
+          "key": "Time-based Media",
+          "doc_count": 11
+        },
+        {
+          "key": " Calligraphy; Works on Paper",
+          "doc_count": 10
+        },
+        {
+          "key": " Enamelware",
+          "doc_count": 10
+        },
+        {
+          "key": " Sculpture; Collages / Assemblages",
+          "doc_count": 10
+        },
+        {
+          "key": "Architecture, Glass, Furniture",
+          "doc_count": 10
+        },
+        {
+          "key": "Basketry, Quillwork",
+          "doc_count": 10
+        },
+        {
+          "key": "Ceremonial Objects, Woodwork",
+          "doc_count": 10
+        },
+        {
+          "key": "Dolls, Toys and Games, Sculpture",
+          "doc_count": 10
+        },
+        {
+          "key": "Metalwork, Arms and Armor",
+          "doc_count": 10
+        },
+        {
+          "key": "Prints, Collages, Works on Paper",
+          "doc_count": 10
+        },
+        {
+          "key": "Sculpture, Ceremonial Objects",
+          "doc_count": 10
+        },
+        {
+          "key": " Artist Materials",
+          "doc_count": 9
+        },
+        {
+          "key": " Drawings; Collages / Assemblages; Works on Paper",
+          "doc_count": 9
+        },
+        {
+          "key": " Multiples",
+          "doc_count": 9
+        },
+        {
+          "key": " Sculpture; Fakes and Forgeries",
+          "doc_count": 9
+        },
+        {
+          "key": " Sculpture; Metalwork",
+          "doc_count": 9
+        },
+        {
+          "key": " Sculpture; Textiles",
+          "doc_count": 9
+        },
+        {
+          "key": " Tools, Equipment and Utilitarian Objects; Natural Objects",
+          "doc_count": 9
+        },
+        {
+          "key": " Works on Paper; Documents",
+          "doc_count": 9
+        },
+        {
+          "key": "Collages, Prints",
+          "doc_count": 9
+        }
+      ]
+    },
+    "Title": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": []
+    },
+    "Style": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": []
+    },
+    "Country": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": []
+    },
+    "Room": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": []
+    },
+    "Tags": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": []
+    }
+  },
+  "query": "*",
+  "error": null
+}

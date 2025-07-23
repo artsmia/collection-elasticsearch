@@ -33,10 +33,9 @@ app.get('/id/:id', searchEndpoints.id)
 app.get('/ids/:ids', searchEndpoints.ids)
 app.get('/tag/:tag', searchEndpoints.tag)
 app.get('/people/:id', personEndpoint)
-
-// Broken because opensearch doesn't have the suggest() helper.
-// app.get('/autofill/:prefix', searchEndpoints.autofill)
-
 app.get('/random/art', searchEndpoints.random)
+
+// See searchEndpoints.autofill for why this is disabled.
+// app.get('/autofill/:prefix', searchEndpoints.autofill)
 
 surveyEndpointFactory(app, express)

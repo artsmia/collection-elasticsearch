@@ -5,6 +5,8 @@ const client = require('./lib/redisClient');
 const es = require('./lib/esClient');
 const Json2csvParser = require('json2csv').Parser
 
+const CACHE_SEARCHES = true;
+
 var prindleRoom = {
   accession_number: '82.43.1-60',
   artist: 'John Scott Bradstreet',
@@ -134,52 +136,19 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
   }
   var aggSize = 200
   var aggs = {
-    Image: {
-      terms: {
-        script: "doc['image'].value == 'valid' ? 'Available' : 'Unavailable'",
-        size: aggSize,
-      },
-    },
-    // "Image": {"terms": {"field": "image", "size": aggSize}},
-    // "Image": {
-    // 	"terms": {
-    // 		"field": "image",
-    // 		"size": aggSize
-    // 	},
-    // 	"aggs": {
-    // 		"image_rights_type": {"terms": {"field": "image_rights_type"}},
-    // 	}
-    // },
-    'On View': {
-      terms: {
-        script:
-          "doc['room.raw'].value == 'Not on View' ? 'Not on View' : 'On View'",
-        size: aggSize,
-      },
-    },
-    // "On View": {
-    //   "terms": {
-    //     "script": "doc['room.raw'].value == 'Not on View' ? 'Not on View' : 'On View'",
-    //     size: aggSize
-    //   },
-    //   "aggs": {"Room": {"terms": {"field": "room.raw", "size": aggSize}}},
-    // },
+    // Note: Several entries have been deleted because they fail to execute
+    // under OpenSearch, or due to flaws in the mappings/data migration process.
     Room: { terms: { field: 'room.raw', size: aggSize } },
-    Rights: { terms: { field: 'rights_type' } },
+    Rights: { terms: { field: 'rights_type.keyword' } },
     Artist: { terms: { field: 'artist.raw', size: aggSize } },
     Country: { terms: { field: 'country.raw', size: aggSize } },
     Style: { terms: { field: 'style.raw', size: aggSize } },
     Medium: { terms: { field: 'medium.stop', size: aggSize } },
-    Classification: { terms: { field: 'classification', size: aggSize } },
+    Classification: { terms: { field: 'classification.keyword', size: aggSize } },
     Title: { terms: { field: 'title.raw', size: aggSize } },
     Gist: { significant_terms: { field: '_all' } },
     Department: { terms: { field: 'department.raw', size: aggSize } },
     Tags: { terms: { field: 'tags', size: aggSize } },
-    // "image_rights_type": {"terms": {"field": "image_rights_type"}},
-    // other facets? department
-    // "year": {"histogram": {"field": "dated", "interval": 50}},
-    // "year": {"terms": {"field": "dated", "size": aggSize}},
-    // "Creditline": {"terms": {"field": "creditline.raw", "size": aggSize}},
   }
   var highlight = {
     fields: { '*': { fragment_size: 5000, number_of_fragments: 1 } },
@@ -194,11 +163,11 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
       query: q,
       aggs: aggs,
       highlight: highlight,
-      suggest: suggest,
+      // suggest: suggest,
     },
     size: size,
     from: from,
-    limitToPublicAccess: limitToPublicAccess,
+    // limitToPublicAccess: limitToPublicAccess,
     isMoreArtsmia: isMoreArtsmia,
     boostOnViewArtworks: boostOnViewArtworks,
   }
@@ -431,6 +400,11 @@ var tag = function(req, res) {
 
 // cache frequent searches, time-limited
 function checkRedisForCachedSearch(search, query, req, callback) {
+  if (!CACHE_SEARCHES) {
+    callback(null);
+    return;
+  }
+
   var sortKey = req.query.sort && 'sort:' + req.query.sort.replace('-asc', '')
   var cacheKey =
     'cache::search::' +
@@ -454,76 +428,50 @@ function checkRedisForCachedSearch(search, query, req, callback) {
 }
 
 /**
- * /autofill/her
+ * /autofill/:prefix
  *
  * @param {Request} req
  * @param {Response} res
  */
 var autofill = function(req, res) {
-  var query = {
+  throw new Error('disabled');
+  /**
+   * This is disabled because the ElasticSearch completion field mappings failed
+   * to re-import into OpenSearch. The following code should work _if_ the
+   * completion fields are created for artist_suggest, et al. and they are populated
+   * in the data.
+   */
+
+  es.search({
     index: process.env.ES_index,
     body: {
-      text: req.params.prefix,
-      artist_completion: {
-        completion: {
-          field: 'artist_suggest',
+      suggest: {
+        artist_completion: {
+          prefix: req.params.prefix,
+          completion: {
+            field: 'artist_suggest',
+          },
         },
-      },
-      highlight_artist_completion: {
-        completion: {
-          field: 'highlight_artist_suggest',
+        highlight_artist_completion: {
+          prefix: req.params.prefix,
+          completion: {
+            field: 'highlight_artist_suggest',
+          },
         },
-      },
-      title_completion: {
-        completion: {
-          field: 'title_suggest',
-        },
+        title_completion: {
+          prefix: req.params.prefix,
+          completion: {
+            field: 'title_suggest',
+          },
+        }
       },
     },
-  }
-
-  es.search(query).then(response => {
-    res.json(response.body.suggest);
+  }).then(response => {
+    res.json(response.body);
   }).catch(err => {
     console.error(err);
     return res.send('oops');
   });
-
-  // TODO recreate this output by analyzing the elasticsearch source code
-  // for es.suggest().
-  /**
-    {
-      "_shards": {
-        "total": 1,
-        "successful": 1,
-        "failed": 0
-      },
-      "title_completion": [
-        {
-          "text": "her",
-          "offset": 0,
-          "length": 3,
-          "options": []
-        }
-      ],
-      "artist_completion": [
-        {
-          "text": "her",
-          "offset": 0,
-          "length": 3,
-          "options": []
-        }
-      ],
-      "highlight_artist_completion": [
-        {
-          "text": "her",
-          "offset": 0,
-          "length": 3,
-          "options": []
-        }
-      ]
-    }
-   */
 }
 
 /**
@@ -537,7 +485,7 @@ var random = function(req, res) {
       ? { query_string: { query: (req.query.q += ' public_access:1') } }
       : { query_string: { query: 'public_access:1' } }
   var dataPrefix = req.query.dataPrefix
-  var [type, index] = getTypeIndexFromDataPrefix(dataPrefix)
+  var [, index] = getTypeIndexFromDataPrefix(dataPrefix)
 
   es.search({
     index: index,
@@ -551,10 +499,10 @@ var random = function(req, res) {
     },
     size: size,
   }).then(function(results, error) {
-    var firstHitSource = results.hits.hits[0]._source
+    var firstHitSource = results.body.hits.hits[0]._source;
+    res.status(error ? error.status: 200);
     return res.json(
-      size == 1 ? firstHitSource : results.hits.hits,
-      (error && error.status) || 200
+      size === 1 ? firstHitSource : results.body.hits.hits
     )
   })
 }

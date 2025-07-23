@@ -3,20 +3,21 @@ const { Client } = require('@opensearch-project/opensearch');
 /** @type {import('@opensearch-project/opensearch').ClientOptions} */
 const esOptions = {
   node: process.env.ES_URL,
-  auth: {
-    username: process.env.ES_USERNAME,
-    password: process.env.ES_PASSWORD,
-  },
-  requestTimeout: 500,
+  requestTimeout: 3000,
 };
-
-if (process.env.IS_LOCAL) {
-  esOptions.ssl = {
-    rejectUnauthorized: false,
-    checkServerIdentity: () => undefined,
-  };
-}
 
 const esClient = new Client(esOptions);
 
 module.exports = esClient;
+
+/**
+ * Note: in the original legacy elasticsearch package, the connection was
+ * set up this way (there are no docs for this):
+ *
+ * host: {
+ *   host: 'opensearch',
+ *   port: 9200,
+ *   protocol: 'https',
+ *   auth: `${process.env.ES_USERNAME}:${process.env.ES_PASSWORD}`,
+ * },
+ */

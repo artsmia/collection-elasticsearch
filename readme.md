@@ -18,29 +18,23 @@ ddev exec -s redis redis-cli info
 docker run --rm -ti \
   --network ddev-collection-elasticsearch_default \
   -v ./tmp:/app -w /app \
-  -e ELASTICDUMP_OUTPUT_USERNAME=admin \
-  -e ELASTICDUMP_OUTPUT_PASSWORD='97UxngYAArZ12jqt!jH20K' \
-  -e NODE_TLS_REJECT_UNAUTHORIZED=0 \
   elasticdump/elasticsearch-dump \
     --input=2025-07-09-object2.mapping.json \
-    --output='https://opensearch:9200/objects2' \
+    --output='http://admin:97UxngYAArZ12jqt!jH20K@opensearch:9200/objects2' \
     --type=mapping
 
 docker run --rm -ti \
   --network ddev-collection-elasticsearch_default \
   -v ./tmp:/app -w /app \
-  -e ELASTICDUMP_OUTPUT_USERNAME=admin \
-  -e ELASTICDUMP_OUTPUT_PASSWORD='97UxngYAArZ12jqt!jH20K' \
-  -e NODE_TLS_REJECT_UNAUTHORIZED=0 \
   elasticdump/elasticsearch-dump \
     --input=2025-07-09-object2.data.json \
-    --output='https://opensearch:9200/objects2' \
+    --output='http://admin:97UxngYAArZ12jqt!jH20K@opensearch:9200/objects2' \
     --type=data
 
 # verify index now exists
-curl -u 'admin:97UxngYAArZ12jqt!jH20K' --insecure https://localhost:9200/objects2 | jq .
+curl 'http://admin:97UxngYAArZ12jqt!jH20K@localhost:9200/objects2' | jq .
 
-curl -u 'admin:97UxngYAArZ12jqt!jH20K' --insecure https://localhost:9200/objects2/_doc/3885 | jq .
+curl 'http://admin:97UxngYAArZ12jqt!jH20K@localhost:9200/objects2/_doc/3885 | jq .
 
 # Start the server
 ddev exec -s app node index.js
