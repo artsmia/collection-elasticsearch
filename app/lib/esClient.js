@@ -1,8 +1,14 @@
 const { Client } = require('@opensearch-project/opensearch');
 
+const url = new URL(process.env.ES_URL_NO_AUTH);
+if (process.env.ES_PASSWORD) {
+  url.username = process.env.ES_USERNAME;
+  url.password = process.env.ES_PASSWORD;
+}
+
 /** @type {import('@opensearch-project/opensearch').ClientOptions} */
 const esOptions = {
-  node: process.env.ES_URL,
+  node: url.toString(),
   requestTimeout: 3000,
 };
 

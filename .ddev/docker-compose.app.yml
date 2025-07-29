@@ -6,7 +6,9 @@ services:
     restart: unless-stopped
     environment:
       - PORT=3000
-      - ES_URL=http://admin:97UxngYAArZ12jqt!jH20K@opensearch:9200
+      - ES_URL_NO_AUTH=http://opensearch:9200
+      - ES_USERNAME=admin
+      - ES_PASSWORD=97UxngYAArZ12jqt!jH20K
       - ES_index=objects2
       - REDIS_URL=redis://redis:6379
       - IS_LOCAL=1
