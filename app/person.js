@@ -16,19 +16,23 @@ const fs = require('fs')
 const fetch = require('node-fetch')
 const client = require('./lib/buildRedisClient')();
 
-const fallbackDataDir = './data-snapshot20250710';
+function getArtistData() {
+  const fallbackDataDir = `${__dirname}/data-snapshot20250710`;
 
 // Fall back to snapshot
-let dataDir = './data';
-if (!fs.existsSync(dataDir)) {
-  console.warn(`${dataDir} missing, using ${fallbackDataDir}`);
-  dataDir = fallbackDataDir;
-}
+  let dataDir = `${__dirname}/data`;
+  if (!fs.existsSync(dataDir)) {
+    console.warn(`${dataDir} missing, using ${fallbackDataDir}`);
+    dataDir = fallbackDataDir;
+  }
 
-let artists = JSON.parse(fs.readFileSync(`${dataDir}/artists-2019-02-04.json`))
-let artistsMixNMatch = JSON.parse(
-  fs.readFileSync(`${dataDir}/artistsMixNMatch.json`)
-)
+  let artists = JSON.parse(fs.readFileSync(`${dataDir}/artists-2019-02-04.json`))
+  let artistsMixNMatch = JSON.parse(
+    fs.readFileSync(`${dataDir}/artistsMixNMatch.json`)
+  )
+
+  return { artists, artistsMixNMatch };
+}
 
 const cachedFetch = url => {
   const cacheKey = `cache::wiki::${url}`
@@ -85,7 +89,9 @@ let wikidata = function(artist) {
  * @param {Response} res
  */
 module.exports = function(req, res) {
-  const id = req.params.id
+  const id = req.params.id;
+
+  const { artists, artistsMixNMatch } = getArtistData();
 
   const matchingArtist = artists.find(artist => {
     return (
