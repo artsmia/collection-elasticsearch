@@ -223,8 +223,7 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
  */
 var searchEndpoint = function(req, res) {
   if (req.params.query === 'favicon.ico') {
-    res.sendStatus(400);
-    return res.send('Not Found');
+    return res.sendStatus(400);
   }
   var replies = []
   var size = req.query.size || (req.query.format === 'csv' ? 1000 : 100)
