@@ -5,9 +5,11 @@
 // Code to save artwork likes/dislikes to redis along with user session
 //
 
-var redis = require('redis')
-var dataClient = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST)
-dataClient.select(7)
+const buildRedisClient = require('./lib/buildRedisClient');
+
+// TODO All calls must be rewritten to handle Promises.
+const dataClient = buildRedisClient();
+dataClient.connect().then(() => dataClient.select(7));
 
 /**
  * @param {Request} req
@@ -27,7 +29,7 @@ function getUserId(req, res, callback) {
   // and also append it to `res` so it goes back to the requesting browser
   dataClient.get('nextUserId', function(err, newId, existingId) {
     res.cookie(cookieName, newId, {sameSite: 'None', secure: true})
-    dataClient.incrby('nextUserId', 1)
+    dataClient.incrBy('nextUserId', 1);
     return callback(null, newId)
   })
 }
@@ -50,7 +52,7 @@ function setCorsHeadersToAllowCookies(req, res) {
 function rateArtwork(likeOrDislike, req, res) {
   getUserId(req, res, function(err, userId) {
     var artworkId = req.params.id
-    dataClient.sadd(`survey:user:${userId}:${likeOrDislike}`, artworkId, redis.print)
+    dataClient.sAdd(`survey:user:${userId}:${likeOrDislike}`, artworkId, redis.print)
     return res.send(`user ${userId} ${likeOrDislike} art ${artworkId}`)
   })
 }
@@ -61,7 +63,7 @@ function rateArtwork(likeOrDislike, req, res) {
  */
 function getRated(req, res) {
   getUserId(req, res, function(err, userId) {
-    dataClient.smembers(`survey:user:${userId}:likes`, function(err, likes) {
+    dataClient.sMembers(`survey:user:${userId}:likes`, function(err, likes) {
       return res.json({userId, likes})
     })
   })

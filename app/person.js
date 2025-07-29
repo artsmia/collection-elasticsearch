@@ -13,9 +13,8 @@
  */
 
 const fs = require('fs')
-const redis = require('redis')
-const client = redis.createClient(process.env.REDIS_PORT, process.env.REDIS_HOST)
 const fetch = require('node-fetch')
+const client = require('./lib/buildRedisClient')();
 
 const fallbackDataDir = './data-snapshot20250710';
 

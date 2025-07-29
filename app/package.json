@@ -12,7 +12,7 @@
     "image-size": "^0.9.1",
     "json2csv": "^4.2.1",
     "node-fetch": "^2.3.0",
-    "redis": "~0.10.1"
+    "redis": "^5.6.1"
   },
   "scripts": {
     "build": "unzip data-snapshot20250710.zip",

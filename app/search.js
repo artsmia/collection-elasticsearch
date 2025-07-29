@@ -1,9 +1,12 @@
 /** @format
  */
 
-const client = require('./lib/redisClient');
+const buildRedisClient = require('./lib/buildRedisClient');
 const es = require('./lib/esClient');
 const Json2csvParser = require('json2csv').Parser
+
+const client = buildRedisClient();
+client.connect();
 
 const CACHE_SEARCHES = true;
 
@@ -201,9 +204,9 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
         if (!skipCaching) {
           var cacheTTL = body.took * 60
           body.cache = { cached: true, key: cacheKey }
-          client.set(cacheKey, JSON.stringify(body), function(err, reply) {
-            if (!err) client.expire(cacheKey, cacheTTL)
-          })
+          client.set(cacheKey, JSON.stringify(body))
+            .then(() => client.expire(cacheKey, cacheTTL))
+            .catch(err => console.error(err));
         }
       },
       function(error) {
@@ -314,9 +317,8 @@ var id = function(req, res) {
     })
     .catch(err => {
       console.error('ES error', err)
-      return client.hget('object:' + ~~(id / 1000), id, function(err, reply) {
-        return res.json(JSON.parse(reply))
-      })
+      return client.hGet('object:' + ~~(id / 1000), id)
+        .then(reply => res.json(JSON.parse(reply)));
     })
 }
 
@@ -370,32 +372,35 @@ var ids = function(req, res) {
  * @param {Response} res
  */
 var tag = function(req, res) {
-  client.smembers('tag:' + req.params.tag, function(err, ids) {
-    var m = client.multi()
-    ids.forEach(function(id) {
-      m.hget('object:' + ~~(id / 1000), id)
-    })
-
-    m.exec(function(err, replies) {
-      var filter = req.query.filter
-      if (filter == undefined)
-        return res.json(
-          replies.map(function(meta) {
-            return JSON.parse(meta)
-          })
-        )
-      filter = filter.split(',')
-      var filtered = replies.map(function(meta) {
-        if (meta == null) return
-        var json = JSON.parse(meta)
-        return filter.reduce(function(all, field) {
-          all[field] = json[field]
-          return all
-        }, {})
+  // TODO rewrite to use OpenSearch...somehow.
+  client.sMembers('tag:' + req.params.tag)
+    .then(ids => {
+      var m = client.multi()
+      ids.forEach(function(id) {
+        m.hGet('object:' + ~~(id / 1000), id)
       })
-      return res.send(filtered)
-    })
-  })
+
+      m.exec()
+        .then(replies => {
+          var filter = req.query.filter
+          if (filter == undefined)
+            return res.json(
+              replies.map(function(meta) {
+                return JSON.parse(meta)
+              })
+            )
+          filter = filter.split(',')
+          var filtered = replies.map(function(meta) {
+            if (meta == null) return
+            var json = JSON.parse(meta)
+            return filter.reduce(function(all, field) {
+              all[field] = json[field]
+              return all
+            }, {})
+          })
+          return res.send(filtered)
+        });
+    });
 }
 
 // cache frequent searches, time-limited
@@ -414,17 +419,19 @@ function checkRedisForCachedSearch(search, query, req, callback) {
       .replace(/ /g, '-')
   if (!search.limitToPublicAccess) cacheKey = cacheKey + '::private'
 
-  client.get(cacheKey, function(err, reply) {
-    if (!!req.query.expireCache && reply) {
-      client.del(cacheKey, redis.print)
+  client.get(cacheKey)
+    .then(reply => {
+      if (!!req.query.expireCache && reply) {
+        client.del(cacheKey, redis.print)
 
-      reply = JSON.parse(reply)
-      reply.cache.expiring = true
-      // reply = JSON.stringify(reply)
-    }
+        reply = JSON.parse(reply)
+        reply.cache.expiring = true
+        // reply = JSON.stringify(reply)
+      }
 
-    return callback(err, reply, cacheKey)
-  })
+      return callback(null, reply, cacheKey)
+    })
+    .catch(err => callback(err, null, cacheKey));
 }
 
 /**
