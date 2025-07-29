@@ -1,15 +1,16 @@
 /** @format
  */
 
-var express = require('express'),
-  app = express(),
-  cors = require('cors'),
-  cookieParser = require('cookie-parser')
+const express = require('express');
 
-app.use(cors())
-app.use(cookieParser())
+const app = express();
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
-app.listen(process.env.PORT || 3000)
+app.use(cors());
+app.use(cookieParser());
+
+app.listen(3000);
 
 app.get('/', function(req, res) {
   res.end(
@@ -21,21 +22,23 @@ app.get('/', function(req, res) {
       '`/random/art` returns a random artwork.',
       '`/people/:id` returns the information we have on a person or entity related to our collection.',
     ].join('\n\n')
-  )
+  );
 })
 
-const personEndpoint = require('./person')
-const searchEndpoints = require('./search')
-const surveyEndpointFactory = require('./survey')
+const personEndpoint = require('../person');
+const searchEndpoints = require('../search');
+const surveyEndpointFactory = require('../survey');
 
-app.get('/:query', searchEndpoints.search)
-app.get('/id/:id', searchEndpoints.id)
-app.get('/ids/:ids', searchEndpoints.ids)
-app.get('/tag/:tag', searchEndpoints.tag)
-app.get('/people/:id', personEndpoint)
-app.get('/random/art', searchEndpoints.random)
+app.get('/:query', searchEndpoints.search);
+app.get('/id/:id', searchEndpoints.id);
+app.get('/ids/:ids', searchEndpoints.ids);
+app.get('/tag/:tag', searchEndpoints.tag);
+app.get('/people/:id', personEndpoint);
+app.get('/random/art', searchEndpoints.random);
 
 // See searchEndpoints.autofill for why this is disabled.
 // app.get('/autofill/:prefix', searchEndpoints.autofill)
 
-surveyEndpointFactory(app, express)
+surveyEndpointFactory(app, express);
+
+module.exports = app;

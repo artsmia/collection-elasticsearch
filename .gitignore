@@ -10,3 +10,4 @@ scratch
 .idea
 /tmp
 /app/data-snapshot20250710/*
+.vercel
