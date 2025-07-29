@@ -9,7 +9,9 @@ const buildRedisClient = require('./lib/buildRedisClient');
 
 // TODO All calls must be rewritten to handle Promises.
 const dataClient = buildRedisClient();
-dataClient.connect().then(() => dataClient.select(7));
+dataClient.connect();
+  // Only DB 0 supported on Upstash.
+  // .then(() => dataClient.select(7));
 
 /**
  * @param {Request} req
