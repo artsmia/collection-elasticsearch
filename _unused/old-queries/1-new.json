@@ -1,0 +1,1773 @@
+{
+  "took": 11,
+  "timed_out": false,
+  "_shards": {
+    "total": 1,
+    "successful": 1,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 93,
+      "relation": "eq"
+    },
+    "max_score": 6.4,
+    "hits": [
+      {
+        "_index": "objects2",
+        "_id": "3520",
+        "_score": 6.4,
+        "_source": {
+          "id": 3520,
+          "title": "The Doryphoros (after Polykleitos)",
+          "medium": "Pentelic marble",
+          "classification": "Sculpture",
+          "dimension": "78 x 19 x 19 in. (198.12 x 48.26 x 48.26 cm)",
+          "object_name": "Roman copy of a Greek bronze statue of c. 450-440 BCE",
+          "continent": null,
+          "country": "Roman",
+          "culture": "Roman",
+          "dated": "27 BCE–68 CE",
+          "room": "G241",
+          "style": null,
+          "inscription": null,
+          "signed": null,
+          "markings": null,
+          "text": null,
+          "description": "",
+          "provenance": null,
+          "portfolio": null,
+          "creditline": "The John R. Van Derlip Fund and Gift of funds from Bruce B. Dayton, an anonymous donor, Mr. and Mrs. Kenneth Dayton, Mr. and Mrs. W. John Driscoll, Mr. and Mrs. Alfred Harrison, Mr. and Mrs. John Andrus, Mr. and Mrs. Judson Dayton, Mr. and Mrs. Stephen Keating, Mr. and Mrs. Pierce McNally, Mr. and Mrs. Donald Dayton, Mr. and Mrs. Wayne MacFarlane, and many other generous friends of the Institute",
+          "accession_number": "86.6",
+          "artist": "Copy of work attributed to Polykleitos",
+          "role": "Artist",
+          "nationality": "Roman",
+          "life_date": "Greek, active 460–415 BCE",
+          "image_copyright": null,
+          "department": "European Art",
+          "rights_type": "Public Domain",
+          "image": "valid",
+          "image_width": 5428,
+          "image_height": 7230,
+          "restricted": 0,
+          "public_access": 1,
+          "curator_approved": 1,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "list:aib-2021-selections": true,
+          "list:handbook": true,
+          "related:audio-stops": [
+            {
+              "title": "Doryphoros",
+              "_id": "3520",
+              "objectId": "3520",
+              "link": "http://audio-tours.s3.amazonaws.com/p301.mp3",
+              "number": "301",
+              "type": "audio"
+            }
+          ],
+          "related:3dmodels": [
+            {
+              "title": "Mia's Doryphoros",
+              "_id": "3520",
+              "objectId": "3520",
+              "link": "https://sketchfab.com/models/8a54983061b74de4bf8b7ca2aca25990",
+              "type": "3d",
+              "thumb": "https://dg5bepmjyhz9h.cloudfront.net/urls/8a54983061b74de4bf8b7ca2aca25990/dist/thumbnails/56a0e82b8ea541daa346b4689679bbbb/640x360.jpeg"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "Doryphoros",
+              "_id": "3520",
+              "objectId": "3520",
+              "description": "\u003Cp\u003EThe ideal body. We all want it, and our never-ending struggle to get it sells magazines and gym memberships and Spanx (when we finally give up). Ideals of beauty vary between cultures, but the idea of the ideal is in everyone’s nature. Thousands of years ago, the celebrated Greek sculptor Polykleitos argued that the human ideal could be distilled down to numbers, and offered The Doryphoros, or Spear Bearer, as the perfect man, reflecting mathematically precise proportions. This is one of the four surviving Roman copies of the Greek original, now lost. \u003C/p\u003E",
+              "link": "http://artstories.artsmia.org/#/o/3520",
+              "type": "artstory"
+            }
+          ],
+          "list:sculpture-highlights": true,
+          "recent": 0,
+          "list": "sculpture-highlights",
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Full",
+          "highlights": 0,
+          "Cache_Location": "003000\\500\\20\\3520",
+          "Primary_RenditionNumber": "mia_4000977.jpg"
+        }
+      },
+      {
+        "_index": "objects2",
+        "_id": "1355",
+        "_score": 5.3,
+        "_source": {
+          "id": 1355,
+          "title": "Study for Portrait VI",
+          "medium": "Oil on canvas",
+          "classification": "Paintings",
+          "dimension": "59 5/8 × 45 3/4 in. (151.4 × 116.2 cm) (canvas)\r\n68 1/4 × 54 1/8 × 4 1/4 in. (173.4 × 137.5 × 10.8 cm) (outer frame)",
+          "object_name": "Painting",
+          "continent": "Europe",
+          "country": "England",
+          "culture": null,
+          "dated": "1953",
+          "room": "G377",
+          "style": null,
+          "inscription": "On verso (in red): #3",
+          "signed": null,
+          "markings": null,
+          "text": "The human figure was Francis Bacon's principal object of study throughout his career.  This picture belongs to a series of eight paintings, which began as a portrait of Bacon's friend and biographer David Sylvester but became, in the final project, studies of a seated pope. They are inspired by the Velazquez 'Portrait of of Pope Innocent X' (Palazzo Doria, Rome), Eisenstein's Nurse in 'The Battleship Potemkin', and Eadweard Muybridge's sequential photos of the human body in movement. Bacon made his figures more and more agititated until, in the final painting, the pope is convulsive. Here his ambiguous facial expression rests somewhere between the grimace of Portrait V and the horrific scream of Portrait VII.\r\n\r\nThis painting is one of the first Francis Bacon paintings acquired by an American museum.",
+          "description": "",
+          "provenance": null,
+          "portfolio": null,
+          "creditline": "The Miscellaneous Works of Art Purchase Fund",
+          "accession_number": "58.35",
+          "artist": "Francis Bacon",
+          "role": "Artist",
+          "nationality": "British (born Ireland)",
+          "life_date": "British (born Ireland), 1909–1992",
+          "image_copyright": "© The Estate of Francis Bacon. All rights reserved.",
+          "department": "European Art",
+          "rights_type": "In Copyright",
+          "image": "valid",
+          "image_width": 5148,
+          "image_height": 6679,
+          "restricted": 1,
+          "public_access": 1,
+          "curator_approved": 0,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "list:pride-month": true,
+          "list:aib-2021-selections": true,
+          "list:handbook": true,
+          "related:audio-stops": [
+            {
+              "title": "Francis Bacon, Study for Portrait VI",
+              "_id": "1355",
+              "objectId": "1355",
+              "link": "http://audio-tours.s3.amazonaws.com/p853.mp3",
+              "number": "853",
+              "type": "audio"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "Study for Portrait VI",
+              "_id": "1355",
+              "objectId": "1355",
+              "description": "\u003Cp\u003EHis vision is a dark one. Francis Bacon painted several portraits of popes (this is number six), and they all appear trapped, isolated and anguished—but beautifully painted. The portraits are based on Diego Velázquez’s celebrated portrait of Pope Innocent X, from 1650. And through his new way of depicting the human figure, Bacon showed what a portrait can be in the 20th century. In each of several studies he made for the painting, Bacon gave the pope a different face. Ultimately, he makes viewers feel as if they were behind the scenes, witnessing a private performance by a public figure.\u003C/p\u003E",
+              "link": "http://artstories.artsmia.org/#/o/1355",
+              "type": "artstory"
+            }
+          ],
+          "list:paintings-collection-highlights": true,
+          "recent": 0,
+          "list": "pride-month",
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Limited",
+          "highlights": 0,
+          "Cache_Location": "001000\\300\\50\\1355",
+          "Primary_RenditionNumber": "mia_4001848.jpg"
+        }
+      },
+      {
+        "_index": "objects2",
+        "_id": "1244",
+        "_score": 5.3,
+        "_source": {
+          "id": 1244,
+          "title": "Warrior with Shield",
+          "medium": "Bronze",
+          "classification": "Sculpture",
+          "dimension": "62 x 29 x 33 in. (157.5 x 73.7 x 83.8 cm)",
+          "object_name": "Sculpture",
+          "continent": "Europe",
+          "country": "England",
+          "culture": null,
+          "dated": "1953–54",
+          "room": "G371",
+          "style": null,
+          "inscription": null,
+          "signed": null,
+          "markings": null,
+          "text": "Henry Moore’s Warrior with Shield is neither standing nor fallen. His left arm and leg have been severed, rendering him unable to stand; however he is not yet defeated. The Warrior’s remaining arm thrusts a shield upward, as if to reflect a blow. The scoring on the bronze surface of the sculpture is reminiscent of scars or wounds, and the jagged, uneven stumps where limbs used to extend help to portray a body under an extreme amount of pain and exertion. Moore’s Warrior reverberates with the agonies of a soldier’s brutalized, mutilated body yet with equal force shows the valor and persistence to fight to the end. The intimacy of the form of Warrior with Shield resonates with both the heroism and the tragedy of combat.",
+          "description": "",
+          "provenance": null,
+          "portfolio": null,
+          "creditline": "Gift of Mr. and Mrs. John Cowles",
+          "accession_number": "54.22",
+          "artist": "Henry Moore",
+          "role": "Artist",
+          "nationality": "British",
+          "life_date": "British, 1898–1986",
+          "image_copyright": "© The Henry Moore Foundation. All Rights Reserved, DACS 2014 / www.henry-moore.org",
+          "department": "European Art",
+          "rights_type": "In Copyright",
+          "image": "valid",
+          "image_width": 3594,
+          "image_height": 5220,
+          "restricted": 1,
+          "public_access": 1,
+          "curator_approved": 0,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "list:aib-2021-selections": true,
+          "list:handbook": true,
+          "related:audio-stops": [
+            {
+              "title": "Moore, Warrior with Sheild",
+              "_id": "1244",
+              "objectId": "1244",
+              "link": "http://audio-tours.s3.amazonaws.com/p548.mp3",
+              "number": "548",
+              "type": "audio"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "Warrior with Shield",
+              "_id": "1244",
+              "objectId": "1244",
+              "description": "\u003Cp\u003EBalancing between glory and destruction— to view this statue is to observe the opposing outcomes of war.  Artist Henry Moore is most known for sculpting reclining female figures with gentle lines and soft edges.  His style takes on new meaning when it is used to convey the violence of combat.  A reclining figure is a man struggling to stay upright.  Soft dimples are the gruesome marks of wounds.  Rounded edges are the shocking ends of missing limbs.  In the aftermath of World War II, Moore uses the balance between the softness of style and the brutality of subject to capture the shift between romantic ideas of heroism and the tragic realities of war.\u003C/p\u003E",
+              "link": "http://artstories.artsmia.org/#/o/1244",
+              "type": "artstory"
+            }
+          ],
+          "list:sculpture-highlights": true,
+          "recent": 0,
+          "list": "sculpture-highlights",
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Limited",
+          "highlights": 0,
+          "Cache_Location": "001000\\200\\40\\1244",
+          "Primary_RenditionNumber": "mia_70250a.jpg"
+        }
+      },
+      {
+        "_index": "objects2",
+        "_id": "1270",
+        "_score": 5.3,
+        "_source": {
+          "id": 1270,
+          "title": "Blind Man's Buff",
+          "medium": "Oil on canvas",
+          "classification": "Paintings",
+          "dimension": "81 1/4 x 173 in. (206.38 x 439.42 cm)\r\n73 1/2 x 40 in. (186.69 x 101.6 cm) (panel, left)\r\n81 1/2 × 90 1/2 in. (207.01 × 229.87 cm) (panel, center)\r\n73 7/8 x 41 3/4 in. (187.64 x 106.05 cm) (panel, right)",
+          "object_name": "Painting",
+          "continent": "Europe",
+          "country": "Germany",
+          "culture": null,
+          "dated": "1945",
+          "room": "G377",
+          "style": null,
+          "inscription": null,
+          "signed": "LR left panel in black: Beckmann A45 |  LR center panel in black: Beckmann A45 | LR right panel in black: Beckmann A45",
+          "markings": null,
+          "text": "\u003Ci\u003EBlind Man's Buff\u003C/i\u003E is the most important of the five triptychs created by Max Beckmann while exiled in Holland between 1937-1947 - an exile necessitated by the Nazi's inclusion of ten of his works in their exhibition of degenerate art in 1937. Like much of his art, \u003Ci\u003EBlind Man's Buff\u003C/i\u003E is allusive and symbolic, inviting explication yet resisting explicit interpretation. Yet, the artist's use of the three-paneled format that was traditional to Medieval and Renaissance altarpieces evokes religious associations. Beckmann also drew upon classical sources, calling the figures at center the gods and the animal-headed man the minotaur. Throughout the triptych, figures engage in sensual pleasures in a place where time, represented by a clock without XII or I, has no beginning or end. In sharp contrast on each wing are the blindfolded man and kneeling woman who, like prayerful donors in a Renaissance altarpiece, turn their backs to the confusion behind them.",
+          "description": "",
+          "provenance": null,
+          "portfolio": null,
+          "creditline": "Gift of Mr. and Mrs. Donald Winston",
+          "accession_number": "55.27a-c",
+          "artist": "Max Beckmann",
+          "role": "Artist",
+          "nationality": "German",
+          "life_date": "German, 1884–1950",
+          "image_copyright": "© Artists Rights Society (ARS), New York / VG Bild-Kunst, Bonn",
+          "department": "European Art",
+          "rights_type": "In Copyright",
+          "image": "valid",
+          "image_width": 17320,
+          "image_height": 7657,
+          "restricted": 1,
+          "public_access": 1,
+          "curator_approved": 0,
+          "catalogue_raissonne": "Gopel, 704.",
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "list:aib-2021-selections": true,
+          "list:handbook": true,
+          "related:audio-stops": [
+            {
+              "title": "Max Beckmann, Blindman's Buff",
+              "_id": "1270",
+              "objectId": "1270",
+              "link": "http://audio-tours.s3.amazonaws.com/p870.mp3",
+              "number": "870",
+              "type": "audio"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "Blind Man's Buff",
+              "_id": "1270",
+              "objectId": "1270",
+              "description": "\u003Cp\u003EThe cabaret is swinging—hard enough that time has lost meaning and modern sophisticates consort with mythological figures. Amid these pleasure-seekers stand two young people carrying candles. The girl is oblivious to the clamor, steadfastly waiting; the boy is blindfolded but determined to find her—they have a predestined connection. These two give the painting its title, after the old game in which a blindfolded child stumbles through the darkness to find and “tag” other children. When asked if the couple would ever find each other, the artist Max Beckmann said “Perhaps; let us hope it.”\u003C/p\u003E",
+              "link": "http://artstories.artsmia.org/#/o/1270",
+              "type": "artstory"
+            }
+          ],
+          "related:conservation": [
+            {
+              "id": "1270",
+              "title": "Restoring a Masterpiece III: Fall 2014",
+              "_id": "1270",
+              "objectId": "1270",
+              "link": "http://new.artsmia.org/restoring-a-masterwork-3/",
+              "type": "conservation"
+            }
+          ],
+          "list:paintings-collection-highlights": true,
+          "recent": 0,
+          "list": null,
+          "Catalog_Raisonne": "Gopel, 704.",
+          "Rights_Image_Display": "Limited",
+          "highlights": 0,
+          "Cache_Location": "001000\\200\\70\\1270",
+          "Primary_RenditionNumber": "mia_6015232_composite.jpg"
+        }
+      },
+      {
+        "_index": "objects2",
+        "_id": "376",
+        "_score": 5.3,
+        "_source": {
+          "id": 376,
+          "title": "Shiva Nataraja (Lord of the Dance)",
+          "medium": "Bronze",
+          "classification": "Sculpture",
+          "dimension": "28 in. (71.12 cm)",
+          "object_name": null,
+          "continent": "Asia",
+          "country": "India",
+          "culture": null,
+          "dated": "c. 1100",
+          "room": "G211",
+          "style": null,
+          "inscription": null,
+          "signed": null,
+          "markings": null,
+          "text": "The Hindu god Shiva appears in several incarnations. Here, Shiva appears as Nataraja, or Lord of the Dance. He raises his left foot in a graceful dance pose. In his upper right hand, Nataraja holds a drum, the sound of which manifests creation. The flame that he holds in his upper left hand symbolizes destruction. Together, they symbolize the creation and destruction of the cosmic universe. The posture of the icon’s lower left and right palms signifies protection. The foot that rests on the demon’s back symbolizes the elimination of ignorance, while the raised left foot signifies salvation. A now missing ring of fire, symbolic of the simultaneous and continuous creation and destruction of the universe, would have encircled the bronze icon.",
+          "description": "",
+          "provenance": null,
+          "portfolio": null,
+          "creditline": "Gift of Mrs. E. C. Gale",
+          "accession_number": "29.2",
+          "artist": "India",
+          "role": "Artist",
+          "nationality": "Indian",
+          "life_date": null,
+          "image_copyright": null,
+          "department": "Asian Art",
+          "rights_type": "Public Domain",
+          "image": "valid",
+          "image_width": 8470,
+          "image_height": 10588,
+          "restricted": 0,
+          "public_access": 1,
+          "curator_approved": 0,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "list:aib-2021-selections": true,
+          "list:handbook": true,
+          "related:audio-stops": [
+            {
+              "title": "Shiva Nataraja (Lord of the Dance)",
+              "_id": "376",
+              "objectId": "376",
+              "link": "http://audio-tours.s3.amazonaws.com/p193.mp3",
+              "number": "193",
+              "type": "audio"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "Shiva Nataraja (Lord of the Dance)",
+              "_id": "376",
+              "objectId": "376",
+              "description": "\u003Cp\u003EHe dances wildly, his left leg lifting in a powerful, graceful gesture and his arms swaying elegantly across his body. This is the god Shiva in his Nataraja form, the embodiment of his supreme powers. The sculpture is Mia’s first donated work of Indian art and one of the cornerstones of the collection. Ancient texts speak of Shiva’s dance, \u003Cem\u003Eananda tandava\u003C/em\u003E (literally translated as “furious bliss”), as wreaking havoc and destruction—sending false prophets scampering and humiliating rival gods and goddesses.&nbsp;\u003C/p\u003E",
+              "link": "http://artstories.artsmia.org/#/o/376",
+              "type": "artstory"
+            }
+          ],
+          "list:himalayan-south-southeast-asian-and-islamic-art": true,
+          "recent": 0,
+          "list": "himalayan-south-southeast-asian-and-islamic-art",
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Full",
+          "highlights": 0,
+          "Cache_Location": "000000\\300\\70\\376",
+          "Primary_RenditionNumber": "mia_8022183.jpg"
+        }
+      },
+      {
+        "_index": "objects2",
+        "_id": "31247",
+        "_score": 5.3,
+        "_source": {
+          "id": 31247,
+          "title": "Model of original scheme for the Minneapolis Society of Fine Arts",
+          "medium": "Wood, plaster, and paint",
+          "classification": "Architecture, Models",
+          "dimension": "12 5/8 x 83 3/8 x 77 in. (32.1 x 211.8 x 195.6 cm) (overall, without handles)",
+          "object_name": "Model",
+          "continent": "Americas",
+          "country": "United States",
+          "culture": null,
+          "dated": "c. 1912",
+          "room": "G303",
+          "style": null,
+          "inscription": null,
+          "signed": null,
+          "markings": null,
+          "text": "This model of the original design for the Minneapolis Institute of Art was meant to get potential donors excited about building a museum. Handles on each side allow it to be pulled apart for closer examination. Its neoclassical, Beaux-Arts style was favored for grand buildings of the time. The central front section resembles a Greek temple, with a stair leading to a columned porch topped by a triangular pediment. The wing to the right included an orchestra hall, that to the left a sculpture hall. The semicircular projection was meant to house galleries and offices. As built in 1915, Mia was one-seventh of this plan: the monumental entrance and adjacent sections facing 24th Street.\r\n\r\nStanding in front of the model, turn around and look through the Architecture and Design Gallery and through the large window. The stone façade of the original building meets one of the white-tiled additions of 1974, designed by the Japanese architect Kenzo Tange as modern versions of the wings proposed in this model. You are in a Tange wing now.",
+          "description": "",
+          "provenance": null,
+          "portfolio": null,
+          "creditline": "Transfer from The Minneapolis Society of Fine Arts",
+          "accession_number": "99.159a-d",
+          "artist": "Architect: McKim, Mead, and White",
+          "role": "Architect",
+          "nationality": "American",
+          "life_date": "American (New York, New York), 1879–1961",
+          "image_copyright": null,
+          "department": "Arts of the Americas",
+          "rights_type": "Public Domain",
+          "image": "valid",
+          "image_width": 5046,
+          "image_height": 2358,
+          "restricted": 0,
+          "public_access": 1,
+          "curator_approved": 0,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "related:audio-stops": [
+            {
+              "title": "McKim, Mead, White, Model of original scheme for the MIA",
+              "_id": "31247",
+              "objectId": "31247",
+              "link": "http://audio-tours.s3.amazonaws.com/p835.mp3",
+              "number": "835",
+              "type": "audio"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "Model of the Original Scheme for the Minneapolis Society of Fine Arts",
+              "_id": "31247",
+              "objectId": "31247",
+              "description": "\u003Cp\u003EDoes this look like a plan for a grand university building, a government palace, or some part of the Vatican? More to the point, does it look anything like Mia? It was supposed to. The architectural firm of McKim, Mead and White built the model after winning the 1911 competition sponsored by the Minneapolis Society of Fine Arts (the parent organization of Mia), and its ambition reflects the Society’s plans for a cultural center, or Institute of Arts, including not just a museum but an art school and orchestra hall. Only a fraction of it was built.\u003C/p\u003E",
+              "link": "http://artstories.artsmia.org/#/o/31247",
+              "type": "artstory"
+            }
+          ],
+          "recent": 0,
+          "list": null,
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Full",
+          "highlights": 0,
+          "Cache_Location": "031000\\200\\40\\31247",
+          "Primary_RenditionNumber": "mia_33632a.jpg"
+        }
+      },
+      {
+        "_index": "objects2",
+        "_id": "1348",
+        "_score": 5.3,
+        "_source": {
+          "id": 1348,
+          "title": "The Death of Germanicus",
+          "medium": "Oil on canvas",
+          "classification": "Paintings",
+          "dimension": "58 1/4 × 78 in. (148 × 198.1 cm) (canvas)\r\n69 1/2 × 89 × 5 1/2 in. (176.5 × 226.1 × 14 cm) (outer frame)",
+          "object_name": "Painting",
+          "continent": "Europe",
+          "country": "France",
+          "culture": null,
+          "dated": "1627",
+          "room": "G313",
+          "style": null,
+          "inscription": null,
+          "signed": null,
+          "markings": null,
+          "text": "The young Roman general Germanicus has just been poisoned by his jealous adoptive father, the emperor Tiberius. On his deathbed, Germanicus asks his friends to avenge his murder and his wife to endure her sorrow bravely. A key work in Western painting, this tragic picture presents a moral lesson in stoic heroism, notably in the restraint and dignity of the mourning soldiers.\r\n\r\nThis work—Poussin’s first major history painting—became the model for countless deathbed scenes for the next two centuries. Many powerful human themes figure here: death, suffering, injustice, grief, loyalty, revenge. Poussin drew on Roman antiquity for the form as well as the subject. The composition, with figures crowded together near the front, is based on Roman sarcophagus reliefs. Poussin spent most of his life in Rome, where he developed a classical style that strongly influenced both French and Italian art.\r\n\r\nThis painting was commissioned by Cardinal Francesco Barberini. As prominent patrons of the arts, the wealthy Barberini family helped shape the artistic landscape of the time. The Death of Germanicus remained with descendants of the Barberini family until 1958, when Mia purchased it.",
+          "description": "",
+          "provenance": null,
+          "portfolio": null,
+          "creditline": "The William Hood Dunwoody Fund",
+          "accession_number": "58.28",
+          "artist": "Nicolas Poussin",
+          "role": "Artist",
+          "nationality": "French",
+          "life_date": "French, 1594–1665",
+          "image_copyright": null,
+          "department": "European Art",
+          "rights_type": "Public Domain",
+          "image": "valid",
+          "image_width": 10188,
+          "image_height": 7661,
+          "restricted": 0,
+          "public_access": 1,
+          "curator_approved": 0,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "list:aib-2021-selections": true,
+          "list:handbook": true,
+          "related:audio-stops": [
+            {
+              "title": "Nicolas Poussin, The Death of Germanicus",
+              "_id": "1348",
+              "objectId": "1348",
+              "link": "http://audio-tours.s3.amazonaws.com/p706.mp3",
+              "number": "706",
+              "type": "audio"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "The Death of Germanicus",
+              "_id": "1348",
+              "objectId": "1348",
+              "description": "\u003Cp\u003EThe ailing Germanicus—born Nero Claudius Drusus—earned his honorary name as a tenacious Roman general, famed for his brutally successful campaigns in the early first century against the tribes of Germania. He inspired such loyalty among his troops and the citizens of Rome that his adoptive father, the Emperor Tiberius, dispatched him to a distant post in Syria. The general’s mysterious death at 34 fueled suspicions that Tiberius had him poisoned and sparked grief and anger across the Roman Empire. More than 1,500 years later, French painter Nicolas Poussin sought to stir those feelings anew, framed in the stoic restraint of the classical past.\u003C/p\u003E",
+              "link": "http://artstories.artsmia.org/#/o/1348",
+              "type": "artstory"
+            }
+          ],
+          "list:paintings-collection-highlights": true,
+          "recent": 0,
+          "list": null,
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Full",
+          "highlights": 0,
+          "Cache_Location": "001000\\300\\40\\1348",
+          "Primary_RenditionNumber": "mia_8031119.jpg"
+        }
+      },
+      {
+        "_index": "objects2",
+        "_id": "1358",
+        "_score": 5.3,
+        "_source": {
+          "id": 1358,
+          "title": "Water pitcher",
+          "medium": "Bronze",
+          "classification": "Ceremonial Objects, Sculpture",
+          "dimension": "17 x 26 in. (43.18 x 66.04 cm)",
+          "object_name": "Water pitcher, Leopard Aquamanile, Aquamanile, Bronze Leopard",
+          "continent": "Africa",
+          "country": "Nigeria",
+          "culture": "Edo",
+          "dated": "18th century",
+          "room": "G250",
+          "style": null,
+          "inscription": null,
+          "signed": null,
+          "markings": null,
+          "text": "This specially shaped vessel, called an aquamanile (from the Latin for “water” and “hand”), was used by kings, or obas, of the Benin Kingdom during hand-washing ceremonies. It was filled at the top of the head, its tail acted as a handle, and water was poured from its two nostrils. The leopard was an important symbol of the oba, embodying ferocity, intelligence, agility, and speed. The balanced posture indicates strength, while the perked ears and bared fangs show awareness and aggression—traits the king was expected to have. Animal-shaped aquamaniles were introduced between 900 and 1200 from the Islamic world to Europe, and brought to the Benin peoples by Portuguese traders who came by sea. In Benin belief, the mid-fifteenth-century king Ewuare the Great is credited with gathering aquamanile vessels from the underwater palace of Olokun, the god of the sea.",
+          "description": "",
+          "provenance": null,
+          "portfolio": null,
+          "creditline": "The Miscellaneous Works of Art Purchase Fund",
+          "accession_number": "58.9",
+          "artist": "Edo artist",
+          "role": "Artist",
+          "nationality": "Nigerian",
+          "life_date": "Benin Kingdom (Nigeria)",
+          "image_copyright": null,
+          "department": "Arts of Global Africa",
+          "rights_type": "Public Domain",
+          "image": "valid",
+          "image_width": 5412,
+          "image_height": 7216,
+          "restricted": 0,
+          "public_access": 1,
+          "curator_approved": 1,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "list:aib-2021-selections": true,
+          "list:handbook": true,
+          "related:audio-stops": [
+            {
+              "title": "Benin, Leopard Aquamanile",
+              "_id": "1358",
+              "objectId": "1358",
+              "link": "http://audio-tours.s3.amazonaws.com/p917.mp3",
+              "number": "917",
+              "type": "audio"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "Water Pitcher",
+              "_id": "1358",
+              "objectId": "1358",
+              "description": "\u003Cp\u003EHand washing is automatic for most of us, something we do without thinking. But if you do it to honor your ancestors—and your ancestors happen to be the past kings of Benin—it’s a pretty big deal, especially since having a king for an ancestor probably means you’re one, too. Your royal hands will require a royal jug, perhaps shaped like a leopard—an animal admired for its ferocity, intelligence, agility, and speed. Qualities you probably see in yourself.\u003C/p\u003E\n",
+              "link": "http://artstories.artsmia.org/#/o/1358",
+              "type": "artstory"
+            }
+          ],
+          "list:african-art-highlights": true,
+          "recent": 0,
+          "list": "african-art-highlights",
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Full",
+          "highlights": 0,
+          "Cache_Location": "001000\\300\\50\\1358",
+          "Primary_RenditionNumber": "mia_4002285.jpg"
+        }
+      },
+      {
+        "_index": "objects2",
+        "_id": "5788",
+        "_score": 5.3,
+        "_source": {
+          "id": 5788,
+          "title": "Seated Avalokiteshvara Bodhisattva (Guanyin)",
+          "medium": "Wood, gesso, mineral pigments, and gold",
+          "classification": "Sculpture",
+          "dimension": "38 3/4 x 22 x 13 1/2 in. (98.43 x 55.88 x 34.29 cm) ((a) body)\r\n8 x 30 1/4 x 13 in. (20.32 x 76.84 x 33.02 cm) ((b) legs)\r\n25 x 17 x 12 3/4 in. (63.5 x 43.18 x 32.39 cm) ((c) arm)\r\n22 1/2 x 19 1/2 x 7 7/8 in. (57.15 x 49.53 x 20 cm) ((d) arm)\r\n14 x 14 x 14 1/2 in. (35.56 x 35.56 x 36.83 cm) ((e) PL hip)\r\n8 3/4 x 7 1/2 x 5 in. (22.23 x 19.05 x 12.7 cm) ((f) ushnisha)\r\n10 3/4 x 5 1/2 x 4 in. (27.31 x 13.97 x 10.16 cm) ((g) hand)\r\n11 3/4 x 5 1/2 x 4 in. (29.85 x 13.97 x 10.16 cm) ((h) hand)",
+          "object_name": "Sculpture",
+          "continent": "Asia",
+          "country": "China",
+          "culture": null,
+          "dated": "late 11th–early 12th century",
+          "room": "G200",
+          "style": null,
+          "inscription": null,
+          "signed": null,
+          "markings": null,
+          "text": "A bodhisattva is a Buddhist deity who has attained the highest level of enlightenment but delays entering paradise in order to aid other earthly beings. Because bodhisattvas remain on earth, their bodies are usually lavishly adorned, unlike buddhas, who have entered the perfected state of nirvana. Here seated in the lotus position, the bodhisattva Avalokiteshvara wears gold jewelry and luxurious silk robes that the artist embellished with delicate designs made of gold foil and gold paint. Originally, his already elaborate topknot would have been further decorated with a gilt-metal crown, although it is now missing. Avalokiteshvara is associated with mercy and compassion. His Chinese name, Guanyin, means “perceiver of sounds” and is an indication that this merciful being has the ability to recognize all the people’s cries of suffering. These associations help make this figure one of the most popular deities to Chinese Buddhists, who might worship a sculpture like this in the hope that Avalokiteshvara would recognize their suffering and help them on their path toward salvation.",
+          "description": "",
+          "provenance": null,
+          "portfolio": null,
+          "creditline": "Gift of Ruth and Bruce Dayton",
+          "accession_number": "98.62a-h",
+          "artist": "China",
+          "role": "Artist",
+          "nationality": "Chinese",
+          "life_date": null,
+          "image_copyright": null,
+          "department": "Asian Art",
+          "rights_type": "Public Domain",
+          "image": "valid",
+          "image_width": 7846,
+          "image_height": 10561,
+          "restricted": 0,
+          "public_access": 1,
+          "curator_approved": 0,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "list:aib-2021-selections": true,
+          "list:handbook": true,
+          "related:audio-stops": [
+            {
+              "title": "The Bodhisattva Kuan-Yin",
+              "_id": "5788",
+              "objectId": "5788",
+              "link": "http://audio-tours.s3.amazonaws.com/p211.mp3",
+              "number": "211",
+              "type": "audio"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "The Bodhisattva Guanyin",
+              "_id": "5788",
+              "objectId": "5788",
+              "description": "\u003Cp\u003EGentle, calm, benign—he is a divinity of mercy and compassion, bodhisattava Avalokitesvara or Guanyin. He was carved for a temple during one of the most creative epochs of Chinese Buddhist sculpture, around 1100 to 1200, and expresses the new humanism of the day. Splendidly attired and seated in the cross-legged “lotus” position suggesting tranquility and balance of thought, he beams the bliss of near-enlightenment.\u003C/p\u003E",
+              "link": "http://artstories.artsmia.org/#/o/5788",
+              "type": "artstory"
+            }
+          ],
+          "list:chinese-art-highlights": true,
+          "recent": 0,
+          "list": "chinese-art-highlights",
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Full",
+          "highlights": 0,
+          "Cache_Location": "005000\\700\\80\\5788",
+          "Primary_RenditionNumber": "mia_8007639.jpg"
+        }
+      },
+      {
+        "_index": "objects2",
+        "_id": "278",
+        "_score": 5.3,
+        "_source": {
+          "id": 278,
+          "title": "Christ Driving the Money Changers from the Temple",
+          "medium": "Oil on canvas",
+          "classification": "Paintings",
+          "dimension": "46 x 59 in. (116.84 x 149.86 cm) (canvas)\r\n45 1/2 x 58 in. (115.57 x 147.32 cm) (sight)\r\n60 x 72 1/2 x 3 in. (152.4 x 184.15 x 7.62 cm) (outer frame)",
+          "object_name": "Painting",
+          "continent": "Europe",
+          "country": "Italy",
+          "culture": null,
+          "dated": "c. 1570–75",
+          "room": "G341",
+          "style": null,
+          "inscription": null,
+          "signed": "LC (steps in Greek capital letters): DOMENIKOS THEOTOKOPOULDS KRES E'POIEI (translated Wethey, p. 68)",
+          "markings": null,
+          "text": "Christ’s expulsion of the money changers who were desecrating the temple in Jerusalem was a popular theme in Italy in this period. To Catholics, the image symbolized the purification of the Church through internal reform and the expulsion of Protestant heretics. El Greco depicts a chaotic swirl of figures writhing in pain around Christ, who solemnly and calmly wields a scourge to rid the temple of greed and sin.\r\n\r\nA native of Crete, the artist became known as “El Greco” (the Greek) after moving to Italy in 1567, but his full signature in Greek letters appears here on the step below Christ. Set in a grand architectural interior, the scene reflects El Greco’s experiments with Italian linear perspective and break from the Byzantine style he employed in the Greek icons painted in his youth. In the lower-right corner, El Greco portrayed four artists: Titian, Michelangelo, Giulio Clovio (a miniaturist and manuscript illuminator), and Raphael. Clovio had secured lodgings for El Greco in Rome at the Palazzo Farnese, a grand Renaissance palace belonging to the illustrious Farnese family. In a gesture of friendship, El Greco included Clovio in the painting alongside the three masters of the Italian Renaissance he wished to emulate. El Greco likely painted this work right after moving to Rome from Venice in late 1570. He eventually settled in Spain in 1577.",
+          "description": "",
+          "provenance": "Georges Villiers, 2nd Duke of Buckingham, York House, London (until 1648, as by El Greco); Sale, Antwerp, 1648, to Guillermo; Archduke Leopoldo Guillermo, Prague (since 1648); Gemaldegalerie de Dresden (1742/1749). Earl of Yarborough, London (by 1857–1923, as by Veronese, sold to JW Bohler and Steinmeyer); [Böhler and Steinmeyer, Lucerne and Henry Reinhardt & Co, New York, until 1924; sold, January 8, for $30, 000, to Mia]",
+          "portfolio": null,
+          "creditline": "The William Hood Dunwoody Fund",
+          "accession_number": "24.1",
+          "artist": "El Greco (Domenikos Theotokopoulos)",
+          "role": "Artist",
+          "nationality": "Greek",
+          "life_date": "Greek, 1541–1614",
+          "image_copyright": null,
+          "department": "European Art",
+          "rights_type": "Public Domain",
+          "image": "valid",
+          "image_width": 5751,
+          "image_height": 4492,
+          "restricted": 0,
+          "public_access": 1,
+          "curator_approved": 1,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "list:aib-2021-selections": true,
+          "list:handbook": true,
+          "related:audio-stops": [
+            {
+              "title": "El Greco, Christ Driving the Money Changers",
+              "_id": "278",
+              "objectId": "278",
+              "link": "http://audio-tours.s3.amazonaws.com/p522.mp3",
+              "number": "522",
+              "type": "audio"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "Christ Driving the Money Changers form the Temple",
+              "_id": "278",
+              "objectId": "278",
+              "description": "\u003Cp\u003EJustice is served as Jesus boots the people preying on pilgrims out of God’s house. The painter known as El Greco loved this scene from the Bible.\u003Cem\u003E  And Jesus went into the temple of God, and cast out all them that sold and bought in the temple, and overturned the tables of the moneychangers and the seats of those who sold doves. And He said to them, “It is written, my house shall be called a house of prayer; but you are making it a robber’s den.” \u003C/em\u003E(Matthew 21:12) His multiple takes on the subject mark his evolving artistic style, each subsequent version being more abstract and stylized.\u003C/p\u003E",
+              "link": "http://artstories.artsmia.org/#/o/278",
+              "type": "artstory"
+            }
+          ],
+          "list:paintings-collection-highlights": true,
+          "recent": 0,
+          "list": null,
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Full",
+          "highlights": 0,
+          "Cache_Location": "000000\\200\\70\\278",
+          "Primary_RenditionNumber": "mia_5014211.jpg"
+        }
+      },
+      {
+        "_index": "objects2",
+        "_id": "1629",
+        "_score": 5.3,
+        "_source": {
+          "id": 1629,
+          "title": "Ganymede and the Eagle",
+          "medium": "Marble",
+          "classification": "Sculpture",
+          "dimension": "34 3/4 x 18 1/2 x 46 3/8 in. (88.27 x 46.99 x 117.79 cm)",
+          "object_name": "Figure",
+          "continent": "Europe",
+          "country": "Denmark",
+          "culture": null,
+          "dated": "1817–29",
+          "room": "G307",
+          "style": null,
+          "inscription": null,
+          "signed": "THORWALDSEN FECIT",
+          "markings": null,
+          "text": "In Greek mythology, Ganymede was cupbearer to the gods, serving them with nectar and ambrosia. As a young prince of Troy, he was abducted by Zeus, ruler of the gods, and carried off to Mount Olympus, the gods’ home, where he became immortal.\r\n\r\nAn admirer of Greek and Roman art, Bertel Thorvaldsen was one of the foremost neoclassical sculptors of the 1800s. At the age of only eleven, he was accepted into the Royal Danish Academy of Art. In 1797 the excellence of his artwork earned him a royal stipend that enabled him to study in Rome, where he spent a large part of his career.",
+          "description": "",
+          "provenance": null,
+          "portfolio": null,
+          "creditline": "Gift of the Morse Foundation",
+          "accession_number": "66.9",
+          "artist": "Sculptor: Bertel Thorvaldsen",
+          "role": "Sculptor",
+          "nationality": "Danish",
+          "life_date": "Danish, 1770–1844",
+          "image_copyright": null,
+          "department": "European Art",
+          "rights_type": "Public Domain",
+          "image": "valid",
+          "image_width": 5840,
+          "image_height": 4787,
+          "restricted": 0,
+          "public_access": 1,
+          "curator_approved": 0,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "list:aib-2021-selections": true,
+          "list:handbook": true,
+          "related:audio-stops": [
+            {
+              "title": "Bertel Thorvaldsen, Ganymede and the Eagle",
+              "_id": "1629",
+              "objectId": "1629",
+              "link": "http://audio-tours.s3.amazonaws.com/p931.mp3",
+              "number": "931",
+              "type": "audio"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "Ganymede and the Eagle",
+              "_id": "1629",
+              "objectId": "1629",
+              "description": "\u003Cp\u003EIt’s a classic story of boy meets bird. The boy is Ganymede, a beautiful prince, and the bird is Zeus, father of the Greek gods. Zeus was captivated by Ganymede’s beauty, so he disguised himself as an eagle and abducted the boy to serve as the gods’ cup bearer on Mount Olympus. That’s the myth. But Bertel Thorvaldsen’s sculpture suggests a more benign interaction as the boy stoops to offer the eagle a drink and the eagle peacefully leans forward to accept. The eagle’s beak hovers just above the boy’s drink, and the two figures—the human and the divine—are frozen mere seconds before touching. An unnerving love story is reconsidered, revising the relationship between gods and humankind.  \u003C/p\u003E",
+              "link": "http://artstories.artsmia.org/#/o/1629",
+              "type": "artstory"
+            }
+          ],
+          "list:sculpture-highlights": true,
+          "recent": 0,
+          "list": "sculpture-highlights",
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Full",
+          "highlights": 0,
+          "Cache_Location": "001000\\600\\20\\1629",
+          "Primary_RenditionNumber": "mia_4001458.jpg"
+        }
+      },
+      {
+        "_index": "objects2",
+        "_id": "1312",
+        "_score": 5.3,
+        "_source": {
+          "id": 1312,
+          "title": "Tusk",
+          "medium": "Ivory",
+          "classification": "Sculpture",
+          "dimension": "43 x 71 x 17 1/2 in. (109.2 x 180.3 x 44.5 cm)",
+          "object_name": "Tusk",
+          "continent": "Africa",
+          "country": "Nigeria",
+          "culture": "Edo",
+          "dated": "1775–77",
+          "room": "G250",
+          "style": null,
+          "inscription": null,
+          "signed": null,
+          "markings": null,
+          "text": "The kings (obas) of the Benin Kingdom and the high-ranking chiefs who served them displayed ivory tusks on altars to honor their ancestors. This tusk was commissioned by Ekeneza in 1775, the year he became ezomo, or military commander, under King Akengbuda (r. 1750–1804). The size of the tusk and complexity of the images, meant to be read from bottom to top, rival altar tusks created for an oba. The intricate carvings that cover the entire surface of the tusk were accomplished by several members of the royal ivory-carvers’ guild, who used small tools to chip, smooth, and scrape away ivory. Motifs include deified kings, courtly women, and important commanders from the past; Portuguese soldiers, identified by their skirts, long hair, and beards; and leopards, elephants, reptiles, and mudfish—all symbolic animals in Benin imagery.",
+          "description": "",
+          "provenance": null,
+          "portfolio": null,
+          "creditline": "The Miscellaneous Works of Art Purchase Fund",
+          "accession_number": "56.33",
+          "artist": "Edo artist",
+          "role": "Artist",
+          "nationality": "Nigerian",
+          "life_date": "Benin Kingdom (Nigeria)",
+          "image_copyright": null,
+          "department": "Arts of Global Africa",
+          "rights_type": "Public Domain",
+          "image": "valid",
+          "image_width": 5837,
+          "image_height": 9870,
+          "restricted": 0,
+          "public_access": 1,
+          "curator_approved": 1,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "list:aib-2021-selections": true,
+          "list:handbook": true,
+          "related:audio-stops": [
+            {
+              "title": "Benin, Tusk",
+              "_id": "1312",
+              "objectId": "1312",
+              "link": "http://audio-tours.s3.amazonaws.com/p431.mp3",
+              "number": "431",
+              "type": "audio"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "Tusk",
+              "_id": "1312",
+              "objectId": "1312",
+              "description": "\u003Cp\u003EThe elephant is the king of the jungle (no matter what the lion says). And its power, when push comes to poke, is in its tusks. It’s no surprise, then, that tusks have long made fitting canvases on which to celebrate the rule of kings and other powerful leaders in Africa, in this case the ancestors of a military commander, or \u003Ci\u003Eezomo\u003C/i\u003E, in Benin, who commissioned this tusk between 1775 and 1777.\u003C/p\u003E\n",
+              "link": "http://artstories.artsmia.org/#/o/1312",
+              "type": "artstory"
+            }
+          ],
+          "recent": 0,
+          "list": null,
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Full",
+          "highlights": 0,
+          "Cache_Location": "001000\\300\\10\\1312",
+          "Primary_RenditionNumber": "mia_6000088.jpg"
+        }
+      },
+      {
+        "_index": "objects2",
+        "_id": "4324",
+        "_score": 5.3,
+        "_source": {
+          "id": 4324,
+          "title": "Jade Mountain Illustrating the Gathering of Scholars at the Lanting Pavilion",
+          "medium": "Light green jade",
+          "classification": "Sculpture",
+          "dimension": "22 1/2 × 38 3/8 × 15 3/4 in. (57.2 × 97.5 × 40 cm)",
+          "object_name": "Sculpture, Massive Imperial Jade Mountain, 1784",
+          "continent": "Asia",
+          "country": "China",
+          "culture": null,
+          "dated": "1790",
+          "room": "G210",
+          "style": null,
+          "inscription": null,
+          "signed": null,
+          "markings": "Seal of Emperor Qianlong on one side | Seal referring to the eightieth year of the Emperor Qianlong on the opposite side (1784)",
+          "text": "The Qing dynasty emperor Qianlong (r. 1736–95) commissioned this jade boulder, apparently the largest piece of historic carved jade outside of China. It depicts a literary gathering of scholar-officials at Lanting, the Orchid Pavilion described in “Lanting jixu” (Preface to the Poems Composed at the Orchid Pavilion), by Wang Xizhi (303–361), recognized as the greatest calligrapher of the Far East. The prose itself is carved on the front. Wang Xizhi, together with forty-one other renowned scholar-officials, gathered at Lanting and engaged in a drinking contest: wine cups were floated down a small winding creek as the men sat along its banks. Whenever a cup stopped, the man closest to the cup was required to drink it and write a poem. In the end, twenty-six of the participants composed thirty-seven poems. Emperor Qianlong’s own poem appears carved on the reverse.",
+          "description": "",
+          "provenance": null,
+          "portfolio": null,
+          "creditline": "The John R. Van Derlip Fund and Gift of the Thomas Barlow Walker Foundation",
+          "accession_number": "92.103.13",
+          "artist": "China",
+          "role": "Artist",
+          "nationality": "Chinese",
+          "life_date": null,
+          "image_copyright": null,
+          "department": "Asian Art",
+          "rights_type": "Public Domain",
+          "image": "valid",
+          "image_width": 10328,
+          "image_height": 7760,
+          "restricted": 0,
+          "public_access": 1,
+          "curator_approved": 0,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "list:aib-2021-selections": true,
+          "list:handbook": true,
+          "related:audio-stops": [
+            {
+              "title": "Jade Mountain  (2 labels)",
+              "_id": "4324",
+              "objectId": "4324",
+              "link": "http://audio-tours.s3.amazonaws.com/p225.mp3",
+              "number": "225",
+              "type": "audio"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "Jade Mountain",
+              "_id": "4324",
+              "objectId": "4324",
+              "description": "\u003Cp\u003EWho wouldn’t want to join this serene party of poets? This idealized scene of a real literary gathering of Chinese scholar-officials that took place at Lanting, the Orchid Pavilion, was carved from a jade boulder—the largest piece of carved jade from the Qing dynasty outside of China. It was commissioned by Emperor Qianlong, who reigned from 1736–95 and whose own poem is carved into the back. The front bears the Lanting jixu (“Preface to the Poems Composed at the Orchid Pavilion\") by Wang Xizhi, perhaps the greatest calligrapher of the Far East. \u003C/p\u003E",
+              "link": "http://artstories.artsmia.org/#/o/4324",
+              "type": "artstory"
+            }
+          ],
+          "list:chinese-art-highlights": true,
+          "recent": 0,
+          "list": "chinese-art-highlights",
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Full",
+          "highlights": 0,
+          "Cache_Location": "004000\\300\\20\\4324",
+          "Primary_RenditionNumber": "mia_6017993.jpg"
+        }
+      },
+      {
+        "_index": "objects2",
+        "_id": "97",
+        "_score": 5.3,
+        "_source": {
+          "id": 97,
+          "title": "Coffin of Lady Tashat",
+          "medium": "Polychromed wood",
+          "classification": "Funerary Goods",
+          "dimension": "67 in. (170.2 cm)",
+          "object_name": "Coffin",
+          "continent": "Africa",
+          "country": "Egypt",
+          "culture": "Ancient Egyptian",
+          "dated": "945–712 BCE",
+          "room": "G250",
+          "style": null,
+          "inscription": null,
+          "signed": null,
+          "markings": "On cover and on both sides of exterior of coffin: (Hieroglyphics, written symmetrically)",
+          "text": null,
+          "description": "",
+          "provenance": null,
+          "portfolio": null,
+          "creditline": "The William Hood Dunwoody Fund",
+          "accession_number": "16.417",
+          "artist": "Egypt",
+          "role": "Artist",
+          "nationality": "Egyptian",
+          "life_date": null,
+          "image_copyright": null,
+          "department": "Arts of Global Africa",
+          "rights_type": "Public Domain",
+          "image": "valid",
+          "image_width": 7760,
+          "image_height": 10328,
+          "restricted": 0,
+          "public_access": 1,
+          "curator_approved": 1,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "related:audio-stops": [
+            {
+              "title": "Lady Teshat",
+              "_id": "97",
+              "objectId": "97",
+              "link": "http://audio-tours.s3.amazonaws.com/p401.mp3",
+              "number": "401",
+              "type": "audio"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "Cartonnage and Coffin of Lady Tashat",
+              "_id": "97",
+              "objectId": "97",
+              "description": "\u003Cp\u003EIt’s a rich millennia-old mystery: Why was a teenage girl named Tashat buried with the skull of an unknown adult between her legs? And why are so many of her bones broken? X-rays and CT scans also reveal a poorly embalmed body and missing funereal jewelry, raising questions about those who prepared Tashat for the afterlife.\u003C/p\u003E",
+              "link": "http://artstories.artsmia.org/#/o/97",
+              "type": "artstory"
+            }
+          ],
+          "list:spookyseason": true,
+          "recent": 0,
+          "list": null,
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Full",
+          "highlights": 0,
+          "Cache_Location": "000000\\000\\90\\97",
+          "Primary_RenditionNumber": "mia_6010336.jpg"
+        }
+      },
+      {
+        "_index": "objects2",
+        "_id": "1854",
+        "_score": 5.3,
+        "_source": {
+          "id": 1854,
+          "title": "Power figure",
+          "medium": "Wood, natural fibers, glass, metal, undetermined materials",
+          "classification": "Ceremonial Objects, Sculpture",
+          "dimension": "15 3/4 x 9 3/4 x 7 1/4 in. (40.0 x 24.8 x 18.4 cm)",
+          "object_name": "Figure, Nail Fetish, N'kisi N'konde",
+          "continent": "Africa",
+          "country": "Democratic Republic of the Congo",
+          "culture": "Kongo",
+          "dated": "early 20th century",
+          "room": "G250",
+          "style": null,
+          "inscription": null,
+          "signed": null,
+          "markings": null,
+          "text": "It looks like a man being punished or tortured. But to its Kongo makers and users, this figure was a container, empowered by a ritual specialist to house a specific spirit. The figure was consulted like a traditional chief to settle disputes and arrive at binding decisions. Each nail and blade, driven in to energize its powers, represents an issue resolved by its ritual authority.",
+          "description": "",
+          "provenance": null,
+          "portfolio": null,
+          "creditline": "The Christina N. and Swan J. Turnblad Memorial Fund",
+          "accession_number": "71.3",
+          "artist": "Kongo artist",
+          "role": "Artist",
+          "nationality": "African",
+          "life_date": "Middle Africa",
+          "image_copyright": null,
+          "department": "Arts of Global Africa",
+          "rights_type": "Public Domain",
+          "image": "valid",
+          "image_width": 4239,
+          "image_height": 5959,
+          "restricted": 0,
+          "public_access": 1,
+          "curator_approved": 1,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "list:aib-2021-selections": true,
+          "list:handbook": true,
+          "related:audio-stops": [
+            {
+              "title": "Kongo, Nkisi Nkondi",
+              "_id": "1854",
+              "objectId": "1854",
+              "link": "http://audio-tours.s3.amazonaws.com/p437.mp3",
+              "number": "437",
+              "type": "audio"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "Power Figure",
+              "_id": "1854",
+              "objectId": "1854",
+              "description": "\u003Cp\u003EA ritual specialist created this \u003Cem\u003Enkisi\u003C/em\u003E figure to consult the spirit world on behalf of those who came to the figure for help. The \u003Cem\u003Enkisi\u003C/em\u003E served as a modern-day mediator or attorney, maintaining order, enforcing agreements, and calling out wrongdoers. But instead of a briefcase and cell-phone, its tools of the trade were the nails, mirrors, beads, shells, teeth, metal hooks, string, cloth bundles, and other things stuck to it, which defined its powers and behavior. Dirt from a graveyard, sealed into a cavity in its stomach, gave it the spiritual charge to do its work.\u003C/p\u003E",
+              "link": "http://artstories.artsmia.org/#/o/1854",
+              "type": "artstory"
+            }
+          ],
+          "list:african-art-highlights": true,
+          "list:spookyseason": true,
+          "recent": 0,
+          "list": "african-art-highlights",
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Full",
+          "highlights": 0,
+          "Cache_Location": "001000\\800\\50\\1854",
+          "Primary_RenditionNumber": "mia_4002302.jpg"
+        }
+      },
+      {
+        "_index": "objects2",
+        "_id": "3183",
+        "_score": 5.3,
+        "_source": {
+          "id": 3183,
+          "title": "Equestrian figure",
+          "medium": "Wood",
+          "classification": "Sculpture, Woodwork",
+          "dimension": "28 1/4 x 6 3/4 x 10 1/4 in. (71.8 x 17.1 x 26cm) (overall)\r\n3 x 6 x 7 1/2 in. (7.6 x 15.2 x 19.1cm) (base)",
+          "object_name": "Figure",
+          "continent": "Africa",
+          "country": "Mali",
+          "culture": "Djenne",
+          "dated": "about 1450",
+          "room": "G250",
+          "style": null,
+          "inscription": null,
+          "signed": null,
+          "markings": null,
+          "text": "Real or fake? That question has dogged this unique wooden horse rider since it first appeared on the art market. In 1980, X-ray testing and radiocarbon dating of the object indicated that it was carved from a single piece of wood dating from between 1250 and 1450, making it one of the oldest known sub-Saharan wooden sculptures. Additional CAT scans in 2012 confirmed this and showed no evidence of recent restoration. The sculpture is from the Inner Niger Delta in Mali and fuses human dignity with animal strength. Horses were introduced from north of the Sahara to West Africa around 1000 C.E. and soon became prestigious possessions associated with political power and wealth. The figure’s jewelry, weapons, and relative size underscore his importance as a ruler and hunter.",
+          "description": "",
+          "provenance": null,
+          "portfolio": null,
+          "creditline": "Gift of Aimée Mott Butler Charitable Trust, Anne S. Dayton, Mr. and Mrs. Donald C. Dayton, Mr. and Mrs. William N. Driscoll, Clarence G. Frame and Mr. and Mrs. Clinton Morrison",
+          "accession_number": "83.168",
+          "artist": "Djenne artist",
+          "role": "Artist",
+          "nationality": "Malian",
+          "life_date": "Mali",
+          "image_copyright": null,
+          "department": "Arts of Global Africa",
+          "rights_type": "Public Domain",
+          "image": "valid",
+          "image_width": 2612,
+          "image_height": 5236,
+          "restricted": 0,
+          "public_access": 1,
+          "curator_approved": 1,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "list:aib-2021-selections": true,
+          "list:handbook": true,
+          "related:audio-stops": [
+            {
+              "title": "Djenne, Equestrian Figure",
+              "_id": "3183",
+              "objectId": "3183",
+              "link": "http://audio-tours.s3.amazonaws.com/p409.mp3",
+              "number": "409",
+              "type": "audio"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "Equestrian Figure",
+              "_id": "3183",
+              "objectId": "3183",
+              "description": "\u003Cp\u003EIt’s not easy to keep horses in West Africa. They need a lot of food, clean water, and exercise—a luxury even for many people here. They also hate heat and humidity and are easy victims of the tsetse fly, carrier of the deadly trypanosomiasis, aka sleeping sickness. Horses were only affordable, in other words, to those who could command resources and labor from others, and became an important accessory of power for rulers of the ancient West African kingdom of Mali. In fact, the Mali Empire, one of the largest and most powerful states in West Africa during the 1300s, owed much of its military advantage to its horses.\u003C/p\u003E",
+              "link": "http://artstories.artsmia.org/#/o/3183",
+              "type": "artstory"
+            }
+          ],
+          "list:african-art-highlights": true,
+          "recent": 0,
+          "list": "african-art-highlights",
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Full",
+          "highlights": 0,
+          "Cache_Location": "003000\\100\\80\\3183",
+          "Primary_RenditionNumber": "mia_2009840.jpg"
+        }
+      },
+      {
+        "_index": "objects2",
+        "_id": "4866",
+        "_score": 5.3,
+        "_source": {
+          "id": 4866,
+          "title": "Shrine head",
+          "medium": "Terracotta",
+          "classification": "Sculpture, Ceramics",
+          "dimension": "12 1/4 x 5 3/4 x 7 1/4 in. (31.1 x 14.6 x 18.4 cm)",
+          "object_name": "Head",
+          "continent": "Africa",
+          "country": "Nigeria",
+          "culture": "Ancient Yoruba",
+          "dated": "12th-14th century",
+          "room": "G250",
+          "style": null,
+          "inscription": null,
+          "signed": null,
+          "markings": null,
+          "text": "This head’s tranquil demeanor and introspective gaze express what the Yoruba peoples consider a person’s inner virtue. It is a memorial portrait head that comes from the royal city of Ife in western Nigeria, a center of economic, religious, and political power between 1100 and 1400. Ancient Yoruba artists made heads in bronze and terracotta that were part of complete figures or, like here, freestanding. The vertical lines covering the woman’s face either reflect the traditional scarification designs used in the Ife kingdom or represent the veil worn by members of the royal family.",
+          "description": "",
+          "provenance": null,
+          "portfolio": null,
+          "creditline": "The John R. Van Derlip Fund",
+          "accession_number": "95.84",
+          "artist": "Yoruba artist",
+          "role": "Artist",
+          "nationality": "Nigerian",
+          "life_date": "Nigeria",
+          "image_copyright": null,
+          "department": "Arts of Global Africa",
+          "rights_type": "Public Domain",
+          "image": "valid",
+          "image_width": 4561,
+          "image_height": 6728,
+          "restricted": 0,
+          "public_access": 1,
+          "curator_approved": 1,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "list:aib-2021-selections": true,
+          "list:handbook": true,
+          "related:audio-stops": [
+            {
+              "title": "Ife City, Shrine Head",
+              "_id": "4866",
+              "objectId": "4866",
+              "link": "http://audio-tours.s3.amazonaws.com/p918.mp3",
+              "number": "918",
+              "type": "audio"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "Shrine Head",
+              "_id": "4866",
+              "objectId": "4866",
+              "description": "\u003Cp\u003EShe’s beautiful, of course. You can imagine the glint in her eye, the gleam of her lips, so realistic is this ceramic sculpture from nearly 900 years ago. In fact, in 1911, a German explorer in Africa couldn’t wrap his head around the possibility that Africans created it—it’s so different from the abstract art more typical of the continent—and instead proposed that Greek settlers had made it. We know better now, thanks to archaeology and oral history: royals in the ancient city of Ife, in present-day Nigeria, often hired artists to create life-like portraits like this in clay or bronze of themselves, friends, and family.\u003C/p\u003E\n",
+              "link": "http://artstories.artsmia.org/#/o/4866",
+              "type": "artstory"
+            }
+          ],
+          "list:african-art-highlights": true,
+          "recent": 0,
+          "list": "african-art-highlights",
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Full",
+          "highlights": 0,
+          "Cache_Location": "004000\\800\\60\\4866",
+          "Primary_RenditionNumber": "mia_5021120.jpg"
+        }
+      },
+      {
+        "_index": "objects2",
+        "_id": "4379",
+        "_score": 5.3,
+        "_source": {
+          "id": 4379,
+          "title": "Rudrakshamala Necklace",
+          "medium": "Rudraksha berries, 22k gold, silver, rubies, and semiprecious stones",
+          "classification": "Adornment",
+          "dimension": "L.17-1/2 x W.(at widest point in pendant)4-3/8 x D.1-5/8 in.",
+          "object_name": "Gauri Shankaram Necklace",
+          "continent": "Asia",
+          "country": null,
+          "culture": null,
+          "dated": "early 19th century",
+          "room": "G211",
+          "style": null,
+          "inscription": "Inscription",
+          "signed": null,
+          "markings": "Tamil inscription on back (Silver portion) of pendant:\r\n\r\npu (undeciphered characters)\r\nTangam (gold) (undeciphered characters)\r\nsu ya ay ee nu",
+          "text": "This elaborate gold necklace once adorned the neck of a Brahman priest or wealthy Chettiar (a male member of a mercantile community with roots in Tamil Nadu in southern India). He would have worn it on very special occasions, or donated it to a temple. Its chain, made of Rudraksha beads from a tree believed to be sacred to the Hindu god Shiva, is attached to three golden lozenges decorated with rubies and semiprecious stones. The central amulet depicts the divine couple, Shiva and Parvati, flanked by their two sons, Ganesha and Murugan. Kaumari, a goddess related to Murugan, appears on the clasp astride her vehicle, the peacock. The bottom amulet would have contained a lingam, an abstract representation of Shiva, or sacred ash, allowing it to function as a portable shrine.",
+          "description": "",
+          "provenance": null,
+          "portfolio": null,
+          "creditline": "The Christina N. and Swan J. Turnblad Memorial Fund",
+          "accession_number": "92.132.1",
+          "artist": "Unknown",
+          "role": null,
+          "nationality": null,
+          "life_date": null,
+          "image_copyright": null,
+          "department": "Asian Art",
+          "rights_type": "Public Domain",
+          "image": "valid",
+          "image_width": 6496,
+          "image_height": 9324,
+          "restricted": 0,
+          "public_access": 1,
+          "curator_approved": 0,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "related:audio-stops": [
+            {
+              "title": "Gowri Shankaram Necklace",
+              "_id": "4379",
+              "objectId": "4379",
+              "link": "http://audio-tours.s3.amazonaws.com/p192.mp3",
+              "number": "192",
+              "type": "audio"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "Rudrakshamala Necklace",
+              "_id": "4379",
+              "objectId": "4379",
+              "description": "\u003Cp\u003EGleaming gold, luscious rubies, ornately cast designs and figures—who wouldn’t want to wear this fabulous necklace? It was once destined for the very wealthy neck of either a Brahmin priest or a Chettiar merchant, (the Chettiars are historically a business community with ties to the region of Tamil Nadu), who would have worn it on his 60th birthday. The large reddish-brown beads are seeds from the Rudraksha tree, which is associated with the god Shiva, and are prized for their auspicious properties said to bring wealth, health, and a change of fate to their owners. The golden figures are all associated with the god Shiva, connecting the wearer to his holy presence. \u003C/p\u003E",
+              "link": "http://artstories.artsmia.org/#/o/4379",
+              "type": "artstory"
+            }
+          ],
+          "recent": 0,
+          "list": null,
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Full",
+          "highlights": 0,
+          "Cache_Location": "004000\\300\\70\\4379",
+          "Primary_RenditionNumber": "mia_6019715.jpg"
+        }
+      },
+      {
+        "_index": "objects2",
+        "_id": "4418",
+        "_score": 5.3,
+        "_source": {
+          "id": 4418,
+          "title": "Portrait of Lucia Wijbrants",
+          "medium": "Oil on panel",
+          "classification": "Paintings",
+          "dimension": "22 1/2 x 17 in. (57.15 x 43.18 cm) (panel)\r\n30 x 24 1/2 in. (76.2 x 62.23 cm) (outer frame)",
+          "object_name": "Painting",
+          "continent": "Europe",
+          "country": "Netherlands",
+          "culture": null,
+          "dated": "1667",
+          "room": "G309",
+          "style": null,
+          "inscription": null,
+          "signed": "G. METSUE An 1667",
+          "markings": "Labels: (Thomas Agnew and Sons, Ltd.): no. 35173 | Second label (much older): no. 9511 | Exhibition label, Stedelijk: 1966 Lady in a Blue Satin Dress, tent. cat. no. 17 / prov: Private collection, London | MIA / Bean loan labels: L77.72.4 A.B | L76.129.5 A.B.| L82.31.1 A.B. | \r\nBottom of stretcher in white chalk: 360",
+          "text": "We can now put a name to this face. For centuries, this painting was known simply as Portrait of a Woman. Recent research revealed her identity: Lucia Wijbrants, the wealthy widow of a Dutch cloth merchant. She stands at her dressing table, surrounded by her pricey possessions, while a frisky spaniel begs for attention. Lucia emerged from a variety of sources, including known portraits (of her and her husband) featuring similar likenesses and some of the same belongings pictured here. In fact, the bed behind her was previously owned by her husband’s first wife.\r\n\r\nThe Dutch 17th-century frame is a gift of the Douglas and Mary Olson Frame Acquisition Fund.",
+          "description": "",
+          "provenance": "?Commissioned by Jan Jacobsz. Hinlopen, Amsterdam (before d. 1666); his wife, Lucia Wijbrants, Amsterdam (until d. 1719)[1]; ?her sister, Helena Wijbrants, Amsterdam (1719–21); by descent, Pieter van Winter Nicolaas Simonsz., Amsterdam; his daughter, Anna Louisa Agatha (“Annewies”) Van Winter, later Mrs. Willem Van Loon (?from 1805; sold to Rothschild); Baron Lionel Nathan Rothschild, London (?1865–d. 1879); Nathan Mayer, 1st Lord Rothschild, London; Victor Rothschild, London (until 1937; sale, Sotheby & Co., London, April 19, 1937, no. 9, for £1, 350, to Bottenwieser). H.E.M. Benn, England (until 1960; his sale, Sotheby & Co., London, December 7, 1960, no. 35, to Agnew, for £5, 000); [Agnew, London, 1960–1968; sold to Richardson]; R.J. Richardson, ?London (1968–72, sale, Agnew, London, November, 1972 to Bean); Atherton and Winnifred Bean, Minneapolis (1972–92, given to Mia)\r\n\r\n\r\n[1] Lucia Wijbrants will of February 6, 1705 states “het conterfijtsel van haar testatrice alleen door Metsu geschildert” [the portrait of her testatrix painted only by Metsu]",
+          "portfolio": null,
+          "creditline": "Gift of Atherton and Winifred W. Bean",
+          "accession_number": "92.16",
+          "artist": "Gabriël Metsu",
+          "role": "Artist",
+          "nationality": "Dutch",
+          "life_date": "Dutch, 1629–1667",
+          "image_copyright": null,
+          "department": "European Art",
+          "rights_type": "Public Domain",
+          "image": "valid",
+          "image_width": 7818,
+          "image_height": 9603,
+          "restricted": 0,
+          "public_access": 1,
+          "curator_approved": 1,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "list:aib-2021-selections": true,
+          "list:handbook": true,
+          "related:audio-stops": [
+            {
+              "title": "Gabriel Metsu, Portrait of a Lady",
+              "_id": "4418",
+              "objectId": "4418",
+              "link": "http://audio-tours.s3.amazonaws.com/p124.mp3",
+              "number": "124",
+              "type": "audio"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "Portrait of Lucia Wijbrants (1638-1719)",
+              "_id": "4418",
+              "objectId": "4418",
+              "description": "\u003Cp\u003EWe can now put a name to this face. For centuries, this painting was known simply as \u003Cem\u003EPortrait of a Woman\u003C/em\u003E. But recent research revealed the identity of this elegantly dressed lady: Lucia Wijbrants (1638–1719), the wealthy widow of a Dutch cloth merchant. She stands at her dressing table, surrounded by her personal—and rather expensive—possessions, while the frisky spaniel at her feet begs for her attention.\u003C/p\u003E",
+              "link": "http://artstories.artsmia.org/#/o/4418",
+              "type": "artstory"
+            }
+          ],
+          "list:paintings-collection-highlights": true,
+          "recent": 0,
+          "list": null,
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Full",
+          "highlights": 0,
+          "Cache_Location": "004000\\400\\10\\4418",
+          "Primary_RenditionNumber": "mia_8033503.jpg"
+        }
+      },
+      {
+        "_index": "objects2",
+        "_id": "1937",
+        "_score": 5.3,
+        "_source": {
+          "id": 1937,
+          "title": "Sande mask",
+          "medium": "Wood, raffia",
+          "classification": "Ceremonial Objects, Woodwork",
+          "dimension": "13 x 8 x 8 in. (33.0 x 20.3 x 20.3 cm)",
+          "object_name": "Mask, Sande Society Mask, Initiation mask",
+          "continent": "Africa",
+          "country": "Sierra Leone",
+          "culture": "Mende",
+          "dated": "second quarter of 20th century",
+          "room": "G254",
+          "style": null,
+          "inscription": null,
+          "signed": null,
+          "markings": null,
+          "text": "A mask sometimes embodies ideals of physical and moral beauty or goodness. Here, the high forehead, downcast eyes, and elaborate coiffure suggest the pinnacle of female attractiveness among the Mende people. One of the very few types of masks worn by women in Africa, it accompanied young girls who had undergone initiation into the Sande association that prepared them for adulthood. The dyed raffia attached to the mask was part of a larger costume that would have entirely covered the dancer.",
+          "description": "",
+          "provenance": null,
+          "portfolio": null,
+          "creditline": "The Christina N. and Swan J. Turnblad Memorial Fund",
+          "accession_number": "72.69.1",
+          "artist": "Mende artist",
+          "role": "Artist",
+          "nationality": "Sierra Leonean",
+          "life_date": "Sierra Leone",
+          "image_copyright": null,
+          "department": "Arts of Global Africa",
+          "rights_type": "Public Domain",
+          "image": "valid",
+          "image_width": 4014,
+          "image_height": 4899,
+          "restricted": 0,
+          "public_access": 1,
+          "curator_approved": 1,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "related:audio-stops": [
+            {
+              "title": "Mende, Sierra Leone, Sande Society Mask",
+              "_id": "1937",
+              "objectId": "1937",
+              "link": "http://audio-tours.s3.amazonaws.com/p443.mp3",
+              "number": "443",
+              "type": "audio"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "Initiation Mask",
+              "_id": "1937",
+              "objectId": "1937",
+              "description": "\u003Cp\u003EThis one is all about the women. The day you received your drivers’ license, the night you crammed your toes into high heels and wobbled into the world four inches taller—these are typical milestones in the march to womanhood. But in parts of Liberia and Sierra Leone, a mask like this one is a major marker. Elder women wear them during the initiation of girls into womanhood, when they are instructed in ethics, marriage, childcare, personal finance, and traditional songs and dances. The mask reflects their shared aspirations: the carefully ordered hair, high forehead, downcast eyes, and dark skin are all Mende ideals of feminine beauty.\u003C/p\u003E\n",
+              "link": "http://artstories.artsmia.org/#/o/1937",
+              "type": "artstory"
+            }
+          ],
+          "list:african-art-highlights": true,
+          "recent": 0,
+          "list": "african-art-highlights",
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Full",
+          "highlights": 0,
+          "Cache_Location": "001000\\900\\30\\1937",
+          "Primary_RenditionNumber": "mia_2009435.jpg"
+        }
+      }
+    ]
+  },
+  "aggregations": {
+    "Artist": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": []
+    },
+    "Department": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": []
+    },
+    "Gist": {
+      "buckets": []
+    },
+    "Rights": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "Public Domain",
+          "doc_count": 75
+        },
+        {
+          "key": "In Copyright",
+          "doc_count": 15
+        },
+        {
+          "key": "Unknown",
+          "doc_count": 3
+        }
+      ]
+    },
+    "Medium": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": []
+    },
+    "Classification": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "Paintings",
+          "doc_count": 24
+        },
+        {
+          "key": "Sculpture",
+          "doc_count": 12
+        },
+        {
+          "key": "Textiles",
+          "doc_count": 7
+        },
+        {
+          "key": "Photographs",
+          "doc_count": 5
+        },
+        {
+          "key": "Prints",
+          "doc_count": 4
+        },
+        {
+          "key": "Ceramics",
+          "doc_count": 3
+        },
+        {
+          "key": "Metalwork",
+          "doc_count": 3
+        },
+        {
+          "key": "Adornment",
+          "doc_count": 2
+        },
+        {
+          "key": "Ceremonial Objects, Sculpture",
+          "doc_count": 2
+        },
+        {
+          "key": "Lacquer",
+          "doc_count": 2
+        },
+        {
+          "key": "Paintings, Calligraphy",
+          "doc_count": 2
+        },
+        {
+          "key": "Sculpture, Woodwork",
+          "doc_count": 2
+        },
+        {
+          "key": " Furniture",
+          "doc_count": 1
+        },
+        {
+          "key": "Accessories",
+          "doc_count": 1
+        },
+        {
+          "key": "Accessories, Beadwork",
+          "doc_count": 1
+        },
+        {
+          "key": "Architecture",
+          "doc_count": 1
+        },
+        {
+          "key": "Architecture, Models",
+          "doc_count": 1
+        },
+        {
+          "key": "Arms and Armor",
+          "doc_count": 1
+        },
+        {
+          "key": "Arms and Armor, Metalwork",
+          "doc_count": 1
+        },
+        {
+          "key": "Artist Installations, Assemblages",
+          "doc_count": 1
+        },
+        {
+          "key": "Ceremonial Objects",
+          "doc_count": 1
+        },
+        {
+          "key": "Ceremonial Objects, Adornment",
+          "doc_count": 1
+        },
+        {
+          "key": "Ceremonial Objects, Beadwork",
+          "doc_count": 1
+        },
+        {
+          "key": "Ceremonial Objects, Woodwork",
+          "doc_count": 1
+        },
+        {
+          "key": "Drawings",
+          "doc_count": 1
+        },
+        {
+          "key": "Funerary Goods",
+          "doc_count": 1
+        },
+        {
+          "key": "Funerary Goods, Woodwork",
+          "doc_count": 1
+        },
+        {
+          "key": "Furniture",
+          "doc_count": 1
+        },
+        {
+          "key": "Industrial Design, Tools, Equipment and Utilitarian Objects",
+          "doc_count": 1
+        },
+        {
+          "key": "Lacquer, Musical Instruments",
+          "doc_count": 1
+        },
+        {
+          "key": "Multiples",
+          "doc_count": 1
+        },
+        {
+          "key": "Musical Instruments",
+          "doc_count": 1
+        },
+        {
+          "key": "Paintings, Books",
+          "doc_count": 1
+        },
+        {
+          "key": "Sculpture, Ceramics",
+          "doc_count": 1
+        },
+        {
+          "key": "Textiles, Clothing",
+          "doc_count": 1
+        },
+        {
+          "key": "Time-based Media, Digital Art, Artist Installations",
+          "doc_count": 1
+        },
+        {
+          "key": "Wall Covering",
+          "doc_count": 1
+        }
+      ]
+    },
+    "Title": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": []
+    },
+    "Style": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": []
+    },
+    "Country": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": []
+    },
+    "Room": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": []
+    },
+    "Tags": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": []
+    }
+  },
+  "query": "_exists_:\"related:artstories\"",
+  "error": null,
+  "cache": {
+    "cached": true,
+    "key": "cache::search::_exists_:\"related:artstories\"::20::private"
+  }
+}

@@ -1,0 +1,5263 @@
+{
+  "took": 1242,
+  "timed_out": false,
+  "_shards": {
+    "total": 1,
+    "successful": 1,
+    "failed": 0
+  },
+  "hits": {
+    "total": 99998,
+    "max_score": 9.050967,
+    "hits": [
+      {
+        "_index": "objects2",
+        "_type": "object_data",
+        "_id": "3520",
+        "_score": 9.050967,
+        "_source": {
+          "id": 3520,
+          "title": "The Doryphoros (after Polykleitos)",
+          "medium": "Pentelic marble",
+          "classification": "Sculpture",
+          "dimension": "78 x 19 x 19 in. (198.12 x 48.26 x 48.26 cm)",
+          "object_name": "Roman copy of a Greek bronze statue of c. 450-440 BCE",
+          "continent": null,
+          "country": "Roman",
+          "culture": "Roman",
+          "dated": "27 BCE–68 CE",
+          "room": "G241",
+          "style": null,
+          "inscription": null,
+          "signed": null,
+          "markings": null,
+          "text": null,
+          "description": "",
+          "provenance": null,
+          "portfolio": null,
+          "creditline": "The John R. Van Derlip Fund and Gift of funds from Bruce B. Dayton, an anonymous donor, Mr. and Mrs. Kenneth Dayton, Mr. and Mrs. W. John Driscoll, Mr. and Mrs. Alfred Harrison, Mr. and Mrs. John Andrus, Mr. and Mrs. Judson Dayton, Mr. and Mrs. Stephen Keating, Mr. and Mrs. Pierce McNally, Mr. and Mrs. Donald Dayton, Mr. and Mrs. Wayne MacFarlane, and many other generous friends of the Institute",
+          "accession_number": "86.6",
+          "artist": "Copy of work attributed to Polykleitos",
+          "role": "Artist",
+          "nationality": "Roman",
+          "life_date": "Greek, active 460–415 BCE",
+          "image_copyright": null,
+          "department": "European Art",
+          "rights_type": "Public Domain",
+          "image": "valid",
+          "image_width": 5428,
+          "image_height": 7230,
+          "restricted": 0,
+          "public_access": 1,
+          "curator_approved": 1,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "list:aib-2021-selections": true,
+          "list:handbook": true,
+          "related:audio-stops": [
+            {
+              "title": "Doryphoros",
+              "_id": "3520",
+              "objectId": "3520",
+              "link": "http://audio-tours.s3.amazonaws.com/p301.mp3",
+              "number": "301",
+              "type": "audio"
+            }
+          ],
+          "related:3dmodels": [
+            {
+              "title": "Mia's Doryphoros",
+              "_id": "3520",
+              "objectId": "3520",
+              "link": "https://sketchfab.com/models/8a54983061b74de4bf8b7ca2aca25990",
+              "type": "3d",
+              "thumb": "https://dg5bepmjyhz9h.cloudfront.net/urls/8a54983061b74de4bf8b7ca2aca25990/dist/thumbnails/56a0e82b8ea541daa346b4689679bbbb/640x360.jpeg"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "Doryphoros",
+              "_id": "3520",
+              "objectId": "3520",
+              "description": "\u003Cp\u003EThe ideal body. We all want it, and our never-ending struggle to get it sells magazines and gym memberships and Spanx (when we finally give up). Ideals of beauty vary between cultures, but the idea of the ideal is in everyone’s nature. Thousands of years ago, the celebrated Greek sculptor Polykleitos argued that the human ideal could be distilled down to numbers, and offered The Doryphoros, or Spear Bearer, as the perfect man, reflecting mathematically precise proportions. This is one of the four surviving Roman copies of the Greek original, now lost. \u003C/p\u003E",
+              "link": "http://artstories.artsmia.org/#/o/3520",
+              "type": "artstory"
+            }
+          ],
+          "list:sculpture-highlights": true,
+          "recent": 0,
+          "list": "sculpture-highlights",
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Full",
+          "highlights": 0,
+          "Cache_Location": "003000\\500\\20\\3520",
+          "Primary_RenditionNumber": "mia_4000977.jpg"
+        }
+      },
+      {
+        "_index": "objects2",
+        "_type": "object_data",
+        "_id": "1244",
+        "_score": 7.495332,
+        "_source": {
+          "id": 1244,
+          "title": "Warrior with Shield",
+          "medium": "Bronze",
+          "classification": "Sculpture",
+          "dimension": "62 x 29 x 33 in. (157.5 x 73.7 x 83.8 cm)",
+          "object_name": "Sculpture",
+          "continent": "Europe",
+          "country": "England",
+          "culture": null,
+          "dated": "1953–54",
+          "room": "G371",
+          "style": null,
+          "inscription": null,
+          "signed": null,
+          "markings": null,
+          "text": "Henry Moore’s Warrior with Shield is neither standing nor fallen. His left arm and leg have been severed, rendering him unable to stand; however he is not yet defeated. The Warrior’s remaining arm thrusts a shield upward, as if to reflect a blow. The scoring on the bronze surface of the sculpture is reminiscent of scars or wounds, and the jagged, uneven stumps where limbs used to extend help to portray a body under an extreme amount of pain and exertion. Moore’s Warrior reverberates with the agonies of a soldier’s brutalized, mutilated body yet with equal force shows the valor and persistence to fight to the end. The intimacy of the form of Warrior with Shield resonates with both the heroism and the tragedy of combat.",
+          "description": "",
+          "provenance": null,
+          "portfolio": null,
+          "creditline": "Gift of Mr. and Mrs. John Cowles",
+          "accession_number": "54.22",
+          "artist": "Henry Moore",
+          "role": "Artist",
+          "nationality": "British",
+          "life_date": "British, 1898–1986",
+          "image_copyright": "© The Henry Moore Foundation. All Rights Reserved, DACS 2014 / www.henry-moore.org",
+          "department": "European Art",
+          "rights_type": "In Copyright",
+          "image": "valid",
+          "image_width": 3594,
+          "image_height": 5220,
+          "restricted": 1,
+          "public_access": 1,
+          "curator_approved": 0,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "list:aib-2021-selections": true,
+          "list:handbook": true,
+          "related:audio-stops": [
+            {
+              "title": "Moore, Warrior with Sheild",
+              "_id": "1244",
+              "objectId": "1244",
+              "link": "http://audio-tours.s3.amazonaws.com/p548.mp3",
+              "number": "548",
+              "type": "audio"
+            }
+          ],
+          "related:artstories": [
+            {
+              "title": "Warrior with Shield",
+              "_id": "1244",
+              "objectId": "1244",
+              "description": "\u003Cp\u003EBalancing between glory and destruction— to view this statue is to observe the opposing outcomes of war.  Artist Henry Moore is most known for sculpting reclining female figures with gentle lines and soft edges.  His style takes on new meaning when it is used to convey the violence of combat.  A reclining figure is a man struggling to stay upright.  Soft dimples are the gruesome marks of wounds.  Rounded edges are the shocking ends of missing limbs.  In the aftermath of World War II, Moore uses the balance between the softness of style and the brutality of subject to capture the shift between romantic ideas of heroism and the tragic realities of war.\u003C/p\u003E",
+              "link": "http://artstories.artsmia.org/#/o/1244",
+              "type": "artstory"
+            }
+          ],
+          "list:sculpture-highlights": true,
+          "recent": 0,
+          "list": "sculpture-highlights",
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Limited",
+          "highlights": 0,
+          "Cache_Location": "001000\\200\\40\\1244",
+          "Primary_RenditionNumber": "mia_70250a.jpg"
+        }
+      }
+    ]
+  },
+  "aggregations": {
+    "Rights": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "Public Domain",
+          "doc_count": 64189
+        },
+        {
+          "key": "In Copyright",
+          "doc_count": 30936
+        },
+        {
+          "key": "Unknown",
+          "doc_count": 2486
+        },
+        {
+          "key": "Not Evaluated",
+          "doc_count": 2379
+        },
+        {
+          "key": "In Copyright–Educational Use",
+          "doc_count": 3
+        },
+        {
+          "key": "Copyright Not Evaluated",
+          "doc_count": 2
+        },
+        {
+          "key": "No Known Copyright",
+          "doc_count": 2
+        },
+        {
+          "key": "In Copyright–Non-Commercial Use",
+          "doc_count": 1
+        }
+      ]
+    },
+    "Medium": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 38441,
+      "buckets": [
+        {
+          "key": "print",
+          "doc_count": 16736
+        },
+        {
+          "key": "paper",
+          "doc_count": 12617
+        },
+        {
+          "key": "color",
+          "doc_count": 12490
+        },
+        {
+          "key": "silver",
+          "doc_count": 12189
+        },
+        {
+          "key": "etching",
+          "doc_count": 11664
+        },
+        {
+          "key": "ink",
+          "doc_count": 9899
+        },
+        {
+          "key": "lithograph",
+          "doc_count": 9293
+        },
+        {
+          "key": "gelatin",
+          "doc_count": 9135
+        },
+        {
+          "key": "engraving",
+          "doc_count": 8296
+        },
+        {
+          "key": "hand",
+          "doc_count": 7358
+        },
+        {
+          "key": "colored",
+          "doc_count": 6632
+        },
+        {
+          "key": "cotton",
+          "doc_count": 6514
+        },
+        {
+          "key": "woodblock",
+          "doc_count": 4892
+        },
+        {
+          "key": "silk",
+          "doc_count": 4377
+        },
+        {
+          "key": "wood",
+          "doc_count": 3438
+        },
+        {
+          "key": "printed",
+          "doc_count": 2746
+        },
+        {
+          "key": "e",
+          "doc_count": 2708
+        },
+        {
+          "key": "nishiki",
+          "doc_count": 2560
+        },
+        {
+          "key": "aquatint",
+          "doc_count": 2192
+        },
+        {
+          "key": "wool",
+          "doc_count": 2080
+        },
+        {
+          "key": "drypoint",
+          "doc_count": 2000
+        },
+        {
+          "key": "black",
+          "doc_count": 1994
+        },
+        {
+          "key": "bound",
+          "doc_count": 1865
+        },
+        {
+          "key": "letterpress",
+          "doc_count": 1805
+        },
+        {
+          "key": "volume",
+          "doc_count": 1744
+        },
+        {
+          "key": "pigment",
+          "doc_count": 1715
+        },
+        {
+          "key": "porcelain",
+          "doc_count": 1700
+        },
+        {
+          "key": "woodcut",
+          "doc_count": 1686
+        },
+        {
+          "key": "glass",
+          "doc_count": 1646
+        },
+        {
+          "key": "gold",
+          "doc_count": 1632
+        },
+        {
+          "key": "linen",
+          "doc_count": 1520
+        },
+        {
+          "key": "offset",
+          "doc_count": 1492
+        },
+        {
+          "key": "lithography",
+          "doc_count": 1479
+        },
+        {
+          "key": "white",
+          "doc_count": 1467
+        },
+        {
+          "key": "oil",
+          "doc_count": 1354
+        },
+        {
+          "key": "screenprint",
+          "doc_count": 1271
+        },
+        {
+          "key": "graphite",
+          "doc_count": 1238
+        },
+        {
+          "key": "bronze",
+          "doc_count": 1223
+        },
+        {
+          "key": "metal",
+          "doc_count": 1212
+        },
+        {
+          "key": "scroll",
+          "doc_count": 1209
+        },
+        {
+          "key": "hanging",
+          "doc_count": 1208
+        },
+        {
+          "key": "watercolor",
+          "doc_count": 1162
+        },
+        {
+          "key": "dyed",
+          "doc_count": 1154
+        },
+        {
+          "key": "pen",
+          "doc_count": 1146
+        },
+        {
+          "key": "photogravure",
+          "doc_count": 1135
+        },
+        {
+          "key": "stoneware",
+          "doc_count": 1130
+        },
+        {
+          "key": "glazed",
+          "doc_count": 1090
+        },
+        {
+          "key": "ivory",
+          "doc_count": 1066
+        },
+        {
+          "key": "canvas",
+          "doc_count": 1053
+        },
+        {
+          "key": "lace",
+          "doc_count": 1053
+        },
+        {
+          "key": "ceramic",
+          "doc_count": 1048
+        },
+        {
+          "key": "mezzotint",
+          "doc_count": 1037
+        },
+        {
+          "key": "needlework",
+          "doc_count": 976
+        },
+        {
+          "key": "albumen",
+          "doc_count": 961
+        },
+        {
+          "key": "glaze",
+          "doc_count": 949
+        },
+        {
+          "key": "earthenware",
+          "doc_count": 945
+        },
+        {
+          "key": "brown",
+          "doc_count": 876
+        },
+        {
+          "key": "iron",
+          "doc_count": 870
+        },
+        {
+          "key": "brass",
+          "doc_count": 796
+        },
+        {
+          "key": "metallic",
+          "doc_count": 744
+        },
+        {
+          "key": "fabric",
+          "doc_count": 715
+        },
+        {
+          "key": "woven",
+          "doc_count": 702
+        },
+        {
+          "key": "embroidery",
+          "doc_count": 670
+        },
+        {
+          "key": "xerography",
+          "doc_count": 659
+        },
+        {
+          "key": "beads",
+          "doc_count": 651
+        },
+        {
+          "key": "pencil",
+          "doc_count": 634
+        },
+        {
+          "key": "intaglio",
+          "doc_count": 626
+        },
+        {
+          "key": "laid",
+          "doc_count": 611
+        },
+        {
+          "key": "blue",
+          "doc_count": 588
+        },
+        {
+          "key": "copper",
+          "doc_count": 586
+        },
+        {
+          "key": "red",
+          "doc_count": 546
+        },
+        {
+          "key": "ware",
+          "doc_count": 545
+        },
+        {
+          "key": "japan",
+          "doc_count": 538
+        },
+        {
+          "key": "cloth",
+          "doc_count": 534
+        },
+        {
+          "key": "ground",
+          "doc_count": 534
+        },
+        {
+          "key": "chalk",
+          "doc_count": 527
+        },
+        {
+          "key": "fibers",
+          "doc_count": 525
+        },
+        {
+          "key": "mixed",
+          "doc_count": 521
+        },
+        {
+          "key": "lacquer",
+          "doc_count": 520
+        },
+        {
+          "key": "coupler",
+          "doc_count": 516
+        },
+        {
+          "key": "gouache",
+          "doc_count": 513
+        },
+        {
+          "key": "pigments",
+          "doc_count": 506
+        },
+        {
+          "key": "wash",
+          "doc_count": 500
+        },
+        {
+          "key": "turquoise",
+          "doc_count": 491
+        },
+        {
+          "key": "book",
+          "doc_count": 483
+        },
+        {
+          "key": "polyester",
+          "doc_count": 480
+        },
+        {
+          "key": "over",
+          "doc_count": 474
+        },
+        {
+          "key": "gilt",
+          "doc_count": 472
+        },
+        {
+          "key": "rayon",
+          "doc_count": 469
+        },
+        {
+          "key": "acrylic",
+          "doc_count": 467
+        },
+        {
+          "key": "leaf",
+          "doc_count": 455
+        },
+        {
+          "key": "plant",
+          "doc_count": 455
+        },
+        {
+          "key": "jade",
+          "doc_count": 444
+        },
+        {
+          "key": "soft",
+          "doc_count": 438
+        },
+        {
+          "key": "plate",
+          "doc_count": 434
+        },
+        {
+          "key": "green",
+          "doc_count": 428
+        },
+        {
+          "key": "leather",
+          "doc_count": 427
+        },
+        {
+          "key": "thread",
+          "doc_count": 427
+        },
+        {
+          "key": "collage",
+          "doc_count": 419
+        },
+        {
+          "key": "proof",
+          "doc_count": 404
+        },
+        {
+          "key": "panel",
+          "doc_count": 396
+        },
+        {
+          "key": "stipple",
+          "doc_count": 392
+        },
+        {
+          "key": "enamel",
+          "doc_count": 390
+        },
+        {
+          "key": "surimono",
+          "doc_count": 389
+        },
+        {
+          "key": "folded",
+          "doc_count": 383
+        },
+        {
+          "key": "dye",
+          "doc_count": 382
+        },
+        {
+          "key": "tinted",
+          "doc_count": 380
+        },
+        {
+          "key": "weft",
+          "doc_count": 365
+        },
+        {
+          "key": "wove",
+          "doc_count": 351
+        },
+        {
+          "key": "velvet",
+          "doc_count": 349
+        },
+        {
+          "key": "gray",
+          "doc_count": 334
+        },
+        {
+          "key": "nylon",
+          "doc_count": 316
+        },
+        {
+          "key": "cut",
+          "doc_count": 313
+        },
+        {
+          "key": "painted",
+          "doc_count": 307
+        },
+        {
+          "key": "bamboo",
+          "doc_count": 306
+        },
+        {
+          "key": "bobbin",
+          "doc_count": 298
+        },
+        {
+          "key": "plastic",
+          "doc_count": 297
+        },
+        {
+          "key": "digital",
+          "doc_count": 293
+        },
+        {
+          "key": "platinum",
+          "doc_count": 291
+        },
+        {
+          "key": "supplementary",
+          "doc_count": 288
+        },
+        {
+          "key": "threads",
+          "doc_count": 280
+        },
+        {
+          "key": "decoration",
+          "doc_count": 274
+        },
+        {
+          "key": "photolithograph",
+          "doc_count": 274
+        },
+        {
+          "key": "relief",
+          "doc_count": 273
+        },
+        {
+          "key": "zinc",
+          "doc_count": 273
+        },
+        {
+          "key": "screen",
+          "doc_count": 271
+        },
+        {
+          "key": "weave",
+          "doc_count": 271
+        },
+        {
+          "key": "patterning",
+          "doc_count": 270
+        },
+        {
+          "key": "stone",
+          "doc_count": 264
+        },
+        {
+          "key": "enamels",
+          "doc_count": 263
+        },
+        {
+          "key": "lithographs",
+          "doc_count": 261
+        },
+        {
+          "key": "pastel",
+          "doc_count": 257
+        },
+        {
+          "key": "engravings",
+          "doc_count": 256
+        },
+        {
+          "key": "from",
+          "doc_count": 254
+        },
+        {
+          "key": "prints",
+          "doc_count": 253
+        },
+        {
+          "key": "mounted",
+          "doc_count": 250
+        },
+        {
+          "key": "satin",
+          "doc_count": 248
+        },
+        {
+          "key": "fiber",
+          "doc_count": 241
+        },
+        {
+          "key": "inkjet",
+          "doc_count": 241
+        },
+        {
+          "key": "steel",
+          "doc_count": 240
+        },
+        {
+          "key": "chromogenic",
+          "doc_count": 239
+        },
+        {
+          "key": "cream",
+          "doc_count": 238
+        },
+        {
+          "key": "folding",
+          "doc_count": 238
+        },
+        {
+          "key": "sterling",
+          "doc_count": 237
+        },
+        {
+          "key": "de",
+          "doc_count": 235
+        },
+        {
+          "key": "tin",
+          "doc_count": 234
+        },
+        {
+          "key": "file",
+          "doc_count": 226
+        },
+        {
+          "key": "board",
+          "doc_count": 221
+        },
+        {
+          "key": "viscose",
+          "doc_count": 220
+        },
+        {
+          "key": "pewter",
+          "doc_count": 218
+        },
+        {
+          "key": "decor",
+          "doc_count": 217
+        },
+        {
+          "key": "charcoal",
+          "doc_count": 214
+        },
+        {
+          "key": "chine",
+          "doc_count": 213
+        },
+        {
+          "key": "light",
+          "doc_count": 212
+        },
+        {
+          "key": "crayon",
+          "doc_count": 210
+        },
+        {
+          "key": "s",
+          "doc_count": 209
+        },
+        {
+          "key": "transfer",
+          "doc_count": 208
+        },
+        {
+          "key": "cardboard",
+          "doc_count": 207
+        },
+        {
+          "key": "shell",
+          "doc_count": 207
+        },
+        {
+          "key": "mohair",
+          "doc_count": 203
+        },
+        {
+          "key": "stencil",
+          "doc_count": 203
+        },
+        {
+          "key": "under",
+          "doc_count": 199
+        },
+        {
+          "key": "warp",
+          "doc_count": 199
+        },
+        {
+          "key": "animal",
+          "doc_count": 198
+        },
+        {
+          "key": "colors",
+          "doc_count": 197
+        },
+        {
+          "key": "paint",
+          "doc_count": 197
+        },
+        {
+          "key": "hide",
+          "doc_count": 195
+        },
+        {
+          "key": "ikat",
+          "doc_count": 194
+        },
+        {
+          "key": "roulette",
+          "doc_count": 194
+        },
+        {
+          "key": "finished",
+          "doc_count": 189
+        },
+        {
+          "key": "visite",
+          "doc_count": 188
+        },
+        {
+          "key": "carte",
+          "doc_count": 187
+        },
+        {
+          "key": "mylar",
+          "doc_count": 184
+        },
+        {
+          "key": "natural",
+          "doc_count": 184
+        },
+        {
+          "key": "artist",
+          "doc_count": 183
+        },
+        {
+          "key": "sepia",
+          "doc_count": 181
+        },
+        {
+          "key": "underglaze",
+          "doc_count": 177
+        },
+        {
+          "key": "media",
+          "doc_count": 176
+        },
+        {
+          "key": "sequins",
+          "doc_count": 175
+        },
+        {
+          "key": "mahogany",
+          "doc_count": 172
+        },
+        {
+          "key": "pair",
+          "doc_count": 172
+        },
+        {
+          "key": "appliqué",
+          "doc_count": 171
+        },
+        {
+          "key": "card",
+          "doc_count": 171
+        },
+        {
+          "key": "handmade",
+          "doc_count": 171
+        },
+        {
+          "key": "slip",
+          "doc_count": 169
+        },
+        {
+          "key": "six",
+          "doc_count": 167
+        },
+        {
+          "key": "tissue",
+          "doc_count": 166
+        },
+        {
+          "key": "various",
+          "doc_count": 166
+        },
+        {
+          "key": "brush",
+          "doc_count": 165
+        },
+        {
+          "key": "pale",
+          "doc_count": 164
+        },
+        {
+          "key": "synthetic",
+          "doc_count": 164
+        },
+        {
+          "key": "brocade",
+          "doc_count": 162
+        },
+        {
+          "key": "marble",
+          "doc_count": 162
+        },
+        {
+          "key": "mica",
+          "doc_count": 162
+        },
+        {
+          "key": "tapestry",
+          "doc_count": 161
+        },
+        {
+          "key": "coloring",
+          "doc_count": 160
+        },
+        {
+          "key": "halftone",
+          "doc_count": 159
+        },
+        {
+          "key": "loose",
+          "doc_count": 159
+        },
+        {
+          "key": "ornament",
+          "doc_count": 158
+        },
+        {
+          "key": "passementerie",
+          "doc_count": 158
+        }
+      ]
+    },
+    "Style": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 19,
+      "buckets": [
+        {
+          "key": "Art Deco",
+          "doc_count": 240
+        },
+        {
+          "key": "Pre-Columbian",
+          "doc_count": 163
+        },
+        {
+          "key": "So_saku hanga",
+          "doc_count": 111
+        },
+        {
+          "key": "Art Nouveau",
+          "doc_count": 84
+        },
+        {
+          "key": "Chinese export",
+          "doc_count": 78
+        },
+        {
+          "key": "Kano",
+          "doc_count": 69
+        },
+        {
+          "key": "Bauhaus",
+          "doc_count": 61
+        },
+        {
+          "key": "Arts and Crafts",
+          "doc_count": 56
+        },
+        {
+          "key": "Pre-Classic",
+          "doc_count": 53
+        },
+        {
+          "key": "Ōtsu-e",
+          "doc_count": 43
+        },
+        {
+          "key": "Nikuhitsu ukiyo-e",
+          "doc_count": 34
+        },
+        {
+          "key": "Nikuhitsu ukiyo-e, Ukiyo-e",
+          "doc_count": 30
+        },
+        {
+          "key": "Rinpa",
+          "doc_count": 29
+        },
+        {
+          "key": "20th century",
+          "doc_count": 28
+        },
+        {
+          "key": "Wiener Werkstätte",
+          "doc_count": 26
+        },
+        {
+          "key": "Franco-Flemish School",
+          "doc_count": 21
+        },
+        {
+          "key": "Nanga",
+          "doc_count": 20
+        },
+        {
+          "key": "Cursive script (sōsho)",
+          "doc_count": 18
+        },
+        {
+          "key": "George III",
+          "doc_count": 16
+        },
+        {
+          "key": "Mingei",
+          "doc_count": 16
+        },
+        {
+          "key": "De Stijl",
+          "doc_count": 14
+        },
+        {
+          "key": "17th century",
+          "doc_count": 13
+        },
+        {
+          "key": "Chicago Style",
+          "doc_count": 13
+        },
+        {
+          "key": "Prairie School",
+          "doc_count": 13
+        },
+        {
+          "key": "Shijō",
+          "doc_count": 13
+        },
+        {
+          "key": "Federal",
+          "doc_count": 11
+        },
+        {
+          "key": "Queen Anne",
+          "doc_count": 11
+        },
+        {
+          "key": "Zenga",
+          "doc_count": 10
+        },
+        {
+          "key": "19th century",
+          "doc_count": 9
+        },
+        {
+          "key": "George II",
+          "doc_count": 9
+        },
+        {
+          "key": "18th century",
+          "doc_count": 8
+        },
+        {
+          "key": "Herat school",
+          "doc_count": 8
+        },
+        {
+          "key": "Tosa",
+          "doc_count": 8
+        },
+        {
+          "key": "Aesthetic Movement",
+          "doc_count": 7
+        },
+        {
+          "key": "Louis XVI",
+          "doc_count": 6
+        },
+        {
+          "key": "Nikuhitsu ukiyo-e, Ukiyo-e, Katsushika",
+          "doc_count": 6
+        },
+        {
+          "key": "Nikuhitsu ukiyo-e, Ukiyo-e, Utagawa",
+          "doc_count": 6
+        },
+        {
+          "key": "Rhode Island School of Design",
+          "doc_count": 6
+        },
+        {
+          "key": "16th century",
+          "doc_count": 5
+        },
+        {
+          "key": "George I",
+          "doc_count": 5
+        },
+        {
+          "key": "George IV",
+          "doc_count": 5
+        },
+        {
+          "key": "Modern",
+          "doc_count": 5
+        },
+        {
+          "key": "Nagasaki",
+          "doc_count": 5
+        },
+        {
+          "key": "Neoclassical",
+          "doc_count": 5
+        },
+        {
+          "key": "Nihonga",
+          "doc_count": 5
+        },
+        {
+          "key": "Nikuhitsu ukiyo-e, Ukiyo-e, Hosoda",
+          "doc_count": 5
+        },
+        {
+          "key": "Seal script (tensho)",
+          "doc_count": 5
+        },
+        {
+          "key": "Spanish Colonial School",
+          "doc_count": 5
+        },
+        {
+          "key": "Standard script (kaisho)",
+          "doc_count": 5
+        },
+        {
+          "key": "Charles II",
+          "doc_count": 4
+        },
+        {
+          "key": "Empire",
+          "doc_count": 4
+        },
+        {
+          "key": "Louis XIV",
+          "doc_count": 4
+        },
+        {
+          "key": "Marcantonio School",
+          "doc_count": 4
+        },
+        {
+          "key": "Nikuhitsu ukiyo-e, Ukiyo-e, Hishikawa",
+          "doc_count": 4
+        },
+        {
+          "key": "Nikuhitsu ukiyo-e, Ukiyo-e, Kaigetsudō",
+          "doc_count": 4
+        },
+        {
+          "key": "Nikuhitsu ukiyo-e, Ukiyo-e, Kitagawa",
+          "doc_count": 4
+        },
+        {
+          "key": "Nikuhitsu ukiyo-e, Ukiyo-e, Miyagawa",
+          "doc_count": 4
+        },
+        {
+          "key": "Nikuhitsu ukiyo-e, Ukiyo-e, Okumura",
+          "doc_count": 4
+        },
+        {
+          "key": "Tabriz school",
+          "doc_count": 4
+        },
+        {
+          "key": "Ukiyo-e",
+          "doc_count": 4
+        },
+        {
+          "key": "Victorian",
+          "doc_count": 4
+        },
+        {
+          "key": "Archaic",
+          "doc_count": 3
+        },
+        {
+          "key": "Arita",
+          "doc_count": 3
+        },
+        {
+          "key": "Bikaner School",
+          "doc_count": 3
+        },
+        {
+          "key": "Fauvism",
+          "doc_count": 3
+        },
+        {
+          "key": "Louis XV",
+          "doc_count": 3
+        },
+        {
+          "key": "Moxico School, Angola, Africa",
+          "doc_count": 3
+        },
+        {
+          "key": "Negoro",
+          "doc_count": 3
+        },
+        {
+          "key": "Nikuhitsu ukiyo-e, Tosa",
+          "doc_count": 3
+        },
+        {
+          "key": "Nikuhitsu ukiyo-e, Ukiyo-e, Katsukawa",
+          "doc_count": 3
+        },
+        {
+          "key": "Nikuhitsu ukiyo-e, Ukiyo-e, Torii",
+          "doc_count": 3
+        },
+        {
+          "key": "Rajput style",
+          "doc_count": 3
+        },
+        {
+          "key": "Satsuma",
+          "doc_count": 3
+        },
+        {
+          "key": "Sōsaku hanga",
+          "doc_count": 3
+        },
+        {
+          "key": "William and Mary",
+          "doc_count": 3
+        },
+        {
+          "key": "16th-17th century",
+          "doc_count": 2
+        },
+        {
+          "key": "Byzantine",
+          "doc_count": 2
+        },
+        {
+          "key": "Clerical script (reisho)",
+          "doc_count": 2
+        },
+        {
+          "key": "Company School",
+          "doc_count": 2
+        },
+        {
+          "key": "French Period",
+          "doc_count": 2
+        },
+        {
+          "key": "French School",
+          "doc_count": 2
+        },
+        {
+          "key": "Gothic Revival",
+          "doc_count": 2
+        },
+        {
+          "key": "Kanō",
+          "doc_count": 2
+        },
+        {
+          "key": "Kutani",
+          "doc_count": 2
+        },
+        {
+          "key": "Late Classic",
+          "doc_count": 2
+        },
+        {
+          "key": "Malwa school",
+          "doc_count": 2
+        },
+        {
+          "key": "Meissen",
+          "doc_count": 2
+        },
+        {
+          "key": "Mewar school",
+          "doc_count": 2
+        },
+        {
+          "key": "Modernism",
+          "doc_count": 2
+        },
+        {
+          "key": "Nikuhitsu ukiyo-e, Matabei",
+          "doc_count": 2
+        },
+        {
+          "key": "Nikuhitsu ukiyo-e, Ukiyo-e, Matabei",
+          "doc_count": 2
+        },
+        {
+          "key": "Post Classic",
+          "doc_count": 2
+        },
+        {
+          "key": "Regency",
+          "doc_count": 2
+        },
+        {
+          "key": "Shiraz school",
+          "doc_count": 2
+        },
+        {
+          "key": "Tardio phase",
+          "doc_count": 2
+        },
+        {
+          "key": "Ukiyo-e, Utagawa",
+          "doc_count": 2
+        },
+        {
+          "key": "uki-e, Ukiyo-e, Utagawa",
+          "doc_count": 2
+        },
+        {
+          "key": "zenga",
+          "doc_count": 2
+        },
+        {
+          "key": "15th century",
+          "doc_count": 1
+        },
+        {
+          "key": "18th-19th century",
+          "doc_count": 1
+        },
+        {
+          "key": "Abstract",
+          "doc_count": 1
+        },
+        {
+          "key": "Adire",
+          "doc_count": 1
+        },
+        {
+          "key": "Angkor Wat style",
+          "doc_count": 1
+        },
+        {
+          "key": "Angkor style, style of Kon Ker",
+          "doc_count": 1
+        },
+        {
+          "key": "Anyang style",
+          "doc_count": 1
+        },
+        {
+          "key": "Art  Deco",
+          "doc_count": 1
+        },
+        {
+          "key": "Art Nouveau and European Folk Art",
+          "doc_count": 1
+        },
+        {
+          "key": "Arte Moderne style",
+          "doc_count": 1
+        },
+        {
+          "key": "Barbones",
+          "doc_count": 1
+        },
+        {
+          "key": "Baroque",
+          "doc_count": 1
+        },
+        {
+          "key": "Bay Area Figuration Movement, Bridge Generation",
+          "doc_count": 1
+        },
+        {
+          "key": "Bayon Style",
+          "doc_count": 1
+        },
+        {
+          "key": "Bayon style",
+          "doc_count": 1
+        },
+        {
+          "key": "Bemidji State University",
+          "doc_count": 1
+        },
+        {
+          "key": "Bizen",
+          "doc_count": 1
+        },
+        {
+          "key": "Casas Grandes style",
+          "doc_count": 1
+        },
+        {
+          "key": "Charles I",
+          "doc_count": 1
+        },
+        {
+          "key": "Che School",
+          "doc_count": 1
+        },
+        {
+          "key": "Chieng San style",
+          "doc_count": 1
+        },
+        {
+          "key": "Chinese (export)",
+          "doc_count": 1
+        },
+        {
+          "key": "Chippendale",
+          "doc_count": 1
+        },
+        {
+          "key": "Cirlce of Christopher Dresser",
+          "doc_count": 1
+        },
+        {
+          "key": "Classic Veracruz",
+          "doc_count": 1
+        },
+        {
+          "key": "Classic period",
+          "doc_count": 1
+        },
+        {
+          "key": "Clerical script (reisho) then Cursive script (sōsho)",
+          "doc_count": 1
+        },
+        {
+          "key": "Colonial",
+          "doc_count": 1
+        },
+        {
+          "key": "Coptic",
+          "doc_count": 1
+        },
+        {
+          "key": "Cypriote",
+          "doc_count": 1
+        },
+        {
+          "key": "Deccan, Golconda or Bijapur school",
+          "doc_count": 1
+        },
+        {
+          "key": "Deccani",
+          "doc_count": 1
+        },
+        {
+          "key": "Directiore",
+          "doc_count": 1
+        },
+        {
+          "key": "Early rococo",
+          "doc_count": 1
+        },
+        {
+          "key": "Elizabeth I",
+          "doc_count": 1
+        },
+        {
+          "key": "Elizabethan",
+          "doc_count": 1
+        },
+        {
+          "key": "Etrusco-Corinthian",
+          "doc_count": 1
+        },
+        {
+          "key": "First Chicago School of Architecture",
+          "doc_count": 1
+        },
+        {
+          "key": "Florentine Fine Manner",
+          "doc_count": 1
+        },
+        {
+          "key": "Frans Hals",
+          "doc_count": 1
+        },
+        {
+          "key": "Genoese",
+          "doc_count": 1
+        },
+        {
+          "key": "Geometric Period",
+          "doc_count": 1
+        },
+        {
+          "key": "Graeco-Egyptian",
+          "doc_count": 1
+        },
+        {
+          "key": "Graeco-Roman",
+          "doc_count": 1
+        },
+        {
+          "key": "Gwalior school",
+          "doc_count": 1
+        },
+        {
+          "key": "Hasegawa",
+          "doc_count": 1
+        },
+        {
+          "key": "Ido",
+          "doc_count": 1
+        },
+        {
+          "key": "Imari",
+          "doc_count": 1
+        },
+        {
+          "key": "Impressionism",
+          "doc_count": 1
+        },
+        {
+          "key": "Isfahan school",
+          "doc_count": 1
+        },
+        {
+          "key": "Italian School",
+          "doc_count": 1
+        },
+        {
+          "key": "Italian School Bologna",
+          "doc_count": 1
+        },
+        {
+          "key": "J. Theirllier: the Italian School, not French",
+          "doc_count": 1
+        },
+        {
+          "key": "Jaipur School",
+          "doc_count": 1
+        },
+        {
+          "key": "James I",
+          "doc_count": 1
+        },
+        {
+          "key": "James II",
+          "doc_count": 1
+        },
+        {
+          "key": "Jodhpur school",
+          "doc_count": 1
+        },
+        {
+          "key": "Jose Rodriguez",
+          "doc_count": 1
+        },
+        {
+          "key": "Jugendstil",
+          "doc_count": 1
+        },
+        {
+          "key": "Kang Xi Style",
+          "doc_count": 1
+        },
+        {
+          "key": "Khmer style",
+          "doc_count": 1
+        },
+        {
+          "key": "Kishangarh School",
+          "doc_count": 1
+        },
+        {
+          "key": "Kishangarh school",
+          "doc_count": 1
+        },
+        {
+          "key": "Kishengarh School",
+          "doc_count": 1
+        },
+        {
+          "key": "Ko-Satsuma",
+          "doc_count": 1
+        },
+        {
+          "key": "Late Classic Period",
+          "doc_count": 1
+        },
+        {
+          "key": "Late Mississippian",
+          "doc_count": 1
+        },
+        {
+          "key": "Late North Coast",
+          "doc_count": 1
+        },
+        {
+          "key": "Malwaa",
+          "doc_count": 1
+        },
+        {
+          "key": "Mandalay Style",
+          "doc_count": 1
+        },
+        {
+          "key": "Mankot School",
+          "doc_count": 1
+        },
+        {
+          "key": "Marcantonio Raimondi School",
+          "doc_count": 1
+        },
+        {
+          "key": "Mary I",
+          "doc_count": 1
+        },
+        {
+          "key": "Metz",
+          "doc_count": 1
+        },
+        {
+          "key": "Middle Pre-Classic",
+          "doc_count": 1
+        },
+        {
+          "key": "Minimalism",
+          "doc_count": 1
+        },
+        {
+          "key": "Mon-Dvaravati Style",
+          "doc_count": 1
+        },
+        {
+          "key": "Mon-Dvaravati style",
+          "doc_count": 1
+        },
+        {
+          "key": "Moxico",
+          "doc_count": 1
+        },
+        {
+          "key": "Mughal school",
+          "doc_count": 1
+        },
+        {
+          "key": "Nagbanya School",
+          "doc_count": 1
+        },
+        {
+          "key": "New York Dada",
+          "doc_count": 1
+        },
+        {
+          "key": "Nikuhitsu",
+          "doc_count": 1
+        },
+        {
+          "key": "Nikuhitsu ukiyo-e, Kitagawa",
+          "doc_count": 1
+        },
+        {
+          "key": "Nikuhitsu ukiyo-e, Ukiyo-e, Kitao",
+          "doc_count": 1
+        },
+        {
+          "key": "Nikuhitsu ukiyo-e, Ukiyo-e, Nishikawa",
+          "doc_count": 1
+        },
+        {
+          "key": "Old Kingdom",
+          "doc_count": 1
+        },
+        {
+          "key": "Pahari/Kanga School",
+          "doc_count": 1
+        },
+        {
+          "key": "Poro Society",
+          "doc_count": 1
+        },
+        {
+          "key": "Pre Colombian",
+          "doc_count": 1
+        },
+        {
+          "key": "Pre Columbian",
+          "doc_count": 1
+        },
+        {
+          "key": "Pre-Colombian",
+          "doc_count": 1
+        },
+        {
+          "key": "Pre-Columbian Post Classic",
+          "doc_count": 1
+        },
+        {
+          "key": "Pre-Columian",
+          "doc_count": 1
+        },
+        {
+          "key": "Provincial Mogul School",
+          "doc_count": 1
+        },
+        {
+          "key": "Raku",
+          "doc_count": 1
+        },
+        {
+          "key": "Regency Period",
+          "doc_count": 1
+        },
+        {
+          "key": "Renaissance revival",
+          "doc_count": 1
+        },
+        {
+          "key": "Rococo",
+          "doc_count": 1
+        },
+        {
+          "key": "Running script (gyōsho)",
+          "doc_count": 1
+        },
+        {
+          "key": "School of Cambiaso",
+          "doc_count": 1
+        },
+        {
+          "key": "School of Eger",
+          "doc_count": 1
+        }
+      ]
+    },
+    "Gist": {
+      "doc_count": 99998,
+      "buckets": [
+        {
+          "key": "domain",
+          "doc_count": 64193,
+          "score": 0.340977522343362,
+          "bg_count": 72211
+        },
+        {
+          "key": "public",
+          "doc_count": 64321,
+          "score": 0.336175176547795,
+          "bg_count": 72760
+        },
+        {
+          "key": "jpg",
+          "doc_count": 47977,
+          "score": 0.163801990557245,
+          "bg_count": 61604
+        },
+        {
+          "key": "gift",
+          "doc_count": 69298,
+          "score": 0.147356251744345,
+          "bg_count": 98430
+        },
+        {
+          "key": "limited",
+          "doc_count": 18112,
+          "score": 0.120247097601809,
+          "bg_count": 18749
+        },
+        {
+          "key": "valid",
+          "doc_count": 55015,
+          "score": 0.109886138881894,
+          "bg_count": 78983
+        },
+        {
+          "key": "global",
+          "doc_count": 21815,
+          "score": 0.0998930055027128,
+          "bg_count": 25773
+        },
+        {
+          "key": "contemporary",
+          "doc_count": 20016,
+          "score": 0.0930389059432234,
+          "bg_count": 23536
+        },
+        {
+          "key": "americas",
+          "doc_count": 36356,
+          "score": 0.0775693283321693,
+          "bg_count": 51609
+        },
+        {
+          "key": "full",
+          "doc_count": 35111,
+          "score": 0.0761961365939075,
+          "bg_count": 49692
+        }
+      ]
+    },
+    "Country": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 177,
+      "buckets": [
+        {
+          "key": "United States",
+          "doc_count": 30776
+        },
+        {
+          "key": "France",
+          "doc_count": 16834
+        },
+        {
+          "key": "Japan",
+          "doc_count": 10174
+        },
+        {
+          "key": "China",
+          "doc_count": 7625
+        },
+        {
+          "key": "England",
+          "doc_count": 7012
+        },
+        {
+          "key": "Germany",
+          "doc_count": 3506
+        },
+        {
+          "key": "Italy",
+          "doc_count": 2682
+        },
+        {
+          "key": "Netherlands",
+          "doc_count": 1936
+        },
+        {
+          "key": "México",
+          "doc_count": 695
+        },
+        {
+          "key": "India",
+          "doc_count": 626
+        },
+        {
+          "key": "Austria",
+          "doc_count": 508
+        },
+        {
+          "key": "Belgium",
+          "doc_count": 507
+        },
+        {
+          "key": "Switzerland",
+          "doc_count": 487
+        },
+        {
+          "key": "Spain",
+          "doc_count": 472
+        },
+        {
+          "key": "Scotland",
+          "doc_count": 469
+        },
+        {
+          "key": "Ghana",
+          "doc_count": 404
+        },
+        {
+          "key": "Guatemala",
+          "doc_count": 379
+        },
+        {
+          "key": "Democratic Republic of the Congo",
+          "doc_count": 371
+        },
+        {
+          "key": "Peru",
+          "doc_count": 339
+        },
+        {
+          "key": "Thailand, United States",
+          "doc_count": 336
+        },
+        {
+          "key": "Nigeria",
+          "doc_count": 275
+        },
+        {
+          "key": "Switzerland, United States",
+          "doc_count": 264
+        },
+        {
+          "key": "Czech Republic",
+          "doc_count": 228
+        },
+        {
+          "key": "Iran",
+          "doc_count": 207
+        },
+        {
+          "key": "Turkey",
+          "doc_count": 205
+        },
+        {
+          "key": "Myanmar (Burma)",
+          "doc_count": 198
+        },
+        {
+          "key": "Egypt",
+          "doc_count": 197
+        },
+        {
+          "key": "Korea",
+          "doc_count": 192
+        },
+        {
+          "key": "Russia",
+          "doc_count": 189
+        },
+        {
+          "key": "Mali",
+          "doc_count": 187
+        },
+        {
+          "key": "Uzbekistan",
+          "doc_count": 186
+        },
+        {
+          "key": "Thailand",
+          "doc_count": 183
+        },
+        {
+          "key": "Morocco",
+          "doc_count": 174
+        },
+        {
+          "key": "England, United States",
+          "doc_count": 171
+        },
+        {
+          "key": "Canada",
+          "doc_count": 165
+        },
+        {
+          "key": "Israel",
+          "doc_count": 157
+        },
+        {
+          "key": "United States, West Germany",
+          "doc_count": 153
+        },
+        {
+          "key": "Ireland, United States",
+          "doc_count": 150
+        },
+        {
+          "key": "Poland",
+          "doc_count": 148
+        },
+        {
+          "key": "France, United States",
+          "doc_count": 137
+        },
+        {
+          "key": "Indonesia",
+          "doc_count": 130
+        },
+        {
+          "key": "Denmark",
+          "doc_count": 128
+        },
+        {
+          "key": "Italy, United States",
+          "doc_count": 122
+        },
+        {
+          "key": "Bolivia",
+          "doc_count": 112
+        },
+        {
+          "key": "Sweden",
+          "doc_count": 111
+        },
+        {
+          "key": "Vietnam",
+          "doc_count": 111
+        },
+        {
+          "key": "Syria",
+          "doc_count": 107
+        },
+        {
+          "key": "France, Rwanda",
+          "doc_count": 101
+        },
+        {
+          "key": "Laos",
+          "doc_count": 95
+        },
+        {
+          "key": "Tibet",
+          "doc_count": 91
+        },
+        {
+          "key": "Flanders",
+          "doc_count": 90
+        },
+        {
+          "key": "Hungary",
+          "doc_count": 87
+        },
+        {
+          "key": "Colombia, United States",
+          "doc_count": 77
+        },
+        {
+          "key": "India, United States",
+          "doc_count": 75
+        },
+        {
+          "key": "Netherlands, United States",
+          "doc_count": 73
+        },
+        {
+          "key": "Cameroon",
+          "doc_count": 72
+        },
+        {
+          "key": "Japan, United States",
+          "doc_count": 72
+        },
+        {
+          "key": "Papua New Guinea",
+          "doc_count": 72
+        },
+        {
+          "key": "China, United States",
+          "doc_count": 70
+        },
+        {
+          "key": "Persia (Iran)",
+          "doc_count": 68
+        },
+        {
+          "key": "Finland",
+          "doc_count": 67
+        },
+        {
+          "key": "Ireland",
+          "doc_count": 67
+        },
+        {
+          "key": "France, Iran",
+          "doc_count": 63
+        },
+        {
+          "key": "Greece",
+          "doc_count": 62
+        },
+        {
+          "key": "Bhutan",
+          "doc_count": 57
+        },
+        {
+          "key": "South Africa",
+          "doc_count": 54
+        },
+        {
+          "key": "Iraq",
+          "doc_count": 49
+        },
+        {
+          "key": "Côte d'Ivoire",
+          "doc_count": 48
+        },
+        {
+          "key": "France, Italy",
+          "doc_count": 48
+        },
+        {
+          "key": "Great Britain",
+          "doc_count": 48
+        },
+        {
+          "key": "Germany, United States",
+          "doc_count": 47
+        },
+        {
+          "key": "Norway",
+          "doc_count": 46
+        },
+        {
+          "key": "Scotland, United States",
+          "doc_count": 46
+        },
+        {
+          "key": "Belgium, United States",
+          "doc_count": 40
+        },
+        {
+          "key": "Burkina Faso",
+          "doc_count": 40
+        },
+        {
+          "key": "Pakistan",
+          "doc_count": 40
+        },
+        {
+          "key": "Afghanistan",
+          "doc_count": 39
+        },
+        {
+          "key": "Egypt, Turkey",
+          "doc_count": 37
+        },
+        {
+          "key": "Ethiopia",
+          "doc_count": 36
+        },
+        {
+          "key": "Sierra Leone",
+          "doc_count": 36
+        },
+        {
+          "key": "Cambodia",
+          "doc_count": 35
+        },
+        {
+          "key": "Finland, United States",
+          "doc_count": 34
+        },
+        {
+          "key": "Niger",
+          "doc_count": 32
+        },
+        {
+          "key": "Australia",
+          "doc_count": 31
+        },
+        {
+          "key": "Brazil",
+          "doc_count": 31
+        },
+        {
+          "key": "Roman",
+          "doc_count": 31
+        },
+        {
+          "key": "Swaziland, United States",
+          "doc_count": 31
+        },
+        {
+          "key": "England, France",
+          "doc_count": 30
+        },
+        {
+          "key": "Liberia",
+          "doc_count": 30
+        },
+        {
+          "key": "Canada, United States",
+          "doc_count": 28
+        },
+        {
+          "key": "Korea, United States",
+          "doc_count": 27
+        },
+        {
+          "key": "Tanzania",
+          "doc_count": 27
+        },
+        {
+          "key": "Benin",
+          "doc_count": 25
+        },
+        {
+          "key": "Colombia",
+          "doc_count": 25
+        },
+        {
+          "key": "Costa Rica",
+          "doc_count": 25
+        },
+        {
+          "key": "Armenia",
+          "doc_count": 24
+        },
+        {
+          "key": "Cuba",
+          "doc_count": 23
+        },
+        {
+          "key": "Kenya",
+          "doc_count": 23
+        },
+        {
+          "key": "Panama",
+          "doc_count": 23
+        },
+        {
+          "key": "Czechoslovakia",
+          "doc_count": 20
+        },
+        {
+          "key": "Rwanda",
+          "doc_count": 20
+        },
+        {
+          "key": "Angola",
+          "doc_count": 19
+        },
+        {
+          "key": "Philippines",
+          "doc_count": 19
+        },
+        {
+          "key": "Ecuador",
+          "doc_count": 18
+        },
+        {
+          "key": "Flanders, France",
+          "doc_count": 18
+        },
+        {
+          "key": "Egypt, Italy",
+          "doc_count": 17
+        },
+        {
+          "key": "England, Ireland",
+          "doc_count": 16
+        },
+        {
+          "key": "Liechtenstein, United States",
+          "doc_count": 16
+        },
+        {
+          "key": "Solomon Islands",
+          "doc_count": 15
+        },
+        {
+          "key": "Taiwan",
+          "doc_count": 15
+        },
+        {
+          "key": "Chile",
+          "doc_count": 14
+        },
+        {
+          "key": "France, Germany",
+          "doc_count": 14
+        },
+        {
+          "key": "Mexico",
+          "doc_count": 14
+        },
+        {
+          "key": "New Zealand",
+          "doc_count": 14
+        },
+        {
+          "key": "Yemen",
+          "doc_count": 14
+        },
+        {
+          "key": "Bangladesh",
+          "doc_count": 13
+        },
+        {
+          "key": "Czechoslovakia, United States",
+          "doc_count": 13
+        },
+        {
+          "key": "United Kingdom",
+          "doc_count": 13
+        },
+        {
+          "key": "France, Northern Ireland",
+          "doc_count": 12
+        },
+        {
+          "key": "Greek Islands",
+          "doc_count": 12
+        },
+        {
+          "key": "Somalia",
+          "doc_count": 12
+        },
+        {
+          "key": "Algeria",
+          "doc_count": 11
+        },
+        {
+          "key": "Bulgaria",
+          "doc_count": 11
+        },
+        {
+          "key": "Cambodia, Vietnam",
+          "doc_count": 11
+        },
+        {
+          "key": "Nepal",
+          "doc_count": 11
+        },
+        {
+          "key": "Portugal",
+          "doc_count": 11
+        },
+        {
+          "key": "Haiti",
+          "doc_count": 10
+        },
+        {
+          "key": "Ivory Coast",
+          "doc_count": 9
+        },
+        {
+          "key": "Kyrgyzstan",
+          "doc_count": 9
+        },
+        {
+          "key": "Malaysia",
+          "doc_count": 9
+        },
+        {
+          "key": "Sweden, United States",
+          "doc_count": 9
+        },
+        {
+          "key": "Togo",
+          "doc_count": 9
+        },
+        {
+          "key": "Belgium, Italy",
+          "doc_count": 8
+        },
+        {
+          "key": "Hong Kong",
+          "doc_count": 8
+        },
+        {
+          "key": "México, United States",
+          "doc_count": 8
+        },
+        {
+          "key": "Sudan",
+          "doc_count": 8
+        },
+        {
+          "key": "Turkmenistan",
+          "doc_count": 8
+        },
+        {
+          "key": "Zambia",
+          "doc_count": 8
+        },
+        {
+          "key": "Argentina",
+          "doc_count": 7
+        },
+        {
+          "key": "France, Switzerland",
+          "doc_count": 7
+        },
+        {
+          "key": "Gabon",
+          "doc_count": 7
+        },
+        {
+          "key": "Khmer",
+          "doc_count": 7
+        },
+        {
+          "key": "Laos, Vietnam",
+          "doc_count": 7
+        },
+        {
+          "key": "Mongolia",
+          "doc_count": 7
+        },
+        {
+          "key": "Senegal",
+          "doc_count": 7
+        },
+        {
+          "key": "Siam",
+          "doc_count": 7
+        },
+        {
+          "key": "Sri Lanka",
+          "doc_count": 7
+        },
+        {
+          "key": "Egypt, France",
+          "doc_count": 6
+        },
+        {
+          "key": "Germany, Italy",
+          "doc_count": 6
+        },
+        {
+          "key": "Ghana, Togo",
+          "doc_count": 6
+        },
+        {
+          "key": "Guatemala, Mexico",
+          "doc_count": 6
+        },
+        {
+          "key": "India, Indonesia",
+          "doc_count": 6
+        },
+        {
+          "key": "Laos, Thailand",
+          "doc_count": 6
+        },
+        {
+          "key": "Namibia",
+          "doc_count": 6
+        },
+        {
+          "key": "Roman Empire",
+          "doc_count": 6
+        },
+        {
+          "key": "Tunisia",
+          "doc_count": 6
+        },
+        {
+          "key": "Venezuela",
+          "doc_count": 6
+        },
+        {
+          "key": "Yugoslavia",
+          "doc_count": 6
+        },
+        {
+          "key": "Angola, Democratic Republic of the Congo",
+          "doc_count": 5
+        },
+        {
+          "key": "Burkina Faso, Mali",
+          "doc_count": 5
+        },
+        {
+          "key": "Cambodia, Thailand",
+          "doc_count": 5
+        },
+        {
+          "key": "Central African Republic",
+          "doc_count": 5
+        },
+        {
+          "key": "England, Scotland",
+          "doc_count": 5
+        },
+        {
+          "key": "Haiti, United States",
+          "doc_count": 5
+        },
+        {
+          "key": "Indonesia, United States",
+          "doc_count": 5
+        },
+        {
+          "key": "Kenya, United States",
+          "doc_count": 5
+        },
+        {
+          "key": "Lithuania",
+          "doc_count": 5
+        },
+        {
+          "key": "Madagascar",
+          "doc_count": 5
+        },
+        {
+          "key": "Myanmar",
+          "doc_count": 5
+        },
+        {
+          "key": "Republic of Kiribati",
+          "doc_count": 5
+        },
+        {
+          "key": "Sicily",
+          "doc_count": 5
+        },
+        {
+          "key": "Wales",
+          "doc_count": 5
+        },
+        {
+          "key": "West Africa",
+          "doc_count": 5
+        },
+        {
+          "key": "Chad",
+          "doc_count": 4
+        },
+        {
+          "key": "China, India",
+          "doc_count": 4
+        },
+        {
+          "key": "Fiji Islands",
+          "doc_count": 4
+        },
+        {
+          "key": "Germany, Netherlands",
+          "doc_count": 4
+        },
+        {
+          "key": "Iceland",
+          "doc_count": 4
+        },
+        {
+          "key": "India, Pakistan",
+          "doc_count": 4
+        },
+        {
+          "key": "Iran, Iraq",
+          "doc_count": 4
+        },
+        {
+          "key": "Mauritius, United States",
+          "doc_count": 4
+        },
+        {
+          "key": "Mozambique",
+          "doc_count": 4
+        },
+        {
+          "key": "Roman / Near Eastern",
+          "doc_count": 4
+        },
+        {
+          "key": "Romania",
+          "doc_count": 4
+        },
+        {
+          "key": "Suriname",
+          "doc_count": 4
+        },
+        {
+          "key": "Ukraine",
+          "doc_count": 4
+        },
+        {
+          "key": "United States, Uruguay",
+          "doc_count": 4
+        },
+        {
+          "key": "Afghanistan, Uzbekistan",
+          "doc_count": 3
+        },
+        {
+          "key": "Argentina, United States",
+          "doc_count": 3
+        },
+        {
+          "key": "Belgium, France",
+          "doc_count": 3
+        },
+        {
+          "key": "Botswana",
+          "doc_count": 3
+        },
+        {
+          "key": "Côte d'Ivoire, Liberia",
+          "doc_count": 3
+        },
+        {
+          "key": "Dominican Republic",
+          "doc_count": 3
+        },
+        {
+          "key": "Italy, Sardinia",
+          "doc_count": 3
+        },
+        {
+          "key": "Kenya, Tanzania",
+          "doc_count": 3
+        },
+        {
+          "key": "Netherlands / Flanders",
+          "doc_count": 3
+        },
+        {
+          "key": "Nicaragua",
+          "doc_count": 3
+        },
+        {
+          "key": "Palestine",
+          "doc_count": 3
+        },
+        {
+          "key": "Singapore",
+          "doc_count": 3
+        },
+        {
+          "key": "South Korea",
+          "doc_count": 3
+        }
+      ]
+    },
+    "Title": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 84321,
+      "buckets": [
+        {
+          "key": "Untitled",
+          "doc_count": 1984
+        },
+        {
+          "key": "Panel",
+          "doc_count": 464
+        },
+        {
+          "key": "Snuff bottle",
+          "doc_count": 311
+        },
+        {
+          "key": "Bowl",
+          "doc_count": 303
+        },
+        {
+          "key": "Print",
+          "doc_count": 298
+        },
+        {
+          "key": "Vase",
+          "doc_count": 294
+        },
+        {
+          "key": "Plate from Le Moniteur de La Mode",
+          "doc_count": 292
+        },
+        {
+          "key": "Bracelet",
+          "doc_count": 267
+        },
+        {
+          "key": "Border",
+          "doc_count": 252
+        },
+        {
+          "key": "Basket",
+          "doc_count": 250
+        },
+        {
+          "key": "Fashion Plate, from The Repository of Arts",
+          "doc_count": 237
+        },
+        {
+          "key": "Skirt",
+          "doc_count": 229
+        },
+        {
+          "key": "Jacket",
+          "doc_count": 211
+        },
+        {
+          "key": "Bosnia",
+          "doc_count": 208
+        },
+        {
+          "key": "Necklace",
+          "doc_count": 207
+        },
+        {
+          "key": "Plate",
+          "doc_count": 204
+        },
+        {
+          "key": "Fashion Plate from La Mode Illustree",
+          "doc_count": 197
+        },
+        {
+          "key": "Baby Carrier",
+          "doc_count": 186
+        },
+        {
+          "key": "Drawing",
+          "doc_count": 183
+        },
+        {
+          "key": "Vessel",
+          "doc_count": 164
+        },
+        {
+          "key": "Fashion Plate from Journal des Dames et des Modes",
+          "doc_count": 163
+        },
+        {
+          "key": "Torque",
+          "doc_count": 162
+        },
+        {
+          "key": "Sword guard (tsuba)",
+          "doc_count": 159
+        },
+        {
+          "key": "Fashion Plate from Petit Courrier des Dames",
+          "doc_count": 145
+        },
+        {
+          "key": "Bracelet, one of a pair",
+          "doc_count": 132
+        },
+        {
+          "key": "Landscape",
+          "doc_count": 126
+        },
+        {
+          "key": "Lace Trim",
+          "doc_count": 118
+        },
+        {
+          "key": "Band",
+          "doc_count": 117
+        },
+        {
+          "key": "Shadow Puppet Head",
+          "doc_count": 117
+        },
+        {
+          "key": "Plate from La Revue de La Mode",
+          "doc_count": 113
+        },
+        {
+          "key": "Fashion Plate, from La Belle Assemblee",
+          "doc_count": 112
+        },
+        {
+          "key": "Fashion Fabric Samples",
+          "doc_count": 100
+        },
+        {
+          "key": "Rwanda",
+          "doc_count": 99
+        },
+        {
+          "key": "New York City",
+          "doc_count": 97
+        },
+        {
+          "key": "Dinner Plate",
+          "doc_count": 95
+        },
+        {
+          "key": "Apron",
+          "doc_count": 94
+        },
+        {
+          "key": "Upholstery Samples",
+          "doc_count": 94
+        },
+        {
+          "key": "Fashion Plate from La Mode",
+          "doc_count": 84
+        },
+        {
+          "key": "Jar",
+          "doc_count": 83
+        },
+        {
+          "key": "Unspecified Samples",
+          "doc_count": 81
+        },
+        {
+          "key": "Belt",
+          "doc_count": 79
+        },
+        {
+          "key": "Paperweight",
+          "doc_count": 79
+        },
+        {
+          "key": "Custom Collection",
+          "doc_count": 77
+        },
+        {
+          "key": "Teapot",
+          "doc_count": 77
+        },
+        {
+          "key": "Buttons",
+          "doc_count": 76
+        },
+        {
+          "key": "Untitled [view of England or Middle East]",
+          "doc_count": 76
+        },
+        {
+          "key": "[Three children in winter coats standing in open field]",
+          "doc_count": 76
+        },
+        {
+          "key": "Minneapolis Project Drawings",
+          "doc_count": 75
+        },
+        {
+          "key": "Rug",
+          "doc_count": 74
+        },
+        {
+          "key": "Shawl",
+          "doc_count": 74
+        },
+        {
+          "key": "Velvet panel",
+          "doc_count": 73
+        },
+        {
+          "key": "Woman's blouse (Huipil)",
+          "doc_count": 72
+        },
+        {
+          "key": "Hat",
+          "doc_count": 71
+        },
+        {
+          "key": "One from a set of seventy woodcuts (set I to set XI)",
+          "doc_count": 70
+        },
+        {
+          "key": "Figure",
+          "doc_count": 69
+        },
+        {
+          "key": "Fragment",
+          "doc_count": 69
+        },
+        {
+          "key": "Edging",
+          "doc_count": 68
+        },
+        {
+          "key": "Candlestick, one of a pair",
+          "doc_count": 67
+        },
+        {
+          "key": "Contact sheet (one of 66)",
+          "doc_count": 66
+        },
+        {
+          "key": "Fashion Plate from Le Modes Parisiennes",
+          "doc_count": 66
+        },
+        {
+          "key": "Mask",
+          "doc_count": 65
+        },
+        {
+          "key": "Blue Malachite Development and Sampling",
+          "doc_count": 64
+        },
+        {
+          "key": "Pitcher",
+          "doc_count": 64
+        },
+        {
+          "key": "Plate from Cartas Per A La Teresa",
+          "doc_count": 62
+        },
+        {
+          "key": "Printer's Flower, from Histoire Naturelle",
+          "doc_count": 61
+        },
+        {
+          "key": "Self-Portrait",
+          "doc_count": 61
+        },
+        {
+          "key": "Fan",
+          "doc_count": 60
+        },
+        {
+          "key": "Plate from Almanach, Falbalas et Fanfreluches",
+          "doc_count": 60
+        },
+        {
+          "key": "Staff",
+          "doc_count": 60
+        },
+        {
+          "key": "Meisen kimono",
+          "doc_count": 58
+        },
+        {
+          "key": "Textile Fragment",
+          "doc_count": 57
+        },
+        {
+          "key": "Coat",
+          "doc_count": 56
+        },
+        {
+          "key": "Furnishing Fabric",
+          "doc_count": 55
+        },
+        {
+          "key": "Bottle",
+          "doc_count": 54
+        },
+        {
+          "key": "Pair of Earrings",
+          "doc_count": 54
+        },
+        {
+          "key": "Pin",
+          "doc_count": 53
+        },
+        {
+          "key": "Telex: Iran  (archival materials for the production of the book)",
+          "doc_count": 53
+        },
+        {
+          "key": "Plate from Wiener-Moden-Zeitung",
+          "doc_count": 52
+        },
+        {
+          "key": "Wrapper",
+          "doc_count": 52
+        },
+        {
+          "key": "Lace Pattern",
+          "doc_count": 51
+        },
+        {
+          "key": "Bag",
+          "doc_count": 50
+        },
+        {
+          "key": "Cricket Container",
+          "doc_count": 50
+        },
+        {
+          "key": "Plate from La fin de Satan",
+          "doc_count": 50
+        },
+        {
+          "key": "Untitled from General Dynamic Fun",
+          "doc_count": 50
+        },
+        {
+          "key": "Hair Ornament",
+          "doc_count": 49
+        },
+        {
+          "key": "Plate from 1¢ Life",
+          "doc_count": 49
+        },
+        {
+          "key": "Sake cup (guinomi)",
+          "doc_count": 49
+        },
+        {
+          "key": "Handkerchief",
+          "doc_count": 48
+        },
+        {
+          "key": "Side chair",
+          "doc_count": 48
+        },
+        {
+          "key": "Standing female figure",
+          "doc_count": 48
+        },
+        {
+          "key": "Ithaca",
+          "doc_count": 47
+        },
+        {
+          "key": "Ring",
+          "doc_count": 47
+        },
+        {
+          "key": "Lace",
+          "doc_count": 46
+        },
+        {
+          "key": "Shan",
+          "doc_count": 46
+        },
+        {
+          "key": "Sash",
+          "doc_count": 45
+        },
+        {
+          "key": "piece from a Chinese Export Partial Dinner Service",
+          "doc_count": 45
+        },
+        {
+          "key": "Blanket",
+          "doc_count": 44
+        },
+        {
+          "key": "Box and assorted implements for the incense game",
+          "doc_count": 44
+        },
+        {
+          "key": "",
+          "doc_count": 43
+        },
+        {
+          "key": "Spoon",
+          "doc_count": 43
+        },
+        {
+          "key": "Textile",
+          "doc_count": 42
+        },
+        {
+          "key": "Cup",
+          "doc_count": 41
+        },
+        {
+          "key": "Ornament, one of a pair",
+          "doc_count": 41
+        },
+        {
+          "key": "Sari",
+          "doc_count": 41
+        },
+        {
+          "key": "Window, Purcell-Cutts House",
+          "doc_count": 41
+        },
+        {
+          "key": "Pendant",
+          "doc_count": 40
+        },
+        {
+          "key": "State Proof for 'The Empire State Building', one of a set of 40",
+          "doc_count": 40
+        },
+        {
+          "key": "Untitled [View of England]",
+          "doc_count": 40
+        },
+        {
+          "key": "Camera Work",
+          "doc_count": 39
+        },
+        {
+          "key": "Mirror",
+          "doc_count": 39
+        },
+        {
+          "key": "Baby carrier",
+          "doc_count": 38
+        },
+        {
+          "key": "Scarf",
+          "doc_count": 38
+        },
+        {
+          "key": "Miniature figurine",
+          "doc_count": 37
+        },
+        {
+          "key": "New York",
+          "doc_count": 37
+        },
+        {
+          "key": "Photography album, images of Japan",
+          "doc_count": 37
+        },
+        {
+          "key": "Postcard from, A Collaborative Cabinet: A Postcard Exchange with Mark Dion",
+          "doc_count": 36
+        },
+        {
+          "key": "Cup and saucer",
+          "doc_count": 35
+        },
+        {
+          "key": "Dish",
+          "doc_count": 35
+        },
+        {
+          "key": "Earrings",
+          "doc_count": 34
+        },
+        {
+          "key": "Furniture mount",
+          "doc_count": 34
+        },
+        {
+          "key": "Towel",
+          "doc_count": 34
+        },
+        {
+          "key": "Comb",
+          "doc_count": 33
+        },
+        {
+          "key": "Dress",
+          "doc_count": 33
+        },
+        {
+          "key": "Hair Ornament, one of a pair",
+          "doc_count": 33
+        },
+        {
+          "key": "Heads",
+          "doc_count": 33
+        },
+        {
+          "key": "Nous les abstraits",
+          "doc_count": 33
+        },
+        {
+          "key": "Suiting Samples",
+          "doc_count": 33
+        },
+        {
+          "key": "Chop Seal",
+          "doc_count": 32
+        },
+        {
+          "key": "Collar",
+          "doc_count": 32
+        },
+        {
+          "key": "Frontera Lake Street Exhibition Catalogue",
+          "doc_count": 32
+        },
+        {
+          "key": "Hairpin",
+          "doc_count": 32
+        },
+        {
+          "key": "Plate from Suite des Vases Tirée du Cabinet de Monsieur Du Tillot, Marquis de Felino",
+          "doc_count": 32
+        },
+        {
+          "key": "Sanhitang Books of Model Calligraphy",
+          "doc_count": 32
+        },
+        {
+          "key": "Sketch made on Indian Reservation, Montana",
+          "doc_count": 32
+        },
+        {
+          "key": "Twenty-Two Cherries",
+          "doc_count": 32
+        },
+        {
+          "key": "Valours",
+          "doc_count": 32
+        },
+        {
+          "key": "Armchair",
+          "doc_count": 31
+        },
+        {
+          "key": "Beige Malachite Warp - Development and Sampling",
+          "doc_count": 31
+        },
+        {
+          "key": "Casement Samples",
+          "doc_count": 31
+        },
+        {
+          "key": "Doria II",
+          "doc_count": 31
+        },
+        {
+          "key": "Dragon Robe",
+          "doc_count": 31
+        },
+        {
+          "key": "Fashion Plate from Journal des Luxux und der Moden, Weimar, 1786-1826",
+          "doc_count": 31
+        },
+        {
+          "key": "Leather Cloth",
+          "doc_count": 31
+        },
+        {
+          "key": "Pair of Moccasins",
+          "doc_count": 31
+        },
+        {
+          "key": "Pouch",
+          "doc_count": 31
+        },
+        {
+          "key": "Trim",
+          "doc_count": 31
+        },
+        {
+          "key": "Ilgich",
+          "doc_count": 30
+        },
+        {
+          "key": "Plate from Fashions of London and Paris",
+          "doc_count": 30
+        },
+        {
+          "key": "Platter",
+          "doc_count": 30
+        },
+        {
+          "key": "South Polar Plateau, Near the Geographic South Pole",
+          "doc_count": 30
+        },
+        {
+          "key": "Spring",
+          "doc_count": 30
+        },
+        {
+          "key": "Bird",
+          "doc_count": 29
+        },
+        {
+          "key": "Box",
+          "doc_count": 29
+        },
+        {
+          "key": "Candlestick",
+          "doc_count": 29
+        },
+        {
+          "key": "Fashion Plate",
+          "doc_count": 29
+        },
+        {
+          "key": "Fashion Plate from Court Magazine",
+          "doc_count": 29
+        },
+        {
+          "key": "Knife",
+          "doc_count": 29
+        },
+        {
+          "key": "Orange Malachite Warp Development and Sampling",
+          "doc_count": 29
+        },
+        {
+          "key": "Cup with Base",
+          "doc_count": 28
+        },
+        {
+          "key": "Fashion Plate, from La Mode Jolie",
+          "doc_count": 28
+        },
+        {
+          "key": "Ketoh",
+          "doc_count": 28
+        },
+        {
+          "key": "Medal",
+          "doc_count": 28
+        },
+        {
+          "key": "Pair of earrings",
+          "doc_count": 28
+        },
+        {
+          "key": "Robe",
+          "doc_count": 28
+        },
+        {
+          "key": "Barkcloth panel",
+          "doc_count": 27
+        },
+        {
+          "key": "Chicago",
+          "doc_count": 27
+        },
+        {
+          "key": "Ewer",
+          "doc_count": 27
+        },
+        {
+          "key": "Self Portrait",
+          "doc_count": 27
+        },
+        {
+          "key": "Small Airline Fabric Samples",
+          "doc_count": 27
+        },
+        {
+          "key": "Still Life",
+          "doc_count": 27
+        },
+        {
+          "key": "Vase, one of a pair",
+          "doc_count": 27
+        },
+        {
+          "key": "Fashion Plate from La Mode Artistique",
+          "doc_count": 26
+        },
+        {
+          "key": "Lapis Development Sample",
+          "doc_count": 26
+        },
+        {
+          "key": "Ornament",
+          "doc_count": 26
+        },
+        {
+          "key": "Pomegranate",
+          "doc_count": 26
+        },
+        {
+          "key": "Printing matrix for name",
+          "doc_count": 26
+        },
+        {
+          "key": "Tray",
+          "doc_count": 26
+        },
+        {
+          "key": "Attendant",
+          "doc_count": 25
+        },
+        {
+          "key": "Couplet in running script",
+          "doc_count": 25
+        },
+        {
+          "key": "Embroidery Sample",
+          "doc_count": 25
+        },
+        {
+          "key": "Fashion Plate, from Lady's Magazine",
+          "doc_count": 25
+        },
+        {
+          "key": "Fork",
+          "doc_count": 25
+        },
+        {
+          "key": "Madonna and Child",
+          "doc_count": 25
+        },
+        {
+          "key": "Saucer",
+          "doc_count": 25
+        },
+        {
+          "key": "Tomb Figure",
+          "doc_count": 25
+        },
+        {
+          "key": "Twenty-five Letters",
+          "doc_count": 25
+        },
+        {
+          "key": "Winter",
+          "doc_count": 25
+        },
+        {
+          "key": "Clifton Street, Chicago",
+          "doc_count": 24
+        },
+        {
+          "key": "Cloth (tzute)",
+          "doc_count": 24
+        },
+        {
+          "key": "Dali Salad (lettuce)",
+          "doc_count": 24
+        },
+        {
+          "key": "Dessert Fork, from a flatware service",
+          "doc_count": 24
+        },
+        {
+          "key": "Dessert Spoon, from a flatware service",
+          "doc_count": 24
+        },
+        {
+          "key": "Dinner Fork, from a flatware service",
+          "doc_count": 24
+        },
+        {
+          "key": "Drawing, from Minneapolis Project Drawings",
+          "doc_count": 24
+        },
+        {
+          "key": "Hair Pin",
+          "doc_count": 24
+        },
+        {
+          "key": "Man's cloth",
+          "doc_count": 24
+        },
+        {
+          "key": "Mat",
+          "doc_count": 24
+        },
+        {
+          "key": "Nude",
+          "doc_count": 24
+        },
+        {
+          "key": "Plate from Cartes per a la Teresa (Letters to Teresa)",
+          "doc_count": 24
+        },
+        {
+          "key": "Suzani",
+          "doc_count": 24
+        }
+      ]
+    },
+    "Tags": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": []
+    },
+    "Room": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "Not on View",
+          "doc_count": 96338
+        },
+        {
+          "key": "G215",
+          "doc_count": 351
+        },
+        {
+          "key": "G204",
+          "doc_count": 201
+        },
+        {
+          "key": "G216",
+          "doc_count": 174
+        },
+        {
+          "key": "G350",
+          "doc_count": 124
+        },
+        {
+          "key": "G209",
+          "doc_count": 117
+        },
+        {
+          "key": "G218",
+          "doc_count": 91
+        },
+        {
+          "key": "Purcell-Cutts House",
+          "doc_count": 85
+        },
+        {
+          "key": "G210",
+          "doc_count": 83
+        },
+        {
+          "key": "G208",
+          "doc_count": 80
+        },
+        {
+          "key": "G379",
+          "doc_count": 76
+        },
+        {
+          "key": "G320",
+          "doc_count": 73
+        },
+        {
+          "key": "G217",
+          "doc_count": 72
+        },
+        {
+          "key": "G214",
+          "doc_count": 66
+        },
+        {
+          "key": "G300",
+          "doc_count": 62
+        },
+        {
+          "key": "G324",
+          "doc_count": 60
+        },
+        {
+          "key": "G243",
+          "doc_count": 55
+        },
+        {
+          "key": "G354",
+          "doc_count": 54
+        },
+        {
+          "key": "G362",
+          "doc_count": 52
+        },
+        {
+          "key": "G254",
+          "doc_count": 51
+        },
+        {
+          "key": "G250",
+          "doc_count": 50
+        },
+        {
+          "key": "G213",
+          "doc_count": 48
+        },
+        {
+          "key": "G260",
+          "doc_count": 46
+        },
+        {
+          "key": "G378",
+          "doc_count": 46
+        },
+        {
+          "key": "G365",
+          "doc_count": 43
+        },
+        {
+          "key": "G331",
+          "doc_count": 41
+        },
+        {
+          "key": "G332",
+          "doc_count": 40
+        },
+        {
+          "key": "G110",
+          "doc_count": 36
+        },
+        {
+          "key": "G259",
+          "doc_count": 36
+        },
+        {
+          "key": "G310",
+          "doc_count": 36
+        },
+        {
+          "key": "G206",
+          "doc_count": 35
+        },
+        {
+          "key": "G236",
+          "doc_count": 33
+        },
+        {
+          "key": "G327",
+          "doc_count": 33
+        },
+        {
+          "key": "G322",
+          "doc_count": 32
+        },
+        {
+          "key": "G314",
+          "doc_count": 30
+        },
+        {
+          "key": "G255",
+          "doc_count": 27
+        },
+        {
+          "key": "G351",
+          "doc_count": 27
+        },
+        {
+          "key": "G316",
+          "doc_count": 26
+        },
+        {
+          "key": "G340",
+          "doc_count": 26
+        },
+        {
+          "key": "G344",
+          "doc_count": 26
+        },
+        {
+          "key": "G200",
+          "doc_count": 25
+        },
+        {
+          "key": "G207",
+          "doc_count": 25
+        },
+        {
+          "key": "G212",
+          "doc_count": 25
+        },
+        {
+          "key": "G241",
+          "doc_count": 25
+        },
+        {
+          "key": "G242",
+          "doc_count": 24
+        },
+        {
+          "key": "G315",
+          "doc_count": 24
+        },
+        {
+          "key": "G275",
+          "doc_count": 23
+        },
+        {
+          "key": "G211",
+          "doc_count": 22
+        },
+        {
+          "key": "G220",
+          "doc_count": 22
+        },
+        {
+          "key": "G281",
+          "doc_count": 22
+        },
+        {
+          "key": "G330",
+          "doc_count": 22
+        },
+        {
+          "key": "G357",
+          "doc_count": 22
+        },
+        {
+          "key": "G262",
+          "doc_count": 21
+        },
+        {
+          "key": "G325",
+          "doc_count": 21
+        },
+        {
+          "key": "G343",
+          "doc_count": 21
+        },
+        {
+          "key": "G219",
+          "doc_count": 20
+        },
+        {
+          "key": "G222",
+          "doc_count": 20
+        },
+        {
+          "key": "G341",
+          "doc_count": 20
+        },
+        {
+          "key": "G261",
+          "doc_count": 19
+        },
+        {
+          "key": "G373",
+          "doc_count": 19
+        },
+        {
+          "key": "G225",
+          "doc_count": 18
+        },
+        {
+          "key": "G321",
+          "doc_count": 18
+        },
+        {
+          "key": "G355",
+          "doc_count": 18
+        },
+        {
+          "key": "G223",
+          "doc_count": 17
+        },
+        {
+          "key": "G276",
+          "doc_count": 17
+        },
+        {
+          "key": "G371",
+          "doc_count": 17
+        },
+        {
+          "key": "G303",
+          "doc_count": 16
+        },
+        {
+          "key": "G319",
+          "doc_count": 16
+        },
+        {
+          "key": "G376",
+          "doc_count": 16
+        },
+        {
+          "key": "G307",
+          "doc_count": 15
+        },
+        {
+          "key": "G203",
+          "doc_count": 14
+        },
+        {
+          "key": "G306",
+          "doc_count": 14
+        },
+        {
+          "key": "G342",
+          "doc_count": 14
+        },
+        {
+          "key": "G368",
+          "doc_count": 14
+        },
+        {
+          "key": "G201",
+          "doc_count": 13
+        },
+        {
+          "key": "G221",
+          "doc_count": 13
+        },
+        {
+          "key": "G224",
+          "doc_count": 13
+        },
+        {
+          "key": "G352",
+          "doc_count": 13
+        },
+        {
+          "key": "G367",
+          "doc_count": 13
+        },
+        {
+          "key": "G374",
+          "doc_count": 13
+        },
+        {
+          "key": "G205",
+          "doc_count": 12
+        },
+        {
+          "key": "G226",
+          "doc_count": 12
+        },
+        {
+          "key": "G308",
+          "doc_count": 12
+        },
+        {
+          "key": "G312",
+          "doc_count": 12
+        },
+        {
+          "key": "G313",
+          "doc_count": 12
+        },
+        {
+          "key": "G375",
+          "doc_count": 12
+        },
+        {
+          "key": "G238",
+          "doc_count": 11
+        },
+        {
+          "key": "G302",
+          "doc_count": 11
+        },
+        {
+          "key": "G304",
+          "doc_count": 11
+        },
+        {
+          "key": "G323",
+          "doc_count": 11
+        },
+        {
+          "key": "G359",
+          "doc_count": 11
+        },
+        {
+          "key": "G377",
+          "doc_count": 11
+        },
+        {
+          "key": "G103",
+          "doc_count": 10
+        },
+        {
+          "key": "G237",
+          "doc_count": 10
+        },
+        {
+          "key": "G311",
+          "doc_count": 10
+        },
+        {
+          "key": "G280",
+          "doc_count": 9
+        },
+        {
+          "key": "G309",
+          "doc_count": 9
+        },
+        {
+          "key": "G326",
+          "doc_count": 9
+        },
+        {
+          "key": "G239",
+          "doc_count": 8
+        },
+        {
+          "key": "G317",
+          "doc_count": 8
+        },
+        {
+          "key": "G318",
+          "doc_count": 7
+        },
+        {
+          "key": "G305",
+          "doc_count": 6
+        },
+        {
+          "key": "G369",
+          "doc_count": 6
+        },
+        {
+          "key": "G240",
+          "doc_count": 5
+        },
+        {
+          "key": "G301",
+          "doc_count": 5
+        },
+        {
+          "key": "Target Park",
+          "doc_count": 5
+        },
+        {
+          "key": "G353",
+          "doc_count": 4
+        },
+        {
+          "key": "Exterior Grounds",
+          "doc_count": 3
+        },
+        {
+          "key": "24th Street Entrance",
+          "doc_count": 2
+        },
+        {
+          "key": "G100A",
+          "doc_count": 2
+        },
+        {
+          "key": "G251",
+          "doc_count": 2
+        },
+        {
+          "key": "G252",
+          "doc_count": 2
+        },
+        {
+          "key": "G253",
+          "doc_count": 2
+        },
+        {
+          "key": "G256",
+          "doc_count": 2
+        },
+        {
+          "key": "G361",
+          "doc_count": 2
+        },
+        {
+          "key": "ArtsCafe",
+          "doc_count": 1
+        },
+        {
+          "key": "G180",
+          "doc_count": 1
+        },
+        {
+          "key": "G227",
+          "doc_count": 1
+        },
+        {
+          "key": "G290",
+          "doc_count": 1
+        },
+        {
+          "key": "G335",
+          "doc_count": 1
+        },
+        {
+          "key": "G360",
+          "doc_count": 1
+        }
+      ]
+    },
+    "On View": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "Not on View",
+          "doc_count": 96338
+        },
+        {
+          "key": "On View",
+          "doc_count": 3660
+        }
+      ]
+    },
+    "Classification": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "prints",
+          "doc_count": 40404
+        },
+        {
+          "key": "photographs",
+          "doc_count": 13778
+        },
+        {
+          "key": "textiles",
+          "doc_count": 11283
+        },
+        {
+          "key": "ceramics",
+          "doc_count": 4967
+        },
+        {
+          "key": "drawings",
+          "doc_count": 4623
+        },
+        {
+          "key": "books",
+          "doc_count": 4000
+        },
+        {
+          "key": "on",
+          "doc_count": 3712
+        },
+        {
+          "key": "paper",
+          "doc_count": 3712
+        },
+        {
+          "key": "works",
+          "doc_count": 3712
+        },
+        {
+          "key": "paintings",
+          "doc_count": 3710
+        },
+        {
+          "key": "and",
+          "doc_count": 2919
+        },
+        {
+          "key": "metalwork",
+          "doc_count": 2883
+        },
+        {
+          "key": "adornment",
+          "doc_count": 2155
+        },
+        {
+          "key": "sculpture",
+          "doc_count": 1853
+        },
+        {
+          "key": "accessories",
+          "doc_count": 1647
+        },
+        {
+          "key": "clothing",
+          "doc_count": 1637
+        },
+        {
+          "key": "objects",
+          "doc_count": 1549
+        },
+        {
+          "key": "equipment",
+          "doc_count": 1234
+        },
+        {
+          "key": "tools",
+          "doc_count": 1234
+        },
+        {
+          "key": "utilitarian",
+          "doc_count": 1234
+        },
+        {
+          "key": "dolls",
+          "doc_count": 1217
+        },
+        {
+          "key": "games",
+          "doc_count": 1217
+        },
+        {
+          "key": "toys",
+          "doc_count": 1217
+        },
+        {
+          "key": "glass",
+          "doc_count": 1025
+        },
+        {
+          "key": "woodwork",
+          "doc_count": 951
+        },
+        {
+          "key": "calligraphy",
+          "doc_count": 849
+        },
+        {
+          "key": "furniture",
+          "doc_count": 809
+        },
+        {
+          "key": "armor",
+          "doc_count": 400
+        },
+        {
+          "key": "arms",
+          "doc_count": 400
+        },
+        {
+          "key": "basketry",
+          "doc_count": 373
+        },
+        {
+          "key": "architecture",
+          "doc_count": 355
+        },
+        {
+          "key": "artist",
+          "doc_count": 320
+        },
+        {
+          "key": "materials",
+          "doc_count": 303
+        },
+        {
+          "key": "collages",
+          "doc_count": 277
+        },
+        {
+          "key": "lacquer",
+          "doc_count": 277
+        },
+        {
+          "key": "ceremonial",
+          "doc_count": 245
+        },
+        {
+          "key": "art",
+          "doc_count": 244
+        },
+        {
+          "key": "digital",
+          "doc_count": 244
+        },
+        {
+          "key": "beadwork",
+          "doc_count": 226
+        },
+        {
+          "key": "matrices",
+          "doc_count": 198
+        },
+        {
+          "key": "printing",
+          "doc_count": 198
+        },
+        {
+          "key": "judaica",
+          "doc_count": 175
+        },
+        {
+          "key": "bamboo",
+          "doc_count": 153
+        },
+        {
+          "key": "work",
+          "doc_count": 153
+        },
+        {
+          "key": "multiples",
+          "doc_count": 128
+        },
+        {
+          "key": "coverings",
+          "doc_count": 108
+        },
+        {
+          "key": "floor",
+          "doc_count": 108
+        },
+        {
+          "key": "lighting",
+          "doc_count": 83
+        },
+        {
+          "key": "assemblages",
+          "doc_count": 76
+        },
+        {
+          "key": "design",
+          "doc_count": 68
+        },
+        {
+          "key": "industrial",
+          "doc_count": 68
+        },
+        {
+          "key": "assigned",
+          "doc_count": 62
+        },
+        {
+          "key": "not",
+          "doc_count": 62
+        },
+        {
+          "key": "leatherwork",
+          "doc_count": 61
+        },
+        {
+          "key": "commemorative",
+          "doc_count": 59
+        },
+        {
+          "key": "instruments",
+          "doc_count": 57
+        },
+        {
+          "key": "musical",
+          "doc_count": 57
+        },
+        {
+          "key": "models",
+          "doc_count": 52
+        },
+        {
+          "key": "casts",
+          "doc_count": 50
+        },
+        {
+          "key": "copies",
+          "doc_count": 50
+        },
+        {
+          "key": "natural",
+          "doc_count": 42
+        },
+        {
+          "key": "display",
+          "doc_count": 38
+        },
+        {
+          "key": "horology",
+          "doc_count": 37
+        },
+        {
+          "key": "manuscript",
+          "doc_count": 36
+        },
+        {
+          "key": "based",
+          "doc_count": 35
+        },
+        {
+          "key": "media",
+          "doc_count": 35
+        },
+        {
+          "key": "time",
+          "doc_count": 35
+        },
+        {
+          "key": "amp",
+          "doc_count": 33
+        },
+        {
+          "key": "storage",
+          "doc_count": 33
+        },
+        {
+          "key": "enamelware",
+          "doc_count": 32
+        },
+        {
+          "key": "funerary",
+          "doc_count": 29
+        },
+        {
+          "key": "goods",
+          "doc_count": 29
+        },
+        {
+          "key": "documents",
+          "doc_count": 25
+        },
+        {
+          "key": "quillwork",
+          "doc_count": 21
+        },
+        {
+          "key": "installations",
+          "doc_count": 17
+        },
+        {
+          "key": "science",
+          "doc_count": 17
+        },
+        {
+          "key": "technology",
+          "doc_count": 17
+        },
+        {
+          "key": "packaging",
+          "doc_count": 11
+        },
+        {
+          "key": "fakes",
+          "doc_count": 7
+        },
+        {
+          "key": "forgeries",
+          "doc_count": 7
+        },
+        {
+          "key": "covering",
+          "doc_count": 5
+        },
+        {
+          "key": "frames",
+          "doc_count": 5
+        },
+        {
+          "key": "wall",
+          "doc_count": 5
+        },
+        {
+          "key": "installation",
+          "doc_count": 1
+        }
+      ]
+    },
+    "Image": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "Available",
+          "doc_count": 55015
+        },
+        {
+          "key": "Unavailable",
+          "doc_count": 44983
+        }
+      ]
+    },
+    "Department": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "European Art",
+          "doc_count": 35858
+        },
+        {
+          "key": "Arts of the Americas",
+          "doc_count": 22747
+        },
+        {
+          "key": "Global Contemporary Art",
+          "doc_count": 19676
+        },
+        {
+          "key": "Asian Art",
+          "doc_count": 18931
+        },
+        {
+          "key": "Arts of Global Africa",
+          "doc_count": 2128
+        },
+        {
+          "key": "Prints and Drawings",
+          "doc_count": 481
+        },
+        {
+          "key": "Arts of Oceania",
+          "doc_count": 138
+        },
+        {
+          "key": "Decorative Arts, Textiles and Sculpture",
+          "doc_count": 26
+        },
+        {
+          "key": "Photography and New Media",
+          "doc_count": 9
+        },
+        {
+          "key": "Chinese, South and Southeast Asian Art",
+          "doc_count": 2
+        },
+        {
+          "key": "Textiles",
+          "doc_count": 2
+        }
+      ]
+    },
+    "Artist": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 56610,
+      "buckets": [
+        {
+          "key": "China",
+          "doc_count": 4654
+        },
+        {
+          "key": "Honoré Daumier",
+          "doc_count": 3405
+        },
+        {
+          "key": "Japan",
+          "doc_count": 2083
+        },
+        {
+          "key": "Miao artist",
+          "doc_count": 1973
+        },
+        {
+          "key": "United States",
+          "doc_count": 1022
+        },
+        {
+          "key": "Designer: Larsen Design Studio, New York; Producer: Jack Lenor Larsen, Inc.",
+          "doc_count": 994
+        },
+        {
+          "key": "Unknown",
+          "doc_count": 965
+        },
+        {
+          "key": "Theodore Roszak",
+          "doc_count": 784
+        },
+        {
+          "key": "France (Paris)",
+          "doc_count": 768
+        },
+        {
+          "key": "Publisher: Pierre de La Mesangere",
+          "doc_count": 755
+        },
+        {
+          "key": "France",
+          "doc_count": 691
+        },
+        {
+          "key": "Italy",
+          "doc_count": 606
+        },
+        {
+          "key": "Photographer: Gilles Peress",
+          "doc_count": 606
+        },
+        {
+          "key": "England",
+          "doc_count": 520
+        },
+        {
+          "key": "Walter Gramatté",
+          "doc_count": 430
+        },
+        {
+          "key": "Joseph Pennell",
+          "doc_count": 417
+        },
+        {
+          "key": "Diné (Navajo) artist",
+          "doc_count": 396
+        },
+        {
+          "key": "Native American artist",
+          "doc_count": 372
+        },
+        {
+          "key": "Photographer: Jeremiah Gurney",
+          "doc_count": 372
+        },
+        {
+          "key": "Photographer: David Parker",
+          "doc_count": 355
+        },
+        {
+          "key": "Photographer: Robert Gene Wilcox",
+          "doc_count": 353
+        },
+        {
+          "key": "Jules David",
+          "doc_count": 334
+        },
+        {
+          "key": "Producer: Jack Lenor Larsen, Inc.",
+          "doc_count": 324
+        },
+        {
+          "key": "Mill: N/E; Producer: Jack Lenor Larsen, Inc.",
+          "doc_count": 321
+        },
+        {
+          "key": "Winslow Homer",
+          "doc_count": 314
+        },
+        {
+          "key": "Akan artist",
+          "doc_count": 304
+        },
+        {
+          "key": "Persia (Iran)",
+          "doc_count": 264
+        },
+        {
+          "key": "India",
+          "doc_count": 260
+        },
+        {
+          "key": "Francis Seymour Haden",
+          "doc_count": 256
+        },
+        {
+          "key": "Photographer: Thomas F. Arndt",
+          "doc_count": 255
+        },
+        {
+          "key": "Maya artist",
+          "doc_count": 247
+        },
+        {
+          "key": "Thomas Uwins; Editor: Frederic Shoberl; Publisher: Rudolph Ackermann",
+          "doc_count": 237
+        },
+        {
+          "key": "Auguste Louis Lepère",
+          "doc_count": 233
+        },
+        {
+          "key": "Charles-Émile Jacque",
+          "doc_count": 227
+        },
+        {
+          "key": "Piotr Szyhalski",
+          "doc_count": 227
+        },
+        {
+          "key": "England (London)",
+          "doc_count": 223
+        },
+        {
+          "key": "Photographer: Edward Steichen",
+          "doc_count": 223
+        },
+        {
+          "key": "Engraver: Richard Earlom; Draftsman: after Claude de Lorraine; Publisher: John Boydell",
+          "doc_count": 199
+        },
+        {
+          "key": "Francisco José de Goya y Lucientes",
+          "doc_count": 199
+        },
+        {
+          "key": "Albrecht Dürer",
+          "doc_count": 198
+        },
+        {
+          "key": "James Abbott McNeill Whistler",
+          "doc_count": 193
+        },
+        {
+          "key": "Photographer: Minor White",
+          "doc_count": 192
+        },
+        {
+          "key": "Jean Frélaut",
+          "doc_count": 189
+        },
+        {
+          "key": "Korea",
+          "doc_count": 189
+        },
+        {
+          "key": "Germany",
+          "doc_count": 185
+        },
+        {
+          "key": "Publisher: Anatole France",
+          "doc_count": 181
+        },
+        {
+          "key": "Photographer: Stuart D. Klipper",
+          "doc_count": 179
+        },
+        {
+          "key": "Rembrandt van Rijn",
+          "doc_count": 171
+        },
+        {
+          "key": "Publisher: Nicolaus Heideloff",
+          "doc_count": 167
+        },
+        {
+          "key": "Peru",
+          "doc_count": 166
+        },
+        {
+          "key": "Jacques Callot",
+          "doc_count": 163
+        },
+        {
+          "key": "Willie Cole",
+          "doc_count": 163
+        },
+        {
+          "key": "Evert van Muyden",
+          "doc_count": 159
+        },
+        {
+          "key": "Jim Hodges",
+          "doc_count": 159
+        },
+        {
+          "key": "Richard Holzschuh",
+          "doc_count": 159
+        },
+        {
+          "key": "Steven Sorman",
+          "doc_count": 159
+        },
+        {
+          "key": "Thailand",
+          "doc_count": 158
+        },
+        {
+          "key": "Jean-Baptiste Le Prince",
+          "doc_count": 156
+        },
+        {
+          "key": "Europe",
+          "doc_count": 153
+        },
+        {
+          "key": "Félix Buhot",
+          "doc_count": 153
+        },
+        {
+          "key": "Publisher: Maximum Rocknroll",
+          "doc_count": 152
+        },
+        {
+          "key": "Designer: Edward Chandler Moore; Louis Comfort Tiffany",
+          "doc_count": 150
+        },
+        {
+          "key": "Turkey",
+          "doc_count": 150
+        },
+        {
+          "key": "Alphonse Legros",
+          "doc_count": 146
+        },
+        {
+          "key": "Utagawa Hiroshige; Publisher: Takenouchi Magohachi",
+          "doc_count": 144
+        },
+        {
+          "key": "Egypt",
+          "doc_count": 143
+        },
+        {
+          "key": "Fly NYC",
+          "doc_count": 142
+        },
+        {
+          "key": "Arthur Segal",
+          "doc_count": 140
+        },
+        {
+          "key": "Horace Vernet",
+          "doc_count": 140
+        },
+        {
+          "key": "Mark Luyten",
+          "doc_count": 140
+        },
+        {
+          "key": "Yoshida Tōshi (self-published)",
+          "doc_count": 140
+        },
+        {
+          "key": "Designer: Larsen Design Studio, New York; Mill: N/E; Producer: Jack Lenor Larsen, Inc.",
+          "doc_count": 138
+        },
+        {
+          "key": "Photographer: Danny Lyon",
+          "doc_count": 137
+        },
+        {
+          "key": "Yoshida Hiroshi (self-published)",
+          "doc_count": 135
+        },
+        {
+          "key": "Utagawa Hiroshige; Publisher: Sanoya Kihei",
+          "doc_count": 134
+        },
+        {
+          "key": "Photographer: Wing Young Huie",
+          "doc_count": 132
+        },
+        {
+          "key": "Paul Gavarni (Sulpice-Guillaume Chevalier)",
+          "doc_count": 131
+        },
+        {
+          "key": "Stefano della Bella",
+          "doc_count": 130
+        },
+        {
+          "key": "Designer: Jack Lenor Larsen; Producer: Jack Lenor Larsen, Inc.",
+          "doc_count": 128
+        },
+        {
+          "key": "Photographer: Frederick B. Scheel",
+          "doc_count": 127
+        },
+        {
+          "key": "Maurice R. Bebb",
+          "doc_count": 125
+        },
+        {
+          "key": "Red Grooms",
+          "doc_count": 125
+        },
+        {
+          "key": "Utagawa Hiroshige; Publisher: Tsutaya Kichizō",
+          "doc_count": 124
+        },
+        {
+          "key": "Photographer: Michael A. Smith",
+          "doc_count": 123
+        },
+        {
+          "key": "Photographer: Sigismund Blumann",
+          "doc_count": 121
+        },
+        {
+          "key": "Donald Shaw MacLaughlan",
+          "doc_count": 120
+        },
+        {
+          "key": "Photographer: Toby Old",
+          "doc_count": 120
+        },
+        {
+          "key": "Designer: Larsen Design Studio, New York; Mill: Jack Lenor Larsen, Inc.; Producer: Jack Lenor Larsen, Inc.",
+          "doc_count": 119
+        },
+        {
+          "key": "Photographer: Edward S. Curtis",
+          "doc_count": 117
+        },
+        {
+          "key": "Yoruba artist",
+          "doc_count": 117
+        },
+        {
+          "key": "Photographer: Clarence Kennedy",
+          "doc_count": 111
+        },
+        {
+          "key": "Robert Nanteuil",
+          "doc_count": 110
+        },
+        {
+          "key": "Uzbekistan",
+          "doc_count": 110
+        },
+        {
+          "key": "Netherlands",
+          "doc_count": 107
+        },
+        {
+          "key": "Engraver: A.B. Duhamel; after Jean-Florentine Defraine; Author: Jean-Antoine Lebrun-Tossa; Publisher: François Buisson",
+          "doc_count": 105
+        },
+        {
+          "key": "Photographer: Giorgio Sommer",
+          "doc_count": 101
+        },
+        {
+          "key": "Dale Eldred",
+          "doc_count": 100
+        },
+        {
+          "key": "Francis Bedmore; Author: Owen Jones; Publisher: Day and Son, London",
+          "doc_count": 100
+        },
+        {
+          "key": "Photographer: Drahomir Josef Ruzicka",
+          "doc_count": 100
+        },
+        {
+          "key": "Photographer: Walker Evans",
+          "doc_count": 100
+        },
+        {
+          "key": "Akimel O'odham (Pima) artist",
+          "doc_count": 99
+        },
+        {
+          "key": "Anishinaabe (Ojibwe) artist",
+          "doc_count": 99
+        },
+        {
+          "key": "Engraver: Richard Earlom; Draftsman: after Claude de Lorraine; Publisher: Hurst, Robinson & Co.",
+          "doc_count": 99
+        },
+        {
+          "key": "Charles Adams Platt",
+          "doc_count": 98
+        },
+        {
+          "key": "Mesoamerica (México)",
+          "doc_count": 98
+        },
+        {
+          "key": "Myanmar (Burma)",
+          "doc_count": 98
+        },
+        {
+          "key": "Sir Eduardo Paolozzi; Publisher: Editions Alecto, London",
+          "doc_count": 96
+        },
+        {
+          "key": "Sir Frank Short",
+          "doc_count": 96
+        },
+        {
+          "key": "Designer: William Gray Purcell; Designer: George Grant Elmslie",
+          "doc_count": 95
+        },
+        {
+          "key": "Photographer: Alfred Stieglitz",
+          "doc_count": 94
+        },
+        {
+          "key": "Charles Storm van's Gravesande",
+          "doc_count": 92
+        },
+        {
+          "key": "Hamaguchi Yōzō",
+          "doc_count": 89
+        },
+        {
+          "key": "Kenji Nakahashi",
+          "doc_count": 89
+        },
+        {
+          "key": "Tibet",
+          "doc_count": 89
+        },
+        {
+          "key": "Wanda Gág",
+          "doc_count": 89
+        },
+        {
+          "key": "Author: Jean-Antoine Lebrun-Tossa; Publisher: François Buisson",
+          "doc_count": 88
+        },
+        {
+          "key": "Philip Little",
+          "doc_count": 88
+        },
+        {
+          "key": "Photographer: Brett Weston",
+          "doc_count": 88
+        },
+        {
+          "key": "Photographer: Dave Heath",
+          "doc_count": 88
+        },
+        {
+          "key": "Oliver Hall",
+          "doc_count": 87
+        },
+        {
+          "key": "Photographer: Lewis W. Hine",
+          "doc_count": 87
+        },
+        {
+          "key": "Giovanni Battista Piranesi",
+          "doc_count": 86
+        },
+        {
+          "key": "Photographer: Werner Bischof",
+          "doc_count": 86
+        },
+        {
+          "key": "D. Y. Cameron",
+          "doc_count": 85
+        },
+        {
+          "key": "Photographer: Garry Winogrand; Publisher: RFG Publishing, Inc., New York",
+          "doc_count": 85
+        },
+        {
+          "key": "Utagawa Hiroshige",
+          "doc_count": 85
+        },
+        {
+          "key": "México",
+          "doc_count": 84
+        },
+        {
+          "key": "Photographer: Ramon J. Muxter",
+          "doc_count": 84
+        },
+        {
+          "key": "Saverio Manetti",
+          "doc_count": 84
+        },
+        {
+          "key": "Switzerland",
+          "doc_count": 84
+        },
+        {
+          "key": "Photographer: Eadweard Muybridge; Publisher: University of Pennsylvania",
+          "doc_count": 83
+        },
+        {
+          "key": "Thomas Schofield Handforth",
+          "doc_count": 83
+        },
+        {
+          "key": "Adolphe Marie Timothee Beaufrère",
+          "doc_count": 82
+        },
+        {
+          "key": "Fukami Sueharu",
+          "doc_count": 82
+        },
+        {
+          "key": "Germany (Bavaria)",
+          "doc_count": 82
+        },
+        {
+          "key": "Photographer: Nathan Lerner",
+          "doc_count": 81
+        },
+        {
+          "key": "Edward Ruscha",
+          "doc_count": 80
+        },
+        {
+          "key": "Manufacturer: JB Martin",
+          "doc_count": 80
+        },
+        {
+          "key": "Designer: Larsen Design Studio, New York; Mill: The Thai Silk Co. Ltd.; Producer: Jack Lenor Larsen, Inc.",
+          "doc_count": 79
+        },
+        {
+          "key": "Thomas Bewick",
+          "doc_count": 79
+        },
+        {
+          "key": "David Rathman",
+          "doc_count": 78
+        },
+        {
+          "key": "Designer: Larsen Design Studio, New York; Designer: Lori Weitzner; Producer: Jack Lenor Larsen, Inc.",
+          "doc_count": 77
+        },
+        {
+          "key": "Publisher: Emile de Girardin",
+          "doc_count": 77
+        },
+        {
+          "key": "Bror Julius Olsson (B.J.O.) Nordfeldt",
+          "doc_count": 76
+        },
+        {
+          "key": "Designer: Frank Lloyd Wright",
+          "doc_count": 75
+        },
+        {
+          "key": "Designer: John S. Bradstreet",
+          "doc_count": 74
+        },
+        {
+          "key": "Possibly France",
+          "doc_count": 74
+        },
+        {
+          "key": "Belgium",
+          "doc_count": 73
+        },
+        {
+          "key": "Fukuda Kodōjin",
+          "doc_count": 73
+        },
+        {
+          "key": "Jean-Pierre Norblin de la Gourdaine",
+          "doc_count": 73
+        },
+        {
+          "key": "Philip Kappel",
+          "doc_count": 73
+        },
+        {
+          "key": "Photographer: Alec Soth",
+          "doc_count": 73
+        },
+        {
+          "key": "Photographer: Edwin Hale Lincoln",
+          "doc_count": 73
+        },
+        {
+          "key": "Katsushika Hokusai",
+          "doc_count": 72
+        },
+        {
+          "key": "Photographer: Frank W. Gohlke",
+          "doc_count": 72
+        },
+        {
+          "key": "Gustave Leheutre",
+          "doc_count": 71
+        },
+        {
+          "key": "Hagiwara Hideo",
+          "doc_count": 71
+        },
+        {
+          "key": "Katsushika Hokusai; Publisher: Nishimuraya Yohachi",
+          "doc_count": 71
+        },
+        {
+          "key": "Eugène Béjot",
+          "doc_count": 69
+        },
+        {
+          "key": "Inuit artist",
+          "doc_count": 69
+        },
+        {
+          "key": "Austria (Vienna)",
+          "doc_count": 68
+        },
+        {
+          "key": "Francois Nicolas Martinet; Alexandre Martinet",
+          "doc_count": 68
+        },
+        {
+          "key": "Félix Bracquemond",
+          "doc_count": 68
+        },
+        {
+          "key": "Lucas Huygensz van Leyden",
+          "doc_count": 68
+        },
+        {
+          "key": "Manufacturer: A.C. Williams Company",
+          "doc_count": 68
+        },
+        {
+          "key": "Morocco",
+          "doc_count": 68
+        },
+        {
+          "key": "Sebald Beham",
+          "doc_count": 68
+        },
+        {
+          "key": "Sir Eduardo Paolozzi",
+          "doc_count": 68
+        },
+        {
+          "key": "Antoni Tàpies",
+          "doc_count": 67
+        },
+        {
+          "key": "Bolivia",
+          "doc_count": 67
+        },
+        {
+          "key": "Creator: Lower East Side Girls Club, New York",
+          "doc_count": 67
+        },
+        {
+          "key": "Edward Coley Burne-Jones",
+          "doc_count": 67
+        },
+        {
+          "key": "Franz von Bäyros",
+          "doc_count": 67
+        },
+        {
+          "key": "Julie Buffalohead",
+          "doc_count": 67
+        },
+        {
+          "key": "Manufacturer: Meissen Porcelain Factory",
+          "doc_count": 67
+        },
+        {
+          "key": "Maxime Lalanne",
+          "doc_count": 67
+        },
+        {
+          "key": "Photographer: Nathan Lazarnick",
+          "doc_count": 67
+        },
+        {
+          "key": "Adolf Dehn",
+          "doc_count": 66
+        },
+        {
+          "key": "Malcolm H. Myers",
+          "doc_count": 66
+        },
+        {
+          "key": "Photographer: Esther Glaser Parada",
+          "doc_count": 66
+        },
+        {
+          "key": "Designer: Larsen Design Studio, New York; Mill: Taunus Textildruck Zimmer; Producer: Jack Lenor Larsen, Inc.",
+          "doc_count": 65
+        },
+        {
+          "key": "Kuba artist",
+          "doc_count": 65
+        },
+        {
+          "key": "Maki Haku",
+          "doc_count": 65
+        },
+        {
+          "key": "Photographer: Clarence Kennedy; Publisher: Smith College",
+          "doc_count": 65
+        },
+        {
+          "key": "Photographer: Henri Cartier-Bresson",
+          "doc_count": 65
+        },
+        {
+          "key": "Photographer: Joanne Leonard",
+          "doc_count": 65
+        },
+        {
+          "key": "William B. Closson",
+          "doc_count": 65
+        },
+        {
+          "key": "Itō Shinsui; Publisher: Watanabe Shōzaburō",
+          "doc_count": 64
+        },
+        {
+          "key": "Photographer: William B. Post",
+          "doc_count": 64
+        },
+        {
+          "key": "Robert Charles Goff",
+          "doc_count": 64
+        },
+        {
+          "key": "Alexa Horochowski",
+          "doc_count": 63
+        },
+        {
+          "key": "China (Jingdezhen)",
+          "doc_count": 63
+        },
+        {
+          "key": "Joseph Mallord William Turner R.A.",
+          "doc_count": 63
+        },
+        {
+          "key": "Utagawa Hiroshige; Publisher: Sakanaya Eikichi",
+          "doc_count": 63
+        },
+        {
+          "key": "Asante artist",
+          "doc_count": 61
+        },
+        {
+          "key": "Author: Achille Louis Martinet; Publisher: Rudolph Ackermann",
+          "doc_count": 61
+        },
+        {
+          "key": "Charles-François Daubigny",
+          "doc_count": 61
+        },
+        {
+          "key": "Designer: Larsen Design Studio, New York; Mill: Thai Silk; Producer: Jack Lenor Larsen, Inc.",
+          "doc_count": 61
+        },
+        {
+          "key": "Mission Mini-Comix, San Francisco; Publisher: Mission Mini-Comix, San Francisco",
+          "doc_count": 61
+        },
+        {
+          "key": "Nicolas Africano",
+          "doc_count": 61
+        }
+      ]
+    }
+  },
+  "suggest": {
+    "title_completion": [
+      {
+        "text": "* public_access:1",
+        "offset": 0,
+        "length": 17,
+        "options": []
+      }
+    ],
+    "artist": [
+      {
+        "text": "public_access",
+        "offset": 2,
+        "length": 13,
+        "options": []
+      },
+      {
+        "text": "1",
+        "offset": 16,
+        "length": 1,
+        "options": []
+      }
+    ],
+    "artist_completion": [
+      {
+        "text": "* public_access:1",
+        "offset": 0,
+        "length": 17,
+        "options": []
+      }
+    ]
+  },
+  "query": "*",
+  "error": null
+}

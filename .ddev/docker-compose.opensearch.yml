@@ -1,0 +1,17 @@
+services:
+  opensearch:
+    image: opensearchproject/opensearch:2
+    container_name: ddev-${DDEV_PROJECT}-opensearch
+    environment:
+      - discovery.type=single-node
+      - compatibility.override_main_response_version=true
+      - plugins.security.disabled=true
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=97UxngYAArZ12jqt!jH20K
+    volumes:
+      - opensearch-data1:/usr/share/opensearch/data
+    ports:
+      - "9200:9200"
+      - "9600:9600"
+
+volumes:
+  opensearch-data1:

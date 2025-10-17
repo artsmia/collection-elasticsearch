@@ -4,19 +4,19 @@
   "description": "search the MIA collection",
   "main": "index.js",
   "dependencies": {
+    "@opensearch-project/opensearch": "^3.5.1",
     "cookie-parser": "^1.4.5",
     "cors": "~2.2.0",
     "csv-parse": "^4.12.0",
-    "elasticsearch": "~8.0.0",
     "express": "^4.17.1",
-    "hiredis": "~0.1.16",
     "image-size": "^0.9.1",
     "json2csv": "^4.2.1",
     "node-fetch": "^2.3.0",
-    "puppeteer": "^8.0.0",
-    "redis": "~0.10.1"
+    "redis": "^5.6.1"
   },
   "scripts": {
+    "build": "unzip data-snapshot20250710.zip",
+    "start": "node api/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "",

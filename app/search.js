@@ -1,16 +1,14 @@
 /** @format
  */
 
-var redis = require('redis'),
-  client = redis.createClient()
-
-var es = new require('elasticsearch').Client({
-  host: process.env.ES_URL,
-  log: false,
-  requestTimeout: 3000,
-})
-
+const buildRedisClient = require('./lib/buildRedisClient');
+const es = require('./lib/esClient');
 const Json2csvParser = require('json2csv').Parser
+
+const client = buildRedisClient();
+client.connect();
+
+const CACHE_SEARCHES = true;
 
 var prindleRoom = {
   accession_number: '82.43.1-60',
@@ -141,52 +139,19 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
   }
   var aggSize = 200
   var aggs = {
-    Image: {
-      terms: {
-        script: "doc['image'].value == 'valid' ? 'Available' : 'Unavailable'",
-        size: aggSize,
-      },
-    },
-    // "Image": {"terms": {"field": "image", "size": aggSize}},
-    // "Image": {
-    // 	"terms": {
-    // 		"field": "image",
-    // 		"size": aggSize
-    // 	},
-    // 	"aggs": {
-    // 		"image_rights_type": {"terms": {"field": "image_rights_type"}},
-    // 	}
-    // },
-    'On View': {
-      terms: {
-        script:
-          "doc['room.raw'].value == 'Not on View' ? 'Not on View' : 'On View'",
-        size: aggSize,
-      },
-    },
-    // "On View": {
-    //   "terms": {
-    //     "script": "doc['room.raw'].value == 'Not on View' ? 'Not on View' : 'On View'",
-    //     size: aggSize
-    //   },
-    //   "aggs": {"Room": {"terms": {"field": "room.raw", "size": aggSize}}},
-    // },
+    // Note: Several entries have been deleted because they fail to execute
+    // under OpenSearch, or due to flaws in the mappings/data migration process.
     Room: { terms: { field: 'room.raw', size: aggSize } },
-    Rights: { terms: { field: 'rights_type' } },
+    Rights: { terms: { field: 'rights_type.keyword' } },
     Artist: { terms: { field: 'artist.raw', size: aggSize } },
     Country: { terms: { field: 'country.raw', size: aggSize } },
     Style: { terms: { field: 'style.raw', size: aggSize } },
     Medium: { terms: { field: 'medium.stop', size: aggSize } },
-    Classification: { terms: { field: 'classification', size: aggSize } },
+    Classification: { terms: { field: 'classification.keyword', size: aggSize } },
     Title: { terms: { field: 'title.raw', size: aggSize } },
     Gist: { significant_terms: { field: '_all' } },
     Department: { terms: { field: 'department.raw', size: aggSize } },
     Tags: { terms: { field: 'tags', size: aggSize } },
-    // "image_rights_type": {"terms": {"field": "image_rights_type"}},
-    // other facets? department
-    // "year": {"histogram": {"field": "dated", "interval": 50}},
-    // "year": {"terms": {"field": "dated", "size": aggSize}},
-    // "Creditline": {"terms": {"field": "creditline.raw", "size": aggSize}},
   }
   var highlight = {
     fields: { '*': { fragment_size: 5000, number_of_fragments: 1 } },
@@ -201,11 +166,11 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
       query: q,
       aggs: aggs,
       highlight: highlight,
-      suggest: suggest,
+      // suggest: suggest,
     },
     size: size,
     from: from,
-    limitToPublicAccess: limitToPublicAccess,
+    // limitToPublicAccess: limitToPublicAccess,
     isMoreArtsmia: isMoreArtsmia,
     boostOnViewArtworks: boostOnViewArtworks,
   }
@@ -230,7 +195,7 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
     }
 
     es.search(search).then(
-      function(body) {
+      function({ body }) {
         body.query = q
         callback(null, body)
 
@@ -239,9 +204,9 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
         if (!skipCaching) {
           var cacheTTL = body.took * 60
           body.cache = { cached: true, key: cacheKey }
-          client.set(cacheKey, JSON.stringify(body), function(err, reply) {
-            if (!err) client.expire(cacheKey, cacheTTL)
-          })
+          client.set(cacheKey, JSON.stringify(body))
+            .then(() => client.expire(cacheKey, cacheTTL))
+            .catch(err => console.error(err));
         }
       },
       function(error) {
@@ -252,8 +217,14 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
   })
 }
 
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
 var searchEndpoint = function(req, res) {
-  if (req.params.query == 'favicon.ico') return res.send(404)
+  if (req.params.query === 'favicon.ico') {
+    return res.sendStatus(400);
+  }
   var replies = []
   var size = req.query.size || (req.query.format === 'csv' ? 1000 : 100)
   var sort = req.query.sort
@@ -307,15 +278,19 @@ var searchEndpoint = function(req, res) {
 const baseUrl =
   process.env.NODE_ENV === 'production'
     ? `https://search.artsmia.org`
-    : 'http://localhost:4680'
+    : 'http://localhost:3000'
 
 function getTypeIndexFromDataPrefix(prefix) {
   if(prefix === 'fitd') return ['foot-in-the-door', 'foot-in-the-door']
   if(prefix === 'ca21') return ['creativity-academy-2021', 'creativity-academy-2021']
   if(prefix === 'aib21') return ['art-in-bloom-2021', 'art-in-bloom-2021']
-  return ['object_data', process.env.ES_index]
+  return [undefined, process.env.ES_index]
 }
 
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
 var id = function(req, res) {
   var id = req.params.id
   if (id == 'G320') return res.json(prindleRoom)
@@ -338,20 +313,21 @@ var id = function(req, res) {
   var dataPrefix = req.query.dataPrefix
   var [type, index] = getTypeIndexFromDataPrefix(dataPrefix)
 
-  es.get({ id: id, type: type, index: index }, function(
-    err,
-    reply
-  ) {
-    if (err) {
+  es.get({ id: id, type: type, index: index })
+    .then(reply => {
+      res.json(reply.body._source);
+    })
+    .catch(err => {
       console.error('ES error', err)
-      return client.hget('object:' + ~~(id / 1000), id, function(err, reply) {
-        return res.json(JSON.parse(reply))
-      })
-    }
-    res.json(reply._source)
-  })
+      return client.hGet('object:' + ~~(id / 1000), id)
+        .then(reply => res.json(JSON.parse(reply)));
+    })
 }
 
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
 var ids = function(req, res) {
   var ids = req.params.ids.split(',')
   var dataPrefix = req.query.dataPrefix
@@ -360,73 +336,82 @@ var ids = function(req, res) {
     return { _index: index, _type: type, _id: id }
   })
 
-  es.mget({ body: { docs: docs } }, function(err, response) {
-    if (err) {
-      console.error(err)
-      return res.send('oops')
-    }
+  es.mget({ body: { docs: docs } })
+    .then(response => {
+      if (req.query.format !== 'csv') {
+        return res.json({
+          hits: {
+            total: response.body.docs.length,
+            hits: response.body.docs,
+          },
+        });
+      }
 
-    if (req.query.format === 'csv') { // TODO de-dupe with the CSV handling in the general search
-      // How to re-query and pull the full set of results, or at least up to a higher limit?
-      if (typeof results === 'string') results = JSON.parse(results) // re-parse cached JSON string
-
-      const hits = response.docs.map(hit => {
+      const hits = response.body.docs.map(hit => {
         return Object.assign(hit._source, {
           searchTerm: req.params.query,
           searchScore: hit._score,
-        })
-      })
+        });
+      });
 
-      const csv = new Json2csvParser({}).parse(hits)
+      const csv = new Json2csvParser({}).parse(hits);
 
       const filename = `minneapolis institute of art search: ${
         ids.join('-')
-      }.csv`
+      }.csv`;
 
-      res.attachment(filename)
-      res.send(csv)
-    } else {
-      res.json({
-        hits: {
-          total: response.docs.length,
-          hits: response.docs,
-        },
-      })
-    }
-  })
+      res.attachment(filename);
+      res.send(csv);
+    })
+    .catch(err => {
+      console.error(err);
+      return res.send('oops');
+    });
 }
 
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
 var tag = function(req, res) {
-  client.smembers('tag:' + req.params.tag, function(err, ids) {
-    var m = client.multi()
-    ids.forEach(function(id) {
-      m.hget('object:' + ~~(id / 1000), id)
-    })
-
-    m.exec(function(err, replies) {
-      var filter = req.query.filter
-      if (filter == undefined)
-        return res.json(
-          replies.map(function(meta) {
-            return JSON.parse(meta)
-          })
-        )
-      filter = filter.split(',')
-      var filtered = replies.map(function(meta) {
-        if (meta == null) return
-        var json = JSON.parse(meta)
-        return filter.reduce(function(all, field) {
-          all[field] = json[field]
-          return all
-        }, {})
+  // TODO rewrite to use OpenSearch...somehow.
+  client.sMembers('tag:' + req.params.tag)
+    .then(ids => {
+      var m = client.multi()
+      ids.forEach(function(id) {
+        m.hGet('object:' + ~~(id / 1000), id)
       })
-      return res.send(filtered)
-    })
-  })
+
+      m.exec()
+        .then(replies => {
+          var filter = req.query.filter
+          if (filter == undefined)
+            return res.json(
+              replies.map(function(meta) {
+                return JSON.parse(meta)
+              })
+            )
+          filter = filter.split(',')
+          var filtered = replies.map(function(meta) {
+            if (meta == null) return
+            var json = JSON.parse(meta)
+            return filter.reduce(function(all, field) {
+              all[field] = json[field]
+              return all
+            }, {})
+          })
+          return res.send(filtered)
+        });
+    });
 }
 
 // cache frequent searches, time-limited
 function checkRedisForCachedSearch(search, query, req, callback) {
+  if (!CACHE_SEARCHES) {
+    callback(null);
+    return;
+  }
+
   var sortKey = req.query.sort && 'sort:' + req.query.sort.replace('-asc', '')
   var cacheKey =
     'cache::search::' +
@@ -436,47 +421,72 @@ function checkRedisForCachedSearch(search, query, req, callback) {
       .replace(/ /g, '-')
   if (!search.limitToPublicAccess) cacheKey = cacheKey + '::private'
 
-  client.get(cacheKey, function(err, reply) {
-    if (!!req.query.expireCache && reply) {
-      client.del(cacheKey, redis.print)
+  client.get(cacheKey)
+    .then(reply => {
+      if (!!req.query.expireCache && reply) {
+        client.del(cacheKey, redis.print)
 
-      reply = JSON.parse(reply)
-      reply.cache.expiring = true
-      // reply = JSON.stringify(reply)
-    }
+        reply = JSON.parse(reply)
+        reply.cache.expiring = true
+        // reply = JSON.stringify(reply)
+      }
 
-    return callback(err, reply, cacheKey)
-  })
+      return callback(null, reply, cacheKey)
+    })
+    .catch(err => callback(err, null, cacheKey));
 }
 
+/**
+ * /autofill/:prefix
+ *
+ * @param {Request} req
+ * @param {Response} res
+ */
 var autofill = function(req, res) {
-  var query = {
+  throw new Error('disabled');
+  /**
+   * This is disabled because the ElasticSearch completion field mappings failed
+   * to re-import into OpenSearch. The following code should work _if_ the
+   * completion fields are created for artist_suggest, et al. and they are populated
+   * in the data.
+   */
+
+  es.search({
     index: process.env.ES_index,
     body: {
-      text: req.params.prefix,
-      artist_completion: {
-        completion: {
-          field: 'artist_suggest',
+      suggest: {
+        artist_completion: {
+          prefix: req.params.prefix,
+          completion: {
+            field: 'artist_suggest',
+          },
         },
-      },
-      highlight_artist_completion: {
-        completion: {
-          field: 'highlight_artist_suggest',
+        highlight_artist_completion: {
+          prefix: req.params.prefix,
+          completion: {
+            field: 'highlight_artist_suggest',
+          },
         },
-      },
-      title_completion: {
-        completion: {
-          field: 'title_suggest',
-        },
+        title_completion: {
+          prefix: req.params.prefix,
+          completion: {
+            field: 'title_suggest',
+          },
+        }
       },
     },
-  }
-
-  es.suggest(query).then(function(body) {
-    res.json(body)
-  })
+  }).then(response => {
+    res.json(response.body);
+  }).catch(err => {
+    console.error(err);
+    return res.send('oops');
+  });
 }
 
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
 var random = function(req, res) {
   var size = req.query.size || 1
   var query =
@@ -484,7 +494,7 @@ var random = function(req, res) {
       ? { query_string: { query: (req.query.q += ' public_access:1') } }
       : { query_string: { query: 'public_access:1' } }
   var dataPrefix = req.query.dataPrefix
-  var [type, index] = getTypeIndexFromDataPrefix(dataPrefix)
+  var [, index] = getTypeIndexFromDataPrefix(dataPrefix)
 
   es.search({
     index: index,
@@ -498,10 +508,10 @@ var random = function(req, res) {
     },
     size: size,
   }).then(function(results, error) {
-    var firstHitSource = results.hits.hits[0]._source
+    var firstHitSource = results.body.hits.hits[0]._source;
+    res.status(error ? error.status: 200);
     return res.json(
-      size == 1 ? firstHitSource : results.hits.hits,
-      (error && error.status) || 200
+      size === 1 ? firstHitSource : results.body.hits.hits
     )
   })
 }

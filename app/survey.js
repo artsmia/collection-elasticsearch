@@ -5,10 +5,18 @@
 // Code to save artwork likes/dislikes to redis along with user session
 //
 
-var redis = require('redis')
-var dataClient = redis.createClient()
-dataClient.select(7)
+const buildRedisClient = require('./lib/buildRedisClient');
 
+// TODO All calls must be rewritten to handle Promises.
+const dataClient = buildRedisClient();
+dataClient.connect();
+  // Only DB 0 supported on Upstash.
+  // .then(() => dataClient.select(7));
+
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
 function getUserId(req, res, callback) {
   const cookieName = 'artsmiaUserId'
   setCorsHeadersToAllowCookies(req, res)
@@ -23,32 +31,50 @@ function getUserId(req, res, callback) {
   // and also append it to `res` so it goes back to the requesting browser
   dataClient.get('nextUserId', function(err, newId, existingId) {
     res.cookie(cookieName, newId, {sameSite: 'None', secure: true})
-    dataClient.incrby('nextUserId', 1)
+    dataClient.incrBy('nextUserId', 1);
     return callback(null, newId)
   })
 }
 
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
 function setCorsHeadersToAllowCookies(req, res) {
   console.info('setCorsHeadersToAllowCookies', req.headers.origin)
   res.header("Access-Control-Allow-Origin", req.headers.origin)
   res.header("Access-Control-Allow-Credentials", true)
 }
 
+/**
+ * @param {string} likeOrDislike
+ * @param {Request} req
+ * @param {Response} res
+ */
 function rateArtwork(likeOrDislike, req, res) {
   getUserId(req, res, function(err, userId) {
     var artworkId = req.params.id
-    dataClient.sadd(`survey:user:${userId}:${likeOrDislike}`, artworkId, redis.print)
+    dataClient.sAdd(`survey:user:${userId}:${likeOrDislike}`, artworkId, redis.print)
     return res.send(`user ${userId} ${likeOrDislike} art ${artworkId}`)
   })
 }
+
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
 function getRated(req, res) {
   getUserId(req, res, function(err, userId) {
-    dataClient.smembers(`survey:user:${userId}:likes`, function(err, likes) {
+    dataClient.sMembers(`survey:user:${userId}:likes`, function(err, likes) {
       return res.json({userId, likes})
     })
   })
 }
 
+/**
+ * @param {Request} req
+ * @param {Response} res
+ */
 function saveJSONData(req, res) {
   const {surveyId} = req.params || {}
   const {data} = req.query || {}

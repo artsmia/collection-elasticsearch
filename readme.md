@@ -1,6 +1,46 @@
 Elasticsearch for Mia's collection data.
 
-# Setup
+# Setup (DDev)
+
+```
+ddev start
+
+# populate local redis
+docker run --rm -ti \
+  --network ddev-collection-elasticsearch_default \
+  -v ./tmp:/app  -w /app \
+  riotx/riot file-import -h redis redis-riot-export.2025-07-09.json
+
+# redis-cli example usage
+ddev exec -s redis redis-cli info
+
+# populate local OpenSearch
+docker run --rm -ti \
+  --network ddev-collection-elasticsearch_default \
+  -v ./tmp:/app -w /app \
+  elasticdump/elasticsearch-dump \
+    --input=2025-07-09-object2.mapping.json \
+    --output='http://admin:97UxngYAArZ12jqt!jH20K@opensearch:9200/objects2' \
+    --type=mapping
+
+docker run --rm -ti \
+  --network ddev-collection-elasticsearch_default \
+  -v ./tmp:/app -w /app \
+  elasticdump/elasticsearch-dump \
+    --input=2025-07-09-object2.data.json \
+    --output='http://admin:97UxngYAArZ12jqt!jH20K@opensearch:9200/objects2' \
+    --type=data
+
+# verify index now exists
+curl 'http://admin:97UxngYAArZ12jqt!jH20K@localhost:9200/objects2' | jq .
+
+curl 'http://admin:97UxngYAArZ12jqt!jH20K@localhost:9200/objects2/_doc/3885 | jq .
+
+# Start the server
+ddev exec -s app node api/index.js
+```
+
+# Setup (legacy)
 
 (Getting this all running requires that you have a local redis instance
 that's replicating our internal museum redis. [You can create your own from

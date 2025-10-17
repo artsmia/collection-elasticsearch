@@ -7,7 +7,10 @@ default: highlights
 deleteIndex:
 	curl -XDELETE $(es)/$(index)
 
+# This must be rewritten to work on OpenSearch. Probably will need to use
+# elasticsearch-dump to copy mappings.
 createIndex:
+	# This will fail on OpenSearch due to "unsupported parameters"
 	curl -XPOST -d @mappings.json $(es)/$(index)
 
 # TODO for accessionHighlights this needs to be POST instead of PUT?

@@ -1,0 +1,1 @@
+This was used to set up the `objects2` index in ElasticSearch (see the Makefile `createIndex` task) but this format no longer can be imported into new versions of OpenSearch. Instead, we used `elasticsearch-dump` to export mappings and data from the old ElasticSearch instance and re-import them into OpenSearch (accepting some functionality loss).

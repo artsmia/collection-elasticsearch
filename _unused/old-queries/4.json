@@ -1,0 +1,1443 @@
+{
+  "took": 26,
+  "timed_out": false,
+  "_shards": {
+    "total": 1,
+    "successful": 1,
+    "failed": 0
+  },
+  "hits": {
+    "total": 108,
+    "max_score": 1.4255795,
+    "hits": [
+      {
+        "_index": "objects2",
+        "_type": "object_data",
+        "_id": "131408",
+        "_score": 1.4255795,
+        "_source": {
+          "id": 131408,
+          "title": "Die neue Sommerzeit (The New Summertime) (recto) and The Ride (Die Fahrt) (verso), page from Der Bildermann",
+          "medium": "Lithographs",
+          "classification": "Prints",
+          "dimension": "13 7/8 × 10 13/16 in. (35.24 × 27.46 cm) (sheet)",
+          "object_name": "Print",
+          "continent": "Europe",
+          "country": "Germany",
+          "culture": null,
+          "dated": "May 1916",
+          "room": "Not on View",
+          "style": null,
+          "inscription": "LRC on recto in pencil: 75 85 / 115 | LLC verso in pencil: 3/1816",
+          "signed": null,
+          "markings": null,
+          "text": "In 1916, publisher Paul Cassirer started a new periodical, Der Bildermann [The Picture Man], to bring a broad public directly in touch with art. It featured original lithographs that sought to offer beauty as a form of relief from the grinding brutality of World War I. Leo Kestenberg, a pianist and pacifist, ran the journal while Cassirer served in the army. Max Slevogt designed the vignette on the masthead, which shows a man peddling broadsheets to eager soldiers and civilians of all ages and stations. Der Bildermann embraced the art of impressionists (such as Max Slevogt), expressionists (Erich Heckel and Ernst Ludwig Kirchner), and naturalists (August Gaul). Dwindling subscriptions, increasing difficulties with censors and the bureaucracy, led to Der Bildermann’s demise after only eighteen issues.",
+          "description": "",
+          "provenance": "(Dorotheum, Vienna, Austria, sold to Bulger); Robert Bulger, Boston, Mass.; given to MIA, 2018.",
+          "portfolio": "Der Bildermann, folio 7, vol. 1, no. 3",
+          "creditline": "Gift of Robert Bulger in honor of Elizabeth and Madelyn Brunner",
+          "accession_number": "2018.129.1",
+          "artist": "August Gaul (recto); Erich Heckel (verso); Publisher: Galerie Paul Cassirer; Printer: M.W. Lassaly",
+          "role": "Artist",
+          "nationality": "German",
+          "life_date": "German, 1869–1921",
+          "image_copyright": null,
+          "department": "European Art",
+          "rights_type": "Public Domain",
+          "image": "valid",
+          "image_width": 4458,
+          "image_height": 5621,
+          "restricted": 1,
+          "public_access": 1,
+          "curator_approved": 0,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "recent": 0,
+          "list": null,
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Full",
+          "highlights": 0,
+          "Cache_Location": "131000\\400\\00\\131408",
+          "Primary_RenditionNumber": "mia_7016936.jpg"
+        },
+        "highlight": {
+          "text.text": [
+            "In 1916, publisher Paul \u003Cem\u003ECassirer\u003C/em\u003E started a new periodical, Der Bildermann [The Picture Man], to bring a broad public directly in touch with art. It featured original lithographs that sought to offer beauty as a form of relief from the grinding brutality of World War I. Leo Kestenberg, a pianist and pacifist, ran the journal while \u003Cem\u003ECassirer\u003C/em\u003E served in the army. Max Slevogt designed the vignette on the masthead, which shows a man peddling broadsheets to eager soldiers and civilians of all ages and stations. Der Bildermann embraced the art of impressionists (such as Max Slevogt), expressionists (Erich Heckel and Ernst Ludwig Kirchner), and naturalists (August Gaul). Dwindling subscriptions, increasing difficulties with censors and the bureaucracy, led to Der Bildermann’s demise after only eighteen issues."
+          ],
+          "artist.ngram": [
+            "August Gaul (recto); Erich Heckel (verso); Publisher: Galerie Paul \u003Cem\u003ECassirer\u003C/em\u003E; Printer: M.W. Lassaly"
+          ],
+          "artist": [
+            "August Gaul (recto); Erich Heckel (verso); Publisher: Galerie Paul \u003Cem\u003ECassirer\u003C/em\u003E; Printer: M.W. Lassaly"
+          ]
+        }
+      },
+      {
+        "_index": "objects2",
+        "_type": "object_data",
+        "_id": "131410",
+        "_score": 1.4255795,
+        "_source": {
+          "id": 131410,
+          "title": "Belgian Landscape (Belgische Landschaft) (recto) and The Meadow (Die Wiese) (verso), page from Der Bildermann",
+          "medium": "Lithographs",
+          "classification": "Prints",
+          "dimension": "13 13/16 × 10 15/16 in. (35.08 × 27.78 cm) (sheet)",
+          "object_name": "Print",
+          "continent": "Europe",
+          "country": "Germany",
+          "culture": null,
+          "dated": "July 1916",
+          "room": "Not on View",
+          "style": null,
+          "inscription": "LRC on recto in pencil: 128 96 / 105",
+          "signed": null,
+          "markings": null,
+          "text": "In 1916, publisher Paul Cassirer started a new periodical, Der Bildermann [The Picture Man], to bring a broad public directly in touch with art. It featured original lithographs that sought to offer beauty as a form of relief from the grinding brutality of World War I. Leo Kestenberg, a pianist and pacifist, ran the journal while Cassirer served in the army. Max Slevogt designed the vignette on the masthead, which shows a man peddling broadsheets to eager soldiers and civilians of all ages and stations. Der Bildermann embraced the art of impressionists (such as Max Slevogt), expressionists (Erich Heckel and Ernst Ludwig Kirchner), and naturalists (August Gaul). Dwindling subscriptions, increasing difficulties with censors and the bureaucracy, led to Der Bildermann’s demise after only eighteen issues.",
+          "description": "",
+          "provenance": "(Dorotheum, Vienna, Austria, sold to Bulger); Robert Bulger, Boston, Mass.; given to MIA, 2018.",
+          "portfolio": "Der Bildermann, folio 16, vol. 1, no. 8",
+          "creditline": "Gift of Robert Bulger in honor of Elizabeth and Madelyn Brunner",
+          "accession_number": "2018.129.2",
+          "artist": "Erich Heckel (recto); August Gaul (verso); Publisher: Galerie Paul Cassirer; Printer: M.W. Lassaly",
+          "role": "Artist",
+          "nationality": "German",
+          "life_date": "German, 1883–1970",
+          "image_copyright": null,
+          "department": "European Art",
+          "rights_type": "Public Domain",
+          "image": "valid",
+          "image_width": 4518,
+          "image_height": 5592,
+          "restricted": 1,
+          "public_access": 1,
+          "curator_approved": 0,
+          "catalogue_raissonne": null,
+          "art_champions_text": null,
+          "see_also": [
+            ""
+          ],
+          "recent": 0,
+          "list": null,
+          "Catalog_Raisonne": null,
+          "Rights_Image_Display": "Full",
+          "highlights": 0,
+          "Cache_Location": "131000\\400\\10\\131410",
+          "Primary_RenditionNumber": "mia_7016938.jpg"
+        },
+        "highlight": {
+          "text.text": [
+            "In 1916, publisher Paul \u003Cem\u003ECassirer\u003C/em\u003E started a new periodical, Der Bildermann [The Picture Man], to bring a broad public directly in touch with art. It featured original lithographs that sought to offer beauty as a form of relief from the grinding brutality of World War I. Leo Kestenberg, a pianist and pacifist, ran the journal while \u003Cem\u003ECassirer\u003C/em\u003E served in the army. Max Slevogt designed the vignette on the masthead, which shows a man peddling broadsheets to eager soldiers and civilians of all ages and stations. Der Bildermann embraced the art of impressionists (such as Max Slevogt), expressionists (Erich Heckel and Ernst Ludwig Kirchner), and naturalists (August Gaul). Dwindling subscriptions, increasing difficulties with censors and the bureaucracy, led to Der Bildermann’s demise after only eighteen issues."
+          ],
+          "artist.ngram": [
+            "Erich Heckel (recto); August Gaul (verso); Publisher: Galerie Paul \u003Cem\u003ECassirer\u003C/em\u003E; Printer: M.W. Lassaly"
+          ],
+          "artist": [
+            "Erich Heckel (recto); August Gaul (verso); Publisher: Galerie Paul \u003Cem\u003ECassirer\u003C/em\u003E; Printer: M.W. Lassaly"
+          ]
+        }
+      }
+    ]
+  },
+  "aggregations": {
+    "Rights": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "Public Domain",
+          "doc_count": 97
+        },
+        {
+          "key": "In Copyright",
+          "doc_count": 10
+        },
+        {
+          "key": "Not Evaluated",
+          "doc_count": 1
+        }
+      ]
+    },
+    "Medium": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "etching",
+          "doc_count": 44
+        },
+        {
+          "key": "drypoint",
+          "doc_count": 21
+        },
+        {
+          "key": "paper",
+          "doc_count": 12
+        },
+        {
+          "key": "color",
+          "doc_count": 11
+        },
+        {
+          "key": "lithograph",
+          "doc_count": 11
+        },
+        {
+          "key": "aquatint",
+          "doc_count": 10
+        },
+        {
+          "key": "wood",
+          "doc_count": 7
+        },
+        {
+          "key": "engraving",
+          "doc_count": 6
+        },
+        {
+          "key": "japan",
+          "doc_count": 6
+        },
+        {
+          "key": "ground",
+          "doc_count": 5
+        },
+        {
+          "key": "lithographs",
+          "doc_count": 5
+        },
+        {
+          "key": "soft",
+          "doc_count": 5
+        },
+        {
+          "key": "walnut",
+          "doc_count": 5
+        },
+        {
+          "key": "gilt",
+          "doc_count": 4
+        },
+        {
+          "key": "graphite",
+          "doc_count": 4
+        },
+        {
+          "key": "ink",
+          "doc_count": 4
+        },
+        {
+          "key": "printed",
+          "doc_count": 4
+        },
+        {
+          "key": "roulette",
+          "doc_count": 4
+        },
+        {
+          "key": "black",
+          "doc_count": 3
+        },
+        {
+          "key": "chine",
+          "doc_count": 3
+        },
+        {
+          "key": "cream",
+          "doc_count": 3
+        },
+        {
+          "key": "letterpress",
+          "doc_count": 3
+        },
+        {
+          "key": "white",
+          "doc_count": 3
+        },
+        {
+          "key": "bound",
+          "doc_count": 2
+        },
+        {
+          "key": "ceramic",
+          "doc_count": 2
+        },
+        {
+          "key": "collé",
+          "doc_count": 2
+        },
+        {
+          "key": "colored",
+          "doc_count": 2
+        },
+        {
+          "key": "drawing",
+          "doc_count": 2
+        },
+        {
+          "key": "from",
+          "doc_count": 2
+        },
+        {
+          "key": "gesso",
+          "doc_count": 2
+        },
+        {
+          "key": "hand",
+          "doc_count": 2
+        },
+        {
+          "key": "mezzotint",
+          "doc_count": 2
+        },
+        {
+          "key": "painted",
+          "doc_count": 2
+        },
+        {
+          "key": "plates",
+          "doc_count": 2
+        },
+        {
+          "key": "print",
+          "doc_count": 2
+        },
+        {
+          "key": "sandpaper",
+          "doc_count": 2
+        },
+        {
+          "key": "sepia",
+          "doc_count": 2
+        },
+        {
+          "key": "volume",
+          "doc_count": 2
+        },
+        {
+          "key": "bronze",
+          "doc_count": 1
+        },
+        {
+          "key": "brushed",
+          "doc_count": 1
+        },
+        {
+          "key": "canvas",
+          "doc_count": 1
+        },
+        {
+          "key": "colle",
+          "doc_count": 1
+        },
+        {
+          "key": "cotton",
+          "doc_count": 1
+        },
+        {
+          "key": "crayon",
+          "doc_count": 1
+        },
+        {
+          "key": "decoration",
+          "doc_count": 1
+        },
+        {
+          "key": "decorations",
+          "doc_count": 1
+        },
+        {
+          "key": "design",
+          "doc_count": 1
+        },
+        {
+          "key": "earthenware",
+          "doc_count": 1
+        },
+        {
+          "key": "electrique",
+          "doc_count": 1
+        },
+        {
+          "key": "engravings",
+          "doc_count": 1
+        },
+        {
+          "key": "gilding",
+          "doc_count": 1
+        },
+        {
+          "key": "glazed",
+          "doc_count": 1
+        },
+        {
+          "key": "inking",
+          "doc_count": 1
+        },
+        {
+          "key": "inlaid",
+          "doc_count": 1
+        },
+        {
+          "key": "line",
+          "doc_count": 1
+        },
+        {
+          "key": "metal",
+          "doc_count": 1
+        },
+        {
+          "key": "metallic",
+          "doc_count": 1
+        },
+        {
+          "key": "monotype",
+          "doc_count": 1
+        },
+        {
+          "key": "oak",
+          "doc_count": 1
+        },
+        {
+          "key": "off",
+          "doc_count": 1
+        },
+        {
+          "key": "oil",
+          "doc_count": 1
+        },
+        {
+          "key": "ornamentation",
+          "doc_count": 1
+        },
+        {
+          "key": "other",
+          "doc_count": 1
+        },
+        {
+          "key": "outine",
+          "doc_count": 1
+        },
+        {
+          "key": "paint",
+          "doc_count": 1
+        },
+        {
+          "key": "photocopy",
+          "doc_count": 1
+        },
+        {
+          "key": "plate",
+          "doc_count": 1
+        },
+        {
+          "key": "poplar",
+          "doc_count": 1
+        },
+        {
+          "key": "prints",
+          "doc_count": 1
+        },
+        {
+          "key": "process",
+          "doc_count": 1
+        },
+        {
+          "key": "rayon",
+          "doc_count": 1
+        },
+        {
+          "key": "roller",
+          "doc_count": 1
+        },
+        {
+          "key": "sanguine",
+          "doc_count": 1
+        },
+        {
+          "key": "stencil",
+          "doc_count": 1
+        },
+        {
+          "key": "surface",
+          "doc_count": 1
+        },
+        {
+          "key": "textiles",
+          "doc_count": 1
+        },
+        {
+          "key": "three",
+          "doc_count": 1
+        },
+        {
+          "key": "tone",
+          "doc_count": 1
+        },
+        {
+          "key": "touches",
+          "doc_count": 1
+        },
+        {
+          "key": "traces",
+          "doc_count": 1
+        },
+        {
+          "key": "two",
+          "doc_count": 1
+        },
+        {
+          "key": "vellum",
+          "doc_count": 1
+        },
+        {
+          "key": "verel",
+          "doc_count": 1
+        },
+        {
+          "key": "watercolor",
+          "doc_count": 1
+        },
+        {
+          "key": "woodblock",
+          "doc_count": 1
+        },
+        {
+          "key": "woodcut",
+          "doc_count": 1
+        },
+        {
+          "key": "woods",
+          "doc_count": 1
+        }
+      ]
+    },
+    "Style": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "16th century",
+          "doc_count": 1
+        },
+        {
+          "key": "16th-17th century",
+          "doc_count": 1
+        }
+      ]
+    },
+    "Gist": {
+      "doc_count": 108,
+      "buckets": [
+        {
+          "key": "cassell",
+          "doc_count": 36,
+          "score": 289.62962962963,
+          "bg_count": 66
+        },
+        {
+          "key": "cassatt",
+          "doc_count": 20,
+          "score": 155.253050321276,
+          "bg_count": 38
+        },
+        {
+          "key": "breeskin",
+          "doc_count": 7,
+          "score": 65.7138203017833,
+          "bg_count": 11
+        },
+        {
+          "key": "cassone",
+          "doc_count": 7,
+          "score": 60.2322673754001,
+          "bg_count": 12
+        },
+        {
+          "key": "cassatt's",
+          "doc_count": 4,
+          "score": 59.0294924554184,
+          "bg_count": 4
+        },
+        {
+          "key": "cassis",
+          "doc_count": 5,
+          "score": 52.6916764648246,
+          "bg_count": 7
+        },
+        {
+          "key": "cassandre",
+          "doc_count": 3,
+          "score": 44.2721193415638,
+          "bg_count": 3
+        },
+        {
+          "key": "sylvester",
+          "doc_count": 5,
+          "score": 36.8702846364883,
+          "bg_count": 10
+        }
+      ]
+    },
+    "Country": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "United States",
+          "doc_count": 61
+        },
+        {
+          "key": "France",
+          "doc_count": 22
+        },
+        {
+          "key": "Italy",
+          "doc_count": 7
+        },
+        {
+          "key": "England",
+          "doc_count": 5
+        },
+        {
+          "key": "Germany",
+          "doc_count": 5
+        },
+        {
+          "key": "Austria",
+          "doc_count": 1
+        },
+        {
+          "key": "Belgium",
+          "doc_count": 1
+        },
+        {
+          "key": "China",
+          "doc_count": 1
+        },
+        {
+          "key": "Italy or Spain",
+          "doc_count": 1
+        },
+        {
+          "key": "Japan",
+          "doc_count": 1
+        },
+        {
+          "key": "Netherlands",
+          "doc_count": 1
+        },
+        {
+          "key": "Sweden",
+          "doc_count": 1
+        }
+      ]
+    },
+    "Title": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "Cassone (chest)",
+          "doc_count": 4
+        },
+        {
+          "key": "'Tween the Gloamin and the Mirk, When the Kye Come Hame",
+          "doc_count": 2
+        },
+        {
+          "key": "A Cloudy Day in Venice",
+          "doc_count": 2
+        },
+        {
+          "key": "A Tower of Cortez -- Mexico",
+          "doc_count": 2
+        },
+        {
+          "key": "Canal Boats on the Thames",
+          "doc_count": 2
+        },
+        {
+          "key": "Cassandra",
+          "doc_count": 2
+        },
+        {
+          "key": "Design for a Cassapancha for the Minneapolis Institute of Arts",
+          "doc_count": 2
+        },
+        {
+          "key": "Fishing Boats on the Beach at Scheveningen",
+          "doc_count": 2
+        },
+        {
+          "key": "Mary Cassatt at the Louvre: The Paintings Gallery",
+          "doc_count": 2
+        },
+        {
+          "key": "The Barefooted Child",
+          "doc_count": 2
+        },
+        {
+          "key": "The Inner Harbor, Gloucester",
+          "doc_count": 2
+        },
+        {
+          "key": "The Lion in Love",
+          "doc_count": 2
+        },
+        {
+          "key": "The Mora Players",
+          "doc_count": 2
+        },
+        {
+          "key": "The Ponte Vecchio, Florence",
+          "doc_count": 2
+        },
+        {
+          "key": "The Three Cows",
+          "doc_count": 2
+        },
+        {
+          "key": "Winter Evening",
+          "doc_count": 2
+        },
+        {
+          "key": "A Symphony, Nineteenth Century",
+          "doc_count": 1
+        },
+        {
+          "key": "An Old New England Orchard",
+          "doc_count": 1
+        },
+        {
+          "key": "And Drive Dull Care Away",
+          "doc_count": 1
+        },
+        {
+          "key": "And Drive Dull Cares Away",
+          "doc_count": 1
+        },
+        {
+          "key": "Belgian Landscape (Belgische Landschaft) (recto) and The Meadow (Die Wiese) (verso), page from Der Bildermann",
+          "doc_count": 1
+        },
+        {
+          "key": "Bleats'n'Squonx Cassette/Fanzine, no. 2",
+          "doc_count": 1
+        },
+        {
+          "key": "Botanical Dissection:  Spiderwort and Senna (Tradescantia sp., Cassia sp.)",
+          "doc_count": 1
+        },
+        {
+          "key": "Casserole, from a child's dinner service with check pattern",
+          "doc_count": 1
+        },
+        {
+          "key": "Cassetta frame",
+          "doc_count": 1
+        },
+        {
+          "key": "Cassia Blossom from a Flower Album of Ten Leaves",
+          "doc_count": 1
+        },
+        {
+          "key": "Cassiopeia",
+          "doc_count": 1
+        },
+        {
+          "key": "Cassis XII. Ordo I. Icosandria Monogynia. Punica, from An Illustration of the Sexual System of Linnaeus",
+          "doc_count": 1
+        },
+        {
+          "key": "Cassis XX. Ordo IV. Gynandria/ Monogynia. Passion Flower, from An Illustration of the Sexual System of Linnaeus",
+          "doc_count": 1
+        },
+        {
+          "key": "Cassone",
+          "doc_count": 1
+        },
+        {
+          "key": "Charlotte Landgrave de Hesse Cassel, Reine de Danemarc",
+          "doc_count": 1
+        },
+        {
+          "key": "Chest (cassone)",
+          "doc_count": 1
+        },
+        {
+          "key": "Condamné pour avoir vendu du grès pilé au lieu de cassonnade . . . (Actualités), from Le Charivari",
+          "doc_count": 1
+        },
+        {
+          "key": "Covered Casserole",
+          "doc_count": 1
+        },
+        {
+          "key": "Die neue Sommerzeit (The New Summertime) (recto) and The Ride (Die Fahrt) (verso), page from Der Bildermann",
+          "doc_count": 1
+        },
+        {
+          "key": "Disfigured Veteran (Gueule cassée)",
+          "doc_count": 1
+        },
+        {
+          "key": "Egyptian Monuments (Les monuments de l'Egypte)",
+          "doc_count": 1
+        },
+        {
+          "key": "Ellen Holding a Cat, Looking Left",
+          "doc_count": 1
+        },
+        {
+          "key": "Explusion from Paradise",
+          "doc_count": 1
+        },
+        {
+          "key": "Figure Studies",
+          "doc_count": 1
+        },
+        {
+          "key": "Harvest at San Juan, New Mexico",
+          "doc_count": 1
+        },
+        {
+          "key": "In Cassiobury Park",
+          "doc_count": 1
+        },
+        {
+          "key": "In the Opera Box III",
+          "doc_count": 1
+        },
+        {
+          "key": "Job, a Drama by Oskar Kokoshka",
+          "doc_count": 1
+        },
+        {
+          "key": "L'Arbre de la Liberté. Comment! pas un ami pour me crier: Casse-cou! (Actualités), from Le Charivari",
+          "doc_count": 1
+        },
+        {
+          "key": "La Dame des Oeufs.  Attention!. . . Il s'agit de ne rien casser (Actualités), from Le Charivari",
+          "doc_count": 1
+        },
+        {
+          "key": "Landscape in the Taunus (Landschaft im Taunus) (recto) and Signs of the Times V: Into Dust with All Enemies (Symbole der Zeit V: In Staub mit allen Feinden) (verso), page from Der Bildermann, folio 13, vol. 1, no. 6",
+          "doc_count": 1
+        },
+        {
+          "key": "Le Port de Cassis",
+          "doc_count": 1
+        },
+        {
+          "key": "Le port de Cassis au Matin",
+          "doc_count": 1
+        },
+        {
+          "key": "Louise Nursing Her Child",
+          "doc_count": 1
+        },
+        {
+          "key": "Mademoiselle Luquet in a Coat and Hat",
+          "doc_count": 1
+        },
+        {
+          "key": "Marmite (individual covered casserole)",
+          "doc_count": 1
+        },
+        {
+          "key": "Mason-Cass, Ballin' Jack, Buffalo Bob Smith and the Howdy Doody Gang, Redeye, January 7-9, Winterland",
+          "doc_count": 1
+        },
+        {
+          "key": "Mason-Cass, Bread, John Fahey, Joy of Cooking, Winterland, October 16-18",
+          "doc_count": 1
+        },
+        {
+          "key": "Maud Cassel (Mrs. Ashley)",
+          "doc_count": 1
+        },
+        {
+          "key": "Milly Road",
+          "doc_count": 1
+        },
+        {
+          "key": "Mother and Child",
+          "doc_count": 1
+        },
+        {
+          "key": "Mount Canaille, Cassis",
+          "doc_count": 1
+        },
+        {
+          "key": "Near Ghent (Bei Gent) (recto) and Mountain Goats (Bergziegen) (verso), page from Der Bildermann",
+          "doc_count": 1
+        },
+        {
+          "key": "Near the Coast",
+          "doc_count": 1
+        },
+        {
+          "key": "Nord Express",
+          "doc_count": 1
+        },
+        {
+          "key": "Pantins, Jocrisse & le Pére Cassandre",
+          "doc_count": 1
+        },
+        {
+          "key": "Rentrée nocturne de l'Electeur de Hesse dans sa bonne ville de Cassel. (Actualités), from Le Charivari",
+          "doc_count": 1
+        },
+        {
+          "key": "Snake, Caterpillar, Butterfly, and Insects on Plant",
+          "doc_count": 1
+        },
+        {
+          "key": "Solicitude",
+          "doc_count": 1
+        },
+        {
+          "key": "Studies in Design",
+          "doc_count": 1
+        },
+        {
+          "key": "Sweet Is the Hour of Rest",
+          "doc_count": 1
+        },
+        {
+          "key": "The Banjo Lesson",
+          "doc_count": 1
+        },
+        {
+          "key": "The Bath",
+          "doc_count": 1
+        },
+        {
+          "key": "The Blue Bird",
+          "doc_count": 1
+        },
+        {
+          "key": "The Caress",
+          "doc_count": 1
+        },
+        {
+          "key": "The Crocheting Lesson",
+          "doc_count": 1
+        },
+        {
+          "key": "The Dining Room",
+          "doc_count": 1
+        },
+        {
+          "key": "The Holy Bible",
+          "doc_count": 1
+        },
+        {
+          "key": "The Manicure",
+          "doc_count": 1
+        },
+        {
+          "key": "The Map",
+          "doc_count": 1
+        },
+        {
+          "key": "The Mirror",
+          "doc_count": 1
+        },
+        {
+          "key": "The Mouth of the Apponigansett",
+          "doc_count": 1
+        },
+        {
+          "key": "The Olive Trees of the Riviera",
+          "doc_count": 1
+        },
+        {
+          "key": "The Parrot",
+          "doc_count": 1
+        },
+        {
+          "key": "The Pleiades",
+          "doc_count": 1
+        },
+        {
+          "key": "The Smugglers' Landing Place",
+          "doc_count": 1
+        },
+        {
+          "key": "The Tribute Money",
+          "doc_count": 1
+        },
+        {
+          "key": "Twilight",
+          "doc_count": 1
+        },
+        {
+          "key": "Two Children on the Grass",
+          "doc_count": 1
+        },
+        {
+          "key": "Voila bien des oeufs de cassès, le tout est de savoir si l'omelette réussira (Actualités), from Le Charivari",
+          "doc_count": 1
+        },
+        {
+          "key": "Voilà tes étrennes; sers t' en et ne les casse pas. (Actualités), from Le Charivari",
+          "doc_count": 1
+        },
+        {
+          "key": "Wedding chest (cassone)",
+          "doc_count": 1
+        },
+        {
+          "key": "Wood Cassetta Frame",
+          "doc_count": 1
+        },
+        {
+          "key": "Ô vous qui m'offriez et sucre et cassonade Je ne puis à présent que vous mettre en salade! (Actualités), from Le Charivari",
+          "doc_count": 1
+        }
+      ]
+    },
+    "Tags": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": []
+    },
+    "Room": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "Not on View",
+          "doc_count": 104
+        },
+        {
+          "key": "G330",
+          "doc_count": 2
+        },
+        {
+          "key": "G340",
+          "doc_count": 1
+        },
+        {
+          "key": "G343",
+          "doc_count": 1
+        }
+      ]
+    },
+    "On View": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "Not on View",
+          "doc_count": 104
+        },
+        {
+          "key": "On View",
+          "doc_count": 4
+        }
+      ]
+    },
+    "Classification": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "prints",
+          "doc_count": 83
+        },
+        {
+          "key": "furniture",
+          "doc_count": 9
+        },
+        {
+          "key": "books",
+          "doc_count": 4
+        },
+        {
+          "key": "drawings",
+          "doc_count": 4
+        },
+        {
+          "key": "on",
+          "doc_count": 3
+        },
+        {
+          "key": "paper",
+          "doc_count": 3
+        },
+        {
+          "key": "works",
+          "doc_count": 3
+        },
+        {
+          "key": "amp",
+          "doc_count": 2
+        },
+        {
+          "key": "ceramics",
+          "doc_count": 2
+        },
+        {
+          "key": "display",
+          "doc_count": 2
+        },
+        {
+          "key": "paintings",
+          "doc_count": 2
+        },
+        {
+          "key": "storage",
+          "doc_count": 2
+        },
+        {
+          "key": "textiles",
+          "doc_count": 2
+        },
+        {
+          "key": "and",
+          "doc_count": 1
+        },
+        {
+          "key": "dolls",
+          "doc_count": 1
+        },
+        {
+          "key": "games",
+          "doc_count": 1
+        },
+        {
+          "key": "sculpture",
+          "doc_count": 1
+        },
+        {
+          "key": "toys",
+          "doc_count": 1
+        }
+      ]
+    },
+    "Image": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "Unavailable",
+          "doc_count": 55
+        },
+        {
+          "key": "Available",
+          "doc_count": 53
+        }
+      ]
+    },
+    "Department": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "Arts of the Americas",
+          "doc_count": 59
+        },
+        {
+          "key": "European Art",
+          "doc_count": 44
+        },
+        {
+          "key": "Global Contemporary Art",
+          "doc_count": 3
+        },
+        {
+          "key": "Asian Art",
+          "doc_count": 2
+        }
+      ]
+    },
+    "Artist": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "Mary Cassatt",
+          "doc_count": 18
+        },
+        {
+          "key": "Honoré Daumier",
+          "doc_count": 7
+        },
+        {
+          "key": "Italy",
+          "doc_count": 4
+        },
+        {
+          "key": "Frederick Stuart Church; Publisher: Cassell & Co., Ltd.",
+          "doc_count": 3
+        },
+        {
+          "key": "Henry Farrer; Publisher: Cassell & Co., Ltd.",
+          "doc_count": 3
+        },
+        {
+          "key": "Samuel Colman; Publisher: Cassell & Co., Ltd.",
+          "doc_count": 3
+        },
+        {
+          "key": "",
+          "doc_count": 2
+        },
+        {
+          "key": "Charles Adams Platt; Publisher: Cassell & Co., Ltd.",
+          "doc_count": 2
+        },
+        {
+          "key": "Designer: William Channing Whitney",
+          "doc_count": 2
+        },
+        {
+          "key": "Edgar Degas",
+          "doc_count": 2
+        },
+        {
+          "key": "Erich Heckel (recto); August Gaul (verso); Publisher: Galerie Paul Cassirer; Printer: M.W. Lassaly",
+          "doc_count": 2
+        },
+        {
+          "key": "France",
+          "doc_count": 2
+        },
+        {
+          "key": "Frederick Dielman; Publisher: Cassell & Co., Ltd.",
+          "doc_count": 2
+        },
+        {
+          "key": "Ignaz M. Gaugengigl; Publisher: Cassell & Co., Ltd.",
+          "doc_count": 2
+        },
+        {
+          "key": "J. Foxcraft Cole; Publisher: Cassell & Co., Ltd.",
+          "doc_count": 2
+        },
+        {
+          "key": "John Sebastian Miller; Publisher: John Sebastian Miller",
+          "doc_count": 2
+        },
+        {
+          "key": "Joseph Pennell; Publisher: Cassell & Co., Ltd.",
+          "doc_count": 2
+        },
+        {
+          "key": "Mary Nimmo Moran; Publisher: Cassell & Co., Ltd.",
+          "doc_count": 2
+        },
+        {
+          "key": "Randy Tuten; Tea Lautrec Litho, San Francisco",
+          "doc_count": 2
+        },
+        {
+          "key": "Robert Swain Gifford; Publisher: Cassell & Co., Ltd.",
+          "doc_count": 2
+        },
+        {
+          "key": "Stephen Parrish; Publisher: Cassell & Co., Ltd.",
+          "doc_count": 2
+        },
+        {
+          "key": "Thomas Moran; Publisher: Cassell & Co., Ltd.",
+          "doc_count": 2
+        },
+        {
+          "key": "Timothy Cole; after Tommaso di Ser Giovanni Cassai (Guidi) Masaccio",
+          "doc_count": 2
+        },
+        {
+          "key": "Adolphe Mouron Cassandre",
+          "doc_count": 1
+        },
+        {
+          "key": "Adolphe Mouron Cassandre; Designer: A. M. Cassandre; Printer: Hatchard et Cie.",
+          "doc_count": 1
+        },
+        {
+          "key": "After Maria Sibylla Merian; Engraver: Joseph Mulder; Printer: Cassave ?",
+          "doc_count": 1
+        },
+        {
+          "key": "Anders Zorn",
+          "doc_count": 1
+        },
+        {
+          "key": "Attributed to Pierre-Joseph Redouté",
+          "doc_count": 1
+        },
+        {
+          "key": "August Gaul (recto); Erich Heckel (verso); Publisher: Galerie Paul Cassirer; Printer: M.W. Lassaly",
+          "doc_count": 1
+        },
+        {
+          "key": "Auguste Louis Lepère; after Armande Théophile Cassagne",
+          "doc_count": 1
+        },
+        {
+          "key": "Author: Christopher Dresser; Christopher Dresser; Printer: Cassell, Petter & Galpin, London",
+          "doc_count": 1
+        },
+        {
+          "key": "Charles Edmund Kayser",
+          "doc_count": 1
+        },
+        {
+          "key": "Designer: Eva Zeisel; Manufacturer: Red Wing Potteries",
+          "doc_count": 1
+        },
+        {
+          "key": "Designer: Jean-Baptiste Huet; after Louis-François Cassas; Mill: Manufacture de Jouy",
+          "doc_count": 1
+        },
+        {
+          "key": "Designer: Larsen Design Studio, New York; Mill: United Textile Corp.; Producer: Jack Lenor Larsen, Inc.",
+          "doc_count": 1
+        },
+        {
+          "key": "Engraver: Adolphe Francois Pannemaker; Engraver: Joseph Pisan, et al.; after Gustave Doré; Publisher: Cassell, Petter & Galpin, London",
+          "doc_count": 1
+        },
+        {
+          "key": "Ernst Ludwig Kirchner (recto); Max Slevogt (verso); Publisher: Galerie Paul Cassirer; Printer: M.W. Lassaly",
+          "doc_count": 1
+        },
+        {
+          "key": "F. E. Fillebrown; Publisher: Cassell & Co., Ltd.; after Elihu Vedder",
+          "doc_count": 1
+        },
+        {
+          "key": "F. H. Maurice de Haas; Publisher: Cassell & Co., Ltd.",
+          "doc_count": 1
+        },
+        {
+          "key": "George H. Smillie; Publisher: Cassell & Co., Ltd.",
+          "doc_count": 1
+        },
+        {
+          "key": "Italy (Lucca)",
+          "doc_count": 1
+        },
+        {
+          "key": "Italy (Venice); or Italy (Padua)",
+          "doc_count": 1
+        },
+        {
+          "key": "James Craig Nicoll; Publisher: Cassell & Co., Ltd.",
+          "doc_count": 1
+        },
+        {
+          "key": "Jean Mariette",
+          "doc_count": 1
+        },
+        {
+          "key": "John Austin Sands Monks; Publisher: Cassell & Co., Ltd.",
+          "doc_count": 1
+        },
+        {
+          "key": "John Postle Heseltine",
+          "doc_count": 1
+        },
+        {
+          "key": "Kurt Seligmann; Author: Anatole Jakowski; Publisher: Editions des Chroniques du Jour, Paris",
+          "doc_count": 1
+        },
+        {
+          "key": "Manufacturer: Crownford Potteries",
+          "doc_count": 1
+        },
+        {
+          "key": "Manufacturer: Waechtersbach Earthenware Factory, Schierbach, Hesse, Germany",
+          "doc_count": 1
+        },
+        {
+          "key": "Marc Chagall; Printer: probably Pan-Presse, Berlin; Publisher: Paul Cassirer, Berlin",
+          "doc_count": 1
+        },
+        {
+          "key": "Mark W. Fisher",
+          "doc_count": 1
+        },
+        {
+          "key": "Oskar Kokoschka; Publisher: Paul Cassirer, Berlin, Berlin; Printer: W. Drugulin, Leipzig, (text)",
+          "doc_count": 1
+        },
+        {
+          "key": "Paul Granlund",
+          "doc_count": 1
+        },
+        {
+          "key": "Peter Moran; Publisher: Cassell & Co., Ltd.",
+          "doc_count": 1
+        },
+        {
+          "key": "Pierre Louis Moreau",
+          "doc_count": 1
+        },
+        {
+          "key": "Publisher: Cassell & Co., Ltd.; F. H. Maurice de Haas",
+          "doc_count": 1
+        },
+        {
+          "key": "Unknown",
+          "doc_count": 1
+        },
+        {
+          "key": "Xiang Shengmo",
+          "doc_count": 1
+        },
+        {
+          "key": "Yoshida Tōshi (self-published)",
+          "doc_count": 1
+        }
+      ]
+    }
+  },
+  "suggest": {
+    "title_completion": [
+      {
+        "text": "cassir public_access:1",
+        "offset": 0,
+        "length": 22,
+        "options": []
+      }
+    ],
+    "artist": [
+      {
+        "text": "cassir",
+        "offset": 0,
+        "length": 6,
+        "options": []
+      },
+      {
+        "text": "public_access",
+        "offset": 7,
+        "length": 13,
+        "options": []
+      },
+      {
+        "text": "1",
+        "offset": 21,
+        "length": 1,
+        "options": []
+      }
+    ],
+    "artist_completion": [
+      {
+        "text": "cassir public_access:1",
+        "offset": 0,
+        "length": 22,
+        "options": []
+      }
+    ]
+  },
+  "query": "cassir",
+  "error": null
+}
