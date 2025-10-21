@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 es = $(ES_URL)
-index = $(ES_index)
+index = $(OS_INDEX)
 
 default: highlights
 

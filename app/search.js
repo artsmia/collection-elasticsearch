@@ -8,7 +8,7 @@ const Json2csvParser = require('json2csv').Parser
 const client = buildRedisClient();
 client.connect();
 
-const CACHE_SEARCHES = true;
+const CACHE_SEARCHES = false;
 
 var prindleRoom = {
   accession_number: '82.43.1-60',
@@ -284,7 +284,7 @@ function getTypeIndexFromDataPrefix(prefix) {
   if(prefix === 'fitd') return ['foot-in-the-door', 'foot-in-the-door']
   if(prefix === 'ca21') return ['creativity-academy-2021', 'creativity-academy-2021']
   if(prefix === 'aib21') return ['art-in-bloom-2021', 'art-in-bloom-2021']
-  return [undefined, process.env.ES_index]
+  return [undefined, process.env.OS_INDEX]
 }
 
 /**
@@ -452,7 +452,7 @@ var autofill = function(req, res) {
    */
 
   es.search({
-    index: process.env.ES_index,
+    index: process.env.OS_INDEX,
     body: {
       suggest: {
         artist_completion: {
@@ -513,6 +513,9 @@ var random = function(req, res) {
     return res.json(
       size === 1 ? firstHitSource : results.body.hits.hits
     )
+  }).catch(error => {
+    console.log(error);
+    return res.json({ error: true });
   })
 }
 

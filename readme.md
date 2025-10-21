@@ -36,7 +36,7 @@ curl 'http://admin:97UxngYAArZ12jqt!jH20K@localhost:9200/objects2' | jq .
 
 curl 'http://admin:97UxngYAArZ12jqt!jH20K@localhost:9200/objects2/_doc/3885 | jq .
 
-# Start the server
+# Start the server on http://localhost:3000/
 ddev exec -s app node api/index.js
 ```
 
