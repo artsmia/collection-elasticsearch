@@ -36,20 +36,27 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
     'title.ngram',
   ]
 
-  if (query.match(/".*"/)) fields = fields.slice(0, -2)
-  if (filters) query += ' ' + filters
-  var limitToPublicAccess = req.query.token != process.env.PRIVATE_ACCESS_TOKEN
-  if (
-    limitToPublicAccess &&
-    [query, filters].indexOf('deaccessioned:true') +
-      [query, filters].indexOf('deaccessioned:"true"') ===
-      -2
-  )
+  if (query.match(/".*"/)) {
+    fields = fields.slice(0, -2)
+  }
+
+  if (filters) {
+    query += ' ' + filters
+  }
+
+  let limitToPublicAccess = !process.env.PRIVATE_ACCESS_TOKEN ||
+    (req.query.token !== process.env.PRIVATE_ACCESS_TOKEN)
+  if (query.includes('deaccessioned:true') || query.includes('deaccessioned:"true"')) {
+    limitToPublicAccess = false;
+  }
+  if (limitToPublicAccess) {
     query += ' public_access:1'
+  }
+
   // if(isApp) query += ' room:G*' // restrict searches from the journeys app to only on view objects
   var isMoreArtsmia =
     (req.headers.origin && req.headers.origin.match('//more.artsmia.org')) ||
-    (req.query.tag && req.query.tag == 'more')
+    (req.query.tag && req.query.tag === 'more')
   var boostOnViewArtworks = isApp || isMoreArtsmia
 
   var searches = {
@@ -161,7 +168,6 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
 
   var search = {
     index: index,
-    dataPrefix: dataPrefix,
     body: {
       query: q,
       aggs: aggs,
@@ -170,12 +176,19 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
     },
     size: size,
     from: from,
-    // limitToPublicAccess: limitToPublicAccess,
-    isMoreArtsmia: isMoreArtsmia,
-    boostOnViewArtworks: boostOnViewArtworks,
   }
+  if (dataPrefix) {
+    search.dataPrefix = dataPrefix;
+  }
+  if (isMoreArtsmia) {
+    search.isMoreArtsmia = isMoreArtsmia;
+  }
+  if (boostOnViewArtworks) {
+    search.boostOnViewArtworks = boostOnViewArtworks;
+  }
+
   // when the search is undefined or blank, do a count over the aggregations
-  if (query == '' || query == undefined) {
+  if (!query) {
     search = { body: { size: 0, aggs: aggs }, searchType: 'count' }
   }
 
@@ -199,7 +212,9 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
         body.query = q
         callback(null, body)
 
-        var skipCaching = req.query.expireCache || req.query.tag
+        var skipCaching = !CACHE_SEARCHES ||
+          req.query.expireCache ||
+          req.query.tag
 
         if (!skipCaching) {
           var cacheTTL = body.took * 60
@@ -222,20 +237,20 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
  * @param {Response} res
  */
 var searchEndpoint = function(req, res) {
-  if (req.params.query === 'favicon.ico') {
+  var query = String(req.params.query || '');
+  if (query === 'favicon.ico') {
     return res.sendStatus(400);
   }
-  var replies = []
-  var size = req.query.size || (req.query.format === 'csv' ? 1000 : 100)
-  var sort = req.query.sort
-  var from = req.query.from || 0
-  var filters = req.query.filters
-  var userAgent = req.headers['user-agent']
-  var isApp = userAgent && userAgent.match('MIA') // 'MIA/8 CFNetwork/758.0.2 Darwin/15.0.0' means this request came frmo the journeys app
-  var dataPrefix = req.query.dataPrefix // pull data from a non-mia-artworks index
+  var size = Number(req.query.size || (req.query.format === 'csv' ? 1000 : 100))
+  var sort = String(req.query.sort || '')
+  var from = Number(req.query.from || 0)
+  var filters = String(req.query.filters || '')
+  var userAgent = String(req.headers['user-agent'] || '')
+  var isApp = userAgent.match('MIA') // 'MIA/8 CFNetwork/758.0.2 Darwin/15.0.0' means this request came frmo the journeys app
+  var dataPrefix = String(req.query.dataPrefix || '') // pull data from a non-mia-artworks index
 
   search(
-    req.params.query || '',
+    query,
     size,
     sort,
     filters,
@@ -244,33 +259,36 @@ var searchEndpoint = function(req, res) {
     from,
     req,
     function(error, results) {
-      results.query = req.params.query
+      results.query = query
       results.filters = filters
       results.error = error
 
-      if (req.query.format === 'csv') {
-        // How to re-query and pull the full set of results, or at least up to a higher limit?
-        if (typeof results === 'string') results = JSON.parse(results) // re-parse cached JSON string
-
-        const hits = results.hits.hits.map(hit => {
-          return Object.assign(hit._source, {
-            searchTerm: req.params.query,
-            searchScore: hit._score,
-          })
-        })
-
-        const csv = new Json2csvParser({}).parse(hits)
-
-        const filename = `minneapolis institute of art search: ${
-          req.params.query
-        }.csv`
-
-        res.attachment(filename)
-        res.send(csv)
-        // TODO - "download as CSV" button on collections search pages
-      } else {
+      if (req.query.format !== 'csv') {
         return res.status(error ? (error.status || 500) : 200).json(results)
       }
+
+      // How to re-query and pull the full set of results, or at least up to a higher limit?
+      if (typeof results === 'string') {
+        // re-parse cached JSON string
+        results = JSON.parse(results)
+      }
+
+      const hits = results.hits.hits.map(
+        hit => Object.assign(hit._source, {
+          searchTerm: query,
+          searchScore: hit._score,
+        })
+      )
+
+      const csv = new Json2csvParser({}).parse(hits)
+
+      const filename = `minneapolis institute of art search: ${
+        query
+      }.csv`
+
+      res.attachment(filename)
+      res.send(csv)
+      // TODO - "download as CSV" button on collections search pages
     }
   )
 }
@@ -293,7 +311,9 @@ function getTypeIndexFromDataPrefix(prefix) {
  */
 var id = function(req, res) {
   var id = req.params.id
-  if (id == 'G320') return res.json(prindleRoom)
+  if (id === 'G320') {
+    return res.json(prindleRoom)
+  }
 
   // if the given :id isn't numeric, do an "I'm feeling lucky" search
   if (!id.match(/\d+/)) {
@@ -412,14 +432,15 @@ function checkRedisForCachedSearch(search, query, req, callback) {
     return;
   }
 
-  var sortKey = req.query.sort && 'sort:' + req.query.sort.replace('-asc', '')
-  var cacheKey =
-    'cache::search::' +
-    [query, search.size, search.from, sortKey, search.isMoreArtsmia, search.dataPrefix]
-      .filter(val => !!val)
-      .join('::')
-      .replace(/ /g, '-')
-  if (!search.limitToPublicAccess) cacheKey = cacheKey + '::private'
+  const cacheParams = new URLSearchParams();
+  cacheParams.set('query', query);
+  cacheParams.set('sort', String(req.query.sort || '').replace('-asc', ''));
+  ['size', 'from', 'isMoreArtsmia', 'dataPrefix', 'limitToPublicAccess']
+    .map(key => [key, search[key]])
+    .filter(([k,v]) => Boolean(v))
+    .forEach(([k,v]) => cacheParams.set(`search.${k}`, v))
+
+  const cacheKey = cacheParams.toString()
 
   client.get(cacheKey)
     .then(reply => {
