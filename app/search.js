@@ -8,7 +8,7 @@ const Json2csvParser = require('json2csv').Parser
 const client = buildRedisClient();
 client.connect();
 
-const CACHE_SEARCHES = true;
+const CACHE_SEARCHES = false;
 
 var prindleRoom = {
   accession_number: '82.43.1-60',
