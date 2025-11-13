@@ -8,7 +8,7 @@ const Json2csvParser = require('json2csv').Parser
 const client = buildRedisClient();
 client.connect();
 
-const CACHE_SEARCHES = false;
+const CACHE_SEARCHES = true;
 
 var prindleRoom = {
   accession_number: '82.43.1-60',
@@ -440,7 +440,7 @@ function checkRedisForCachedSearch(search, query, req, callback) {
     .filter(([k,v]) => Boolean(v))
     .forEach(([k,v]) => cacheParams.set(`search.${k}`, v))
 
-  const cacheKey = cacheParams.toString()
+  const cacheKey = `search.artsmia.org:${cacheParams.toString()}`
 
   client.get(cacheKey)
     .then(reply => {
