@@ -24,12 +24,10 @@ var prindleRoom = {
 
 var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, callback) {
   var fields = [
-    'artist.artist^15',
-    'artist.folded^15',
+    'artist^15',
     'title^11',
-    'title.folded^5',
     'description^3',
-    'text.*^2',
+    'text^2',
     'accession_number',
     '_all',
     'artist.ngram^2',
