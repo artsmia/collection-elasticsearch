@@ -101,3 +101,39 @@ Here are the main endpoints we use. Test them out at [search.artsmia.org](https:
 # Indexing
 
 We index our objects regularly from our custom-built TMS API. See [`Makefile`](Makefile) for the confusing, shell-scripted details. It works by pulling the data from a local redis database that's synchronized with a system that watches for changes as they happen in TMS. We also index [related content](https://github.com/artsmia/collection-info) to our objects. A few other layers of data are added into elasticsearch to complement and improve the data from our API.
+
+## Setup for working with OpenSearch
+
+```
+export OS_URL_NO_AUTH='https://search-test-site-...us-east-1.es.amazonaws.com'
+export OS_PASSWORD='...'
+```
+
+### Extracting the index
+
+```
+curl -u "admin:${OS_PASSWORD}" "${OS_URL_NO_AUTH}/objects2" | jq .objects2 > objects2.json
+```
+
+### Recreating it
+
+First, remove a few fields from the settings:
+
+```
+cat objects2.json \
+  | jq 'del(.settings.index.provided_name)' \
+  | jq 'del(.settings.index.uuid)' \
+  | jq 'del(.settings.index.version)' \
+  | jq 'del(.settings.index.creation_date)' \
+  > new-objects2.json
+```
+
+Delete and recreate the index
+
+```
+curl -X DELETE -u "admin:${OS_PASSWORD}" "${OS_URL_NO_AUTH}/objects2"
+
+curl -X PUT -u "admin:${OS_PASSWORD}" "${OS_URL_NO_AUTH}/objects2" \
+-H "Content-Type: application/json" \
+-d @new-objects2.json
+```
