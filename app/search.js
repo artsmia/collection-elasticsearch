@@ -162,16 +162,16 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
   var aggs = {
     // Note: Several entries have been deleted because they fail to execute
     // under OpenSearch, or due to flaws in the mappings/data migration process.
-    Room: { terms: { field: 'room.raw', size: aggSize } },
+    Room: { terms: { field: 'room.keyword', size: aggSize } },
     Rights: { terms: { field: 'rights_type.keyword' } },
-    Artist: { terms: { field: 'artist.raw', size: aggSize } },
-    Country: { terms: { field: 'country.raw', size: aggSize } },
-    Style: { terms: { field: 'style.raw', size: aggSize } },
-    Medium: { terms: { field: 'medium.stop', size: aggSize } },
+    Artist: { terms: { field: 'artist.keyword', size: aggSize } },
+    Country: { terms: { field: 'country.keyword', size: aggSize } },
+    Style: { terms: { field: 'style.keyword', size: aggSize } },
+    Medium: { terms: { field: 'medium.keyword', size: aggSize } },
     Classification: { terms: { field: 'classification.keyword', size: aggSize } },
-    Title: { terms: { field: 'title.raw', size: aggSize } },
+    Title: { terms: { field: 'title.keyword', size: aggSize } },
     Gist: { significant_terms: { field: '_all' } },
-    Department: { terms: { field: 'department.raw', size: aggSize } },
+    Department: { terms: { field: 'department.keyword', size: aggSize } },
     Tags: { terms: { field: 'tags', size: aggSize } },
   }
   var highlight = {
