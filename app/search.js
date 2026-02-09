@@ -173,6 +173,23 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
     Gist: { significant_terms: { field: '_all' } },
     Department: { terms: { field: 'department.keyword', size: aggSize } },
     Tags: { terms: { field: 'tags', size: aggSize } },
+    'On View': {
+      terms: {
+        field: 'on_view_display',
+        size: 2,
+        order: { _key: 'asc' },
+      },
+    },
+  }
+  var runtimeMappings = {
+    on_view_display: {
+      type: 'keyword',
+      script: {
+        lang: 'painless',
+        source:
+          "if (doc['room'].size() == 0) { emit('Not on View'); } else { emit(doc['room'].value == 'Not on View' ? 'Not on View' : 'On View'); }",
+      },
+    },
   }
   var highlight = {
     fields: { '*': { fragment_size: 5000, number_of_fragments: 1 } },
@@ -183,6 +200,7 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
   var search = {
     index: index,
     body: {
+      runtime_mappings: runtimeMappings,
       query: q,
       aggs: aggs,
       highlight: highlight,
@@ -203,7 +221,11 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
 
   // when the search is undefined or blank, do a count over the aggregations
   if (!query) {
-    search = { body: { size: 0, aggs: aggs }, searchType: 'count' }
+    search = {
+      index: index,
+      body: { size: 0, runtime_mappings: runtimeMappings, aggs: aggs },
+      searchType: 'count',
+    }
   }
 
   if (sort) {
