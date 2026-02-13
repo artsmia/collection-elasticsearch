@@ -191,7 +191,6 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
     Classification: { terms: { field: 'classification.keyword', size: aggSize } },
     Title: { terms: { field: 'title.keyword', size: aggSize } },
     Department: { terms: { field: 'department.keyword', size: aggSize } },
-    Tags: { terms: { field: 'tags', size: aggSize } },
   }
   var highlight = {
     fields: { '*': { fragment_size: 5000, number_of_fragments: 1 } },
