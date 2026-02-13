@@ -162,6 +162,26 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
   var aggs = {
     // Note: Several entries have been deleted because they fail to execute
     // under OpenSearch, or due to flaws in the mappings/data migration process.
+    'On View': {
+      filters: {
+        filters: {
+          'On View': {
+            bool: {
+              should: [
+                { prefix: { 'room.keyword': 'G' } },
+                { term: { 'room.keyword': '24th Street Entrance' } },
+                { term: { 'room.keyword': 'ArtsCafe' } },
+                { term: { 'room.keyword': 'Exterior Grounds' } },
+                { term: { 'room.keyword': 'Purcell-Cutts House' } },
+                { term: { 'room.keyword': 'Target Park' } },
+              ],
+              minimum_should_match: 1,
+            },
+          },
+          'Not on View': { term: { 'room.keyword': 'Not on View' } },
+        },
+      },
+    },
     Room: { terms: { field: 'room.keyword', size: aggSize } },
     Rights: { terms: { field: 'rights_type.keyword' } },
     Artist: { terms: { field: 'artist.keyword', size: aggSize } },
@@ -170,26 +190,8 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
     Medium: { terms: { field: 'medium.keyword', size: aggSize } },
     Classification: { terms: { field: 'classification.keyword', size: aggSize } },
     Title: { terms: { field: 'title.keyword', size: aggSize } },
-    Gist: { significant_terms: { field: '_all' } },
     Department: { terms: { field: 'department.keyword', size: aggSize } },
     Tags: { terms: { field: 'tags', size: aggSize } },
-    'On View': {
-      terms: {
-        field: 'on_view_display',
-        size: 2,
-        order: { _key: 'asc' },
-      },
-    },
-  }
-  var runtimeMappings = {
-    on_view_display: {
-      type: 'keyword',
-      script: {
-        lang: 'painless',
-        source:
-          "if (doc['room'].size() == 0) { emit('Not on View'); } else { emit(doc['room'].value == 'Not on View' ? 'Not on View' : 'On View'); }",
-      },
-    },
   }
   var highlight = {
     fields: { '*': { fragment_size: 5000, number_of_fragments: 1 } },
@@ -200,7 +202,6 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
   var search = {
     index: index,
     body: {
-      runtime_mappings: runtimeMappings,
       query: q,
       aggs: aggs,
       highlight: highlight,
@@ -223,8 +224,7 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
   if (!query) {
     search = {
       index: index,
-      body: { size: 0, runtime_mappings: runtimeMappings, aggs: aggs },
-      searchType: 'count',
+      body: { size: 0, aggs: aggs },
     }
   }
 
