@@ -162,17 +162,35 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
   var aggs = {
     // Note: Several entries have been deleted because they fail to execute
     // under OpenSearch, or due to flaws in the mappings/data migration process.
-    Room: { terms: { field: 'room.raw', size: aggSize } },
+    'On View': {
+      filters: {
+        filters: {
+          'On View': {
+            bool: {
+              should: [
+                { prefix: { 'room.keyword': 'G' } },
+                { term: { 'room.keyword': '24th Street Entrance' } },
+                { term: { 'room.keyword': 'ArtsCafe' } },
+                { term: { 'room.keyword': 'Exterior Grounds' } },
+                { term: { 'room.keyword': 'Purcell-Cutts House' } },
+                { term: { 'room.keyword': 'Target Park' } },
+              ],
+              minimum_should_match: 1,
+            },
+          },
+          'Not on View': { term: { 'room.keyword': 'Not on View' } },
+        },
+      },
+    },
+    Room: { terms: { field: 'room.keyword', size: aggSize } },
     Rights: { terms: { field: 'rights_type.keyword' } },
-    Artist: { terms: { field: 'artist.raw', size: aggSize } },
-    Country: { terms: { field: 'country.raw', size: aggSize } },
-    Style: { terms: { field: 'style.raw', size: aggSize } },
-    Medium: { terms: { field: 'medium.stop', size: aggSize } },
+    Artist: { terms: { field: 'artist.keyword', size: aggSize } },
+    Country: { terms: { field: 'country.keyword', size: aggSize } },
+    Style: { terms: { field: 'style.keyword', size: aggSize } },
+    Medium: { terms: { field: 'medium.keyword', size: aggSize } },
     Classification: { terms: { field: 'classification.keyword', size: aggSize } },
-    Title: { terms: { field: 'title.raw', size: aggSize } },
-    Gist: { significant_terms: { field: '_all' } },
-    Department: { terms: { field: 'department.raw', size: aggSize } },
-    Tags: { terms: { field: 'tags', size: aggSize } },
+    Title: { terms: { field: 'title.keyword', size: aggSize } },
+    Department: { terms: { field: 'department.keyword', size: aggSize } },
   }
   var highlight = {
     fields: { '*': { fragment_size: 5000, number_of_fragments: 1 } },
@@ -203,7 +221,10 @@ var search = function(query, size, sort, filters, isApp, dataPrefix, from, req, 
 
   // when the search is undefined or blank, do a count over the aggregations
   if (!query) {
-    search = { body: { size: 0, aggs: aggs }, searchType: 'count' }
+    search = {
+      index: index,
+      body: { size: 0, aggs: aggs },
+    }
   }
 
   if (sort) {
