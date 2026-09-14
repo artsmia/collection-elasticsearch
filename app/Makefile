@@ -229,6 +229,12 @@ maintainUpdatedImageData:
 	make updateImageData images=manually-added-images/ index=objects1
 	make updateImageData images=manually-added-images/ index=objects2
 
+verifyImages:
+	node ingests/artworks/verify-images.js
+
+fixStaleImages:
+	node ingests/artworks/verify-images.js --bulk-json | $(toES)
+
 restoreFromBulkCache:
 	cat bulk/$(file) | $(toES)
 
