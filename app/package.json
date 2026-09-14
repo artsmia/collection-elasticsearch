@@ -17,6 +17,8 @@
   "scripts": {
     "build": "unzip data-snapshot20250710.zip",
     "start": "node api/index.js",
+    "verify-images": "node ingests/artworks/verify-images.js",
+    "fix-stale-images": "node ingests/artworks/verify-images.js --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "",

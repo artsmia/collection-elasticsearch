@@ -184,6 +184,6 @@ function transform(_data) {
  * Integrating these would be ideal, then expanding.
  */
 
-/** ----------- */
+const { verifyImage } = require('./verify-images')
 
-module.exports = { read, stream, transform }
+module.exports = { read, stream, transform, verifyImage }

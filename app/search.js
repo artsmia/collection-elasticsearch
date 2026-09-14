@@ -350,6 +350,11 @@ var id = function(req, res) {
     return res.json(prindleRoom)
   }
 
+  if (id.includes(',')) {
+    req.params.ids = id
+    return ids(req, res)
+  }
+
   // if the given :id isn't numeric, do an "I'm feeling lucky" search
   if (!id.match(/\d+/)) {
     const toFirstHit = function(error, results) {

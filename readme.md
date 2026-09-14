@@ -137,3 +137,19 @@ curl -X PUT -u "admin:${OS_PASSWORD}" "${OS_URL_NO_AUTH}/objects2" \
 -H "Content-Type: application/json" \
 -d @new-objects2.json
 ```
+
+## Auditing and Fixing Stale Image Records
+
+Records in the dataset that carry `image: "valid"` whose renditions return 403 or 404 on the image CDN (e.g. Issue #10) can be audited and fixed:
+
+```bash
+# Audit known stale or given records:
+npm --prefix app run verify-images
+
+# Audit and apply fixes directly to OpenSearch / Redis:
+npm --prefix app run fix-stale-images
+
+# Or generate bulk NDJSON to pipe via curl:
+node app/ingests/artworks/verify-images.js --bulk-json | curl -XPOST -u "admin:${OS_PASSWORD}" "${OS_URL_NO_AUTH}/objects2/_bulk" -H "Content-Type: application/x-ndjson" --data-binary @-
+```
+
